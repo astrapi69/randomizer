@@ -1,11 +1,12 @@
 ## Change log
 ----------------------
 
-Version 5.1.0-SNAPSHOT
+Version 5.1.0
 -------------
 
 ADDED:
  
+- initial version
 - moved all random relevant projects from mystic-crypt to this project
 
 Notable links:
