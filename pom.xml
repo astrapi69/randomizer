@@ -1,0 +1,247 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>de.alpharogroup</groupId>
+		<artifactId>mvn-java-parent</artifactId>
+		<version>3.7.0</version>
+	</parent>
+
+	<artifactId>randomizer</artifactId>
+	<version>5.1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<inceptionYear>2015</inceptionYear>
+
+	<name>${project.artifactId}</name>
+
+
+	<description>
+		The target of this parent project is to create or generate random data as simple as possible.
+	</description>
+
+	<url>https://github.com/astrapi69/randomizer</url>
+
+	<properties>
+		<!-- NEW EXTENSIONS LIB versions -->
+		<jcommons-lang.version>4.29.0</jcommons-lang.version>
+		<test-objects.version>4.22.0</test-objects.version>
+		<silly-collections.version>4.25.0</silly-collections.version>
+		<vintage-time.version>4.11.0</vintage-time.version>
+		<!-- RESOURCEBUNDLE-CORE versions -->
+		<resourcebundle-inspector.version>2.18.0</resourcebundle-inspector.version>
+		<!-- PARENT PROJECT versions -->
+		<!-- randomizer versions -->
+		<randomizer.version>${project.version}</randomizer.version>
+		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
+		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
+		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
+		<!-- MEANBEAN version -->
+		<meanbean.version>2.0.3</meanbean.version>
+	</properties>
+
+	<modules>
+		<module>randomizer-api</module>
+		<module>randomizer-core</module>
+		<module>randomizer-data</module>
+	</modules>
+
+	<developers>
+
+		<developer>
+			<id>astrapi69</id>
+			<name>Asterios Raptis</name>
+			<roles>
+				<role>Project manager</role>
+				<role>Developer</role>
+			</roles>
+			<timezone>Berlin</timezone>
+		</developer>
+
+	</developers>
+
+	<scm>
+		<connection>scm:git:git:@github.com:astrapi69/randomizer.git</connection>
+		<developerConnection>scm:git:git@github.com:astrapi69/randomizer.git</developerConnection>
+		<url>git:@github.com:astrapi69/randomizer.git</url>
+	</scm>
+
+	<issueManagement>
+		<system>github.com</system>
+		<url>https://github.com/astrapi69/randomizer/issues</url>
+	</issueManagement>
+
+	<dependencyManagement>
+
+		<dependencies>
+			<!-- RESOURCEBUNDLE-CORE DEPENDENCIES -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>resourcebundle-inspector</artifactId>
+				<version>${resourcebundle-inspector.version}</version>
+			</dependency>
+			<!-- NEW EXTENSIONS LIB DEPENDENCIES -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>silly-collections</artifactId>
+				<version>${silly-collections.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>jcommons-lang</artifactId>
+				<version>${jcommons-lang.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>test-objects</artifactId>
+				<version>${test-objects.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>vintage-time</artifactId>
+				<version>${vintage-time.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>randomizer-core</artifactId>
+				<version>${randomizer-core.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>randomizer-api</artifactId>
+				<version>${randomizer-api.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>randomizer-data</artifactId>
+				<version>${randomizer-data.version}</version>
+			</dependency>
+			<!-- MEANBEAN DEPENDENCY -->
+			<dependency>
+				<groupId>org.meanbean</groupId>
+				<artifactId>meanbean</artifactId>
+				<version>${meanbean.version}</version>
+			</dependency>
+
+		</dependencies>
+
+	</dependencyManagement>
+
+	<build>
+
+		<resources>
+
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+					<exclude>**/package.html</exclude>
+				</excludes>
+			</resource>
+
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+
+			<resource>
+				<filtering>false</filtering>
+				<directory>src/site</directory>
+			</resource>
+
+		</resources>
+
+		<testResources>
+
+			<testResource>
+				<filtering>false</filtering>
+				<directory>src/test/java</directory>
+				<includes>
+					<include>**</include>
+				</includes>
+				<excludes>
+					<exclude>**/*.java</exclude>
+					<exclude>**/package.html</exclude>
+				</excludes>
+			</testResource>
+			<testResource>
+				<filtering>false</filtering>
+				<directory>src/test/resources</directory>
+			</testResource>
+
+		</testResources>
+
+		<pluginManagement>
+
+			<plugins>
+
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>cobertura-maven-plugin</artifactId>
+					<configuration>
+						<instrumentation>
+							<excludes>
+								<!-- abstract classes -->
+								<!-- enums -->
+								<!-- beans -->
+								<!-- constant classes with only constants -->
+								<exclude>de/alpharogroup/random/address/**/*.class</exclude>
+								<!-- interfaces -->
+								<exclude>de/alpharogroup/random/api/**/*.class</exclude>
+								<!-- exceptions -->
+								<!-- deprecated classes -->
+								<!-- explicit abstract classes -->
+								<!-- explicit bean classes -->
+								<!-- explicit deprecated classes -->
+								<!-- explicit interfaces -->
+								<!-- explicit constant classes with only constants -->
+								<exclude>de/alpharogroup/random/Constants.class</exclude>
+								<!-- explicit delegation classes -->
+								<exclude>de/alpharogroup/random/DataGenerator.class</exclude>
+							</excludes>
+						</instrumentation>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>clean</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+
+			</plugins>
+
+		</pluginManagement>
+
+		<plugins>
+
+			<plugin>
+				<inherited>true</inherited>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<inherited>true</inherited>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<inherited>true</inherited>
+				<artifactId>maven-eclipse-plugin</artifactId>
+			</plugin>
+
+		</plugins>
+
+	</build>
+
+</project>
