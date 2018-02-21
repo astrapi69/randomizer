@@ -37,8 +37,8 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 /**
- * The class {@link LottoLuckyNumbers} contains data that can be used for the validation if the given
- * played lotto numbers have won.
+ * The class {@link LottoLuckyNumbers} contains data that can be used for the validation if the
+ * given played lotto numbers have won.
  */
 @Getter
 @Setter

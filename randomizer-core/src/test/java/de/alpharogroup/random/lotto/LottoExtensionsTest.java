@@ -26,32 +26,8 @@ public class LottoExtensionsTest
 	private static final String sixOffourtynineGameType = "6 of 49";
 
 
-	/**
-	 * Test method for calculate how many times for winning of 4 numbers. This test is disabled
-	 * because it can take very long time, so be careful if you enable.
-	 */
-	@Test(enabled = true)
-	public void test4NumbersWinLuckyNumbers()
+	List<Set<Integer>> newLottoSets()
 	{
-		// This numbers is your played lotto numbers...
-		List<Set<Integer>> sixOffourtynineGame;
-
-		sixOffourtynineGame = newLottoSets();
-//			ListExtensions.newArrayList(null,
-//			SetExtensions.newTreeSet(3, 7, 22, 23, 34, 45),
-//			SetExtensions.newTreeSet(13, 17, 21, 23, 34, 48),
-//			SetExtensions.newTreeSet(5, 8, 21, 22, 34, 45));
-		final Map<String, List<Set<Integer>>> playedLottoNumbers = MapExtensions.newHashMap();
-		playedLottoNumbers.put(sixOffourtynineGameType, sixOffourtynineGame);
-
-		final LottoPlayedNumbers lottoPlayedNumbers = LottoPlayedNumbers.builder()
-			.playedLottoNumbers(playedLottoNumbers).superNumber(23).superSixNumber(4)
-			.gameSeventySevenNumber(234556).build();
-
-		LottoExtensions.calculateDraws(lottoPlayedNumbers, 4);
-	}
-
-	List<Set<Integer>> newLottoSets() {
 		List<Set<Integer>> sixOffourtynineGame;
 		sixOffourtynineGame = ListExtensions.newArrayList(null,
 			SetExtensions.newTreeSet(6, 12, 15, 18, 25, 30),
@@ -83,6 +59,31 @@ public class LottoExtensionsTest
 			SetExtensions.newTreeSet(12, 18, 25, 30, 41, 48),
 			SetExtensions.newTreeSet(15, 18, 25, 30, 41, 48));
 		return sixOffourtynineGame;
+	}
+
+	/**
+	 * Test method for calculate how many times for winning of 4 numbers. This test is disabled
+	 * because it can take very long time, so be careful if you enable.
+	 */
+	@Test(enabled = true)
+	public void test4NumbersWinLuckyNumbers()
+	{
+		// This numbers is your played lotto numbers...
+		List<Set<Integer>> sixOffourtynineGame;
+
+		sixOffourtynineGame = newLottoSets();
+		// ListExtensions.newArrayList(null,
+		// SetExtensions.newTreeSet(3, 7, 22, 23, 34, 45),
+		// SetExtensions.newTreeSet(13, 17, 21, 23, 34, 48),
+		// SetExtensions.newTreeSet(5, 8, 21, 22, 34, 45));
+		final Map<String, List<Set<Integer>>> playedLottoNumbers = MapExtensions.newHashMap();
+		playedLottoNumbers.put(sixOffourtynineGameType, sixOffourtynineGame);
+
+		final LottoPlayedNumbers lottoPlayedNumbers = LottoPlayedNumbers.builder()
+			.playedLottoNumbers(playedLottoNumbers).superNumber(23).superSixNumber(4)
+			.gameSeventySevenNumber(234556).build();
+
+		LottoExtensions.calculateDraws(lottoPlayedNumbers, 4);
 	}
 
 	/**

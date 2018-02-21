@@ -3,7 +3,6 @@ package de.alpharogroup.random.lotto;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import de.alpharogroup.collections.map.MapExtensions;
 import lombok.AccessLevel;

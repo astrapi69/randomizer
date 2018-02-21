@@ -101,11 +101,14 @@ public final class LottoExtensions
 	/**
 	 * Calculate draws for statistics.
 	 *
-	 * @param lottoPlayedNumbers the lotto played numbers
-	 * @param winningNumbersCount the winning numbers count
+	 * @param lottoPlayedNumbers
+	 *            the lotto played numbers
+	 * @param winningNumbersCount
+	 *            the winning numbers count
 	 * @return the int
 	 */
-	public static int calculateDraws(final LottoPlayedNumbers lottoPlayedNumbers, final int winningNumbersCount)
+	public static int calculateDraws(final LottoPlayedNumbers lottoPlayedNumbers,
+		final int winningNumbersCount)
 	{
 		if (!MathExtensions.isBetween(1, 6, winningNumbersCount))
 		{
