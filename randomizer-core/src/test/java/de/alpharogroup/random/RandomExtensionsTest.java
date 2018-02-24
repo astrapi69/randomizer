@@ -146,37 +146,42 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomString(int)}.
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testGetRandomStringInt()
 	{
-		// TODO implement unit test...
+		String randomString = RandomExtensions.getRandomString(10);
+		assertNotNull(randomString);
+		assertTrue(randomString.length()< 11);
 	}
 
 	/**
 	 * Test method for {@link RandomExtensions#randomBoolean()}.
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testRandomBoolean()
 	{
-		// TODO implement unit test...
+		boolean randomBoolean = RandomExtensions.randomBoolean();
+		assertTrue(randomBoolean == true || randomBoolean == false);
 	}
 
 	/**
 	 * Test method for {@link RandomExtensions#randomChar()}.
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testRandomChar()
 	{
-		// TODO implement unit test...
+		char randomChar = RandomExtensions.randomChar();
+		assertTrue(Character.isDefined(randomChar));
 	}
 
 	/**
 	 * Test method for {@link RandomExtensions#randomDouble(double)}.
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testRandomDouble()
 	{
-		// TODO implement unit test...
+		double random = RandomExtensions.randomDouble(RandomExtensions.randomDoubleBetween(0.0, 10.0));
+		assertTrue(MathExtensions.isBetween(Double.MIN_VALUE, Double.MAX_VALUE, random));
 	}
 
 	/**
