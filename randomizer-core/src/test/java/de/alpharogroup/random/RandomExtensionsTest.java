@@ -24,10 +24,12 @@
  */
 package de.alpharogroup.random;
 
+import static de.alpharogroup.random.RandomExtensions.randomSerialNumber;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -208,28 +210,31 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomFloat(float)}.
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testRandomFloatFloat()
 	{
-		// TODO implement unit test...
+				float random = RandomExtensions.randomFloat(RandomExtensions.randomFloatBetween(0.0f, 10.0f));
+				assertTrue(MathExtensions.isBetween(Float.MIN_VALUE, Float.MAX_VALUE, random));
 	}
 
 	/**
 	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float)}.
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testRandomFloatBetweenFloatFloat()
 	{
-		// TODO implement unit test...
+		float random = RandomExtensions.randomFloatBetween(0.0f, 10.0f);
+		assertTrue(MathExtensions.isBetween(0.0f, 10.0f, random));
 	}
 
 	/**
 	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float, String)}.
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testRandomFloatBetweenFloatFloatString()
 	{
-		// TODO implement unit test...
+		float random = RandomExtensions.randomFloatBetween(0.0f, 10.0f, "###,###.###");
+		assertTrue(MathExtensions.isBetween(0.0f, 10.0f, random));
 	}
 
 	/**
@@ -238,7 +243,8 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test(enabled = false)
 	public void testRandomInt()
 	{
-		// TODO implement unit test...
+		int random = RandomExtensions.randomInt();
+		assertTrue(MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, random));
 	}
 
 	/**
@@ -247,7 +253,8 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test(enabled = false)
 	public void testRandomSerialNumber()
 	{
-		// TODO implement unit test...
+		BigInteger randomSerialNumber = RandomExtensions.randomSerialNumber();
+		assertNotNull(randomSerialNumber);
 	}
 
 	/**
@@ -256,7 +263,8 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test(enabled = false)
 	public void testGetRandomPrimitiveByteArray()
 	{
-		// TODO implement unit test...
+		byte[] randomPrimitiveByteArray = RandomExtensions.getRandomPrimitiveByteArray(5);
+		assertTrue(randomPrimitiveByteArray.length == 5);
 	}
 
 	/**
@@ -265,7 +273,8 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test(enabled = false)
 	public void testNewSalt()
 	{
-		// TODO implement unit test...
+		byte[] newSalt = RandomExtensions.newSalt();
+		assertNotNull(newSalt);
 	}
 
 	/** The Constant logger. */
