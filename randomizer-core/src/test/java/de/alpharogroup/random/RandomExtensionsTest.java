@@ -24,6 +24,10 @@
  */
 package de.alpharogroup.random;
 
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
+
+import java.math.BigDecimal;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -43,6 +47,7 @@ import org.testng.annotations.Test;
 
 import de.alpharogroup.BaseTestCase;
 import de.alpharogroup.math.MathExtensions;
+import de.alpharogroup.string.StringExtensions;
 import de.alpharogroup.test.objects.enums.Gender;
 
 /**
@@ -53,6 +58,207 @@ import de.alpharogroup.test.objects.enums.Gender;
  */
 public class RandomExtensionsTest extends BaseTestCase
 {
+
+	/**
+	 * Test method for {@link RandomExtensions#randomLong()}.
+	 */
+	@Test(enabled = true)
+	public void testRandomLong()
+	{
+		long random = RandomExtensions.randomLong();
+		assertTrue(MathExtensions.isBetween(Long.MIN_VALUE, Long.MAX_VALUE, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomFloat()}.
+	 */
+	@Test(enabled = true)
+	public void testRandomFloat()
+	{
+		float random = RandomExtensions.randomFloat();
+		assertTrue(MathExtensions.isBetween(Float.MIN_VALUE, Float.MAX_VALUE, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#newRandomPixel()}.
+	 */
+	@Test(enabled = true)
+	public void testNewRandomPixel()
+	{
+		int random = RandomExtensions.newRandomPixel();
+		assertTrue(MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#newRandomPixel(int, int, int, int)}.
+	 */
+	@Test(enabled = true)
+	public void testNewRandomPixelIntIntIntInt()
+	{
+		int random = RandomExtensions.newRandomPixel(RandomExtensions.randomInt(256),
+			RandomExtensions.randomInt(256), RandomExtensions.randomInt(256),
+			RandomExtensions.randomInt(256));
+		assertTrue(MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#getRandomBigDecimal(int, int)}.
+	 */
+	@Test(enabled = true)
+	public void testGetRandomBigDecimal()
+	{
+		BigDecimal random = RandomExtensions.getRandomBigDecimal(
+			RandomExtensions.randomIntBetween(0, 17), RandomExtensions.randomIntBetween(0, 17));
+		assertNotNull(random);
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#getRandomByte()}.
+	 */
+	@Test(enabled = true)
+	public void testGetRandomByte()
+	{
+		Byte random = RandomExtensions.getRandomByte();
+		assertTrue(MathExtensions.isBetween(Byte.MIN_VALUE, Byte.MAX_VALUE, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#getRandomByteArray(int)}.
+	 */
+	@Test(enabled = true)
+	public void testGetRandomByteArray()
+	{
+		Byte[] randomByteArray = RandomExtensions.getRandomByteArray(5);
+		assertTrue(randomByteArray.length == 5);
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#getRandomNumericString()}.
+	 */
+	@Test(enabled = true)
+	public void testGetRandomNumericString()
+	{
+		String randomNumericString = RandomExtensions.getRandomNumericString();
+		assertNotNull(randomNumericString);
+		assertTrue(StringExtensions.isNumber(randomNumericString));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#getRandomString(int)}.
+	 */
+	@Test(enabled = false)
+	public void testGetRandomStringInt()
+	{
+		// TODO implement unit test...
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomBoolean()}.
+	 */
+	@Test(enabled = false)
+	public void testRandomBoolean()
+	{
+		// TODO implement unit test...
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomChar()}.
+	 */
+	@Test(enabled = false)
+	public void testRandomChar()
+	{
+		// TODO implement unit test...
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomDouble(double)}.
+	 */
+	@Test(enabled = false)
+	public void testRandomDouble()
+	{
+		// TODO implement unit test...
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double)}.
+	 */
+	@Test(enabled = false)
+	public void testRandomDoubleBetweenDoubleDouble()
+	{
+		// TODO implement unit test...
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double, String)}.
+	 */
+	@Test(enabled = false)
+	public void testRandomDoubleBetweenDoubleDoubleString()
+	{
+		// TODO implement unit test...
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomFloat(float)}.
+	 */
+	@Test(enabled = false)
+	public void testRandomFloatFloat()
+	{
+		// TODO implement unit test...
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float)}.
+	 */
+	@Test(enabled = false)
+	public void testRandomFloatBetweenFloatFloat()
+	{
+		// TODO implement unit test...
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float, String)}.
+	 */
+	@Test(enabled = false)
+	public void testRandomFloatBetweenFloatFloatString()
+	{
+		// TODO implement unit test...
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomInt()}.
+	 */
+	@Test(enabled = false)
+	public void testRandomInt()
+	{
+		// TODO implement unit test...
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomSerialNumber()}.
+	 */
+	@Test(enabled = false)
+	public void testRandomSerialNumber()
+	{
+		// TODO implement unit test...
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#getRandomPrimitiveByteArray(int)}.
+	 */
+	@Test(enabled = false)
+	public void testGetRandomPrimitiveByteArray()
+	{
+		// TODO implement unit test...
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#newSalt()}.
+	 */
+	@Test(enabled = false)
+	public void testNewSalt()
+	{
+		// TODO implement unit test...
+	}
 
 	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(RandomExtensionsTest.class.getName());
@@ -210,14 +416,6 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomBoolean()}.
-	 */
-	@Test
-	public void testRandomBoolean()
-	{
-	}
-
-	/**
 	 * Test method for {@link RandomExtensions#randomByteArray(int)}.
 	 */
 	@Test
@@ -231,7 +429,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	 * Test method for {@link RandomExtensions#randomChar(java.lang.String)} .
 	 */
 	@Test
-	public void testRandomChar()
+	public void testRandomCharString()
 	{
 		final String string = Constants.LOWCASECHARS;
 		for (int i = 0; i < 100; i++)
@@ -248,7 +446,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	 * Test method for {@link RandomExtensions#randomInt(int)}.
 	 */
 	@Test
-	public void testRandomInt()
+	public void testRandomIntInt()
 	{
 		logger.debug("Generate 100 secure random numbers:");
 		for (int i = 0; i < 100; i++)
@@ -277,7 +475,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	 * Test method for {@link RandomExtensions#randomLong(long)}.
 	 */
 	@Test(enabled = true)
-	public void testRandomLong()
+	public void testRandomLongLong()
 	{
 		logger.debug("Generate 100 secure random numbers:");
 		for (int i = 0; i < 100; i++)

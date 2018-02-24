@@ -38,6 +38,7 @@ import java.util.Random;
 import java.util.Set;
 
 import de.alpharogroup.lang.ClassExtensions;
+import de.alpharogroup.math.MathExtensions;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -50,7 +51,7 @@ import lombok.experimental.UtilityClass;
  * @author Asterios Raptis
  */
 @UtilityClass
-public class RandomExtensions
+public final class RandomExtensions
 {
 
 	/** The secure random. */
@@ -60,11 +61,10 @@ public class RandomExtensions
 		secureRandom = SecureRandomBean.builder().buildQuietly();
 	}
 
-
 	/**
-	 * The Method randomLong() gets an long between the range 0-9.
+	 * Gets a random long
 	 *
-	 * @return an long between the range 0-9.
+	 * @return a random long
 	 */
 	public static long randomLong()
 	{
@@ -167,7 +167,13 @@ public class RandomExtensions
 	 */
 	public static BigDecimal getRandomBigDecimal(final int afterComma, final int beforeComma)
 	{
-		return new BigDecimal(getRandomFloatString(afterComma, beforeComma));
+		String randomFloatString;
+		do
+		{
+			randomFloatString = getRandomFloatString(afterComma, beforeComma);
+		}
+		while (randomFloatString.equals("."));
+		return new BigDecimal(randomFloatString);
 	}
 
 	/**
@@ -390,7 +396,13 @@ public class RandomExtensions
 		final StringBuilder sb = new StringBuilder(maxLength);
 		for (int i = 0; i < maxLength; i++)
 		{
-			sb.append(randomInt());
+			int randomInt = randomInt();
+			if(MathExtensions.isNegative(randomInt)) {
+				sb.append(randomInt*(-1));
+			}
+			else {
+				sb.append(randomInt);
+			}
 		}
 		return sb.toString();
 	}
