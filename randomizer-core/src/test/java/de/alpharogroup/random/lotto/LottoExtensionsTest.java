@@ -27,6 +27,7 @@
  */
 package de.alpharogroup.random.lotto;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 import java.util.List;
@@ -108,6 +109,11 @@ public class LottoExtensionsTest
 			.gameSeventySevenNumber(234556).build();
 
 		LottoExtensions.calculateDraws(lottoPlayedNumbers, 4);
+
+
+		int actual = LottoExtensions.calculateDraws(lottoPlayedNumbers, 6);
+		int expected = -1;
+		assertEquals(actual, expected);
 	}
 
 	/**
