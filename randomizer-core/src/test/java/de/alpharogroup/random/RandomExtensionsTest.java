@@ -24,8 +24,8 @@
  */
 package de.alpharogroup.random;
 
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertNotNull;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.math.BigDecimal;
 import java.nio.CharBuffer;
@@ -40,7 +40,6 @@ import java.util.Set;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.log4j.Logger;
-import org.testng.AssertJUnit;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -172,6 +171,8 @@ public class RandomExtensionsTest extends BaseTestCase
 	{
 		char randomChar = RandomExtensions.randomChar();
 		assertTrue(Character.isDefined(randomChar));
+		// TODO implement unit test scenarios...
+
 	}
 
 	/**
@@ -187,19 +188,21 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double)}.
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testRandomDoubleBetweenDoubleDouble()
 	{
-		// TODO implement unit test...
+		double random = RandomExtensions.randomDoubleBetween(0.0, 10.0);
+		assertTrue(MathExtensions.isBetween(0.0, 10.0, random));
 	}
 
 	/**
 	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double, String)}.
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testRandomDoubleBetweenDoubleDoubleString()
 	{
-		// TODO implement unit test...
+		double random = RandomExtensions.randomDoubleBetween(10000.0, 100000.0, "###,###.###");
+		assertTrue(MathExtensions.isBetween(10000.0, 100000.0, random, true, true));
 	}
 
 	/**
@@ -305,7 +308,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		{
 			final String randomEntry = RandomExtensions.getRandomEntry(list);
 			this.result = list.contains(randomEntry);
-			AssertJUnit.assertTrue("", this.result);
+			assertTrue("", this.result);
 		}
 	}
 
@@ -326,7 +329,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		{
 			final String randomValue = (String)RandomExtensions.getRandomEntry(map);
 			this.result = values.contains(randomValue);
-			AssertJUnit.assertTrue("", this.result);
+			assertTrue("", this.result);
 		}
 	}
 
@@ -340,7 +343,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		final Gender randomEnumEntry = RandomExtensions.getRandomEnum(enumEntry);
 
 		final Gender[] genders = Gender.values();
-		AssertJUnit.assertTrue("Enum value should contain the random value.",
+		assertTrue("Enum value should contain the random value.",
 			ArrayUtils.contains(genders, randomEnumEntry));
 	}
 
@@ -352,7 +355,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	{
 		final Gender[] genders = Gender.values();
 		final Gender randomEnumEntry = RandomExtensions.getRandomEnum(genders);
-		AssertJUnit.assertTrue("Enum value should contain the random value.",
+		assertTrue("Enum value should contain the random value.",
 			ArrayUtils.contains(genders, randomEnumEntry));
 	}
 
@@ -365,7 +368,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		final Gender randomEnumEntry = RandomExtensions.getRandomEnum(Gender.class);
 
 		final Gender[] genders = Gender.values();
-		AssertJUnit.assertTrue("Enum value should contain the random value.",
+		assertTrue("Enum value should contain the random value.",
 			ArrayUtils.contains(genders, randomEnumEntry));
 	}
 
@@ -379,7 +382,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		final Gender randomEnumEntry = RandomExtensions.getRandomEnum(enumClassName);
 
 		final Gender[] genders = Gender.values();
-		AssertJUnit.assertTrue("Enum value should contain the random value.",
+		assertTrue("Enum value should contain the random value.",
 			ArrayUtils.contains(genders, randomEnumEntry));
 	}
 
@@ -395,7 +398,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		{
 			final float randomFloat = RandomExtensions.getRandomFloat(afterComma, beforeComma);
 			this.result = 0 < randomFloat;
-			AssertJUnit.assertTrue("", this.result);
+			assertTrue("", this.result);
 		}
 	}
 
@@ -416,7 +419,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		{
 			final String randomKey = (String)RandomExtensions.getRandomKey(map);
 			this.result = keys.contains(randomKey);
-			AssertJUnit.assertTrue("", this.result);
+			assertTrue("", this.result);
 		}
 	}
 
@@ -443,7 +446,7 @@ public class RandomExtensionsTest extends BaseTestCase
 			final CharBuffer charBuffer = CharBuffer.allocate(1);
 			charBuffer.put(randomChar);
 			this.result = string.contains(charBuffer);
-			AssertJUnit.assertTrue("", this.result);
+			assertTrue("", this.result);
 		}
 	}
 
@@ -457,7 +460,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		for (int i = 0; i < 100; i++)
 		{
 			final int randomInt = RandomExtensions.randomInt(5);
-			AssertJUnit.assertTrue(
+			assertTrue(
 				"randomInt result is " + randomInt + " but should be between 0-4.",
 				MathExtensions.isBetween(-1, 5, randomInt));
 		}
@@ -486,7 +489,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		for (int i = 0; i < 100; i++)
 		{
 			final long randomLong = RandomExtensions.randomLong(5l);
-			AssertJUnit.assertTrue(
+			assertTrue(
 				"randomLong result is " + randomLong + " but should be between 0-4.",
 				MathExtensions.isBetween(-1, 5, randomLong));
 		}
@@ -514,7 +517,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		{
 			final String randomString = RandomExtensions.getRandomString(array);
 			this.result = listFromArray.contains(randomString);
-			AssertJUnit.assertTrue("", this.result);
+			assertTrue("", this.result);
 		}
 	}
 
@@ -532,7 +535,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		{
 			final String randomString = RandomExtensions.getRandomString(chars, length);
 			this.result = randomString.contains(charBuffer);
-			AssertJUnit.assertTrue("", this.result);
+			assertTrue("", this.result);
 		}
 	}
 
@@ -544,7 +547,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	public void testRandomToken()
 	{
 		final String randomToken = RandomExtensions.randomToken();
-		AssertJUnit.assertNotNull(randomToken);
+		assertNotNull(randomToken);
 	}
 
 }
