@@ -24,6 +24,7 @@
  */
 package de.alpharogroup.random;
 
+import static org.testng.Assert.assertNull;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -209,12 +210,30 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomEnumString()
 	{
-		final String enumClassName = "de.alpharogroup.test.objects.enums.Gender";
-		final Gender randomEnumEntry = RandomExtensions.getRandomEnum(enumClassName);
+		String enumClassName = "de.alpharogroup.test.objects.enums.Gender";
+		Gender randomEnumEntry = RandomExtensions.getRandomEnum(enumClassName);
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
 			ArrayUtils.contains(genders, randomEnumEntry));
+
+		enumClassName = "Gender";
+		randomEnumEntry = RandomExtensions.getRandomEnum(enumClassName);
+		assertNull(randomEnumEntry);
+
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#getRandomEnum(String)}
+	 */
+	@Test
+	public void testGetRandomEnumNull()
+	{
+		Gender randomEnum = RandomExtensions.getRandomEnum((Gender)null);
+		assertNull(randomEnum);
+
+		randomEnum = RandomExtensions.getRandomEnum((String)null);
+		assertNull(randomEnum);
 	}
 
 	/**
