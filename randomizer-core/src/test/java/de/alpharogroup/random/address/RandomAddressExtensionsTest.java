@@ -28,8 +28,11 @@
 package de.alpharogroup.random.address;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Properties;
 
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.AssertJUnit;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -128,6 +131,17 @@ public class RandomAddressExtensionsTest extends BaseTestCase
 
 		this.result = StringExtensions.isNumber(randomZip);
 		AssertJUnit.assertTrue("", this.result);
+	}
+
+	/**
+	 * Test method for {@link RandomAddressExtensions} with {@link BeanTester}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
+			UnsupportedOperationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(RandomAddressExtensions.class);
 	}
 
 }

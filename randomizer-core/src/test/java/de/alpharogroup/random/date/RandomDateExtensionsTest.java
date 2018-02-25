@@ -27,9 +27,12 @@
  */
 package de.alpharogroup.random.date;
 
+import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.util.Date;
 
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.AssertJUnit;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -195,6 +198,18 @@ public class RandomDateExtensionsTest extends BaseTestCase
 		final Date compare = ParseDateExtensions.parseToDate(randomDate, format);
 		this.result = CalculateDateExtensions.isBetween(from, till, compare);
 		AssertJUnit.assertTrue("", this.result);
+	}
+
+
+	/**
+	 * Test method for {@link RandomDateExtensions} with {@link BeanTester}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
+			UnsupportedOperationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(RandomDateExtensions.class);
 	}
 
 }

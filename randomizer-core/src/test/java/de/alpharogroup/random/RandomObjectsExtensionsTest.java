@@ -25,9 +25,12 @@
 package de.alpharogroup.random;
 
 
+import java.lang.reflect.InvocationTargetException;
 import java.nio.CharBuffer;
 
 import org.apache.log4j.Logger;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.AssertJUnit;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -214,6 +217,17 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 			this.result = randomName.contains(charBuffer);
 			AssertJUnit.assertTrue("", this.result);
 		}
+	}
+
+	/**
+	 * Test method for {@link RandomObjectsExtensions} with {@link BeanTester}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
+			UnsupportedOperationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(RandomObjectsExtensions.class);
 	}
 
 }

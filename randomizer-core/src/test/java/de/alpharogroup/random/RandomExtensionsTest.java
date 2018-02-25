@@ -24,10 +24,10 @@
  */
 package de.alpharogroup.random;
 
-import static de.alpharogroup.random.RandomExtensions.randomSerialNumber;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.CharBuffer;
@@ -42,6 +42,8 @@ import java.util.Set;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.log4j.Logger;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -557,6 +559,17 @@ public class RandomExtensionsTest extends BaseTestCase
 	{
 		final String randomToken = RandomExtensions.randomToken();
 		assertNotNull(randomToken);
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions} with {@link BeanTester}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
+			UnsupportedOperationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(RandomExtensions.class);
 	}
 
 }
