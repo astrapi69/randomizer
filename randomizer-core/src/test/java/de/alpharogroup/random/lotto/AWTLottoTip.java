@@ -44,8 +44,8 @@ import java.util.Random;
 /**
  * The class {@link AWTLottoTip} is a simple gui for generate lotto numbers. Try it by execute this
  * class.
- * @deprecated
- * Note: will be removed in next minor release
+ * 
+ * @deprecated Note: will be removed in next minor release
  */
 @Deprecated
 public class AWTLottoTip extends Frame implements ActionListener

@@ -37,36 +37,6 @@ public class SecureRandomBuilderTest
 {
 
 	/**
-	 * Test method for {@link SecureRandomBuilder#getInstance()}.
-	 */
-	@Test
-	public void testGetInstance() throws Exception
-	{
-		SecureRandomBuilder instance = SecureRandomBuilder.getInstance();
-		assertNotNull(instance);
-	}
-
-	/**
-	 * Test method for {@link SecureRandomBuilder#getInstance(String)}.
-	 */
-	@Test
-	public void testGetInstanceString() throws Exception
-	{
-		SecureRandomBuilder instance = SecureRandomBuilder.getInstance(SecureRandomBean.DEFAULT_ALGORITHM);
-		assertNotNull(instance);
-	}
-
-	/**
-	 * Test method for {@link SecureRandomBuilder#getInstance(String, String)}.
-	 */
-	@Test
-	public void testGetInstanceStringString() throws Exception
-	{
-		SecureRandomBuilder instance = SecureRandomBuilder.getInstance(SecureRandomBean.DEFAULT_ALGORITHM, SecureRandomBean.DEFAULT_PROVIDER);
-		assertNotNull(instance);
-	}
-
-	/**
 	 * Test method for {@link SecureRandomBuilder#build()}.
 	 */
 	@Test
@@ -88,6 +58,38 @@ public class SecureRandomBuilderTest
 		assertNotNull(instance);
 		SecureRandom secureRandom = instance.buildQueitly();
 		assertNotNull(secureRandom);
+	}
+
+	/**
+	 * Test method for {@link SecureRandomBuilder#getInstance()}.
+	 */
+	@Test
+	public void testGetInstance() throws Exception
+	{
+		SecureRandomBuilder instance = SecureRandomBuilder.getInstance();
+		assertNotNull(instance);
+	}
+
+	/**
+	 * Test method for {@link SecureRandomBuilder#getInstance(String)}.
+	 */
+	@Test
+	public void testGetInstanceString() throws Exception
+	{
+		SecureRandomBuilder instance = SecureRandomBuilder
+			.getInstance(SecureRandomBean.DEFAULT_ALGORITHM);
+		assertNotNull(instance);
+	}
+
+	/**
+	 * Test method for {@link SecureRandomBuilder#getInstance(String, String)}.
+	 */
+	@Test
+	public void testGetInstanceStringString() throws Exception
+	{
+		SecureRandomBuilder instance = SecureRandomBuilder
+			.getInstance(SecureRandomBean.DEFAULT_ALGORITHM, SecureRandomBean.DEFAULT_PROVIDER);
+		assertNotNull(instance);
 	}
 
 }

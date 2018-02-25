@@ -62,46 +62,27 @@ import de.alpharogroup.test.objects.enums.Gender;
 public class RandomExtensionsTest extends BaseTestCase
 {
 
+	/** The Constant logger. */
+	private static final Logger logger = Logger.getLogger(RandomExtensionsTest.class.getName());
+
 	/**
-	 * Test method for {@link RandomExtensions#randomLong()}.
+	 * {@inheritDoc}
 	 */
-	@Test(enabled = true)
-	public void testRandomLong()
+	@Override
+	@BeforeMethod
+	protected void setUp() throws Exception
 	{
-		long random = RandomExtensions.randomLong();
-		assertTrue(MathExtensions.isBetween(Long.MIN_VALUE, Long.MAX_VALUE, random));
+		super.setUp();
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomFloat()}.
+	 * {@inheritDoc}
 	 */
-	@Test(enabled = true)
-	public void testRandomFloat()
+	@Override
+	@AfterMethod
+	protected void tearDown() throws Exception
 	{
-		float random = RandomExtensions.randomFloat();
-		assertTrue(MathExtensions.isBetween(Float.MIN_VALUE, Float.MAX_VALUE, random));
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#newRandomPixel()}.
-	 */
-	@Test(enabled = true)
-	public void testNewRandomPixel()
-	{
-		int random = RandomExtensions.newRandomPixel();
-		assertTrue(MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, random));
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#newRandomPixel(int, int, int, int)}.
-	 */
-	@Test(enabled = true)
-	public void testNewRandomPixelIntIntIntInt()
-	{
-		int random = RandomExtensions.newRandomPixel(RandomExtensions.randomInt(256),
-			RandomExtensions.randomInt(256), RandomExtensions.randomInt(256),
-			RandomExtensions.randomInt(256));
-		assertTrue(MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, random));
+		super.tearDown();
 	}
 
 	/**
@@ -133,173 +114,6 @@ public class RandomExtensionsTest extends BaseTestCase
 	{
 		Byte[] randomByteArray = RandomExtensions.getRandomByteArray(5);
 		assertTrue(randomByteArray.length == 5);
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#getRandomNumericString()}.
-	 */
-	@Test(enabled = true)
-	public void testGetRandomNumericString()
-	{
-		String randomNumericString = RandomExtensions.getRandomNumericString();
-		assertNotNull(randomNumericString);
-		assertTrue(StringExtensions.isNumber(randomNumericString));
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#getRandomString(int)}.
-	 */
-	@Test(enabled = true)
-	public void testGetRandomStringInt()
-	{
-		String randomString = RandomExtensions.getRandomString(10);
-		assertNotNull(randomString);
-		assertTrue(randomString.length()< 11);
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#randomBoolean()}.
-	 */
-	@Test(enabled = true)
-	public void testRandomBoolean()
-	{
-		boolean randomBoolean = RandomExtensions.randomBoolean();
-		assertTrue(randomBoolean == true || randomBoolean == false);
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#randomChar()}.
-	 */
-	@Test(enabled = true)
-	public void testRandomChar()
-	{
-		char randomChar = RandomExtensions.randomChar();
-		assertTrue(Character.isDefined(randomChar));
-		// TODO implement unit test scenarios...
-
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#randomDouble(double)}.
-	 */
-	@Test(enabled = true)
-	public void testRandomDouble()
-	{
-		double random = RandomExtensions.randomDouble(RandomExtensions.randomDoubleBetween(0.0, 10.0));
-		assertTrue(MathExtensions.isBetween(Double.MIN_VALUE, Double.MAX_VALUE, random));
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double)}.
-	 */
-	@Test(enabled = true)
-	public void testRandomDoubleBetweenDoubleDouble()
-	{
-		double random = RandomExtensions.randomDoubleBetween(0.0, 10.0);
-		assertTrue(MathExtensions.isBetween(0.0, 10.0, random));
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double, String)}.
-	 */
-	@Test(enabled = true)
-	public void testRandomDoubleBetweenDoubleDoubleString()
-	{
-		double random = RandomExtensions.randomDoubleBetween(10000.0, 100000.0, "###,###.###");
-		assertTrue(MathExtensions.isBetween(10000.0, 100000.0, random, true, true));
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#randomFloat(float)}.
-	 */
-	@Test(enabled = true)
-	public void testRandomFloatFloat()
-	{
-				float random = RandomExtensions.randomFloat(RandomExtensions.randomFloatBetween(0.0f, 10.0f));
-				assertTrue(MathExtensions.isBetween(Float.MIN_VALUE, Float.MAX_VALUE, random));
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float)}.
-	 */
-	@Test(enabled = true)
-	public void testRandomFloatBetweenFloatFloat()
-	{
-		float random = RandomExtensions.randomFloatBetween(0.0f, 10.0f);
-		assertTrue(MathExtensions.isBetween(0.0f, 10.0f, random));
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float, String)}.
-	 */
-	@Test(enabled = true)
-	public void testRandomFloatBetweenFloatFloatString()
-	{
-		float random = RandomExtensions.randomFloatBetween(0.0f, 10.0f, "###,###.###");
-		assertTrue(MathExtensions.isBetween(0.0f, 10.0f, random));
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#randomInt()}.
-	 */
-	@Test(enabled = false)
-	public void testRandomInt()
-	{
-		int random = RandomExtensions.randomInt();
-		assertTrue(MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, random));
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#randomSerialNumber()}.
-	 */
-	@Test(enabled = false)
-	public void testRandomSerialNumber()
-	{
-		BigInteger randomSerialNumber = RandomExtensions.randomSerialNumber();
-		assertNotNull(randomSerialNumber);
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#getRandomPrimitiveByteArray(int)}.
-	 */
-	@Test(enabled = false)
-	public void testGetRandomPrimitiveByteArray()
-	{
-		byte[] randomPrimitiveByteArray = RandomExtensions.getRandomPrimitiveByteArray(5);
-		assertTrue(randomPrimitiveByteArray.length == 5);
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#newSalt()}.
-	 */
-	@Test(enabled = false)
-	public void testNewSalt()
-	{
-		byte[] newSalt = RandomExtensions.newSalt();
-		assertNotNull(newSalt);
-	}
-
-	/** The Constant logger. */
-	private static final Logger logger = Logger.getLogger(RandomExtensionsTest.class.getName());
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	@BeforeMethod
-	protected void setUp() throws Exception
-	{
-		super.setUp();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	@AfterMethod
-	protected void tearDown() throws Exception
-	{
-		super.tearDown();
 	}
 
 	/**
@@ -435,6 +249,80 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomExtensions#getRandomNumericString()}.
+	 */
+	@Test(enabled = true)
+	public void testGetRandomNumericString()
+	{
+		String randomNumericString = RandomExtensions.getRandomNumericString();
+		assertNotNull(randomNumericString);
+		assertTrue(StringExtensions.isNumber(randomNumericString));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#getRandomPrimitiveByteArray(int)}.
+	 */
+	@Test(enabled = false)
+	public void testGetRandomPrimitiveByteArray()
+	{
+		byte[] randomPrimitiveByteArray = RandomExtensions.getRandomPrimitiveByteArray(5);
+		assertTrue(randomPrimitiveByteArray.length == 5);
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#getRandomString(int)}.
+	 */
+	@Test(enabled = true)
+	public void testGetRandomStringInt()
+	{
+		String randomString = RandomExtensions.getRandomString(10);
+		assertNotNull(randomString);
+		assertTrue(randomString.length() < 11);
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#newRandomPixel()}.
+	 */
+	@Test(enabled = true)
+	public void testNewRandomPixel()
+	{
+		int random = RandomExtensions.newRandomPixel();
+		assertTrue(MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#newRandomPixel(int, int, int, int)}.
+	 */
+	@Test(enabled = true)
+	public void testNewRandomPixelIntIntIntInt()
+	{
+		int random = RandomExtensions.newRandomPixel(RandomExtensions.randomInt(256),
+			RandomExtensions.randomInt(256), RandomExtensions.randomInt(256),
+			RandomExtensions.randomInt(256));
+		assertTrue(MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#newSalt()}.
+	 */
+	@Test(enabled = false)
+	public void testNewSalt()
+	{
+		byte[] newSalt = RandomExtensions.newSalt();
+		assertNotNull(newSalt);
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomBoolean()}.
+	 */
+	@Test(enabled = true)
+	public void testRandomBoolean()
+	{
+		boolean randomBoolean = RandomExtensions.randomBoolean();
+		assertTrue(randomBoolean == true || randomBoolean == false);
+	}
+
+	/**
 	 * Test method for {@link RandomExtensions#randomByteArray(int)}.
 	 */
 	@Test
@@ -442,6 +330,18 @@ public class RandomExtensionsTest extends BaseTestCase
 	{
 		final byte[] randomByteArray = RandomExtensions.randomByteArray(8);
 		logger.debug(new String(randomByteArray, Charset.forName("UTF-8")));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomChar()}.
+	 */
+	@Test(enabled = true)
+	public void testRandomChar()
+	{
+		char randomChar = RandomExtensions.randomChar();
+		assertTrue(Character.isDefined(randomChar));
+		// TODO implement unit test scenarios...
+
 	}
 
 	/**
@@ -462,19 +362,85 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomInt(int)}.
+	 * Test method for {@link RandomExtensions#randomDouble(double)}.
 	 */
-	@Test
-	public void testRandomIntInt()
+	@Test(enabled = true)
+	public void testRandomDouble()
 	{
-		logger.debug("Generate 100 secure random numbers:");
-		for (int i = 0; i < 100; i++)
-		{
-			final int randomInt = RandomExtensions.randomInt(5);
-			assertTrue(
-				"randomInt result is " + randomInt + " but should be between 0-4.",
-				MathExtensions.isBetween(-1, 5, randomInt));
-		}
+		double random = RandomExtensions
+			.randomDouble(RandomExtensions.randomDoubleBetween(0.0, 10.0));
+		assertTrue(MathExtensions.isBetween(Double.MIN_VALUE, Double.MAX_VALUE, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double)}.
+	 */
+	@Test(enabled = true)
+	public void testRandomDoubleBetweenDoubleDouble()
+	{
+		double random = RandomExtensions.randomDoubleBetween(0.0, 10.0);
+		assertTrue(MathExtensions.isBetween(0.0, 10.0, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double, String)}.
+	 */
+	@Test(enabled = true)
+	public void testRandomDoubleBetweenDoubleDoubleString()
+	{
+		double random = RandomExtensions.randomDoubleBetween(10000.0, 100000.0, "###,###.###");
+		assertTrue(MathExtensions.isBetween(10000.0, 100000.0, random, true, true));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomFloat()}.
+	 */
+	@Test(enabled = true)
+	public void testRandomFloat()
+	{
+		float random = RandomExtensions.randomFloat();
+		assertTrue(MathExtensions.isBetween(Float.MIN_VALUE, Float.MAX_VALUE, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float)}.
+	 */
+	@Test(enabled = true)
+	public void testRandomFloatBetweenFloatFloat()
+	{
+		float random = RandomExtensions.randomFloatBetween(0.0f, 10.0f);
+		assertTrue(MathExtensions.isBetween(0.0f, 10.0f, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float, String)}.
+	 */
+	@Test(enabled = true)
+	public void testRandomFloatBetweenFloatFloatString()
+	{
+		float random = RandomExtensions.randomFloatBetween(0.0f, 10.0f, "###,###.###");
+		assertTrue(MathExtensions.isBetween(0.0f, 10.0f, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomFloat(float)}.
+	 */
+	@Test(enabled = true)
+	public void testRandomFloatFloat()
+	{
+		float random = RandomExtensions
+			.randomFloat(RandomExtensions.randomFloatBetween(0.0f, 10.0f));
+		assertTrue(MathExtensions.isBetween(Float.MIN_VALUE, Float.MAX_VALUE, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomInt()}.
+	 */
+	@Test(enabled = false)
+	public void testRandomInt()
+	{
+		int random = RandomExtensions.randomInt();
+		assertTrue(MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, random));
 	}
 
 	/**
@@ -491,6 +457,31 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomExtensions#randomInt(int)}.
+	 */
+	@Test
+	public void testRandomIntInt()
+	{
+		logger.debug("Generate 100 secure random numbers:");
+		for (int i = 0; i < 100; i++)
+		{
+			final int randomInt = RandomExtensions.randomInt(5);
+			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
+				MathExtensions.isBetween(-1, 5, randomInt));
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomLong()}.
+	 */
+	@Test(enabled = true)
+	public void testRandomLong()
+	{
+		long random = RandomExtensions.randomLong();
+		assertTrue(MathExtensions.isBetween(Long.MIN_VALUE, Long.MAX_VALUE, random));
+	}
+
+	/**
 	 * Test method for {@link RandomExtensions#randomLong(long)}.
 	 */
 	@Test(enabled = true)
@@ -500,8 +491,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		for (int i = 0; i < 100; i++)
 		{
 			final long randomLong = RandomExtensions.randomLong(5l);
-			assertTrue(
-				"randomLong result is " + randomLong + " but should be between 0-4.",
+			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",
 				MathExtensions.isBetween(-1, 5, randomLong));
 		}
 	}
@@ -514,6 +504,16 @@ public class RandomExtensionsTest extends BaseTestCase
 	{
 		final byte[] randomSalt = RandomExtensions.getRandomSalt(8, Charset.forName("UTF-8"));
 		System.out.println(new String(randomSalt));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomSerialNumber()}.
+	 */
+	@Test(enabled = false)
+	public void testRandomSerialNumber()
+	{
+		BigInteger randomSerialNumber = RandomExtensions.randomSerialNumber();
+		assertNotNull(randomSerialNumber);
 	}
 
 	/**

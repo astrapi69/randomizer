@@ -397,10 +397,12 @@ public final class RandomExtensions
 		for (int i = 0; i < maxLength; i++)
 		{
 			int randomInt = randomInt();
-			if(MathExtensions.isNegative(randomInt)) {
-				sb.append(randomInt*(-1));
+			if (MathExtensions.isNegative(randomInt))
+			{
+				sb.append(randomInt * (-1));
 			}
-			else {
+			else
+			{
 				sb.append(randomInt);
 			}
 		}
