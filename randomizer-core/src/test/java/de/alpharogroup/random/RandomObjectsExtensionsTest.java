@@ -27,6 +27,7 @@ package de.alpharogroup.random;
 
 import java.lang.reflect.InvocationTargetException;
 import java.nio.CharBuffer;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
 import org.meanbean.test.BeanTestException;
@@ -144,7 +145,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	 * Test method for {@link RandomObjectsExtensions#getRandomPassword(int)}.
 	 */
 	@Test
-	public void testGetRandomPassword()
+	public void testGetRandomPasswordInt()
 	{
 		final CharBuffer charBuffer = CharBuffer.allocate(26);
 		final int length = 5;
@@ -153,6 +154,25 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomPassword = RandomObjectsExtensions.getRandomPassword(length);
+			this.result = randomPassword.contains(charBuffer);
+			AssertJUnit.assertTrue("", this.result);
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomObjectsExtensions#getRandomPassword(Optional)}.
+	 */
+	@Test
+	public void testGetRandomPasswordOptionalInt()
+	{
+		final CharBuffer charBuffer = CharBuffer.allocate(26);
+		final int length = 5;
+		Optional<Integer> optLength = Optional.of(length);
+		final String chars = Constants.LOWCASECHARS;
+		charBuffer.put(chars);
+		for (int i = 0; i < 100; i++)
+		{
+			final String randomPassword = RandomObjectsExtensions.getRandomPassword(optLength);
 			this.result = randomPassword.contains(charBuffer);
 			AssertJUnit.assertTrue("", this.result);
 		}
