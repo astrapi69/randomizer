@@ -205,8 +205,15 @@ public final class RandomExtensions
 			}
 			else
 			{
-				secureRandom.nextBytes(randomByteBox);
-				randomByteArray[i] = Byte.valueOf(randomByteBox[0]);
+				if (secureRandom != null)
+				{
+					secureRandom.nextBytes(randomByteBox);
+					randomByteArray[i] = Byte.valueOf(randomByteBox[0]);
+				}
+				else
+				{
+					randomByteArray[i] = getRandomByte();
+				}
 			}
 		}
 		return randomByteArray;

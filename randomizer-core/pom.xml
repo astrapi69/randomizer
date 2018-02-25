@@ -50,6 +50,12 @@
 			<artifactId>meanbean</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- JOBJECT-CORE DEPENDENCY -->
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>jobject-core</artifactId>
+			<scope>test</scope>
+		</dependency>
 
 	</dependencies>
 

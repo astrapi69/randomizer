@@ -56,16 +56,18 @@ import de.alpharogroup.string.StringExtensions;
 import de.alpharogroup.test.objects.enums.Gender;
 
 /**
- * The unit test class for the class {@link RandomExtensions}.
+ * The unit test class for the class {@link RandomExtensions} but the static {@link SecureRandom} is
+ * set to null.
  *
  * @version 1.0
  * @author Asterios Raptis
  */
-public class RandomExtensionsTest extends BaseTestCase
+public class NullSecureRandomExtensionsTest extends BaseTestCase
 {
 
 	/** The Constant logger. */
-	private static final Logger logger = Logger.getLogger(RandomExtensionsTest.class.getName());
+	private static final Logger logger = Logger
+		.getLogger(NullSecureRandomExtensionsTest.class.getName());
 
 	/**
 	 * {@inheritDoc}
@@ -78,7 +80,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		Field sourceField = ReflectionExtensions.getDeclaredField(RandomExtensions.class,
 			"secureRandom");
 		sourceField.setAccessible(true);
-		sourceField.set(null, SecureRandomBean.builder().buildQuietly());
+		sourceField.set(null, null);
 	}
 
 	/**
@@ -278,7 +280,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomString(int)}.
 	 */
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void testGetRandomStringInt()
 	{
 		String randomString = RandomExtensions.getRandomString(10);
@@ -341,7 +343,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomChar()}.
 	 */
-	@Test(enabled = true)
+	@Test(enabled = false)
 	public void testRandomChar()
 	{
 		char randomChar = RandomExtensions.randomChar();
@@ -479,11 +481,25 @@ public class RandomExtensionsTest extends BaseTestCase
 
 	/**
 	 * Test method for {@link RandomExtensions#randomLong()}.
+	 *
+	 * @throws IllegalAccessException
+	 * @throws IllegalArgumentException
+	 * @throws SecurityException
+	 * @throws NoSuchFieldException
 	 */
 	@Test(enabled = true)
-	public void testRandomLong()
+	public void testRandomLong() throws NoSuchFieldException, SecurityException,
+		IllegalArgumentException, IllegalAccessException
 	{
 		long random = RandomExtensions.randomLong();
+		assertTrue(MathExtensions.isBetween(Long.MIN_VALUE, Long.MAX_VALUE, random));
+
+		Field sourceField = ReflectionExtensions.getDeclaredField(RandomExtensions.class,
+			"secureRandom");
+		sourceField.setAccessible(true);
+		sourceField.set(null, null);
+
+		random = RandomExtensions.randomLong();
 		assertTrue(MathExtensions.isBetween(Long.MIN_VALUE, Long.MAX_VALUE, random));
 	}
 
@@ -560,7 +576,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomToken()} .
 	 */
-	@Test
+	@Test(enabled = false)
 	public void testRandomToken()
 	{
 		final String randomToken = RandomExtensions.randomToken();
