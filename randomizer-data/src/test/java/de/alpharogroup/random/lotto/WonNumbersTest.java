@@ -24,14 +24,32 @@
  */
 package de.alpharogroup.random.lotto;
 
+import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertEquals;
 
 /**
  * The class {@link WonNumbers}.
  */
 public class WonNumbersTest
 {
+
+	/**
+	 * Test method for {@link WonNumbers#equals(Object)} , {@link WonNumbers#hashCode()} and
+	 * {@link WonNumbers#toString()}
+	 */
+	@Test
+	public void testEqualsHashcodeAndToStringWithClassSilently()
+	{
+		boolean expected;
+		boolean actual;
+		actual = SilentEqualsHashCodeAndToStringEvaluator
+			.evaluateEqualsHashcodeAndToStringQuietly(WonNumbers.class);
+		expected = true;
+		assertEquals(expected, actual);
+	}
 
 	/**
 	 * Test method for {@link WonNumbers}
