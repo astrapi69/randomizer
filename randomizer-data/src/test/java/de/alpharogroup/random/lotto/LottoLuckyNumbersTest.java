@@ -26,8 +26,6 @@ package de.alpharogroup.random.lotto;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-import org.meanbean.factories.ObjectCreationException;
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
