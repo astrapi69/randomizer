@@ -30,7 +30,7 @@
 		<!-- RESOURCEBUNDLE-CORE versions -->
 		<resourcebundle-inspector.version>2.19.0</resourcebundle-inspector.version>
 		<!-- JOBJECT-EXTENSIONS versions -->
-		<jobject-extensions.version>1.9.2</jobject-extensions.version>
+		<jobject-extensions.version>1.10.0</jobject-extensions.version>
 		<jobject-core.version>${jobject-extensions.version}</jobject-core.version>
 		<jobject-evaluate.version>${jobject-extensions.version}</jobject-evaluate.version>
 		<!-- PARENT PROJECT versions -->
