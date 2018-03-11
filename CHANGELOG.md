@@ -4,7 +4,10 @@
 Version 5.2.0-SNAPSHOT
 -------------
 
+CHANGED:
 
+- update dependency of jobject-extensions from 1.9.2 to 1.10.0
+- extended lotto package with new bean classes for lotto evaluation
 
 Version 5.1.0
 -------------
