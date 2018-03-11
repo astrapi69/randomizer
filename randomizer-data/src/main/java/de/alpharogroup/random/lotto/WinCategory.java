@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
@@ -19,7 +20,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @FieldDefaults(makeFinal=true, level=AccessLevel.PRIVATE)
-public class WinCategory {
+public class WinCategory implements Cloneable {
 
 	/** The quantity of winning numbers. */
 	int quantityOfWonNumbers;
@@ -29,4 +30,14 @@ public class WinCategory {
 	
 	/** The payout rate of this winning category. */
 	double payoutRate;
+
+	@Override protected Object clone() throws CloneNotSupportedException
+	{
+		WinCategory clone = WinCategory.builder()
+			.payoutRate(this.payoutRate)
+			.withSuperNumber(this.withSuperNumber)
+			.quantityOfWonNumbers(this.quantityOfWonNumbers)
+			.build();
+		return clone;
+	}
 }

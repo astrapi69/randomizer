@@ -49,8 +49,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LottoPlayedNumbers
-{
+public class LottoPlayedNumbers implements Cloneable {
 
 	/** The id. */
 	Integer id;
@@ -67,4 +66,17 @@ public class LottoPlayedNumbers
 	/** The game seventy seven. */
 	Integer gameSeventySevenNumber;
 
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		try {
+			return super.clone();
+		} catch (CloneNotSupportedException e) {
+			return LottoPlayedNumbers.builder()
+				.id(id)
+				.playedLottoNumbers(playedLottoNumbers)
+				.superSixNumber(superSixNumber)
+				.superNumber(superNumber)
+				.gameSeventySevenNumber(gameSeventySevenNumber).build();
+		}
+	}
 }

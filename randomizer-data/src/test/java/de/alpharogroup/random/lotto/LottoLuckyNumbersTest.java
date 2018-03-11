@@ -24,14 +24,35 @@
  */
 package de.alpharogroup.random.lotto;
 
+import static org.testng.AssertJUnit.assertEquals;
+
+import org.meanbean.factories.ObjectCreationException;
+import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
+
+import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
 
 /**
  * The class {@link LottoLuckyNumbers}.
  */
 public class LottoLuckyNumbersTest
 {
+
+	/**
+	 * Test method for {@link LottoLuckyNumbers#equals(Object)} , {@link LottoLuckyNumbers#hashCode()} and
+	 * {@link LottoLuckyNumbers#toString()}
+	 */
+	@Test
+	public void testEqualsHashcodeAndToStringWithClassSilently()
+	{
+		boolean expected;
+		boolean actual;
+		actual =SilentEqualsHashCodeAndToStringEvaluator
+			.evaluateEqualsHashcodeAndToStringQuietly(LottoLuckyNumbers.class);
+		expected = true;
+		assertEquals(expected, actual);
+	}
 
 	/**
 	 * Test method for {@link LottoLuckyNumbers}
@@ -42,4 +63,5 @@ public class LottoLuckyNumbersTest
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(LottoLuckyNumbers.class);
 	}
+	
 }
