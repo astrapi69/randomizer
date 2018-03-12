@@ -99,23 +99,25 @@ public final class LottoExtensions
 		final LottoPlayedNumbers lottoPlayedNumbers)
 	{
 
-		final Set<Integer> lottoNumbers = lottoLuckyNumbers.getLottoNumbers();
+		final Set<Integer> drawnLuckyLottoNumbers = lottoLuckyNumbers.getLottoNumbers();
 		final Map<String, List<Set<Integer>>> playedLottoNumbers = lottoPlayedNumbers
 			.getPlayedLottoNumbers();
-		final Set<String> keySet = playedLottoNumbers.keySet();
+		final Set<String> playedLotteryTickets = playedLottoNumbers.keySet();
 		final WonNumbers wonNumbers = WonNumbers.builder().build();
-		final Map<String, List<Collection<Integer>>> wonLottoNumbers1 = wonNumbers
+		// this have to change to a WinCategory...
+		final Map<String, List<Collection<Integer>>> wonLottoNumbersMap = wonNumbers
 			.getWonLottoNumbers();
-		for (final String key : keySet)
+		for (final String lotteryTicketKey : playedLotteryTickets)
 		{
-			final List<Set<Integer>> list = playedLottoNumbers.get(key);
+			final List<Set<Integer>> lotteryTicket = playedLottoNumbers.get(lotteryTicketKey);
+			// TODO evaluate in a clear manner...
 			final List<Collection<Integer>> sets = ListExtensions
-				.newArrayList(wonLottoNumbers1.get(key));
-			wonLottoNumbers1.put(key, sets);
-			for (final Set<Integer> set : list)
+				.newArrayList(wonLottoNumbersMap.get(lotteryTicketKey));
+			wonLottoNumbersMap.put(lotteryTicketKey, sets);
+			for (final Set<Integer> singleLottoPlayBox : lotteryTicket)
 			{
 				final Collection<Integer> wonNumbers1 = CollectionExtensions
-					.intersection(SetExtensions.newTreeSet(lottoNumbers), set);
+					.intersection(SetExtensions.newTreeSet(drawnLuckyLottoNumbers), singleLottoPlayBox);
 				sets.add(wonNumbers1);
 			}
 		}

@@ -68,15 +68,11 @@ public class LottoPlayedNumbers implements Cloneable {
 
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
-		try {
-			return super.clone();
-		} catch (CloneNotSupportedException e) {
-			return LottoPlayedNumbers.builder()
-				.id(id)
-				.playedLottoNumbers(playedLottoNumbers)
-				.superSixNumber(superSixNumber)
-				.superNumber(superNumber)
-				.gameSeventySevenNumber(gameSeventySevenNumber).build();
-		}
+		return LottoPlayedNumbers.builder()
+			.id(id)
+			.playedLottoNumbers(playedLottoNumbers)
+			.superSixNumber(superSixNumber)
+			.superNumber(superNumber)
+			.gameSeventySevenNumber(gameSeventySevenNumber).build();
 	}
 }
