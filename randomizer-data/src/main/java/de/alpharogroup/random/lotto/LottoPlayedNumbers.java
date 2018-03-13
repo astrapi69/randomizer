@@ -55,7 +55,7 @@ public class LottoPlayedNumbers implements Cloneable {
 	Integer id;
 
 	/** The played lotto numbers. */
-	Map<String, List<Set<Integer>>> playedLottoNumbers;
+	Map<LottoGameType, List<Set<Integer>>> playedLottoNumbers;
 
 	/** The super six number. */
 	Integer superSixNumber;

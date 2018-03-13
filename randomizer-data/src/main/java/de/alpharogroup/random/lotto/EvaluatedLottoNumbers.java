@@ -58,7 +58,7 @@ public class EvaluatedLottoNumbers
 
 	/** The played lotto numbers. */
 	@Builder.Default
-	Map<String, List<Collection<Integer>>> wonLottoNumbers = MapExtensions.newHashMap();
+	Map<LottoGameType, List<Collection<Integer>>> wonLottoNumbers = MapExtensions.newHashMap();
 
 	/** The evaluated super six number. */
 	Integer wonSuperSixNumber;

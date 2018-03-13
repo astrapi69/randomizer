@@ -100,18 +100,18 @@ public final class LottoExtensions
 	{
 
 		final Set<Integer> drawnLuckyLottoNumbers = lottoLuckyNumbers.getLottoNumbers();
-		final Map<String, List<Set<Integer>>> playedLottoNumbers = lottoPlayedNumbers
+		final Map<LottoGameType, List<Set<Integer>>> playedLottoNumbers = lottoPlayedNumbers
 			.getPlayedLottoNumbers();
-		final Set<String> playedLotteryTickets = playedLottoNumbers.keySet();
+		final Set<LottoGameType> playedLotteryTickets = playedLottoNumbers.keySet();
 		final EvaluatedLottoNumbers evaluatedLottoNumbersBean = EvaluatedLottoNumbers.builder().build();
-		final Map<String, List<Collection<Integer>>> wonLottoNumbersMap = evaluatedLottoNumbersBean
+		final Map<LottoGameType, List<Collection<Integer>>> wonLottoNumbersMap = evaluatedLottoNumbersBean
 			.getWonLottoNumbers();
-		for (final String lotteryTicketKey : playedLotteryTickets)
+		for (final LottoGameType lottoGameType : playedLotteryTickets)
 		{
-			final List<Set<Integer>> lotteryTicket = playedLottoNumbers.get(lotteryTicketKey);
+			final List<Set<Integer>> lotteryTicket = playedLottoNumbers.get(lottoGameType);
 			final List<Collection<Integer>> currentWonLottoNumbersList = ListExtensions
-				.newArrayList(wonLottoNumbersMap.get(lotteryTicketKey));
-			wonLottoNumbersMap.put(lotteryTicketKey, currentWonLottoNumbersList);
+				.newArrayList(wonLottoNumbersMap.get(lottoGameType));
+			wonLottoNumbersMap.put(lottoGameType, currentWonLottoNumbersList);
 			for (int i = 0; i < lotteryTicket.size(); i++)
 			{
 				Set<Integer> currentLottoPlayedBox = lotteryTicket.get(i);
@@ -150,7 +150,7 @@ public final class LottoExtensions
 		while (!breakout)
 		{
 			evaluatedLottoNumbers = LottoExtensions.checkResult(luckyNumbers, lottoPlayedNumbers);
-			final Map<String, List<Collection<Integer>>> wonLottoNumbers = evaluatedLottoNumbers
+			final Map<LottoGameType, List<Collection<Integer>>> wonLottoNumbers = evaluatedLottoNumbers
 				.getWonLottoNumbers();
 			if (!wonLottoNumbers.isEmpty())
 			{

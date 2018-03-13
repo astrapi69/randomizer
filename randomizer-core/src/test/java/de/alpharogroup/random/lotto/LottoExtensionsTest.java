@@ -51,7 +51,7 @@ import lombok.extern.slf4j.Slf4j;
 public class LottoExtensionsTest
 {
 
-	private static final String sixOffourtynineGameType = "6 of 49";
+	private static final LottoGameType sixOffourtynineGameType = LottoGameType.SIX_OF_FOURTYNINE;
 
 
 	List<Set<Integer>> newLottoSets()
@@ -104,7 +104,7 @@ public class LottoExtensionsTest
 		// SetExtensions.newTreeSet(3, 7, 22, 23, 34, 45),
 		// SetExtensions.newTreeSet(13, 17, 21, 23, 34, 48),
 		// SetExtensions.newTreeSet(5, 8, 21, 22, 34, 45));
-		final Map<String, List<Set<Integer>>> playedLottoNumbers = MapExtensions.newHashMap();
+		final Map<LottoGameType, List<Set<Integer>>> playedLottoNumbers = MapExtensions.newHashMap();
 		playedLottoNumbers.put(sixOffourtynineGameType, sixOffourtynineGame);
 
 		final LottoPlayedNumbers lottoPlayedNumbers = LottoPlayedNumbers.builder()
@@ -139,7 +139,7 @@ public class LottoExtensionsTest
 			SetExtensions.newTreeSet(3, 7, 22, 23, 34, 45),
 			SetExtensions.newTreeSet(13, 17, 21, 23, 34, 48),
 			SetExtensions.newTreeSet(5, 8, 21, 22, 34, 45));
-		final Map<String, List<Set<Integer>>> playedLottoNumbers = MapExtensions.newHashMap();
+		final Map<LottoGameType, List<Set<Integer>>> playedLottoNumbers = MapExtensions.newHashMap();
 		playedLottoNumbers.put(sixOffourtynineGameType, sixOffourtynineGame);
 
 		final LottoPlayedNumbers lottoPlayedNumbers = LottoPlayedNumbers.builder()
