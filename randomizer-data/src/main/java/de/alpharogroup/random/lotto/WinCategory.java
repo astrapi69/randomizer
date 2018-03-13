@@ -28,13 +28,9 @@ public class WinCategory implements Cloneable {
 	/** The flag if the played super number is selected. */
 	boolean withSuperNumber;
 	
-	/** The payout rate of this winning category. */
-	double payoutRate;
-
 	@Override protected Object clone() throws CloneNotSupportedException
 	{
 		WinCategory clone = WinCategory.builder()
-			.payoutRate(this.payoutRate)
 			.withSuperNumber(this.withSuperNumber)
 			.quantityOfWonNumbers(this.quantityOfWonNumbers)
 			.build();

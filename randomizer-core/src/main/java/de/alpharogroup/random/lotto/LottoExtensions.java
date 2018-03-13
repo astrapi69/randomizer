@@ -87,7 +87,7 @@ public final class LottoExtensions
 
 	/**
 	 * Checks the result if the drawn lotto numbers are equal to the given played numbers. The
-	 * result is a {@link WonNumbers} object that keep the winning numbers.
+	 * result is a {@link EvaluatedLottoNumbers} object that keep the winning numbers.
 	 *
 	 * @param lottoLuckyNumbers
 	 *            the lotto lucky numbers
@@ -95,7 +95,7 @@ public final class LottoExtensions
 	 *            the lotto played numbers
 	 * @return the won numbers
 	 */
-	public static WonNumbers checkResult(final LottoLuckyNumbers lottoLuckyNumbers,
+	public static EvaluatedLottoNumbers checkResult(final LottoLuckyNumbers lottoLuckyNumbers,
 		final LottoPlayedNumbers lottoPlayedNumbers)
 	{
 
@@ -103,25 +103,24 @@ public final class LottoExtensions
 		final Map<String, List<Set<Integer>>> playedLottoNumbers = lottoPlayedNumbers
 			.getPlayedLottoNumbers();
 		final Set<String> playedLotteryTickets = playedLottoNumbers.keySet();
-		final WonNumbers wonNumbers = WonNumbers.builder().build();
-		// this have to change to a WinCategory...
-		final Map<String, List<Collection<Integer>>> wonLottoNumbersMap = wonNumbers
+		final EvaluatedLottoNumbers evaluatedLottoNumbersBean = EvaluatedLottoNumbers.builder().build();
+		final Map<String, List<Collection<Integer>>> wonLottoNumbersMap = evaluatedLottoNumbersBean
 			.getWonLottoNumbers();
 		for (final String lotteryTicketKey : playedLotteryTickets)
 		{
 			final List<Set<Integer>> lotteryTicket = playedLottoNumbers.get(lotteryTicketKey);
-			// TODO evaluate in a clear manner...
-			final List<Collection<Integer>> sets = ListExtensions
+			final List<Collection<Integer>> currentWonLottoNumbersList = ListExtensions
 				.newArrayList(wonLottoNumbersMap.get(lotteryTicketKey));
-			wonLottoNumbersMap.put(lotteryTicketKey, sets);
-			for (final Set<Integer> singleLottoPlayBox : lotteryTicket)
+			wonLottoNumbersMap.put(lotteryTicketKey, currentWonLottoNumbersList);
+			for (int i = 0; i < lotteryTicket.size(); i++)
 			{
-				final Collection<Integer> wonNumbers1 = CollectionExtensions
-					.intersection(SetExtensions.newTreeSet(drawnLuckyLottoNumbers), singleLottoPlayBox);
-				sets.add(wonNumbers1);
+				Set<Integer> currentLottoPlayedBox = lotteryTicket.get(i);
+				final Collection<Integer> wonNumbers = CollectionExtensions
+					.intersection(SetExtensions.newTreeSet(drawnLuckyLottoNumbers), currentLottoPlayedBox);
+				currentWonLottoNumbersList.add(wonNumbers);
 			}
 		}
-		return wonNumbers;
+		return evaluatedLottoNumbersBean;
 	}
 
 	/**
@@ -145,13 +144,13 @@ public final class LottoExtensions
 		int count = 0;
 		LottoLuckyNumbers luckyNumbers = LottoExtensions.newLottoLuckyNumbers();
 		count++;
-		WonNumbers wonNumbers = LottoExtensions.checkResult(luckyNumbers, lottoPlayedNumbers);
+		EvaluatedLottoNumbers evaluatedLottoNumbers = LottoExtensions.checkResult(luckyNumbers, lottoPlayedNumbers);
 		boolean breakout = false;
 		// int i1 = 3;
 		while (!breakout)
 		{
-			wonNumbers = LottoExtensions.checkResult(luckyNumbers, lottoPlayedNumbers);
-			final Map<String, List<Collection<Integer>>> wonLottoNumbers = wonNumbers
+			evaluatedLottoNumbers = LottoExtensions.checkResult(luckyNumbers, lottoPlayedNumbers);
+			final Map<String, List<Collection<Integer>>> wonLottoNumbers = evaluatedLottoNumbers
 				.getWonLottoNumbers();
 			if (!wonLottoNumbers.isEmpty())
 			{
@@ -175,7 +174,7 @@ public final class LottoExtensions
 		log.info("Elapsed time till you have won something: "
 			+ calculateElapsedTimeInSeconds(startTime));
 		log.info("you have won after " + count + " drawings");
-		log.info("you have won: " + wonNumbers);
+		log.info("you have won: " + evaluatedLottoNumbers);
 		return count;
 	}
 

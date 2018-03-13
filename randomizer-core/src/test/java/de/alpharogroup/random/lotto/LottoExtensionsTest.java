@@ -147,11 +147,11 @@ public class LottoExtensionsTest
 			.gameSeventySevenNumber(234556).build();
 
 		// Lets process if your numbers have won the jackpot...
-		final WonNumbers wonNumbers = LottoExtensions.checkResult(lottoLuckyNumbers,
+		final EvaluatedLottoNumbers evaluatedLottoNumbers = LottoExtensions.checkResult(lottoLuckyNumbers,
 			lottoPlayedNumbers);
 
-		// TODO make the checks...
-		log.info(wonNumbers.toString());
+		// TODO make the checks and map to WinCategories...
+		log.info(evaluatedLottoNumbers.toString());
 	}
 
 	/**

@@ -31,14 +31,14 @@ import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.assertEquals;
 
 /**
- * The class {@link WonNumbers}.
+ * The class {@link EvaluatedLottoNumbers}.
  */
-public class WonNumbersTest
+public class EvaluatedLottoNumbersTest
 {
 
 	/**
-	 * Test method for {@link WonNumbers#equals(Object)} , {@link WonNumbers#hashCode()} and
-	 * {@link WonNumbers#toString()}
+	 * Test method for {@link EvaluatedLottoNumbers#equals(Object)} , {@link EvaluatedLottoNumbers#hashCode()} and
+	 * {@link EvaluatedLottoNumbers#toString()}
 	 */
 	@Test
 	public void testEqualsHashcodeAndToStringWithClassSilently()
@@ -46,19 +46,19 @@ public class WonNumbersTest
 		boolean expected;
 		boolean actual;
 		actual = SilentEqualsHashCodeAndToStringEvaluator
-			.evaluateEqualsHashcodeAndToStringQuietly(WonNumbers.class);
+			.evaluateEqualsHashcodeAndToStringQuietly(EvaluatedLottoNumbers.class);
 		expected = true;
 		assertEquals(expected, actual);
 	}
 
 	/**
-	 * Test method for {@link WonNumbers}
+	 * Test method for {@link EvaluatedLottoNumbers}
 	 */
 	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(WonNumbers.class);
+		beanTester.testBean(EvaluatedLottoNumbers.class);
 	}
 
 }

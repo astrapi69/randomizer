@@ -40,7 +40,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 /**
- * The class {@link WonNumbers} contains the result of the lotto numbers and the played numbers.
+ * The class {@link EvaluatedLottoNumbers} contains the evaluated result of the drawn lotto numbers and the played numbers of a player.
  */
 @Getter
 @Setter
@@ -50,7 +50,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class WonNumbers
+public class EvaluatedLottoNumbers
 {
 
 	/** The id. */
@@ -60,13 +60,13 @@ public class WonNumbers
 	@Builder.Default
 	Map<String, List<Collection<Integer>>> wonLottoNumbers = MapExtensions.newHashMap();
 
-	/** The won super six number. */
+	/** The evaluated super six number. */
 	Integer wonSuperSixNumber;
 
-	/** The won super number. */
+	/** The evaluated super number. */
 	Integer wonSuperNumber;
 
-	/** The won game seventy seven. */
+	/** The evaluated game seventy seven. */
 	Integer wonGameSeventySevenNumber;
 
 }
