@@ -151,6 +151,7 @@ public class LottoExtensionsTest
 			lottoPlayedNumbers);
 
 		// TODO make the checks and map to WinCategories...
+		LottoExtensions.setWinCategories(evaluatedLottoNumbers);
 		log.info(evaluatedLottoNumbers.toString());
 	}
 

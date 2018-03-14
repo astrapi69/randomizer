@@ -28,6 +28,7 @@ import java.security.SecureRandom;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import de.alpharogroup.collections.CollectionExtensions;
@@ -121,6 +122,20 @@ public final class LottoExtensions
 			}
 		}
 		return evaluatedLottoNumbersBean;
+	}
+	
+	public static void setWinCategories(final EvaluatedLottoNumbers evaluatedLottoNumbers) {
+		final Map<LottoGameType, List<Collection<Integer>>> wonLottoNumbersMap = evaluatedLottoNumbers
+				.getWonLottoNumbers();
+		Set<LottoGameType> lottoGameTypeSet = wonLottoNumbersMap.keySet();
+		 boolean withSuperNumber = false; 
+		for(final LottoGameType lottoGameType : lottoGameTypeSet) {
+			List<Collection<Integer>> currentWonLottoNumbersList = wonLottoNumbersMap.get(lottoGameType);
+			for(Collection<Integer> wonLotteryTicket : currentWonLottoNumbersList) {
+				Optional<LottoWinCategory> lottoWinCategory = LottoWinCategory.getLottoWinCategory(wonLotteryTicket, withSuperNumber);
+				lottoWinCategory.ifPresent(l -> System.out.println(l.name()));
+			}
+		}
 	}
 
 	/**
