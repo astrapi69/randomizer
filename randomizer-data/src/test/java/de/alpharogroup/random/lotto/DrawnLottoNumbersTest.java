@@ -24,53 +24,42 @@
  */
 package de.alpharogroup.random.lotto;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import static org.testng.AssertJUnit.assertEquals;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.FieldDefaults;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
+import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
 
 /**
- * The class {@link LottoPlayedNumbers} contains the data of the lotto player.
+ * The class {@link DrawnLottoNumbers}.
  */
-@Getter
-@Setter
-@EqualsAndHashCode
-@ToString
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder(toBuilder = true)
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class LottoPlayedNumbers implements Cloneable {
+public class DrawnLottoNumbersTest
+{
 
-	/** The id. */
-	Integer id;
-
-	/** The played lotto numbers. */
-	Map<LottoGameType, List<Set<Integer>>> playedLottoNumbers;
-
-	/** The super six number. */
-	Integer superSixNumber;
-
-	/** The super number. */
-	Integer superNumber;
-
-	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		return LottoPlayedNumbers.builder()
-			.id(id)
-			.playedLottoNumbers(playedLottoNumbers)
-			.superSixNumber(superSixNumber)
-			.superNumber(superNumber)
-			.build();
+	/**
+	 * Test method for {@link DrawnLottoNumbers#equals(Object)} , {@link DrawnLottoNumbers#hashCode()} and
+	 * {@link DrawnLottoNumbers#toString()}
+	 */
+	@Test
+	public void testEqualsHashcodeAndToStringWithClassSilently()
+	{
+		boolean expected;
+		boolean actual;
+		actual =SilentEqualsHashCodeAndToStringEvaluator
+			.evaluateEqualsHashcodeAndToStringQuietly(DrawnLottoNumbers.class);
+		expected = true;
+		assertEquals(expected, actual);
 	}
+
+	/**
+	 * Test method for {@link DrawnLottoNumbers}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(DrawnLottoNumbers.class);
+	}
+	
 }

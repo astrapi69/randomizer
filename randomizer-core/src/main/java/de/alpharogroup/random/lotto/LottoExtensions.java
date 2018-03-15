@@ -37,6 +37,9 @@ import de.alpharogroup.collections.set.SetExtensions;
 import de.alpharogroup.math.MathExtensions;
 import de.alpharogroup.random.RandomExtensions;
 import de.alpharogroup.random.SecureRandomBean;
+import de.alpharogroup.random.lotto.neo.LottoBox;
+import de.alpharogroup.random.lotto.neo.LottoTicket;
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 import lombok.extern.slf4j.Slf4j;
 
@@ -48,16 +51,16 @@ import lombok.extern.slf4j.Slf4j;
 public final class LottoExtensions
 {
 
-	private static final String sixOffourtynineGameType = "6 of 49";
+	private static final LottoGameType sixOffourtynineGameType = LottoGameType.SIX_OF_FOURTYNINE_NORMAL;
 
 	/**
-	 * Factory method for create a new {@link LottoLuckyNumbers} object with all drawn numbers
+	 * Factory method for create a new {@link DrawnLottoNumbers} object with all drawn numbers
 	 *
-	 * @return the new {@link LottoLuckyNumbers}
+	 * @return the new {@link DrawnLottoNumbers}
 	 */
-	public static LottoLuckyNumbers newLottoLuckyNumbers()
+	public static DrawnLottoNumbers newRandomDrawnLottoNumbers()
 	{
-		final LottoLuckyNumbers lottoLuckyNumbers = LottoLuckyNumbers.builder()
+		final DrawnLottoNumbers drawnLottoNumbers = DrawnLottoNumbers.builder()
 			.id(RandomExtensions.randomInt(Integer.MAX_VALUE))
 			.lottoNumbers(SetExtensions.newTreeSet()).build();
 		int cnt = 0;
@@ -68,39 +71,38 @@ public final class LottoExtensions
 		{
 			final int num = 1 + Math.abs(sr.nextInt()) % 49;
 
-			if (!lottoLuckyNumbers.getLottoNumbers().contains(num))
+			if (!drawnLottoNumbers.getLottoNumbers().contains(num))
 			{
 				if (cnt == 6)
 				{
-					lottoLuckyNumbers.setSuperNumber(num);
+					drawnLottoNumbers.setSuperNumber(num);
 				}
 				else
 				{
-					lottoLuckyNumbers.getLottoNumbers().add(num);
+					drawnLottoNumbers.getLottoNumbers().add(num);
 				}
 				++cnt;
 			}
 		}
-		lottoLuckyNumbers.setSuperSixNumber(RandomExtensions.randomIntBetween(1, 10));
-		lottoLuckyNumbers.setGameSeventySeven(RandomExtensions.randomIntBetween(0, 9999999));
-		return lottoLuckyNumbers;
+		drawnLottoNumbers.setSuperSixNumber(RandomExtensions.randomIntBetween(1, 10));
+		return drawnLottoNumbers;
 	}
 
 	/**
 	 * Checks the result if the drawn lotto numbers are equal to the given played numbers. The
 	 * result is a {@link EvaluatedLottoNumbers} object that keep the winning numbers.
 	 *
-	 * @param lottoLuckyNumbers
+	 * @param drawnLottoNumbers
 	 *            the lotto lucky numbers
 	 * @param lottoPlayedNumbers
 	 *            the lotto played numbers
 	 * @return the won numbers
 	 */
-	public static EvaluatedLottoNumbers checkResult(final LottoLuckyNumbers lottoLuckyNumbers,
+	public static EvaluatedLottoNumbers checkResult(final DrawnLottoNumbers drawnLottoNumbers,
 		final LottoPlayedNumbers lottoPlayedNumbers)
 	{
 
-		final Set<Integer> drawnLuckyLottoNumbers = lottoLuckyNumbers.getLottoNumbers();
+		final Set<Integer> drawnLuckyLottoNumbers = drawnLottoNumbers.getLottoNumbers();
 		final Map<LottoGameType, List<Set<Integer>>> playedLottoNumbers = lottoPlayedNumbers
 			.getPlayedLottoNumbers();
 		final Set<LottoGameType> playedLotteryTickets = playedLottoNumbers.keySet();
@@ -123,6 +125,17 @@ public final class LottoExtensions
 		}
 		return evaluatedLottoNumbersBean;
 	}
+
+	public static void evaluate(DrawnLottoNumbers drawnLottoNumbers, LottoTicket playedLottoTicket) {
+		Set<LottoBox> lottoBoxes = playedLottoTicket.getLottoBoxes();
+		for(LottoBox lottoBox : lottoBoxes) {
+			boolean withSuperNumber = lottoBox.getSelectedNumbers().contains(drawnLottoNumbers.getSuperNumber());
+				Optional<LottoWinCategory> lottoWinCategory = LottoWinCategory
+				.getLottoWinCategory(drawnLottoNumbers.getLottoNumbers(),
+					lottoBox.getSelectedNumbers(), withSuperNumber);
+			lottoBox.setWinCategory(lottoWinCategory.get());
+		}
+	}
 	
 	public static void setWinCategories(final EvaluatedLottoNumbers evaluatedLottoNumbers) {
 		final Map<LottoGameType, List<Collection<Integer>>> wonLottoNumbersMap = evaluatedLottoNumbers
@@ -136,6 +149,34 @@ public final class LottoExtensions
 				lottoWinCategory.ifPresent(l -> System.out.println(l.name()));
 			}
 		}
+	}
+
+	public static int calculateDraws(LottoTicket lottoTicket, @NonNull LottoWinCategory lottoWinCategory) {
+		final long startTime = System.nanoTime();
+
+		int count = 0;
+
+		DrawnLottoNumbers luckyNumbers = LottoExtensions.newRandomDrawnLottoNumbers();
+		count++;
+		boolean breakout = false;
+		// int i1 = 3;
+		while (!breakout)
+		{
+			evaluate(luckyNumbers, lottoTicket);
+			Set<LottoBox> lottoBoxes = lottoTicket.getLottoBoxes();
+			for (LottoBox box : lottoBoxes) {
+				log.info("current win category: "+box.getWinCategory().name());
+				breakout = box.getWinCategory().equals(lottoWinCategory);
+			}
+			luckyNumbers = LottoExtensions.newRandomDrawnLottoNumbers();
+			count++;
+		}
+
+		log.info("Elapsed time till you have won something: "
+			+ calculateElapsedTimeInSeconds(startTime));
+		log.info("you have won after " + count + " drawings");
+		log.info("you have won: " + lottoTicket);
+		return count;
 	}
 
 	/**
@@ -157,9 +198,9 @@ public final class LottoExtensions
 		}
 		final long startTime = System.nanoTime();
 		int count = 0;
-		LottoLuckyNumbers luckyNumbers = LottoExtensions.newLottoLuckyNumbers();
+		DrawnLottoNumbers luckyNumbers = LottoExtensions.newRandomDrawnLottoNumbers();
 		count++;
-		EvaluatedLottoNumbers evaluatedLottoNumbers = LottoExtensions.checkResult(luckyNumbers, lottoPlayedNumbers);
+		EvaluatedLottoNumbers evaluatedLottoNumbers = null;
 		boolean breakout = false;
 		// int i1 = 3;
 		while (!breakout)
@@ -181,7 +222,7 @@ public final class LottoExtensions
 					}
 				}
 			}
-			luckyNumbers = LottoExtensions.newLottoLuckyNumbers();
+			luckyNumbers = LottoExtensions.newRandomDrawnLottoNumbers();
 			count++;
 			log.info("This is the " + count + " draw of the lotto queen: " + luckyNumbers);
 		}

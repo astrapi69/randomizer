@@ -37,7 +37,7 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 /**
- * The class {@link LottoLuckyNumbers} contains data that can be used for the validation if the
+ * The class {@link DrawnLottoNumbers} contains data that can be used for the validation if the
  * given played lotto numbers have won.
  */
 @Getter
@@ -48,7 +48,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LottoLuckyNumbers
+public class DrawnLottoNumbers
 {
 	/** The id. */
 	Integer id;
@@ -61,8 +61,5 @@ public class LottoLuckyNumbers
 
 	/** The super number. */
 	Integer superNumber;
-
-	/** The game seventy seven. */
-	Integer gameSeventySeven;
 
 }

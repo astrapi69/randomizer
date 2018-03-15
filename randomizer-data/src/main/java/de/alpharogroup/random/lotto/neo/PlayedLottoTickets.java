@@ -22,44 +22,36 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.random.lotto;
+package de.alpharogroup.random.lotto.neo;
 
-import static org.testng.AssertJUnit.assertEquals;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
-
-import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.FieldDefaults;
 
 /**
- * The class {@link LottoLuckyNumbers}.
+ * The class {@link PlayedLottoTickets} contains the played lotto tickets of a lotto player.
  */
-public class LottoLuckyNumbersTest
-{
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder(toBuilder = true)
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class PlayedLottoTickets implements Cloneable {
 
-	/**
-	 * Test method for {@link LottoLuckyNumbers#equals(Object)} , {@link LottoLuckyNumbers#hashCode()} and
-	 * {@link LottoLuckyNumbers#toString()}
-	 */
-	@Test
-	public void testEqualsHashcodeAndToStringWithClassSilently()
-	{
-		boolean expected;
-		boolean actual;
-		actual =SilentEqualsHashCodeAndToStringEvaluator
-			.evaluateEqualsHashcodeAndToStringQuietly(LottoLuckyNumbers.class);
-		expected = true;
-		assertEquals(expected, actual);
-	}
+	String user;
 
-	/**
-	 * Test method for {@link LottoLuckyNumbers}
-	 */
-	@Test
-	public void testWithBeanTester()
-	{
-		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(LottoLuckyNumbers.class);
-	}
-	
+	Set<LottoTicket> lottoTickets;
 }
