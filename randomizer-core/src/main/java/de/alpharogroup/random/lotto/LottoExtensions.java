@@ -58,22 +58,22 @@ public final class LottoExtensions
 	 *
 	 * @return the new {@link DrawnLottoNumbers}
 	 */
-	public static DrawnLottoNumbers newRandomDrawnLottoNumbers()
+	public static DrawnLottoNumbers newRandomDrawnLottoNumbers(int max,  int volume)
 	{
 		final DrawnLottoNumbers drawnLottoNumbers = DrawnLottoNumbers.builder()
 			.id(RandomExtensions.randomInt(Integer.MAX_VALUE))
 			.lottoNumbers(SetExtensions.newTreeSet()).build();
-		int cnt = 0;
 		final SecureRandom sr = SecureRandomBean.builder()
 			.algorithm(SecureRandomBean.DEFAULT_ALGORITHM).buildQuietly();
+		int cnt = 0;
 
-		while (cnt < 7)
+		while (cnt < max)
 		{
-			final int num = 1 + Math.abs(sr.nextInt()) % 49;
+			final int num = 1 + Math.abs(sr.nextInt()) % volume;
 
 			if (!drawnLottoNumbers.getLottoNumbers().contains(num))
 			{
-				if (cnt == 6)
+				if (cnt == (max-1))
 				{
 					drawnLottoNumbers.setSuperNumber(num);
 				}
@@ -86,6 +86,35 @@ public final class LottoExtensions
 		}
 		drawnLottoNumbers.setSuperSixNumber(RandomExtensions.randomIntBetween(1, 10));
 		return drawnLottoNumbers;
+	}
+
+	public static Set<Integer> draw(int max, int volume) {
+		Set<Integer> numbers = SetExtensions.newTreeSet();
+		final SecureRandom sr = SecureRandomBean.builder()
+			.algorithm(SecureRandomBean.DEFAULT_ALGORITHM).buildQuietly();
+
+		int cnt = 0;
+
+		while (cnt < max)
+		{
+			final int num = 1 + Math.abs(sr.nextInt()) % volume;
+
+			if (!numbers.contains(num))
+			{
+				numbers.add(num);
+				++cnt;
+			}
+		}
+		return numbers;
+	}
+	/**
+	 * Factory method for create a new {@link DrawnLottoNumbers} object with all drawn numbers
+	 *
+	 * @return the new {@link DrawnLottoNumbers}
+	 */
+	public static DrawnLottoNumbers newRandomDrawnLottoNumbers()
+	{
+		return newRandomDrawnLottoNumbers(7, 49);
 	}
 
 	/**
@@ -165,7 +194,9 @@ public final class LottoExtensions
 			evaluate(luckyNumbers, lottoTicket);
 			Set<LottoBox> lottoBoxes = lottoTicket.getLottoBoxes();
 			for (LottoBox box : lottoBoxes) {
-				log.info("current win category: "+box.getWinCategory().name());
+				if(!box.getWinCategory().equals(LottoWinCategory.NONE))
+				log.info("current draw " + count
+					+ " and win category: "+box.getWinCategory().name());
 				breakout = box.getWinCategory().equals(lottoWinCategory);
 			}
 			luckyNumbers = LottoExtensions.newRandomDrawnLottoNumbers();
