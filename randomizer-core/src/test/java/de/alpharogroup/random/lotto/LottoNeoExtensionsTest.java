@@ -27,24 +27,15 @@
  */
 package de.alpharogroup.random.lotto;
 
-import de.alpharogroup.collections.list.ListExtensions;
-import de.alpharogroup.collections.map.MapExtensions;
+import java.util.List;
+import java.util.Set;
+
+import org.testng.annotations.Test;
+
 import de.alpharogroup.collections.set.SetExtensions;
 import de.alpharogroup.random.lotto.neo.LottoBox;
 import de.alpharogroup.random.lotto.neo.LottoTicket;
 import lombok.extern.slf4j.Slf4j;
-import org.meanbean.test.BeanTestException;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
-
-import java.lang.reflect.InvocationTargetException;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import static de.alpharogroup.random.lotto.LottoExtensions.newRandomDrawnLottoNumbers;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
 
 /**
  * The unit test class for the class {@link LottoExtensions}.
@@ -53,33 +44,48 @@ import static org.testng.Assert.assertNotNull;
 public class LottoNeoExtensionsTest
 {
 
-	public static LottoTicket newLottoTicket(List<Set<Integer>> lottoSet) {
+	public static LottoTicket newLottoTicket(List<Set<Integer>> lottoSet)
+	{
 		Set<LottoBox> lottoBoxes = SetExtensions.newHashSet();
-		for(Set<Integer> lottoNumbers : lottoSet) {
-			lottoBoxes.add(LottoBox.builder()
-				.index(lottoSet.indexOf(lottoNumbers))
-				.gameType(LottoGameType.SIX_OF_FOURTYNINE_NORMAL)
-				.selectedNumbers(lottoNumbers)
+		for (Set<Integer> lottoNumbers : lottoSet)
+		{
+			lottoBoxes.add(LottoBox.builder().index(lottoSet.indexOf(lottoNumbers))
+				.gameType(LottoGameType.SIX_OF_FOURTYNINE_NORMAL).selectedNumbers(lottoNumbers)
 				.build());
 		}
-		LottoTicket lottoTicket = LottoTicket.builder()
-			.lottoBoxes(lottoBoxes)
-			.build();
+		LottoTicket lottoTicket = LottoTicket.builder().lottoBoxes(lottoBoxes).build();
 		return lottoTicket;
 	}
 
-	@Test(enabled = true)
-	public void testEvaluate() {
-		DrawnLottoNumbers drawnLottoNumbers = newRandomDrawnLottoNumbers();
+	@Test(enabled = false)
+	public void testCalculateDrawsInFifthClass()
+	{
 		LottoTicket lottoTicket = newLottoTicket(LottoExtensionsTest.newLottoSets());
-		LottoExtensions.evaluate(drawnLottoNumbers, lottoTicket);
-		log.info(lottoTicket.toString());
+		LottoExtensions.calculateDraws(lottoTicket, LottoWinCategory.FIFTH_CLASS);
+	}
+
+	@Test(enabled = false)
+	public void testCalculateDrawsInFourthClass()
+	{
+		LottoTicket lottoTicket = newLottoTicket(LottoExtensionsTest.newLottoSets());
+		LottoExtensions.calculateDraws(lottoTicket, LottoWinCategory.FOURTH_CLASS);
+	}
+
+	@Test(enabled = false)
+	public void testCalculateDrawsInSixthClass()
+	{
+		LottoTicket lottoTicket = newLottoTicket(LottoExtensionsTest.newLottoSets());
+		LottoExtensions.calculateDraws(lottoTicket, LottoWinCategory.SIXTH_CLASS);
 	}
 
 	@Test(enabled = true)
-	public void testCalculateDraws() {
+	public void testEvaluate()
+	{
+		DrawnLottoNumbers drawnLottoNumbers = DrawLottoNumbersExtensions
+			.newRandomDrawnLottoNumbers();
 		LottoTicket lottoTicket = newLottoTicket(LottoExtensionsTest.newLottoSets());
-		LottoExtensions.calculateDraws(lottoTicket, LottoWinCategory.FOURTH_CLASS);
+		LottoExtensions.evaluate(drawnLottoNumbers, lottoTicket);
+		log.info(lottoTicket.toString());
 	}
 
 

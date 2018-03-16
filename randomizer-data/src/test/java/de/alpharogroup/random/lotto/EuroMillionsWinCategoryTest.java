@@ -12,18 +12,19 @@ import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
 /**
  * The class {@link EuroMillionsWinCategory}.
  */
-public class EuroMillionsWinCategoryTest {
+public class EuroMillionsWinCategoryTest
+{
 
 	/**
-	 * Test method for {@link EuroMillionsWinCategory#equals(Object)} , {@link EuroMillionsWinCategory#hashCode()} and
-	 * {@link EuroMillionsWinCategory#toString()}
+	 * Test method for {@link EuroMillionsWinCategory#equals(Object)} ,
+	 * {@link EuroMillionsWinCategory#hashCode()} and {@link EuroMillionsWinCategory#toString()}
 	 */
 	@Test
 	public void testEqualsHashcodeAndToStringWithClassSilently()
 	{
 		boolean expected;
 		boolean actual;
-		actual =SilentEqualsHashCodeAndToStringEvaluator
+		actual = SilentEqualsHashCodeAndToStringEvaluator
 			.evaluateEqualsHashcodeAndToStringQuietly(EuroMillionsWinCategory.class);
 		expected = true;
 		assertEquals(expected, actual);
@@ -32,12 +33,12 @@ public class EuroMillionsWinCategoryTest {
 	/**
 	 * Test method for {@link EuroMillionsWinCategory}
 	 */
-	@Test(expectedExceptions = { ObjectCreationException.class, BeanTestException.class,  NoSuchMethodException.class,
-		UnsupportedOperationException.class })
+	@Test(expectedExceptions = { ObjectCreationException.class, BeanTestException.class,
+			NoSuchMethodException.class, UnsupportedOperationException.class })
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(EuroMillionsWinCategory.class);
 	}
-	
+
 }

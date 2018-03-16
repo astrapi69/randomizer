@@ -205,6 +205,19 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomExtensions#getRandomEnum(String)}
+	 */
+	@Test
+	public void testGetRandomEnumNull()
+	{
+		Gender randomEnum = RandomExtensions.getRandomEnum((Gender)null);
+		assertNull(randomEnum);
+
+		randomEnum = RandomExtensions.getRandomEnum((String)null);
+		assertNull(randomEnum);
+	}
+
+	/**
 	 * Test method for {@link RandomExtensions#getRandomEnum(String)} .
 	 */
 	@Test
@@ -221,19 +234,6 @@ public class RandomExtensionsTest extends BaseTestCase
 		randomEnumEntry = RandomExtensions.getRandomEnum(enumClassName);
 		assertNull(randomEnumEntry);
 
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#getRandomEnum(String)}
-	 */
-	@Test
-	public void testGetRandomEnumNull()
-	{
-		Gender randomEnum = RandomExtensions.getRandomEnum((Gender)null);
-		assertNull(randomEnum);
-
-		randomEnum = RandomExtensions.getRandomEnum((String)null);
-		assertNull(randomEnum);
 	}
 
 	/**

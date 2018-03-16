@@ -38,15 +38,15 @@ public class DrawnLottoNumbersTest
 {
 
 	/**
-	 * Test method for {@link DrawnLottoNumbers#equals(Object)} , {@link DrawnLottoNumbers#hashCode()} and
-	 * {@link DrawnLottoNumbers#toString()}
+	 * Test method for {@link DrawnLottoNumbers#equals(Object)} ,
+	 * {@link DrawnLottoNumbers#hashCode()} and {@link DrawnLottoNumbers#toString()}
 	 */
 	@Test
 	public void testEqualsHashcodeAndToStringWithClassSilently()
 	{
 		boolean expected;
 		boolean actual;
-		actual =SilentEqualsHashCodeAndToStringEvaluator
+		actual = SilentEqualsHashCodeAndToStringEvaluator
 			.evaluateEqualsHashcodeAndToStringQuietly(DrawnLottoNumbers.class);
 		expected = true;
 		assertEquals(expected, actual);
@@ -61,5 +61,5 @@ public class DrawnLottoNumbersTest
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(DrawnLottoNumbers.class);
 	}
-	
+
 }

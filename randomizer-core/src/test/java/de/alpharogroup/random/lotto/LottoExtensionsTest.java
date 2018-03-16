@@ -104,12 +104,12 @@ public class LottoExtensionsTest
 		// SetExtensions.newTreeSet(3, 7, 22, 23, 34, 45),
 		// SetExtensions.newTreeSet(13, 17, 21, 23, 34, 48),
 		// SetExtensions.newTreeSet(5, 8, 21, 22, 34, 45));
-		final Map<LottoGameType, List<Set<Integer>>> playedLottoNumbers = MapExtensions.newHashMap();
+		final Map<LottoGameType, List<Set<Integer>>> playedLottoNumbers = MapExtensions
+			.newHashMap();
 		playedLottoNumbers.put(sixOffourtynineGameType, sixOffourtynineGame);
 
 		final LottoPlayedNumbers lottoPlayedNumbers = LottoPlayedNumbers.builder()
-			.playedLottoNumbers(playedLottoNumbers).superNumber(23).superSixNumber(4)
-			.build();
+			.playedLottoNumbers(playedLottoNumbers).superNumber(23).superSixNumber(4).build();
 
 		LottoExtensions.calculateDraws(lottoPlayedNumbers, 4);
 
@@ -129,8 +129,7 @@ public class LottoExtensionsTest
 		// This numbers are lucky choosen from the lottery queen...
 		final Set<Integer> lottoNumbers = SetExtensions.newTreeSet(7, 23, 34, 42, 45, 48);
 		final DrawnLottoNumbers drawnLottoNumbers = DrawnLottoNumbers.builder()
-			.lottoNumbers(lottoNumbers).superNumber(5).superSixNumber(8)
-			.build();
+			.lottoNumbers(lottoNumbers).superNumber(5).superSixNumber(8).build();
 
 		// This numbers is your played lotto numbers...
 		List<Set<Integer>> sixOffourtynineGame;
@@ -139,17 +138,16 @@ public class LottoExtensionsTest
 			SetExtensions.newTreeSet(3, 7, 22, 23, 34, 45),
 			SetExtensions.newTreeSet(13, 17, 21, 23, 34, 48),
 			SetExtensions.newTreeSet(5, 8, 21, 22, 34, 45));
-		final Map<LottoGameType, List<Set<Integer>>> playedLottoNumbers = MapExtensions.newHashMap();
+		final Map<LottoGameType, List<Set<Integer>>> playedLottoNumbers = MapExtensions
+			.newHashMap();
 		playedLottoNumbers.put(sixOffourtynineGameType, sixOffourtynineGame);
 
 		final LottoPlayedNumbers lottoPlayedNumbers = LottoPlayedNumbers.builder()
-			.playedLottoNumbers(playedLottoNumbers).superNumber(23).superSixNumber(4)
-			.build();
+			.playedLottoNumbers(playedLottoNumbers).superNumber(23).superSixNumber(4).build();
 
 		// Lets process if your numbers have won the jackpot...
-		final EvaluatedLottoNumbers evaluatedLottoNumbers = LottoExtensions.checkResult(
-			drawnLottoNumbers,
-			lottoPlayedNumbers);
+		final EvaluatedLottoNumbers evaluatedLottoNumbers = LottoExtensions
+			.checkResult(drawnLottoNumbers, lottoPlayedNumbers);
 
 		// TODO make the checks and map to WinCategories...
 		LottoExtensions.setWinCategories(evaluatedLottoNumbers);
@@ -162,7 +160,8 @@ public class LottoExtensionsTest
 	@Test
 	public void testNewLottoLuckyNumbers()
 	{
-		final DrawnLottoNumbers luckyNumbers = LottoExtensions.newRandomDrawnLottoNumbers();
+		final DrawnLottoNumbers luckyNumbers = DrawLottoNumbersExtensions
+			.newRandomDrawnLottoNumbers();
 		assertNotNull(luckyNumbers);
 	}
 

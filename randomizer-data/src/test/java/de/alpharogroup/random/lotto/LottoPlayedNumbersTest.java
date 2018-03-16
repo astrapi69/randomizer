@@ -38,15 +38,15 @@ public class LottoPlayedNumbersTest
 {
 
 	/**
-	 * Test method for {@link LottoPlayedNumbers#equals(Object)} , {@link LottoPlayedNumbers#hashCode()} and
-	 * {@link LottoPlayedNumbers#toString()}
+	 * Test method for {@link LottoPlayedNumbers#equals(Object)} ,
+	 * {@link LottoPlayedNumbers#hashCode()} and {@link LottoPlayedNumbers#toString()}
 	 */
 	@Test
 	public void testEqualsHashcodeAndToStringWithClassSilently()
 	{
 		boolean expected;
 		boolean actual;
-		actual =SilentEqualsHashCodeAndToStringEvaluator
+		actual = SilentEqualsHashCodeAndToStringEvaluator
 			.evaluateEqualsHashcodeAndToStringQuietly(LottoPlayedNumbers.class);
 		expected = true;
 		assertEquals(expected, actual);

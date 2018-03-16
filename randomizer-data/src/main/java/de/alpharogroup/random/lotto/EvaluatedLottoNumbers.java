@@ -40,7 +40,8 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 /**
- * The class {@link EvaluatedLottoNumbers} contains the evaluated result of the drawn lotto numbers and the played numbers of a player.
+ * The class {@link EvaluatedLottoNumbers} contains the evaluated result of the drawn lotto numbers
+ * and the played numbers of a player.
  */
 @Getter
 @Setter

@@ -24,11 +24,12 @@
  */
 package de.alpharogroup.random.lotto;
 
-import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
+import static org.testng.AssertJUnit.assertEquals;
+
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-import static org.testng.AssertJUnit.assertEquals;
+import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
 
 /**
  * The class {@link EvaluatedLottoNumbers}.
@@ -37,8 +38,8 @@ public class EvaluatedLottoNumbersTest
 {
 
 	/**
-	 * Test method for {@link EvaluatedLottoNumbers#equals(Object)} , {@link EvaluatedLottoNumbers#hashCode()} and
-	 * {@link EvaluatedLottoNumbers#toString()}
+	 * Test method for {@link EvaluatedLottoNumbers#equals(Object)} ,
+	 * {@link EvaluatedLottoNumbers#hashCode()} and {@link EvaluatedLottoNumbers#toString()}
 	 */
 	@Test
 	public void testEqualsHashcodeAndToStringWithClassSilently()

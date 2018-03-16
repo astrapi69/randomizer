@@ -24,8 +24,6 @@
  */
 package de.alpharogroup.random.lotto.neo;
 
-import java.util.Collection;
-import java.util.Map;
 import java.util.Set;
 
 import lombok.AccessLevel;
@@ -49,7 +47,8 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class PlayedLottoTickets implements Cloneable {
+public class PlayedLottoTickets implements Cloneable
+{
 
 	String user;
 

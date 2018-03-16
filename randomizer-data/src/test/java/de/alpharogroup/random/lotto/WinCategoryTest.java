@@ -12,7 +12,8 @@ import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
 /**
  * The class {@link WinCategory}.
  */
-public class WinCategoryTest {
+public class WinCategoryTest
+{
 
 	/**
 	 * Test method for {@link WinCategory#equals(Object)} , {@link WinCategory#hashCode()} and
@@ -23,7 +24,7 @@ public class WinCategoryTest {
 	{
 		boolean expected;
 		boolean actual;
-		actual =SilentEqualsHashCodeAndToStringEvaluator
+		actual = SilentEqualsHashCodeAndToStringEvaluator
 			.evaluateEqualsHashcodeAndToStringQuietly(WinCategory.class);
 		expected = true;
 		assertEquals(expected, actual);
@@ -32,12 +33,12 @@ public class WinCategoryTest {
 	/**
 	 * Test method for {@link WinCategory}
 	 */
-	@Test(expectedExceptions = { ObjectCreationException.class, BeanTestException.class,  NoSuchMethodException.class,
-		UnsupportedOperationException.class })
+	@Test(expectedExceptions = { ObjectCreationException.class, BeanTestException.class,
+			NoSuchMethodException.class, UnsupportedOperationException.class })
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(WinCategory.class);
 	}
-	
+
 }

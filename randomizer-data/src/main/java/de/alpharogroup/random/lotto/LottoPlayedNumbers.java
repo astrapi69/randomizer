@@ -24,7 +24,6 @@
  */
 package de.alpharogroup.random.lotto;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -50,7 +49,8 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class LottoPlayedNumbers implements Cloneable {
+public class LottoPlayedNumbers implements Cloneable
+{
 
 	/** The id. */
 	Integer id;
@@ -65,12 +65,9 @@ public class LottoPlayedNumbers implements Cloneable {
 	Integer superNumber;
 
 	@Override
-	protected Object clone() throws CloneNotSupportedException {
-		return LottoPlayedNumbers.builder()
-			.id(id)
-			.playedLottoNumbers(playedLottoNumbers)
-			.superSixNumber(superSixNumber)
-			.superNumber(superNumber)
-			.build();
+	protected Object clone() throws CloneNotSupportedException
+	{
+		return LottoPlayedNumbers.builder().id(id).playedLottoNumbers(playedLottoNumbers)
+			.superSixNumber(superSixNumber).superNumber(superNumber).build();
 	}
 }
