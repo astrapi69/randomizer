@@ -21,7 +21,11 @@ public class DrawLottoNumbersExtensionsTest
 	@Test
 	public void testDraw() throws Exception
 	{
-		throw new RuntimeException("not yet implemented");
+		Set<Integer> lottoNumbers = DrawLottoNumbersExtensions.draw(6, 49);
+		assertTrue(lottoNumbers.size()==6);
+		for (Integer lottoNumber : lottoNumbers) {
+			assertTrue(MathExtensions.isBetween(1, 49, lottoNumber, true, true));
+		}
 	}
 
 	/**
