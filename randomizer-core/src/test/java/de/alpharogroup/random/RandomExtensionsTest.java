@@ -24,6 +24,7 @@
  */
 package de.alpharogroup.random;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNull;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
@@ -67,6 +68,8 @@ public class RandomExtensionsTest extends BaseTestCase
 
 	/** The Constant logger. */
 	private static final Logger logger = Logger.getLogger(RandomExtensionsTest.class.getName());
+
+	boolean expected;
 
 	/**
 	 * {@inheritDoc}
@@ -136,11 +139,14 @@ public class RandomExtensionsTest extends BaseTestCase
 		list.add("Asterios");
 		list.add("Anastasia");
 		list.add("Katerina");
+
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomEntry = RandomExtensions.getRandomEntry(list);
-			this.result = list.contains(randomEntry);
-			assertTrue("", this.result);
+
+			actual = list.contains(randomEntry);
+			assertEquals(actual, expected);
 		}
 	}
 
@@ -157,11 +163,14 @@ public class RandomExtensionsTest extends BaseTestCase
 		map.put("4", "value");
 		map.put("5", "value");
 		final Collection<String> values = map.values();
+
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomValue = (String)RandomExtensions.getRandomEntry(map);
-			this.result = values.contains(randomValue);
-			assertTrue("", this.result);
+
+			actual = values.contains(randomValue);
+			assertEquals(actual, expected);
 		}
 	}
 
@@ -244,11 +253,13 @@ public class RandomExtensionsTest extends BaseTestCase
 	{
 		final int beforeComma = 2;
 		final int afterComma = 4;
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final float randomFloat = RandomExtensions.getRandomFloat(afterComma, beforeComma);
-			this.result = 0 < randomFloat;
-			assertTrue("", this.result);
+
+			actual =  0 < randomFloat;
+			assertEquals(actual, expected);
 		}
 	}
 
@@ -265,11 +276,13 @@ public class RandomExtensionsTest extends BaseTestCase
 		map.put("4", "value");
 		map.put("5", "value");
 		final Set<String> keys = map.keySet();
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomKey = (String)RandomExtensions.getRandomKey(map);
-			this.result = keys.contains(randomKey);
-			assertTrue("", this.result);
+
+			actual = keys.contains(randomKey);
+			assertEquals(actual, expected);
 		}
 	}
 
@@ -358,31 +371,21 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomChar()}.
-	 */
-	@Test(enabled = true)
-	public void testRandomChar()
-	{
-		char randomChar = RandomExtensions.randomChar();
-		assertTrue(Character.isDefined(randomChar));
-		// TODO implement unit test scenarios...
-
-	}
-
-	/**
 	 * Test method for {@link RandomExtensions#randomChar(java.lang.String)} .
 	 */
 	@Test
 	public void testRandomCharString()
 	{
 		final String string = Constants.LOWCASECHARS;
+
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final char randomChar = RandomExtensions.randomChar(string);
 			final CharBuffer charBuffer = CharBuffer.allocate(1);
 			charBuffer.put(randomChar);
-			this.result = string.contains(charBuffer);
-			assertTrue("", this.result);
+			actual = string.contains(charBuffer);
+			assertEquals(actual, expected);
 		}
 	}
 
@@ -549,11 +552,13 @@ public class RandomExtensionsTest extends BaseTestCase
 	{
 		final String[] array = { "blab", "flih", "klap", "teta", "brut", "gzft", "ccp" };
 		final List<String> listFromArray = Arrays.asList(array);
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomString = RandomExtensions.getRandomString(array);
-			this.result = listFromArray.contains(randomString);
-			assertTrue("", this.result);
+
+			actual = listFromArray.contains(randomString);
+			assertEquals(actual, expected);
 		}
 	}
 
@@ -567,11 +572,13 @@ public class RandomExtensionsTest extends BaseTestCase
 		final int length = 5;
 		final String chars = Constants.LCCHARSWNASC;
 		charBuffer.put(chars);
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomString = RandomExtensions.getRandomString(chars, length);
-			this.result = randomString.contains(charBuffer);
-			assertTrue("", this.result);
+
+			actual =randomString.contains(charBuffer);
+			assertEquals(actual, expected);
 		}
 	}
 

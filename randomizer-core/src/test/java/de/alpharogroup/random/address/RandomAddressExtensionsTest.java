@@ -84,11 +84,11 @@ public class RandomAddressExtensionsTest extends BaseTestCase
 		final Properties germanstreets = PropertiesFileExtensions
 			.loadProperties(RandomAddressExtensions.PROP_FILE_STREETS);
 		final String germanStreet = RandomAddressExtensions.getRandomStreet(germanstreets);
-		this.result = germanStreet != null;
-		AssertJUnit.assertTrue("", this.result);
+		actual = germanStreet != null;
+		AssertJUnit.assertTrue("", actual);
 
-		this.result = germanstreets.contains(germanStreet);
-		AssertJUnit.assertTrue("", this.result);
+		actual = germanstreets.contains(germanStreet);
+		AssertJUnit.assertTrue("", actual);
 	}
 
 	/**
@@ -105,12 +105,12 @@ public class RandomAddressExtensionsTest extends BaseTestCase
 			.loadProperties(RandomAddressExtensions.PROP_FILE_STREETS);
 		final String germanStreetWithNumber = RandomAddressExtensions
 			.getRandomStreetWithNumber(germanstreets);
-		this.result = germanStreetWithNumber != null;
-		AssertJUnit.assertTrue("", this.result);
+		actual = germanStreetWithNumber != null;
+		AssertJUnit.assertTrue("", actual);
 		final String lastChar = germanStreetWithNumber
 			.substring(germanStreetWithNumber.length() - 1, germanStreetWithNumber.length());
-		this.result = StringExtensions.isNumber(lastChar);
-		AssertJUnit.assertTrue("", this.result);
+		actual = StringExtensions.isNumber(lastChar);
+		AssertJUnit.assertTrue("", actual);
 	}
 
 	/**
@@ -126,11 +126,11 @@ public class RandomAddressExtensionsTest extends BaseTestCase
 			.loadProperties(RandomAddressExtensions.PROP_FILE_ZIP_CITIES);
 
 		final String randomZip = RandomAddressExtensions.getRandomZip(germanzips);
-		this.result = randomZip != null;
-		AssertJUnit.assertTrue("", this.result);
+		actual = randomZip != null;
+		AssertJUnit.assertTrue("", actual);
 
-		this.result = StringExtensions.isNumber(randomZip);
-		AssertJUnit.assertTrue("", this.result);
+		actual = StringExtensions.isNumber(randomZip);
+		AssertJUnit.assertTrue("", actual);
 	}
 
 	/**
