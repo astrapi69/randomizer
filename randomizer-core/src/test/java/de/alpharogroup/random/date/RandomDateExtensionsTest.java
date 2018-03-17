@@ -27,6 +27,8 @@
  */
 package de.alpharogroup.random.date;
 
+import static org.testng.Assert.assertEquals;
+
 import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.util.Date;
@@ -77,6 +79,26 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	{
 		super.tearDown();
 		this.now = null;
+	}
+
+
+	/**
+	 * Test method for {@link RandomDateExtensions#dateAfter(Date)}.
+	 */
+	@Test
+	public void testDateAfterDate()
+	{
+		boolean expected;
+		Date end = CalculateDateExtensions.addDays(now, 10001);
+		Date dateAfter = RandomDateExtensions.dateAfter(now);
+		expected = true;
+		actual = CalculateDateExtensions.after(now, dateAfter);
+		assertEquals(actual, expected);
+
+
+		expected = true;
+		actual = CalculateDateExtensions.isBetween(now, end, dateAfter);
+		assertEquals(actual, expected);
 	}
 
 
