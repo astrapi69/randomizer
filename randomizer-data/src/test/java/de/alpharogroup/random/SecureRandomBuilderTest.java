@@ -31,7 +31,7 @@ import java.security.SecureRandom;
 import org.testng.annotations.Test;
 
 /**
- * The class {@link SecureRandomBuilderTest}.
+ * The unit test class for the class {@link SecureRandomBuilder}.
  */
 public class SecureRandomBuilderTest
 {

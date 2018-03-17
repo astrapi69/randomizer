@@ -54,6 +54,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		.getLogger(RandomObjectsExtensionsTest.class.getName());
 
 	boolean expected;
+
 	/**
 	 * {@inheritDoc}
 	 */

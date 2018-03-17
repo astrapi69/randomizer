@@ -22,11 +22,44 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.random.lotto;
+package de.alpharogroup.random.lotto.neo;
 
-public enum LottoGameType
+import static org.testng.Assert.assertEquals;
+
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
+import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
+
+/**
+ * The unit test class for the class {@link LottoTicket}.
+ */
+public class LottoTicketTest
 {
 
-	SIX_OF_FOURTYNINE_NORMAL, SIX_OF_FOURTYNINE_FULL_SYSTEM, SIX_OF_FOURTYNINE_SUB_SYSTEM;
+	/**
+	 * Test method for {@link LottoTicket#equals(Object)} , {@link LottoTicket#hashCode()} and
+	 * {@link LottoTicket#toString()}
+	 */
+	@Test
+	public void testEqualsHashcodeAndToStringWithClassSilently()
+	{
+		boolean expected;
+		boolean actual;
+		actual = SilentEqualsHashCodeAndToStringEvaluator
+			.evaluateEqualsHashcodeAndToStringQuietly(LottoTicket.class);
+		expected = true;
+		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for {@link LottoTicket}
+	 */
+	@Test
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(LottoTicket.class);
+	}
 
 }

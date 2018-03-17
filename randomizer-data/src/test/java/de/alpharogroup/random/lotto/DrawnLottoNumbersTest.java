@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
 
 /**
- * The class {@link DrawnLottoNumbers}.
+ * The unit test class for the class {@link DrawnLottoNumbers}.
  */
 public class DrawnLottoNumbersTest
 {

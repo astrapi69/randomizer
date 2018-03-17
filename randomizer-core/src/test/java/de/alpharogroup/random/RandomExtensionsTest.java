@@ -258,7 +258,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		{
 			final float randomFloat = RandomExtensions.getRandomFloat(afterComma, beforeComma);
 
-			actual =  0 < randomFloat;
+			actual = 0 < randomFloat;
 			assertEquals(actual, expected);
 		}
 	}
@@ -577,7 +577,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		{
 			final String randomString = RandomExtensions.getRandomString(chars, length);
 
-			actual =randomString.contains(charBuffer);
+			actual = randomString.contains(charBuffer);
 			assertEquals(actual, expected);
 		}
 	}

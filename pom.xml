@@ -220,6 +220,8 @@
 								<!-- explicit bean classes -->
 								<!-- explicit deprecated classes -->
 								<exclude>de/alpharogroup/random/lotto/AWTLottoTip.class</exclude>
+								<!-- explicit enums -->
+								<exclude>de/alpharogroup/random/lotto/LottoGameType.class</exclude>
 								<!-- explicit interfaces -->
 								<!-- explicit constant classes with only constants -->
 								<exclude>de/alpharogroup/random/Constants.class</exclude>

@@ -240,7 +240,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		for (int i = 0; i < 100; i++)
 		{
 			final float randomFloat = RandomExtensions.getRandomFloat(afterComma, beforeComma);
-			actual =  0 < randomFloat;
+			actual = 0 < randomFloat;
 			assertEquals(actual, expected);
 		}
 	}

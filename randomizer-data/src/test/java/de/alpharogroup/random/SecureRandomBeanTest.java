@@ -32,7 +32,7 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 /**
- * The class {@link SecureRandomBeanTest}.
+ * The unit test class for the class {@link SecureRandomBean}.
  */
 public class SecureRandomBeanTest
 {
