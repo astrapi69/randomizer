@@ -152,7 +152,8 @@ public enum LottoWinCategory
 	/**
 	 * Instantiates a new {@link LottoWinCategory}.
 	 *
-	 * @param winCategory the win category
+	 * @param winCategory
+	 *            the win category
 	 */
 	private LottoWinCategory(final WinCategory winCategory)
 	{

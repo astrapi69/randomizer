@@ -68,7 +68,8 @@ public class SecureRandomBeanTest
 		SecureRandom sr;
 		sr = SecureRandomBean.builder().buildQuietly();
 
-		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM).buildQuietly();
+		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
+			.buildQuietly();
 		AssertJUnit.assertNotNull(sr);
 		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
 			.provider("SUN").buildQuietly();
@@ -76,7 +77,8 @@ public class SecureRandomBeanTest
 
 		sr = SecureRandomBean.builder().algorithm("FOO").buildQuietly();
 		AssertJUnit.assertNull(sr);
-		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM).provider("BAR").buildQuietly();
+		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
+			.provider("BAR").buildQuietly();
 		AssertJUnit.assertNull(sr);
 	}
 

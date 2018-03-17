@@ -24,12 +24,15 @@
  */
 package de.alpharogroup.random.lotto.neo;
 
+import static org.testng.Assert.assertNotNull;
 import static org.testng.AssertJUnit.assertEquals;
 
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.collections.set.SetExtensions;
 import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
+import de.alpharogroup.random.lotto.LottoGameType;
 
 /**
  * The unit test class for the class {@link LottoBox}.
@@ -50,6 +53,19 @@ public class LottoBoxTest
 			.evaluateEqualsHashcodeAndToStringQuietly(LottoBox.class);
 		expected = true;
 		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for creation of object {@link LottoBox}
+	 */
+	@Test
+	public void testObjectCreation()
+	{
+		LottoBox object = LottoBox.builder().build();
+		assertNotNull(object);
+		object = new LottoBox(1, LottoGameType.SIX_OF_FOURTYNINE_NORMAL,
+			SetExtensions.newHashSet(1, 2, 3, 4, 5, 6), null);
+		assertNotNull(object);
 	}
 
 	/**

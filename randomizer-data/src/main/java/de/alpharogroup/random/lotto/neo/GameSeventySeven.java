@@ -34,6 +34,9 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * The class {@link GameSeventySeven}.
+ */
 @Getter
 @Setter
 @EqualsAndHashCode

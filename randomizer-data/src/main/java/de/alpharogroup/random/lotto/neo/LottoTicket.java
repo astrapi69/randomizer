@@ -37,6 +37,9 @@ import lombok.Singular;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * The class {@link LottoTicket} represents a played lottery ticket.
+ */
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -50,9 +53,11 @@ public class LottoTicket
 	/** The id. */
 	String id;
 
+	/** The played lottery boxes. */
 	@Singular
 	Set<LottoBox> lottoBoxes;
 
+	/** The game seventy seven. */
 	GameSeventySeven gameSeventySeven;
 
 	/** The super six number. */

@@ -39,6 +39,9 @@ import lombok.Singular;
 import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
+/**
+ * The class {@link LottoBox} represents a lottery box.
+ */
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -49,9 +52,17 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class LottoBox
 {
+
+	/** The index. */
 	Integer index;
+
+	/** The game type. */
 	LottoGameType gameType;
+
+	/** The selected numbers. */
 	@Singular
 	Set<Integer> selectedNumbers;
+
+	/** The win category. */
 	LottoWinCategory winCategory;
 }

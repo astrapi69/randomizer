@@ -50,7 +50,10 @@ import lombok.experimental.FieldDefaults;
 public class PlayedLottoTickets implements Cloneable
 {
 
+	/** The user. */
 	String user;
 
+	/** The lotto tickets. */
 	Set<LottoTicket> lottoTickets;
+
 }

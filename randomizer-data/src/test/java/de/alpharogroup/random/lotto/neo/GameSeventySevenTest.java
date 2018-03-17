@@ -39,17 +39,6 @@ public class GameSeventySevenTest
 {
 
 	/**
-	 * Test method for {@link GameSeventySeven#builder()}
-	 */
-	@Test
-	public void testBuilder() {
-		GameSeventySeven gameSeventySeven = GameSeventySeven.builder().number(1236547).build();
-		assertNotNull(gameSeventySeven);
-		gameSeventySeven = new GameSeventySeven(1236547);
-		assertNotNull(gameSeventySeven);
-	}
-
-	/**
 	 * Test method for {@link GameSeventySeven#equals(Object)} , {@link GameSeventySeven#hashCode()}
 	 * and {@link GameSeventySeven#toString()}
 	 */
@@ -62,6 +51,18 @@ public class GameSeventySevenTest
 			.evaluateEqualsHashcodeAndToStringQuietly(GameSeventySeven.class);
 		expected = true;
 		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for creation of object {@link GameSeventySeven}
+	 */
+	@Test
+	public void testObjectCreation()
+	{
+		GameSeventySeven object = GameSeventySeven.builder().number(1236547).build();
+		assertNotNull(object);
+		object = new GameSeventySeven(1236547);
+		assertNotNull(object);
 	}
 
 	/**

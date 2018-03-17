@@ -25,10 +25,14 @@
 package de.alpharogroup.random.lotto.neo;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+
+import java.util.Set;
 
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.collections.set.SetExtensions;
 import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
 
 /**
@@ -50,6 +54,33 @@ public class LottoTicketTest
 			.evaluateEqualsHashcodeAndToStringQuietly(LottoTicket.class);
 		expected = true;
 		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for creation of object {@link LottoTicket}
+	 */
+	@Test
+	public void testObjectCreation()
+	{
+		LottoTicket object = LottoTicket.builder().build();
+		assertNotNull(object);
+
+		/** The id. */
+		String id = "fooid";
+
+		Set<LottoBox> lottoBoxes = SetExtensions.newHashSet(
+			LottoBox.builder().selectedNumbers(SetExtensions.newHashSet(1, 2, 3, 4, 5, 6)).build());
+
+		GameSeventySeven gameSeventySeven = GameSeventySeven.builder().build();
+
+		/** The super six number. */
+		Integer superSixNumber = 6;
+
+		/** The super number. */
+		Integer superNumber = 23;
+
+		object = new LottoTicket(id, lottoBoxes, gameSeventySeven, superSixNumber, superNumber);
+		assertNotNull(object);
 	}
 
 	/**

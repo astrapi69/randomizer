@@ -25,10 +25,14 @@
 package de.alpharogroup.random.lotto.neo;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+
+import java.util.Set;
 
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.collections.set.SetExtensions;
 import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
 
 /**
@@ -50,6 +54,25 @@ public class PlayedLottoTicketsTest
 			.evaluateEqualsHashcodeAndToStringQuietly(PlayedLottoTickets.class);
 		expected = true;
 		assertEquals(expected, actual);
+	}
+
+	/**
+	 * Test method for creation of object {@link PlayedLottoTickets}
+	 */
+	@Test
+	public void testObjectCreation()
+	{
+		PlayedLottoTickets object = PlayedLottoTickets.builder().build();
+		assertNotNull(object);
+
+		/** The user. */
+		String user = "John Doe";
+
+		/** The lotto tickets. */
+		Set<LottoTicket> lottoTickets = SetExtensions.newHashSet(LottoTicket.builder().build());
+
+		object = new PlayedLottoTickets(user, lottoTickets);
+		assertNotNull(object);
 	}
 
 	/**
