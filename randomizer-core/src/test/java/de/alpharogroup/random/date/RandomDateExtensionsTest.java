@@ -28,8 +28,10 @@
 package de.alpharogroup.random.date;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 import java.lang.reflect.InvocationTargetException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.Date;
 
@@ -124,6 +126,26 @@ public class RandomDateExtensionsTest extends BaseTestCase
 		expected = true;
 		actual = CalculateDateExtensions.isBetween(start, now, dateBefore);
 		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link RandomDateExtensions#getTimestamp()}.
+	 */
+	@Test
+	public void testGetTimestamp()
+	{
+		Timestamp timestamp = RandomDateExtensions.getTimestamp();
+		assertNotNull(timestamp);
+	}
+
+	/**
+	 * Test method for {@link RandomDateExtensions#getTimestamp(Date)}.
+	 */
+	@Test
+	public void testGetTimestampDate()
+	{
+		Timestamp timestamp = RandomDateExtensions.getTimestamp(now);
+		assertNotNull(timestamp);
 	}
 
 	/**
