@@ -24,6 +24,7 @@
  */
 package de.alpharogroup.random.lotto.neo;
 
+import static org.testng.Assert.assertNotNull;
 import static org.testng.AssertJUnit.assertEquals;
 
 import org.meanbean.test.BeanTester;
@@ -36,6 +37,17 @@ import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
  */
 public class GameSeventySevenTest
 {
+
+	/**
+	 * Test method for {@link GameSeventySeven#builder()}
+	 */
+	@Test
+	public void testBuilder() {
+		GameSeventySeven gameSeventySeven = GameSeventySeven.builder().number(1236547).build();
+		assertNotNull(gameSeventySeven);
+		gameSeventySeven = new GameSeventySeven(1236547);
+		assertNotNull(gameSeventySeven);
+	}
 
 	/**
 	 * Test method for {@link GameSeventySeven#equals(Object)} , {@link GameSeventySeven#hashCode()}
