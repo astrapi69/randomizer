@@ -81,7 +81,6 @@ public class RandomDateExtensionsTest extends BaseTestCase
 		this.now = null;
 	}
 
-
 	/**
 	 * Test method for {@link RandomDateExtensions#dateAfter(Date)}.
 	 */
@@ -91,16 +90,26 @@ public class RandomDateExtensionsTest extends BaseTestCase
 		boolean expected;
 		Date end = CalculateDateExtensions.addDays(now, 10001);
 		Date dateAfter = RandomDateExtensions.dateAfter(now);
-		expected = true;
-		actual = CalculateDateExtensions.after(now, dateAfter);
-		assertEquals(actual, expected);
-
 
 		expected = true;
 		actual = CalculateDateExtensions.isBetween(now, end, dateAfter);
 		assertEquals(actual, expected);
 	}
 
+	/**
+	 * Test method for {@link RandomDateExtensions#dateAfter(Date, int)}.
+	 */
+	@Test
+	public void testDateAfterDateInt()
+	{
+		boolean expected;
+		Date end = CalculateDateExtensions.addDays(now, 1001);
+		Date dateAfter = RandomDateExtensions.dateAfter(now, 1000);
+
+		expected = true;
+		actual = CalculateDateExtensions.isBetween(now, end, dateAfter);
+		assertEquals(actual, expected);
+	}
 
 	/**
 	 * Test method for {@link RandomDateExtensions#randomBirthday()}.
