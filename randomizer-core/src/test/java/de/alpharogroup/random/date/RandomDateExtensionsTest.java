@@ -97,6 +97,36 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomDateExtensions#dateBefore(Date)}.
+	 */
+	@Test
+	public void testDateBefore()
+	{
+		boolean expected;
+		Date start = CalculateDateExtensions.substractDaysFromDate(now, 10001);
+		Date dateBefore = RandomDateExtensions.dateBefore(now);
+
+		expected = true;
+		actual = CalculateDateExtensions.isBetween(start, now, dateBefore);
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link RandomDateExtensions#dateBefore(Date, int)}.
+	 */
+	@Test
+	public void testDateBeforeInt()
+	{
+		boolean expected;
+		Date start = CalculateDateExtensions.substractDaysFromDate(now, 1001);
+		Date dateBefore = RandomDateExtensions.dateBefore(now, 1000);
+
+		expected = true;
+		actual = CalculateDateExtensions.isBetween(start, now, dateBefore);
+		assertEquals(actual, expected);
+	}
+
+	/**
 	 * Test method for {@link RandomDateExtensions#dateAfter(Date, int)}.
 	 */
 	@Test
