@@ -24,10 +24,164 @@
  */
 package de.alpharogroup.random.lotto;
 
+import static org.testng.Assert.assertEquals;
+
+import java.util.Collection;
+import java.util.Optional;
+
+import org.testng.annotations.Test;
+
+import de.alpharogroup.collections.set.SetExtensions;
+
 /**
  * The unit test class for the enum class {@link LottoWinCategory}.
  */
 public class LottoWinCategoryTest
 {
 
+	/**
+	 * Test method for {@link LottoWinCategory#getLottoWinCategory(Collection, boolean)}
+	 */
+	@Test
+	public void testGetLottoWinCategoryCollectionOfIntegerBoolean()
+	{
+		Optional<LottoWinCategory> expected;
+		Optional<LottoWinCategory> actual;
+		Collection<Integer> wonLotteryTicket;
+		boolean withSuperNumber;
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15, 18, 25, 30);
+		withSuperNumber = true;
+		expected = Optional.of(LottoWinCategory.FIRST_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15, 18, 25, 30);
+		withSuperNumber = false;
+		expected = Optional.of(LottoWinCategory.SECOND_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15, 18, 25);
+		withSuperNumber = true;
+		expected = Optional.of(LottoWinCategory.THIRD_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15, 18, 25);
+		withSuperNumber = false;
+		expected = Optional.of(LottoWinCategory.FOURTH_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15, 18);
+		withSuperNumber = true;
+		expected = Optional.of(LottoWinCategory.FIFTH_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15, 18);
+		withSuperNumber = false;
+		expected = Optional.of(LottoWinCategory.SIXTH_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15);
+		withSuperNumber = true;
+		expected = Optional.of(LottoWinCategory.SEVENTH_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15);
+		withSuperNumber = false;
+		expected = Optional.of(LottoWinCategory.EIGHTH_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12);
+		withSuperNumber = true;
+		expected = Optional.of(LottoWinCategory.NINTH_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12);
+		withSuperNumber = false;
+		expected = Optional.of(LottoWinCategory.NONE);
+		actual = LottoWinCategory.getLottoWinCategory(wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+	}
+
+	/**
+	 * Test method for {@link LottoWinCategory#getLottoWinCategory(Collection, Collection, boolean)}
+	 */
+	@Test
+	public void testGetLottoWinCategoryCollectionOfIntegerCollectionOfIntegerBoolean()
+	{
+		Optional<LottoWinCategory> expected;
+		Optional<LottoWinCategory> actual;
+		Collection<Integer> drawnLotteryNumbers;
+		Collection<Integer> wonLotteryTicket;
+		boolean withSuperNumber;
+
+		drawnLotteryNumbers = SetExtensions.newTreeSet(6, 12, 15, 18, 25, 30);
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15, 18, 25, 30);
+		withSuperNumber = true;
+		expected = Optional.of(LottoWinCategory.FIRST_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(drawnLotteryNumbers, wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15, 18, 25, 30);
+		withSuperNumber = false;
+		expected = Optional.of(LottoWinCategory.SECOND_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(drawnLotteryNumbers, wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15, 18, 25);
+		withSuperNumber = true;
+		expected = Optional.of(LottoWinCategory.THIRD_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(drawnLotteryNumbers, wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15, 18, 25);
+		withSuperNumber = false;
+		expected = Optional.of(LottoWinCategory.FOURTH_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(drawnLotteryNumbers, wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15, 18);
+		withSuperNumber = true;
+		expected = Optional.of(LottoWinCategory.FIFTH_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(drawnLotteryNumbers, wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15, 18);
+		withSuperNumber = false;
+		expected = Optional.of(LottoWinCategory.SIXTH_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(drawnLotteryNumbers, wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15);
+		withSuperNumber = true;
+		expected = Optional.of(LottoWinCategory.SEVENTH_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(drawnLotteryNumbers, wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12, 15);
+		withSuperNumber = false;
+		expected = Optional.of(LottoWinCategory.EIGHTH_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(drawnLotteryNumbers, wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12);
+		withSuperNumber = true;
+		expected = Optional.of(LottoWinCategory.NINTH_CLASS);
+		actual = LottoWinCategory.getLottoWinCategory(drawnLotteryNumbers, wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+
+		wonLotteryTicket = SetExtensions.newTreeSet(6, 12);
+		withSuperNumber = false;
+		expected = Optional.of(LottoWinCategory.NONE);
+		actual = LottoWinCategory.getLottoWinCategory(drawnLotteryNumbers, wonLotteryTicket, withSuperNumber);
+		assertEquals(actual, expected);
+	}
 }
