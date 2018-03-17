@@ -29,26 +29,45 @@ import java.util.Optional;
 
 import de.alpharogroup.collections.CollectionExtensions;
 import de.alpharogroup.collections.set.SetExtensions;
-import de.alpharogroup.random.lotto.neo.LottoBox;
 import lombok.Getter;
 
+/**
+ * The enum {@link LottoWinCategory} represents all lottery winning categories.
+ */
 public enum LottoWinCategory
 {
 
-	FIRST_CLASS(WinCategory.builder().quantityOfWonNumbers(6).withSuperNumber(true)
-		.build()), SECOND_CLASS(WinCategory.builder().quantityOfWonNumbers(6).withSuperNumber(false)
-			.build()), THIRD_CLASS(WinCategory.builder().quantityOfWonNumbers(5)
-				.withSuperNumber(true).build()), FOURTH_CLASS(WinCategory.builder()
-					.quantityOfWonNumbers(5).withSuperNumber(false).build()), FIFTH_CLASS(
-						WinCategory.builder().quantityOfWonNumbers(4).withSuperNumber(true)
-							.build()), SIXTH_CLASS(WinCategory.builder().quantityOfWonNumbers(4)
-								.withSuperNumber(false).build()), SEVENTH_CLASS(
-									WinCategory.builder().quantityOfWonNumbers(3)
-										.withSuperNumber(true).build()), EIGHTH_CLASS(
-											WinCategory.builder().quantityOfWonNumbers(3)
-												.withSuperNumber(false).build()), NINTH_CLASS(
-													WinCategory.builder().quantityOfWonNumbers(2)
-														.withSuperNumber(true).build()), NONE(null);
+	/** The first winning class. */
+	FIRST_CLASS(WinCategory.builder().quantityOfWonNumbers(6).withSuperNumber(true).build()),
+	/** The second winning class. */
+	SECOND_CLASS(WinCategory.builder().quantityOfWonNumbers(6).withSuperNumber(false).build()),
+	/** The third winning class. */
+	THIRD_CLASS(WinCategory.builder().quantityOfWonNumbers(5).withSuperNumber(true).build()),
+	/** The fourth winning class. */
+	FOURTH_CLASS(WinCategory.builder().quantityOfWonNumbers(5).withSuperNumber(false).build()),
+	/** The fifth winning class. */
+	FIFTH_CLASS(WinCategory.builder().quantityOfWonNumbers(4).withSuperNumber(true).build()),
+	/** The sixth winning class. */
+	SIXTH_CLASS(WinCategory.builder().quantityOfWonNumbers(4).withSuperNumber(false).build()),
+	/** The seventh winning class. */
+	SEVENTH_CLASS(WinCategory.builder().quantityOfWonNumbers(3).withSuperNumber(true).build()),
+	/** The eighth winning class. */
+	EIGHTH_CLASS(WinCategory.builder().quantityOfWonNumbers(3).withSuperNumber(false).build()),
+	/** The ninth winning class. */
+	NINTH_CLASS(WinCategory.builder().quantityOfWonNumbers(2).withSuperNumber(true).build()),
+	/** The none winning class. */
+	NONE(null);
+
+	/**
+	 * Gets an {@linkplain Optional} with the {@linkplain LottoWinCategory} from the given
+	 * Collection that contains the result of an intersection with the drawn lotto numbers.
+	 *
+	 * @param wonLotteryTicket
+	 *            the won lottery ticket
+	 * @param withSuperNumber
+	 *            the with super number
+	 * @return the lotto win category
+	 */
 	public static Optional<LottoWinCategory> getLottoWinCategory(
 		Collection<Integer> wonLotteryTicket, boolean withSuperNumber)
 	{
@@ -105,33 +124,37 @@ public enum LottoWinCategory
 		return optional;
 	}
 
+	/**
+	 * Gets an {@linkplain Optional} with the {@linkplain LottoWinCategory} that is an intersection
+	 * of the given drawn lotto numbers and the given played lottery Ticket.
+	 *
+	 * @param drawnLotteryNumbers
+	 *            the drawn lottery numbers
+	 * @param playedLotteryTicket
+	 *            the played lottery ticket
+	 * @param withSuperNumber
+	 *            the with super number
+	 * @return the lotto win category
+	 */
 	public static Optional<LottoWinCategory> getLottoWinCategory(
-		Collection<Integer> luckyLotteryNumbers, Collection<Integer> playedLotteryTicket,
+		Collection<Integer> drawnLotteryNumbers, Collection<Integer> playedLotteryTicket,
 		boolean withSuperNumber)
 	{
 		final Collection<Integer> wonNumbers = CollectionExtensions
-			.intersection(SetExtensions.newTreeSet(luckyLotteryNumbers), playedLotteryTicket);
+			.intersection(SetExtensions.newTreeSet(drawnLotteryNumbers), playedLotteryTicket);
 		return getLottoWinCategory(wonNumbers, withSuperNumber);
 	}
 
-	public static Optional<LottoWinCategory> getLottoWinCategory(LottoBox playedLottoBox,
-		boolean withSuperNumber)
-	{
-		return getLottoWinCategory(playedLottoBox.getSelectedNumbers(), withSuperNumber);
-	}
-
-	public static Optional<LottoWinCategory> getLottoWinCategory(LottoBox luckyLottoBox,
-		LottoBox playedLottoBox, boolean withSuperNumber)
-	{
-		final Collection<Integer> wonNumbers = CollectionExtensions
-			.intersection(luckyLottoBox.getSelectedNumbers(), playedLottoBox.getSelectedNumbers());
-		return getLottoWinCategory(wonNumbers, withSuperNumber);
-	}
-
+	/** The bean that represents the win category. */
 	@Getter
 	private final WinCategory winCategory;
 
-	LottoWinCategory(final WinCategory winCategory)
+	/**
+	 * Instantiates a new {@link LottoWinCategory}.
+	 *
+	 * @param winCategory the win category
+	 */
+	private LottoWinCategory(final WinCategory winCategory)
 	{
 		this.winCategory = winCategory;
 	}
