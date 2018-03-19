@@ -30,6 +30,7 @@ import de.alpharogroup.collections.CollectionExtensions;
 import de.alpharogroup.collections.list.ListExtensions;
 import de.alpharogroup.collections.set.SetExtensions;
 import de.alpharogroup.math.MathExtensions;
+import de.alpharogroup.random.lotto.neo.GameSeventySeven;
 import de.alpharogroup.random.lotto.neo.LottoBox;
 import de.alpharogroup.random.lotto.neo.LottoTicket;
 import lombok.NonNull;
@@ -95,6 +96,7 @@ public final class LottoExtensions
 	public static void evaluate(DrawnLottoNumbers drawnLottoNumbers, LottoTicket playedLottoTicket)
 	{
 		Set<LottoBox> lottoBoxes = playedLottoTicket.getLottoBoxes();
+
 		for (LottoBox lottoBox : lottoBoxes)
 		{
 			boolean withSuperNumber = lottoBox.getSelectedNumbers()
@@ -104,6 +106,16 @@ public final class LottoExtensions
 				withSuperNumber);
 			lottoBox.setWinCategory(lottoWinCategory.get());
 		}
+	}
+
+	public static void evaluate(GameSeventySeven drawnGameSeventySeven, GameSeventySeven playedGameSeventySeven)
+	{
+		String dgss = String.format("%07d", drawnGameSeventySeven.getNumber());
+		String pgss = String.format("%07d", playedGameSeventySeven.getNumber());
+
+		String rdgss = new StringBuilder(dgss).reverse().toString();
+		String rpgss = new StringBuilder(pgss).reverse().toString();
+
 	}
 
 	public static void setWinCategories(final EvaluatedLottoNumbers evaluatedLottoNumbers)

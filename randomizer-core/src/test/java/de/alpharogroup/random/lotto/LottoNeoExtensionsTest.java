@@ -81,23 +81,38 @@ public class LottoNeoExtensionsTest
 			.newRandomDrawnLottoNumbers();
 		LottoTicket lottoTicket = newLottoTicket(LottoExtensionsTest.newLottoSets());
 		LottoExtensions.evaluate(drawnLottoNumbers, lottoTicket);
-		log.info(lottoTicket.toString());
+
 	}
 
-	@Test(enabled = true)
-	public void testWholeLotterySzenario()
-	{
-		// 1. you want to provide a lottery with draw 6 numbers of a pool of a number range, lets
-		// say 1 till 49.
-		// 2. you have to anounce the draw date and make marketing for it.
-		log.info("bla bla BUY lottery ticket bla bla");
-		// 3. you have to sell lottery tickets
-
-		// 4. make the draw
-		// 5. announce the drawn numbers to the public
-		// 6. evaluate who have won
-		// 7. payout
-	}
+//	public static void logWinning(DrawnLottoNumbers drawnLottoNumbers, LottoTicket playedLottoTicket)
+//	{
+//		Set<LottoBox> lottoBoxes = playedLottoTicket.getLottoBoxes();
+//		for (LottoBox lottoBox : lottoBoxes)
+//		{
+//			log.info(lottoBox.getWinCategory());
+//		}
+//
+//	}
+//
+//	@Test(enabled = false)
+//	public void testWholeLotterySzenario()
+//	{
+//		// 1. you want to provide a lottery with draw 6 numbers of a pool of a number range, lets
+//		// say 1 till 49.
+//		// 2. you have to anounce the draw date and make marketing for it.
+//		log.info("bla bla get lottery ticket and have fun bla bla");
+//		// 3. bring the lottery tickets under the folk
+//		LottoTicket lottoTicket = newLottoTicket(LottoExtensionsTest.newLottoSets());
+//		// 4. make the draw
+//		final DrawnLottoNumbers luckyNumbers = DrawLottoNumbersExtensions
+//			.newRandomDrawnLottoNumbers();
+//		// 5. announce the drawn numbers to the public
+//		log.info(luckyNumbers);
+//		// 6. evaluate who have won
+//		LottoExtensions.evaluate(luckyNumbers, lottoTicket);
+//		// 7. payout
+//
+//	}
 
 
 }
