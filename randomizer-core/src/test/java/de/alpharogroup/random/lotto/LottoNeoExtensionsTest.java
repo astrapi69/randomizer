@@ -67,7 +67,7 @@ public class LottoNeoExtensionsTest
 		LottoExtensions.calculateDraws(lottoTicket, LottoWinCategory.FOURTH_CLASS);
 	}
 
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testCalculateDrawsInSixthClass()
 	{
 		LottoTicket lottoTicket = newLottoTicket(LottoExtensionsTest.newLottoSets());

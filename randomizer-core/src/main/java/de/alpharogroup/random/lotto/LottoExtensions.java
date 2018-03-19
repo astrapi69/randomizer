@@ -108,15 +108,6 @@ public final class LottoExtensions
 		}
 	}
 
-	public static void evaluate(GameSeventySeven drawnGameSeventySeven, GameSeventySeven playedGameSeventySeven)
-	{
-		String dgss = String.format("%07d", drawnGameSeventySeven.getNumber());
-		String pgss = String.format("%07d", playedGameSeventySeven.getNumber());
-
-		String rdgss = new StringBuilder(dgss).reverse().toString();
-		String rpgss = new StringBuilder(pgss).reverse().toString();
-
-	}
 
 	public static void setWinCategories(final EvaluatedLottoNumbers evaluatedLottoNumbers)
 	{
@@ -137,6 +128,18 @@ public final class LottoExtensions
 		}
 	}
 
+	/**
+	 * Calculate how much draws will be needed to win with the given lottery ticket in the given win
+	 * category.<br>
+	 * Caution: use with care if win category is first-class this can take a while till a return
+	 * value is calculated.
+	 *
+	 * @param lottoTicket
+	 *            the lotto ticket
+	 * @param lottoWinCategory
+	 *            the lotto win category
+	 * @return the quantity of draws for win of the given ticket
+	 */
 	public static int calculateDraws(LottoTicket lottoTicket,
 		@NonNull LottoWinCategory lottoWinCategory)
 	{
