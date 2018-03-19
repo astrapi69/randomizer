@@ -44,20 +44,18 @@ import lombok.experimental.UtilityClass;
 /**
  * Utility class for producing random data. Existing name conventions:
  *
- * If the method starts with random* than it returns a primitive data type. If the method starts
- * with getRandom* than it returns an object.
+ * If the method starts with random* than it returns a primitive data type. If
+ * the method starts with getRandom* than it returns an object.
  *
  * @version 1.1
  * @author Asterios Raptis
  */
 @UtilityClass
-public final class RandomExtensions
-{
+public final class RandomExtensions {
 
 	/** The secure random. */
 	private static SecureRandom secureRandom;
-	static
-	{
+	static {
 		secureRandom = SecureRandomBean.builder().buildQuietly();
 	}
 
@@ -66,26 +64,23 @@ public final class RandomExtensions
 	 *
 	 * @return a random long
 	 */
-	public static long randomLong()
-	{
+	public static long randomLong() {
 		return randomLong(new Random(System.currentTimeMillis()).nextInt());
 	}
 
 	/**
-	 * The Method randomLong(long) gets an long to the spezified range. For example: if you put
-	 * range to 10 the random int is between 0-9.
+	 * The Method randomLong(long) gets an long to the spezified range. For
+	 * example: if you put range to 10 the random int is between 0-9.
 	 *
 	 * @param range
 	 *            the range
 	 * @return an long not greater then the range.
 	 */
-	public static long randomLong(final long range)
-	{
-		if (secureRandom != null)
-		{
-			return (long)(secureRandom.nextDouble() * range);
+	public static long randomLong(final long range) {
+		if (secureRandom != null) {
+			return (long) (secureRandom.nextDouble() * range);
 		}
-		return (long)(Math.random() * range);
+		return (long) (Math.random() * range);
 	}
 
 	/**
@@ -97,8 +92,7 @@ public final class RandomExtensions
 	 *            The long from where the range ends.
 	 * @return A random long between the range from start and end.
 	 */
-	public static long randomLongBetween(final long start, final long end)
-	{
+	public static long randomLongBetween(final long start, final long end) {
 		return start + randomLong(end - start);
 	}
 
@@ -107,10 +101,8 @@ public final class RandomExtensions
 	 *
 	 * @return the generated random float between the range 0.0-9.9.
 	 */
-	public static float randomFloat()
-	{
-		if (secureRandom != null)
-		{
+	public static float randomFloat() {
+		if (secureRandom != null) {
 			return randomFloat(secureRandom.nextFloat());
 		}
 		return randomFloat(new Random(System.currentTimeMillis()).nextFloat());
@@ -121,8 +113,7 @@ public final class RandomExtensions
 	 *
 	 * @return the secure random
 	 */
-	public static SecureRandom getSecureRandom()
-	{
+	public static SecureRandom getSecureRandom() {
 		return secureRandom;
 	}
 
@@ -131,8 +122,7 @@ public final class RandomExtensions
 	 *
 	 * @return a random int for use with pixel.
 	 */
-	public static int newRandomPixel()
-	{
+	public static int newRandomPixel() {
 		return newRandomPixel(randomInt(256), randomInt(256), randomInt(256), randomInt(256));
 	}
 
@@ -149,9 +139,7 @@ public final class RandomExtensions
 	 *            The alpha value.
 	 * @return a random int for use with pixel.
 	 */
-	public static int newRandomPixel(final int red, final int green, final int blue,
-		final int alpha)
-	{
+	public static int newRandomPixel(final int red, final int green, final int blue, final int alpha) {
 		final int pixel = (alpha << 24) | (red << 16) | (green << 8) | blue;
 		return pixel;
 	}
@@ -165,14 +153,11 @@ public final class RandomExtensions
 	 *            How many decimal places before the comma.
 	 * @return The produced BigDecimal.
 	 */
-	public static BigDecimal getRandomBigDecimal(final int afterComma, final int beforeComma)
-	{
+	public static BigDecimal getRandomBigDecimal(final int afterComma, final int beforeComma) {
 		String randomFloatString;
-		do
-		{
+		do {
 			randomFloatString = getRandomFloatString(afterComma, beforeComma);
-		}
-		while (randomFloatString.equals("."));
+		} while (randomFloatString.equals("."));
 		return new BigDecimal(randomFloatString);
 	}
 
@@ -181,8 +166,7 @@ public final class RandomExtensions
 	 *
 	 * @return The random Byte object.
 	 */
-	public static Byte getRandomByte()
-	{
+	public static Byte getRandomByte() {
 		return randomByte();
 	}
 
@@ -193,32 +177,23 @@ public final class RandomExtensions
 	 *            the length.
 	 * @return the Byte[]
 	 */
-	public static Byte[] getRandomByteArray(final int length)
-	{
+	public static Byte[] getRandomByteArray(final int length) {
 		final Byte[] randomByteArray = new Byte[length];
 		final byte[] randomByteBox = new byte[1];
-		for (int i = 0; i < length; i++)
-		{
-			if (randomBoolean())
-			{
+		for (int i = 0; i < length; i++) {
+			if (randomBoolean()) {
 				randomByteArray[i] = getRandomByte();
-			}
-			else
-			{
-				if (secureRandom != null)
-				{
+			} else {
+				if (secureRandom != null) {
 					secureRandom.nextBytes(randomByteBox);
 					randomByteArray[i] = Byte.valueOf(randomByteBox[0]);
-				}
-				else
-				{
+				} else {
 					randomByteArray[i] = getRandomByte();
 				}
 			}
 		}
 		return randomByteArray;
 	}
-
 
 	/**
 	 * Returns a random entry from the given List.
@@ -229,11 +204,9 @@ public final class RandomExtensions
 	 *            The List.
 	 * @return Return's a random entry from the List.
 	 */
-	public static <T> T getRandomEntry(final List<T> list)
-	{
+	public static <T> T getRandomEntry(final List<T> list) {
 		return list.get(getRandomIndex(list));
 	}
-
 
 	/**
 	 * Returns a random entry from the given map.
@@ -246,12 +219,10 @@ public final class RandomExtensions
 	 *            The map.
 	 * @return Return's a random entry from the map.
 	 */
-	public static <K, V> Object getRandomEntry(final Map<K, V> map)
-	{
+	public static <K, V> Object getRandomEntry(final Map<K, V> map) {
 		final Object[] entries = map.values().toArray();
 		return entries[randomInt(entries.length)];
 	}
-
 
 	/**
 	 * Gets the random enum.
@@ -262,8 +233,7 @@ public final class RandomExtensions
 	 *            the clazz
 	 * @return the random enum
 	 */
-	public static <T extends Enum<?>> T getRandomEnum(final Class<T> clazz)
-	{
+	public static <T extends Enum<?>> T getRandomEnum(final Class<T> clazz) {
 		return getRandomEnum(clazz.getEnumConstants());
 	}
 
@@ -277,18 +247,13 @@ public final class RandomExtensions
 	 * @return the random enum
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Enum<?>> T getRandomEnum(final String classname)
-	{
-		if (classname != null && !classname.isEmpty())
-		{
+	public static <T extends Enum<?>> T getRandomEnum(final String classname) {
+		if (classname != null && !classname.isEmpty()) {
 			Class<T> enumClass = null;
-			try
-			{
-				enumClass = (Class<T>)ClassExtensions.forName(classname);
+			try {
+				enumClass = (Class<T>) ClassExtensions.forName(classname);
 				return getRandomEnum(enumClass);
-			}
-			catch (final ClassNotFoundException e)
-			{
+			} catch (final ClassNotFoundException e) {
 				return null;
 			}
 		}
@@ -305,11 +270,9 @@ public final class RandomExtensions
 	 * @return the random enum
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Enum<?>> T getRandomEnum(final T obj)
-	{
-		if (obj != null)
-		{
-			final Class<T> clazz = (Class<T>)obj.getClass();
+	public static <T extends Enum<?>> T getRandomEnum(final T obj) {
+		if (obj != null) {
+			final Class<T> clazz = (Class<T>) obj.getClass();
 			return getRandomEnum(clazz);
 		}
 		return null;
@@ -324,8 +287,7 @@ public final class RandomExtensions
 	 *            the values
 	 * @return the random enum
 	 */
-	public static <T extends Enum<?>> T getRandomEnum(final T[] values)
-	{
+	public static <T extends Enum<?>> T getRandomEnum(final T[] values) {
 		return values[randomInt(values.length)];
 	}
 
@@ -338,8 +300,7 @@ public final class RandomExtensions
 	 *            How many decimal places before the comma.
 	 * @return The produced float.
 	 */
-	public static Float getRandomFloat(final int afterComma, final int beforeComma)
-	{
+	public static Float getRandomFloat(final int afterComma, final int beforeComma) {
 		return randomFloat(afterComma, beforeComma);
 	}
 
@@ -352,8 +313,7 @@ public final class RandomExtensions
 	 *            How many decimal places before the comma.
 	 * @return the random float string
 	 */
-	private static String getRandomFloatString(final int afterComma, final int beforeComma)
-	{
+	private static String getRandomFloatString(final int afterComma, final int beforeComma) {
 		final String nachkommastellen = getRandomNumericString(afterComma);
 		final String vorkommastellen = getRandomNumericString(beforeComma);
 		final String result = nachkommastellen + "." + vorkommastellen;
@@ -369,8 +329,7 @@ public final class RandomExtensions
 	 *            The List.
 	 * @return Return's a random index from the List.
 	 */
-	public static <T> int getRandomIndex(final Collection<T> list)
-	{
+	public static <T> int getRandomIndex(final Collection<T> list) {
 		return randomInt(list.size());
 	}
 
@@ -385,8 +344,7 @@ public final class RandomExtensions
 	 *            The map.
 	 * @return Return's a random key from the map.
 	 */
-	public static <K, V> Object getRandomKey(final Map<K, V> map)
-	{
+	public static <K, V> Object getRandomKey(final Map<K, V> map) {
 		final Set<K> keySet = map.keySet();
 		final Object[] keys = keySet.toArray();
 		return keys[randomInt(keys.length)];
@@ -397,19 +355,14 @@ public final class RandomExtensions
 	 *
 	 * @return the generated random numeric string.
 	 */
-	public static String getRandomNumericString()
-	{
+	public static String getRandomNumericString() {
 		final int maxLength = Math.min(randomInt(1000), 1024);
 		final StringBuilder sb = new StringBuilder(maxLength);
-		for (int i = 0; i < maxLength; i++)
-		{
+		for (int i = 0; i < maxLength; i++) {
 			int randomInt = randomInt();
-			if (MathExtensions.isNegative(randomInt))
-			{
+			if (MathExtensions.isNegative(randomInt)) {
 				sb.append(randomInt * (-1));
-			}
-			else
-			{
+			} else {
 				sb.append(randomInt);
 			}
 		}
@@ -417,14 +370,14 @@ public final class RandomExtensions
 	}
 
 	/**
-	 * The Method getRandomNumericString(int) produces a random Number to the specified length.
+	 * The Method getRandomNumericString(int) produces a random Number to the
+	 * specified length.
 	 *
 	 * @param length
 	 *            The length from the random number.
 	 * @return The random number as String.
 	 */
-	public static String getRandomNumericString(final int length)
-	{
+	public static String getRandomNumericString(final int length) {
 		final String randomNumber = getRandomString(Constants.NUMBERS, length);
 		return randomNumber;
 	}
@@ -436,20 +389,19 @@ public final class RandomExtensions
 	 *            the specified length.
 	 * @return the generated random string.
 	 */
-	public static String getRandomString(final int length)
-	{
+	public static String getRandomString(final int length) {
 		final int maxLength = Math.min(length, 1024);
 		final StringBuilder sb = new StringBuilder(maxLength);
-		for (int i = 0; i < maxLength; i++)
-		{
+		for (int i = 0; i < maxLength; i++) {
 			sb.append(randomChar());
 		}
 		return sb.toString();
 	}
 
 	/**
-	 * The Method randomString(String, int) makes an random String from the given String and to the
-	 * spezified length. This can be used to produce passwords.
+	 * The Method randomString(String, int) makes an random String from the
+	 * given String and to the spezified length. This can be used to produce
+	 * passwords.
 	 *
 	 * @param chars
 	 *            The String to get the random chars.
@@ -457,28 +409,25 @@ public final class RandomExtensions
 	 *            The length from the random String.
 	 * @return The produced random String.
 	 */
-	public static String getRandomString(final String chars, final int length)
-	{
+	public static String getRandomString(final String chars, final int length) {
 		final StringBuffer ergebnis = new StringBuffer();
-		for (int i = 0; i < length; i++)
-		{
+		for (int i = 0; i < length; i++) {
 			ergebnis.append(randomChar(chars));
 		}
 		return ergebnis.toString();
 	}
 
 	/**
-	 * The Method randomString(String []) a random String from the Array For example: The
-	 * Stringarray test as argument. Possible values: "blab", "flih", "klap", "teta", "brut",
-	 * "gzft", "ccp". Possible selection can be one value from the Stringarray like "blab" or
-	 * "klap".
+	 * The Method randomString(String []) a random String from the Array For
+	 * example: The Stringarray test as argument. Possible values: "blab",
+	 * "flih", "klap", "teta", "brut", "gzft", "ccp". Possible selection can be
+	 * one value from the Stringarray like "blab" or "klap".
 	 *
 	 * @param array
 	 *            The array with the String to be selected.
 	 * @return The selected String from the array.
 	 */
-	public static String getRandomString(final String[] array)
-	{
+	public static String getRandomString(final String[] array) {
 		return array[randomInt(array.length)];
 	}
 
@@ -487,8 +436,7 @@ public final class RandomExtensions
 	 *
 	 * @return The random boolean.
 	 */
-	public static boolean randomBoolean()
-	{
+	public static boolean randomBoolean() {
 		return randomInt(2) == 0;
 	}
 
@@ -497,9 +445,8 @@ public final class RandomExtensions
 	 *
 	 * @return The random byte.
 	 */
-	public static byte randomByte()
-	{
-		return (byte)randomInt(255);
+	public static byte randomByte() {
+		return (byte) randomInt(255);
 	}
 
 	/**
@@ -509,11 +456,9 @@ public final class RandomExtensions
 	 *            the length.
 	 * @return the byte[]
 	 */
-	public static byte[] randomByteArray(final int length)
-	{
+	public static byte[] randomByteArray(final int length) {
 		final byte[] randomByteArray = new byte[length];
-		for (int i = 0; i < length; i++)
-		{
+		for (int i = 0; i < length; i++) {
 			randomByteArray[i] = randomByte();
 		}
 		return randomByteArray;
@@ -524,45 +469,38 @@ public final class RandomExtensions
 	 *
 	 * @return The generated random char.
 	 */
-	public static char randomChar()
-	{
-		if (secureRandom.nextBoolean())
-		{
+	public static char randomChar() {
+		if (secureRandom.nextBoolean()) {
 			// random character
-			return (char)(secureRandom.nextInt(26) + 65);
-		}
-		else
-		{
+			return (char) (secureRandom.nextInt(26) + 65);
+		} else {
 			// random digit
-			return (char)secureRandom.nextInt(10);
+			return (char) secureRandom.nextInt(10);
 		}
 	}
 
 	/**
-	 * The Method randomChar(String) selects a random char from the given String.
+	 * The Method randomChar(String) selects a random char from the given
+	 * String.
 	 *
 	 * @param string
 	 *            The String from who to select the char.
 	 * @return The selected char.
 	 */
-	public static char randomChar(final String string)
-	{
+	public static char randomChar(final String string) {
 		return string.charAt(randomInt(string.length()));
 	}
 
-
 	/**
-	 * The Method randomDouble(double) gets an double to the spezified range. For example: if you
-	 * put range to 10.0 the random int is between 0.0-9.9.
+	 * The Method randomDouble(double) gets an double to the spezified range.
+	 * For example: if you put range to 10.0 the random int is between 0.0-9.9.
 	 *
 	 * @param range
 	 *            the range
 	 * @return the double
 	 */
-	public static double randomDouble(final double range)
-	{
-		if (secureRandom != null)
-		{
+	public static double randomDouble(final double range) {
+		if (secureRandom != null) {
 			return secureRandom.nextDouble() * range;
 		}
 		return Math.random() * range;
@@ -577,14 +515,13 @@ public final class RandomExtensions
 	 *            the end
 	 * @return the random double between
 	 */
-	public static double randomDoubleBetween(final double start, final double end)
-	{
+	public static double randomDoubleBetween(final double start, final double end) {
 		return start + randomDouble(end - start);
 	}
 
 	/**
-	 * Gets the random double between the range from start and end in the given pattern. Refer to
-	 * class @see {@link java.text.DecimalFormat}.
+	 * Gets the random double between the range from start and end in the given
+	 * pattern. Refer to class @see {@link java.text.DecimalFormat}.
 	 *
 	 * @param start
 	 *            the start
@@ -594,36 +531,29 @@ public final class RandomExtensions
 	 *            the pattern
 	 * @return the random double between
 	 */
-	public static double randomDoubleBetween(final double start, final double end,
-		final String pattern)
-	{
+	public static double randomDoubleBetween(final double start, final double end, final String pattern) {
 		final DecimalFormat formatter = new DecimalFormat(pattern);
 		final String rd = formatter.format(randomDoubleBetween(start, end));
-		try
-		{
+		try {
 			return formatter.parse(rd).doubleValue();
-		}
-		catch (final ParseException e)
-		{
+		} catch (final ParseException e) {
 			throw new NumberFormatException("Could not be parsed:" + rd);
 		}
 	}
 
 	/**
-	 * The Method randomFloat(float) gets an float to the spezified range. For example: if you put
-	 * range to 10.0 the random int is between 0.0-9.9.
+	 * The Method randomFloat(float) gets an float to the spezified range. For
+	 * example: if you put range to 10.0 the random int is between 0.0-9.9.
 	 *
 	 * @param range
 	 *            the range
 	 * @return the float
 	 */
-	public static float randomFloat(final float range)
-	{
-		if (secureRandom != null)
-		{
-			return (float)(secureRandom.nextDouble() * range);
+	public static float randomFloat(final float range) {
+		if (secureRandom != null) {
+			return (float) (secureRandom.nextDouble() * range);
 		}
-		return (float)(Math.random() * range);
+		return (float) (Math.random() * range);
 	}
 
 	/**
@@ -635,8 +565,7 @@ public final class RandomExtensions
 	 *            How many decimal places before the comma.
 	 * @return The produced float.
 	 */
-	public static float randomFloat(final int afterComma, final int beforeComma)
-	{
+	public static float randomFloat(final int afterComma, final int beforeComma) {
 		return Float.parseFloat(getRandomFloatString(afterComma, beforeComma));
 	}
 
@@ -649,14 +578,13 @@ public final class RandomExtensions
 	 *            the end
 	 * @return the random float between
 	 */
-	public static float randomFloatBetween(final float start, final float end)
-	{
+	public static float randomFloatBetween(final float start, final float end) {
 		return start + randomFloat(end - start);
 	}
 
 	/**
-	 * Gets the random float between the range from start and end in the given pattern. Refer to
-	 * class @see {@link java.text.DecimalFormat}.
+	 * Gets the random float between the range from start and end in the given
+	 * pattern. Refer to class @see {@link java.text.DecimalFormat}.
 	 *
 	 * @param start
 	 *            the start
@@ -666,16 +594,12 @@ public final class RandomExtensions
 	 *            the pattern
 	 * @return the random float between
 	 */
-	public static float randomFloatBetween(final float start, final float end, final String pattern)
-	{
+	public static float randomFloatBetween(final float start, final float end, final String pattern) {
 		final NumberFormat formatter = new DecimalFormat(pattern);
 		final String rf = formatter.format(randomFloatBetween(start, end));
-		try
-		{
+		try {
 			return formatter.parse(rf).floatValue();
-		}
-		catch (final ParseException e)
-		{
+		} catch (final ParseException e) {
 			throw new NumberFormatException("Could not be parsed:" + rf);
 		}
 	}
@@ -685,30 +609,26 @@ public final class RandomExtensions
 	 *
 	 * @return an int between the range 0-9.
 	 */
-	public static int randomInt()
-	{
-		if (secureRandom != null)
-		{
+	public static int randomInt() {
+		if (secureRandom != null) {
 			return randomInt(secureRandom.nextInt());
 		}
 		return randomInt(new Random(System.currentTimeMillis()).nextInt());
 	}
 
 	/**
-	 * The Method randomInt(int) gets an int to the spezified range. For example: if you put range
-	 * to 10 the random int is between 0-9.
+	 * The Method randomInt(int) gets an int to the spezified range. For
+	 * example: if you put range to 10 the random int is between 0-9.
 	 *
 	 * @param range
 	 *            The Range.
 	 * @return an int not greater then the range.
 	 */
-	public static int randomInt(final int range)
-	{
-		if (secureRandom != null)
-		{
-			return (int)(secureRandom.nextDouble() * range);
+	public static int randomInt(final int range) {
+		if (secureRandom != null) {
+			return (int) (secureRandom.nextDouble() * range);
 		}
-		return (int)(Math.random() * range);
+		return (int) (Math.random() * range);
 	}
 
 	/**
@@ -720,9 +640,40 @@ public final class RandomExtensions
 	 *            The int from where the range ends.
 	 * @return A random int between the range from start and end.
 	 */
-	public static int randomIntBetween(final int start, final int end)
-	{
-		return start + randomInt(end - start);
+	public static int randomIntBetween(final int start, final int end) {
+		return RandomExtensions.randomIntBetween(start, end, true, false);
+	}
+
+	/**
+	 * Returns a random int between the range from start and end.
+	 *
+	 * @param start
+	 *            The int from where the range starts.
+	 * @param end
+	 *            The int from where the range ends.
+	 * @param includeMin
+	 *            if true than min value is included
+	 * @param includeMax
+	 *            if true than max value is included
+	 * @return A random int between the range from start and end.
+	 */
+	public static int randomIntBetween(final int start, final int end, final boolean includeMin,
+			final boolean includeMax) {
+		int randomIntBetween = start + randomInt(end - start);
+
+		if (includeMin && includeMax) {
+			randomIntBetween = start + randomInt(end - (start + 1));
+		}
+		if (includeMin && !includeMax) {
+			randomIntBetween = start + randomInt(end - start);
+		}
+		if (!includeMin && includeMax) {
+			randomIntBetween = (start + 1) + randomInt(end - (start + 1));
+		}
+		if (!includeMin && !includeMax) {
+			randomIntBetween = (start + 1) + randomInt(end - start);
+		}
+		return randomIntBetween;
 	}
 
 	/**
@@ -730,8 +681,7 @@ public final class RandomExtensions
 	 *
 	 * @return A random token.
 	 */
-	public static String randomToken()
-	{
+	public static String randomToken() {
 		final BigInteger token = new BigInteger(130, RandomExtensions.getSecureRandom());
 		final String randomToken = token.toString(32);
 		return randomToken;
@@ -742,11 +692,9 @@ public final class RandomExtensions
 	 *
 	 * @return a random serial number as a {@link BigInteger} object.
 	 */
-	public static BigInteger randomSerialNumber()
-	{
+	public static BigInteger randomSerialNumber() {
 		long next = RandomExtensions.getSecureRandom().nextLong();
-		if (next < 0)
-		{
+		if (next < 0) {
 			next = next * (-1);
 		}
 		final BigInteger serialNumber = BigInteger.valueOf(next);
@@ -754,24 +702,20 @@ public final class RandomExtensions
 	}
 
 	/**
-	 * The Method getRandomPrimitiveByteArray(int) generates a random byte array.
+	 * The Method getRandomPrimitiveByteArray(int) generates a random byte
+	 * array.
 	 *
 	 * @param length
 	 *            the length.
 	 * @return the byte[]
 	 */
-	public static byte[] getRandomPrimitiveByteArray(final int length)
-	{
+	public static byte[] getRandomPrimitiveByteArray(final int length) {
 		final byte[] randomByteArray = new byte[length];
 		final byte[] randomByteBox = new byte[1];
-		for (int i = 0; i < length; i++)
-		{
-			if (randomBoolean())
-			{
+		for (int i = 0; i < length; i++) {
+			if (randomBoolean()) {
 				randomByteArray[i] = getRandomByte();
-			}
-			else
-			{
+			} else {
 				secureRandom.nextBytes(randomByteBox);
 				randomByteArray[i] = Byte.valueOf(randomByteBox[0]);
 			}
@@ -784,8 +728,7 @@ public final class RandomExtensions
 	 *
 	 * @return the byte[] with the new random salt.
 	 */
-	public static byte[] newSalt()
-	{
+	public static byte[] newSalt() {
 		return getRandomPrimitiveByteArray(16);
 	}
 
@@ -798,8 +741,7 @@ public final class RandomExtensions
 	 *            the charset
 	 * @return the random salt
 	 */
-	public static byte[] getRandomSalt(final int length, final Charset charset)
-	{
+	public static byte[] getRandomSalt(final int length, final Charset charset) {
 		return RandomExtensions.getRandomString(Constants.LCUCCHARSWN, length).getBytes(charset);
 	}
 
