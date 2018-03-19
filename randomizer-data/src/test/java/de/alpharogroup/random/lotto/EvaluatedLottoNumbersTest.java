@@ -24,18 +24,54 @@
  */
 package de.alpharogroup.random.lotto;
 
+import static org.testng.Assert.assertNotNull;
 import static org.testng.AssertJUnit.assertEquals;
+
+import java.util.HashMap;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.collections.set.SetExtensions;
 import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
+import lombok.Builder;
 
 /**
  * The unit test class for the class {@link EvaluatedLottoNumbers}.
  */
 public class EvaluatedLottoNumbersTest
 {
+	/**
+	 * Test method for creation of object {@link EvaluatedLottoNumbers}
+	 */
+	@Test
+	public void testObjectCreation()
+	{
+		EvaluatedLottoNumbers object = EvaluatedLottoNumbers.builder().build();
+		assertNotNull(object);
+
+		/** The id. */
+		Integer id = 1;
+
+		/** The played lotto numbers. */
+		Map<LottoGameType, List<Collection<Integer>>> wonLottoNumbers = new HashMap<>();
+
+		/** The evaluated super six number. */
+		Integer wonSuperSixNumber = 1;
+
+		/** The evaluated super number. */
+		Integer wonSuperNumber = 1;
+
+		/** The evaluated game seventy seven. */
+		Integer wonGameSeventySevenNumber = 1;
+
+		object = new EvaluatedLottoNumbers(id, wonLottoNumbers, wonSuperSixNumber, wonSuperNumber, wonGameSeventySevenNumber);
+		assertNotNull(object);
+	}
 
 	/**
 	 * Test method for {@link EvaluatedLottoNumbers#equals(Object)} ,

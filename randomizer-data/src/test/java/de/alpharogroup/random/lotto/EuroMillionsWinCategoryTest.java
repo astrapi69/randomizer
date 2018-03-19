@@ -24,13 +24,17 @@
  */
 package de.alpharogroup.random.lotto;
 
+import static org.testng.Assert.assertNotNull;
 import static org.testng.AssertJUnit.assertEquals;
+
+import java.util.Set;
 
 import org.meanbean.factories.ObjectCreationException;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.collections.set.SetExtensions;
 import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
 
 /**
@@ -38,6 +42,34 @@ import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
  */
 public class EuroMillionsWinCategoryTest
 {
+
+	/**
+	 * Test method for creation of object {@link EuroMillionsWinCategory}
+	 */
+	@Test
+	public void testObjectCreation()
+	{
+		EuroMillionsWinCategory object = EuroMillionsWinCategory.builder().build();
+		assertNotNull(object);
+
+		/** The quantity of winning numbers. */
+		int quantityOfWonNumbers = 3;
+
+		/** The quantity of winning star numbers. */
+		int quantityOfWonStarNumbers = 2;
+
+		/** The flag if the played super number is selected. */
+		boolean withSuperNumber = false;
+
+		/** The payout rate of this winning category. */
+		double payoutRate = 0.1;
+
+		/** The computation. */
+		String computation = "foo";
+
+		object = new EuroMillionsWinCategory(quantityOfWonNumbers, quantityOfWonStarNumbers, withSuperNumber, payoutRate, computation);
+		assertNotNull(object);
+	}
 
 	/**
 	 * Test method for {@link EuroMillionsWinCategory#equals(Object)} ,
