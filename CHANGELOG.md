@@ -4,6 +4,11 @@
 Version 5.2.0-SNAPSHOT
 -------------
 
+ADDED:
+ 
+- new classes for draw lucky numbers
+- new method that can include and exclude the start and the end number from randomIntBetween
+
 CHANGED:
 
 - update dependency of jobject-extensions from 1.9.2 to 1.10.0
