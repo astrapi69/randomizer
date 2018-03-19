@@ -25,6 +25,7 @@
 package de.alpharogroup.random.lotto;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -63,7 +64,7 @@ public final class DrawLottoNumbersExtensions {
 		}
 		return superNumber;
 	}
-	
+
 	/**
 	 * Draw the number of the game seventy seven
 	 *
@@ -139,17 +140,18 @@ public final class DrawLottoNumbersExtensions {
 	 */
 	public static Set<Integer> drawDefaultAlgorithm(int maxNumbers, int minVolume, int maxVolume) {
 		Set<Integer> numbers = SetExtensions.newTreeSet();
-		List<Integer> rangeList = ListExtensions.newRangeList(minVolume, maxVolume);		
+		ArrayList<Integer> rangeList = new ArrayList<>(ListExtensions.newRangeList(minVolume, maxVolume));
 
 		final SecureRandom sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM).buildQuietly();
 		int cnt = 0;
 
 		while (cnt < maxNumbers) {
-			Collections.shuffle(rangeList, sr);	
+			Collections.shuffle(rangeList, sr);
 			final int index = RandomExtensions.randomIntBetween(0, rangeList.size(), true, false);
-			final int num = rangeList.remove(index);
-			if (!numbers.contains(num)) {
-				numbers.add(num);				
+			Integer drawnNumber = rangeList.get(index);
+			boolean removed = rangeList.remove(drawnNumber);
+			if (!numbers.contains(drawnNumber)) {
+				numbers.add(drawnNumber);
 				++cnt;
 			}
 		}

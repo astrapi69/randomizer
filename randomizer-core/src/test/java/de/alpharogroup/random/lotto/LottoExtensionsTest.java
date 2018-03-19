@@ -155,17 +155,6 @@ public class LottoExtensionsTest
 	}
 
 	/**
-	 * Test method for {@link LottoExtensions#newRandomDrawnLottoNumbers()}.
-	 */
-	@Test
-	public void testNewLottoLuckyNumbers()
-	{
-		final DrawnLottoNumbers luckyNumbers = DrawLottoNumbersExtensions
-			.newRandomDrawnLottoNumbers();
-		assertNotNull(luckyNumbers);
-	}
-
-	/**
 	 * Test method for {@link LottoExtensions} with {@link BeanTester}
 	 */
 	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
