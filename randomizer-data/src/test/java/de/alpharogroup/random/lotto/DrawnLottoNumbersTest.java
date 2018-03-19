@@ -24,18 +24,47 @@
  */
 package de.alpharogroup.random.lotto;
 
+import static org.testng.Assert.assertNotNull;
 import static org.testng.AssertJUnit.assertEquals;
+
+import java.util.Set;
 
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.collections.set.SetExtensions;
 import de.alpharogroup.evaluate.object.SilentEqualsHashCodeAndToStringEvaluator;
+import de.alpharogroup.random.lotto.neo.LottoBox;
 
 /**
  * The unit test class for the class {@link DrawnLottoNumbers}.
  */
 public class DrawnLottoNumbersTest
 {
+
+	/**
+	 * Test method for creation of object {@link DrawnLottoNumbers}
+	 */
+	@Test
+	public void testObjectCreation()
+	{
+		DrawnLottoNumbers object = DrawnLottoNumbers.builder().build();
+		assertNotNull(object);
+		/** The id. */
+		Integer id = 1;
+
+		/** The lucky lotto numbers. */
+		Set<Integer> lottoNumbers = SetExtensions.newTreeSet(3, 7, 22, 23, 34, 45);
+
+		/** The super six number. */
+		Integer superSixNumber = 4;
+
+		/** The super number. */
+		Integer superNumber = 8;
+
+		object = new DrawnLottoNumbers(id, lottoNumbers, superSixNumber, superNumber);
+		assertNotNull(object);
+	}
 
 	/**
 	 * Test method for {@link DrawnLottoNumbers#equals(Object)} ,
