@@ -26,6 +26,7 @@ package de.alpharogroup.random;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -534,9 +535,10 @@ public final class DataGenerator
 	 * @param pattern
 	 *            the pattern
 	 * @return the double
+	 * @throws ParseException
 	 */
 	public static double randomDoubleBetween(final double start, final double end,
-		final String pattern)
+		final String pattern) throws ParseException
 	{
 		return RandomExtensions.randomDoubleBetween(start, end, pattern);
 	}

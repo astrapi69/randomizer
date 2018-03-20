@@ -30,7 +30,6 @@ import de.alpharogroup.collections.CollectionExtensions;
 import de.alpharogroup.collections.list.ListExtensions;
 import de.alpharogroup.collections.set.SetExtensions;
 import de.alpharogroup.math.MathExtensions;
-import de.alpharogroup.random.lotto.neo.GameSeventySeven;
 import de.alpharogroup.random.lotto.neo.LottoBox;
 import de.alpharogroup.random.lotto.neo.LottoTicket;
 import lombok.NonNull;
@@ -143,6 +142,24 @@ public final class LottoExtensions
 	public static int calculateDraws(LottoTicket lottoTicket,
 		@NonNull LottoWinCategory lottoWinCategory)
 	{
+		return calculateDraws(lottoTicket, lottoWinCategory, 10000);
+	}
+
+	/**
+	 * Calculate how much draws will be needed to win with the given lottery ticket in the given win
+	 * category.<br>
+	 * Caution: use with care if win category is first-class this can take a while till a return
+	 * value is calculated.
+	 *
+	 * @param lottoTicket
+	 *            the lotto ticket
+	 * @param lottoWinCategory
+	 *            the lotto win category
+	 * @return the quantity of draws for win of the given ticket
+	 */
+	public static int calculateDraws(LottoTicket lottoTicket,
+		@NonNull LottoWinCategory lottoWinCategory, int maxIterations)
+	{
 		final long startTime = System.nanoTime();
 
 		int count = 0;
@@ -166,6 +183,9 @@ public final class LottoExtensions
 			}
 			luckyNumbers = DrawLottoNumbersExtensions.newRandomDrawnLottoNumbers();
 			count++;
+			if(maxIterations < count) {
+				breakout = true;
+			}
 		}
 
 		log.info("Elapsed time till you have won something: "
@@ -186,6 +206,21 @@ public final class LottoExtensions
 	 */
 	public static int calculateDraws(final LottoPlayedNumbers lottoPlayedNumbers,
 		final int winningNumbersCount)
+	{
+		return calculateDraws(lottoPlayedNumbers, winningNumbersCount, 10000);
+	}
+
+	/**
+	 * Calculate draws for statistics.
+	 *
+	 * @param lottoPlayedNumbers
+	 *            the lotto played numbers
+	 * @param winningNumbersCount
+	 *            the winning numbers count
+	 * @return the int
+	 */
+	public static int calculateDraws(final LottoPlayedNumbers lottoPlayedNumbers,
+		final int winningNumbersCount, int maxIterations)
 	{
 		if (!MathExtensions.isBetween(1, 6, winningNumbersCount))
 		{
@@ -220,6 +255,9 @@ public final class LottoExtensions
 			}
 			luckyNumbers = DrawLottoNumbersExtensions.newRandomDrawnLottoNumbers();
 			count++;
+			if(maxIterations < count) {
+				breakout = true;
+			}
 			log.info("This is the " + count + " draw of the lotto queen: " + luckyNumbers);
 		}
 

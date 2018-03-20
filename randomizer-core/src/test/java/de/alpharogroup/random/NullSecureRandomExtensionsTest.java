@@ -35,6 +35,7 @@ import java.math.BigInteger;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.security.SecureRandom;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -405,9 +406,10 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 
 	/**
 	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double, String)}.
+	 * @throws ParseException
 	 */
 	@Test(enabled = true)
-	public void testRandomDoubleBetweenDoubleDoubleString()
+	public void testRandomDoubleBetweenDoubleDoubleString() throws ParseException
 	{
 		double random = RandomExtensions.randomDoubleBetween(10000.0, 100000.0, "###,###.###");
 		assertTrue(MathExtensions.isBetween(10000.0, 100000.0, random, true, true));
