@@ -586,6 +586,7 @@ public final class RandomExtensions
 	 *            the pattern
 	 * @return the random double between
 	 * @throws ParseException
+	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
 	public static double randomDoubleBetween(final double start, final double end,
 		final String pattern) throws ParseException
@@ -594,7 +595,6 @@ public final class RandomExtensions
 		final String rd = formatter.format(randomDoubleBetween(start, end));
 		Number randomDouble = formatter.parse(rd);
 		return randomDouble.doubleValue();
-
 	}
 
 	/**
@@ -653,19 +653,16 @@ public final class RandomExtensions
 	 * @param pattern
 	 *            the pattern
 	 * @return the random float between
+	 * @throws ParseException
+	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
 	public static float randomFloatBetween(final float start, final float end, final String pattern)
+		throws ParseException
 	{
 		final NumberFormat formatter = new DecimalFormat(pattern);
 		final String rf = formatter.format(randomFloatBetween(start, end));
-		try
-		{
-			return formatter.parse(rf).floatValue();
-		}
-		catch (final ParseException e)
-		{
-			throw new NumberFormatException("Could not be parsed:" + rf);
-		}
+		Number randomFloat = formatter.parse(rf);
+		return randomFloat.floatValue();
 	}
 
 	/**

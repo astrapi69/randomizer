@@ -593,8 +593,10 @@ public final class DataGenerator
 	 * @param pattern
 	 *            the pattern
 	 * @return the float
+	 * @throws ParseException
+	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
-	public static float randomFloatBetween(final float start, final float end, final String pattern)
+	public static float randomFloatBetween(final float start, final float end, final String pattern) throws ParseException
 	{
 		return RandomExtensions.randomFloatBetween(start, end, pattern);
 	}

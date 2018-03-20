@@ -437,9 +437,12 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 
 	/**
 	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float, String)}.
+	 *
+	 * @throws ParseException
+	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
 	@Test(enabled = true)
-	public void testRandomFloatBetweenFloatFloatString()
+	public void testRandomFloatBetweenFloatFloatString() throws ParseException
 	{
 		float random = RandomExtensions.randomFloatBetween(0.0f, 10.0f, "###,###.###");
 		assertTrue(MathExtensions.isBetween(0.0f, 10.0f, random));

@@ -96,6 +96,35 @@ public class RandomExtensionsTest extends BaseTestCase
 		super.tearDown();
 	}
 
+
+//	/**
+//	 * Test method for {@link RandomExtensions#randomSerialNumber()}.
+//	 */
+//	@Test
+//	public void testRandomSerialNumber()
+//	{
+//		BigInteger serialNumber = RandomExtensions.randomSerialNumber();
+//		assertNotNull(serialNumber);
+//	}
+//
+//	/**
+//	 * Test method for {@link RandomExtensions#getRandomPrimitiveByteArray(int)}.
+//	 */
+//	@Test
+//	public void testGetRandomPrimitiveByteArray()
+//	{
+//		final byte[] randomByteArray = RandomExtensions.getRandomPrimitiveByteArray(5);
+//		assertNotNull(randomByteArray);
+//	}
+//
+//	/**
+//	 * Test method for {@link RandomExtensions#newSalt()}.
+//	 */
+//	@Test
+//	public void testNewSalt()
+//	{
+//	}
+
 	/**
 	 * Test method for {@link RandomExtensions#getRandomBigDecimal(int, int)}.
 	 */
@@ -301,7 +330,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomPrimitiveByteArray(int)}.
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testGetRandomPrimitiveByteArray()
 	{
 		byte[] randomPrimitiveByteArray = RandomExtensions.getRandomPrimitiveByteArray(5);
@@ -344,7 +373,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#newSalt()}.
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testNewSalt()
 	{
 		byte[] newSalt = RandomExtensions.newSalt();
@@ -444,9 +473,12 @@ public class RandomExtensionsTest extends BaseTestCase
 
 	/**
 	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float, String)}.
+	 *
+	 * @throws ParseException
+	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
 	@Test(enabled = true)
-	public void testRandomFloatBetweenFloatFloatString()
+	public void testRandomFloatBetweenFloatFloatString() throws ParseException
 	{
 		float random = RandomExtensions.randomFloatBetween(0.0f, 10.0f, "###,###.###");
 		assertTrue(MathExtensions.isBetween(0.0f, 10.0f, random));
@@ -567,7 +599,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomSerialNumber()}.
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testRandomSerialNumber()
 	{
 		BigInteger randomSerialNumber = RandomExtensions.randomSerialNumber();
