@@ -29,6 +29,9 @@ import static org.testng.Assert.assertTrue;
 
 import java.util.Set;
 
+import java.lang.reflect.InvocationTargetException;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.collections.set.SetExtensions;
@@ -39,6 +42,17 @@ import de.alpharogroup.math.MathExtensions;
  */
 public class DrawLottoNumbersExtensionsTest {
 
+	/**
+	 * Test method for {@link DrawLottoNumbersExtensions} with {@link BeanTester}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
+			UnsupportedOperationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(DrawLottoNumbersExtensions.class);
+	}
+	
 	/**
 	 * Test method for {@link DrawLottoNumbersExtensions#draw(int, int)}.
 	 */
