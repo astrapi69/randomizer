@@ -421,6 +421,15 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double, String)}
+	 */
+	@Test(enabled = true, expectedExceptions = ParseException.class)
+	public void testRandomDoubleBetweenDoubleDoubleStringParseException()
+	{
+		RandomExtensions.randomDoubleBetween(10000.0, 100000.0, "not-parsable");
+	}
+	
+	/**
 	 * Test method for {@link RandomExtensions#randomFloat()}.
 	 */
 	@Test(enabled = true)
