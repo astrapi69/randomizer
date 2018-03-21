@@ -96,10 +96,11 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 
 			assertEquals(expected, actual);
 		}
-		
+		String shortUrl = url.substring(7);
 		for (int i = 0; i < 10; i++)
 		{
-			final String randomInfomail = RandomObjectsExtensions.getInfomailFromWebsite(url.substring(8));
+
+			final String randomInfomail = RandomObjectsExtensions.getInfomailFromWebsite(shortUrl);
 			actual = randomInfomail.startsWith(emailprefix);
 
 			assertEquals(expected, actual);
