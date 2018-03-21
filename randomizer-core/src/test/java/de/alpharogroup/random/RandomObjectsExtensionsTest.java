@@ -213,7 +213,17 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		charBuffer.put(chars);
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
+		{
+			final String randomPassword = RandomObjectsExtensions.getRandomPassword(optLength);
+			actual = randomPassword.contains(charBuffer);
+
+			assertEquals(expected, actual);
+		}
+
+		optLength = Optional.empty();
+		expected = true;
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomPassword = RandomObjectsExtensions.getRandomPassword(optLength);
 			actual = randomPassword.contains(charBuffer);
