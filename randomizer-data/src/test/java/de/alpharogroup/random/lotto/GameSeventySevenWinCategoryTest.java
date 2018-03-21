@@ -1,6 +1,7 @@
 package de.alpharogroup.random.lotto;
 
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.AssertJUnit.assertEquals;
 
 import org.testng.annotations.Test;
 
@@ -9,6 +10,22 @@ import org.testng.annotations.Test;
  */
 public class GameSeventySevenWinCategoryTest
 {
+
+	/**
+	 * Test method for creation of object {@link LottoWinCategory}
+	 */
+	@Test
+	public void testObjectCreation()
+	{
+		Integer expected;
+		Integer actual;
+		GameSeventySevenWinCategory object = GameSeventySevenWinCategory.FIFTH_CLASS;
+		assertNotNull(object);
+
+		expected = 3;
+		actual = object.getEqualNumbers();
+		assertEquals(expected, actual);
+	}
 
 	/**
 	 * Test method for {@link GameSeventySevenWinCategory#getGameSeventySevenWinCategory(java.lang.Integer, java.lang.Integer)}.
