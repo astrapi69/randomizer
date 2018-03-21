@@ -85,9 +85,21 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		final String emailprefix = "info@";
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomInfomail = RandomObjectsExtensions.getInfomailFromWebsite(url);
+			actual = randomInfomail.startsWith(emailprefix);
+
+			assertEquals(expected, actual);
+
+			actual = randomInfomail.contains(charBuffer);
+
+			assertEquals(expected, actual);
+		}
+		
+		for (int i = 0; i < 10; i++)
+		{
+			final String randomInfomail = RandomObjectsExtensions.getInfomailFromWebsite(url.substring(8));
 			actual = randomInfomail.startsWith(emailprefix);
 
 			assertEquals(expected, actual);
