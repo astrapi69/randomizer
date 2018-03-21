@@ -57,8 +57,7 @@ public final class RandomObjectsExtensions
 		}
 		else
 		{
-			startIndex = url.indexOf("//");
-			if (0 < startIndex)
+			if (0 == startIndex)
 			{
 				final String emailprefix = "info";
 				email.append(emailprefix);
