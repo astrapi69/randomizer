@@ -28,7 +28,6 @@
 package de.alpharogroup.random.lotto;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -42,6 +41,7 @@ import org.testng.annotations.Test;
 import de.alpharogroup.collections.list.ListExtensions;
 import de.alpharogroup.collections.map.MapExtensions;
 import de.alpharogroup.collections.set.SetExtensions;
+import de.alpharogroup.random.lotto.neo.LottoTicket;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -163,6 +163,35 @@ public class LottoExtensionsTest
 	{
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(LottoExtensions.class);
+	}
+
+	/**
+	 * Test method for {@link LottoExtensions#calculateDraws(LottoTicket, LottoWinCategory, int)}.
+	 */
+	@Test
+	public void testCalculateDrawsLottoTicketLottoWinCategoryInt()
+	{
+		LottoTicket lottoTicket = LottoNeoExtensionsTest.newLottoTicket(LottoExtensionsTest.newLottoSets());
+		LottoExtensions.calculateDraws(lottoTicket, LottoWinCategory.FIRST_CLASS, 10);
+	}
+
+	/**
+	 * Test method for {@link LottoExtensions#calculateDraws(LottoPlayedNumbers, int, int)}.
+	 */
+	@Test
+	public void testCalculateDrawsLottoPlayedNumbersIntInt()
+	{
+		// This numbers is your played lotto numbers...
+		List<Set<Integer>> sixOffourtynineGame;
+
+		sixOffourtynineGame = newLottoSets();
+		final Map<LottoGameType, List<Set<Integer>>> playedLottoNumbers = MapExtensions
+			.newHashMap();
+		playedLottoNumbers.put(sixOffourtynineGameType, sixOffourtynineGame);
+		final LottoPlayedNumbers lottoPlayedNumbers = LottoPlayedNumbers.builder()
+			.playedLottoNumbers(playedLottoNumbers).superNumber(23).superSixNumber(4).build();
+
+		LottoExtensions.calculateDraws(lottoPlayedNumbers, 4, 10);
 	}
 
 }
