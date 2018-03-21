@@ -59,10 +59,16 @@ public class GameSeventySevenTest
 	@Test
 	public void testObjectCreation()
 	{
+		int expected;
+		int actual;
 		GameSeventySeven object = GameSeventySeven.builder().number(1236547).build();
 		assertNotNull(object);
-		object = new GameSeventySeven(1236547);
+		Integer number = 1236547;
+		object = new GameSeventySeven(number);
 		assertNotNull(object);
+		expected = number;
+		actual = object.getNumber();
+		assertEquals(expected, actual);
 	}
 
 	/**

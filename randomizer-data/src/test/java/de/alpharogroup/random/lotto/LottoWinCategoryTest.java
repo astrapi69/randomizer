@@ -24,7 +24,8 @@
  */
 package de.alpharogroup.random.lotto;
 
-import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.AssertJUnit.assertEquals;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -38,6 +39,22 @@ import de.alpharogroup.collections.set.SetExtensions;
  */
 public class LottoWinCategoryTest
 {
+
+	/**
+	 * Test method for creation of object {@link LottoWinCategory}
+	 */
+	@Test
+	public void testObjectCreation()
+	{
+		WinCategory expected;
+		WinCategory actual;
+		LottoWinCategory object = LottoWinCategory.EIGHTH_CLASS;
+		assertNotNull(object);
+
+		expected = WinCategory.builder().quantityOfWonNumbers(3).withSuperNumber(false).build();
+		actual = object.getWinCategory();
+		assertEquals(expected, actual);
+	}
 
 	/**
 	 * Test method for {@link LottoWinCategory#getLottoWinCategory(Collection, boolean)}
