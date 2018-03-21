@@ -112,6 +112,15 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomObjectsExtensions#getInfomailFromWebsite(java.lang.String)} .
+	 */
+	@Test(expectedExceptions = IllegalArgumentException.class )
+	public void testGetInfomailFromWebsiteExEx()
+	{
+		RandomObjectsExtensions.getInfomailFromWebsite("htp://ww.g.rw");
+	}
+
+	/**
 	 * Test method for {@link RandomObjectsExtensions#getRandomEmail()}.
 	 */
 	@Test
