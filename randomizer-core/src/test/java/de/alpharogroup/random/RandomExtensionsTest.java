@@ -3,24 +3,20 @@
  *
  * Copyright (C) 2015 Asterios Raptis
  *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
- * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
- * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package de.alpharogroup.random;
 
@@ -29,13 +25,13 @@ import static org.testng.Assert.assertNull;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
-import java.text.ParseException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -97,33 +93,33 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 
-//	/**
-//	 * Test method for {@link RandomExtensions#randomSerialNumber()}.
-//	 */
-//	@Test
-//	public void testRandomSerialNumber()
-//	{
-//		BigInteger serialNumber = RandomExtensions.randomSerialNumber();
-//		assertNotNull(serialNumber);
-//	}
-//
-//	/**
-//	 * Test method for {@link RandomExtensions#getRandomPrimitiveByteArray(int)}.
-//	 */
-//	@Test
-//	public void testGetRandomPrimitiveByteArray()
-//	{
-//		final byte[] randomByteArray = RandomExtensions.getRandomPrimitiveByteArray(5);
-//		assertNotNull(randomByteArray);
-//	}
-//
-//	/**
-//	 * Test method for {@link RandomExtensions#newSalt()}.
-//	 */
-//	@Test
-//	public void testNewSalt()
-//	{
-//	}
+	// /**
+	// * Test method for {@link RandomExtensions#randomSerialNumber()}.
+	// */
+	// @Test
+	// public void testRandomSerialNumber()
+	// {
+	// BigInteger serialNumber = RandomExtensions.randomSerialNumber();
+	// assertNotNull(serialNumber);
+	// }
+	//
+	// /**
+	// * Test method for {@link RandomExtensions#getRandomPrimitiveByteArray(int)}.
+	// */
+	// @Test
+	// public void testGetRandomPrimitiveByteArray()
+	// {
+	// final byte[] randomByteArray = RandomExtensions.getRandomPrimitiveByteArray(5);
+	// assertNotNull(randomByteArray);
+	// }
+	//
+	// /**
+	// * Test method for {@link RandomExtensions#newSalt()}.
+	// */
+	// @Test
+	// public void testNewSalt()
+	// {
+	// }
 
 	/**
 	 * Test method for {@link RandomExtensions#getRandomBigDecimal(int, int)}.
@@ -442,6 +438,7 @@ public class RandomExtensionsTest extends BaseTestCase
 
 	/**
 	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double, String)}.
+	 * 
 	 * @throws ParseException
 	 */
 	@Test(enabled = true)
@@ -519,7 +516,8 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link de.alpharogroup.random.RandomExtensions#randomIntBetween(int, int, boolean, boolean)}.
+	 * Test method for
+	 * {@link de.alpharogroup.random.RandomExtensions#randomIntBetween(int, int, boolean, boolean)}.
 	 */
 	@Test
 	public void testRandomIntBetweenBooleanBoolean()
@@ -658,8 +656,8 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions} with {@link BeanTester}
 	 */
-	@Test(enabled = false, expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
-			UnsupportedOperationException.class })
+	@Test(enabled = false, expectedExceptions = { BeanTestException.class,
+			InvocationTargetException.class, UnsupportedOperationException.class })
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
