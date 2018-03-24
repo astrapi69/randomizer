@@ -536,6 +536,7 @@ public final class DataGenerator
 	 *            the pattern
 	 * @return the double
 	 * @throws ParseException
+	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
 	public static double randomDoubleBetween(final double start, final double end,
 		final String pattern) throws ParseException
