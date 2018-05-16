@@ -8,7 +8,7 @@
 	</parent>
 
 	<artifactId>randomizer</artifactId>
-	<version>5.3</version>
+	<version>5.4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<inceptionYear>2015</inceptionYear>
 
