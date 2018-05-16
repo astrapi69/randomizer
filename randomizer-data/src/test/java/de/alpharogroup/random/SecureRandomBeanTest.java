@@ -32,7 +32,7 @@ import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 /**
- * The class {@link SecureRandomBeanTest}.
+ * The unit test class for the class {@link SecureRandomBean}.
  */
 public class SecureRandomBeanTest
 {
@@ -57,6 +57,29 @@ public class SecureRandomBeanTest
 		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
 			.provider("SUN").build();
 		AssertJUnit.assertNotNull(sr);
+	}
+
+	/**
+	 * Test method for {@link SecureRandomBean#buildQuietly()}
+	 */
+	@Test
+	public void testBuildQuietly()
+	{
+		SecureRandom sr;
+		sr = SecureRandomBean.builder().buildQuietly();
+
+		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
+			.buildQuietly();
+		AssertJUnit.assertNotNull(sr);
+		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
+			.provider("SUN").buildQuietly();
+		AssertJUnit.assertNotNull(sr);
+
+		sr = SecureRandomBean.builder().algorithm("FOO").buildQuietly();
+		AssertJUnit.assertNull(sr);
+		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
+			.provider("BAR").buildQuietly();
+		AssertJUnit.assertNull(sr);
 	}
 
 	/**

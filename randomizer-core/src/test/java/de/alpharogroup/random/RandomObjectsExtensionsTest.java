@@ -25,10 +25,15 @@
 package de.alpharogroup.random;
 
 
+import static org.testng.Assert.assertEquals;
+
+import java.lang.reflect.InvocationTargetException;
 import java.nio.CharBuffer;
+import java.util.Optional;
 
 import org.apache.log4j.Logger;
-import org.testng.AssertJUnit;
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -47,6 +52,8 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	/** The Constant logger. */
 	private static final Logger logger = Logger
 		.getLogger(RandomObjectsExtensionsTest.class.getName());
+
+	boolean expected;
 
 	/**
 	 * {@inheritDoc}
@@ -76,15 +83,41 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		charBuffer.put(Constants.LCCHARSWN);
 		final String url = RandomObjectsExtensions.getRandomWebsite();
 		final String emailprefix = "info@";
-		for (int i = 0; i < 100; i++)
+
+		expected = true;
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomInfomail = RandomObjectsExtensions.getInfomailFromWebsite(url);
-			this.result = randomInfomail.startsWith(emailprefix);
-			AssertJUnit.assertTrue("", this.result);
+			actual = randomInfomail.startsWith(emailprefix);
 
-			this.result = randomInfomail.contains(charBuffer);
-			AssertJUnit.assertTrue("", this.result);
+			assertEquals(expected, actual);
+
+			actual = randomInfomail.contains(charBuffer);
+
+			assertEquals(expected, actual);
 		}
+		String shortUrl = url.substring(7);
+		for (int i = 0; i < 10; i++)
+		{
+
+			final String randomInfomail = RandomObjectsExtensions.getInfomailFromWebsite(shortUrl);
+			actual = randomInfomail.startsWith(emailprefix);
+
+			assertEquals(expected, actual);
+
+			actual = randomInfomail.contains(charBuffer);
+
+			assertEquals(expected, actual);
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomObjectsExtensions#getInfomailFromWebsite(java.lang.String)} .
+	 */
+	@Test(expectedExceptions = IllegalArgumentException.class)
+	public void testGetInfomailFromWebsiteExEx()
+	{
+		RandomObjectsExtensions.getInfomailFromWebsite("htp://ww.g.rw");
 	}
 
 	/**
@@ -95,11 +128,14 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	{
 		final CharBuffer charBuffer = CharBuffer.allocate(Constants.LCCHARSWN.length());
 		charBuffer.put(Constants.LCCHARSWN);
+
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomEmail = RandomObjectsExtensions.getRandomEmail();
-			this.result = randomEmail.contains(charBuffer);
-			AssertJUnit.assertTrue("", this.result);
+			actual = randomEmail.contains(charBuffer);
+
+			assertEquals(expected, actual);
 		}
 	}
 
@@ -111,13 +147,16 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	{
 		final CharBuffer charBuffer = CharBuffer.allocate(Constants.NUMBERS.length());
 		charBuffer.put(Constants.NUMBERS);
+
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomPhonenumber = RandomObjectsExtensions.getRandomPhonenumber();
 			final String randomFaxnumber = RandomObjectsExtensions
 				.getRandomFaxnumber(randomPhonenumber);
-			this.result = randomFaxnumber.contains(charBuffer);
-			AssertJUnit.assertTrue("", this.result);
+			actual = randomFaxnumber.contains(charBuffer);
+
+			assertEquals(expected, actual);
 		}
 	}
 
@@ -129,11 +168,14 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	{
 		final CharBuffer charBuffer = CharBuffer.allocate(Constants.NUMBERS.length());
 		charBuffer.put(Constants.NUMBERS);
+
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomMobilnumber = RandomObjectsExtensions.getRandomMobilnumber();
-			this.result = randomMobilnumber.contains(charBuffer);
-			AssertJUnit.assertTrue("", this.result);
+			actual = randomMobilnumber.contains(charBuffer);
+
+			assertEquals(expected, actual);
 		}
 	}
 
@@ -141,17 +183,52 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	 * Test method for {@link RandomObjectsExtensions#getRandomPassword(int)}.
 	 */
 	@Test
-	public void testGetRandomPassword()
+	public void testGetRandomPasswordInt()
 	{
 		final CharBuffer charBuffer = CharBuffer.allocate(26);
 		final int length = 5;
 		final String chars = Constants.LOWCASECHARS;
 		charBuffer.put(chars);
+
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomPassword = RandomObjectsExtensions.getRandomPassword(length);
-			this.result = randomPassword.contains(charBuffer);
-			AssertJUnit.assertTrue("", this.result);
+			actual = randomPassword.contains(charBuffer);
+
+			assertEquals(expected, actual);
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomObjectsExtensions#getRandomPassword(Optional)}.
+	 */
+	@Test
+	public void testGetRandomPasswordOptionalInt()
+	{
+		final CharBuffer charBuffer = CharBuffer.allocate(26);
+		final int length = 5;
+		Optional<Integer> optLength = Optional.of(length);
+		final String chars = Constants.LOWCASECHARS;
+		charBuffer.put(chars);
+
+		expected = true;
+		for (int i = 0; i < 10; i++)
+		{
+			final String randomPassword = RandomObjectsExtensions.getRandomPassword(optLength);
+			actual = randomPassword.contains(charBuffer);
+
+			assertEquals(expected, actual);
+		}
+
+		optLength = Optional.empty();
+		expected = true;
+		for (int i = 0; i < 10; i++)
+		{
+			final String randomPassword = RandomObjectsExtensions.getRandomPassword(optLength);
+			actual = randomPassword.contains(charBuffer);
+
+			assertEquals(expected, actual);
 		}
 	}
 
@@ -163,11 +240,14 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	{
 		final CharBuffer charBuffer = CharBuffer.allocate(Constants.NUMBERS.length());
 		charBuffer.put(Constants.NUMBERS);
+
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomPhonenumber = RandomObjectsExtensions.getRandomPhonenumber();
-			this.result = randomPhonenumber.contains(charBuffer);
-			AssertJUnit.assertTrue("", this.result);
+			actual = randomPhonenumber.contains(charBuffer);
+
+			assertEquals(expected, actual);
 		}
 	}
 
@@ -179,11 +259,14 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	{
 		final CharBuffer charBuffer = CharBuffer.allocate(Constants.LCCHARSWN.length());
 		charBuffer.put(Constants.LCCHARSWN);
+
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomWebsite = RandomObjectsExtensions.getRandomWebsite();
-			this.result = randomWebsite.contains(charBuffer);
-			AssertJUnit.assertTrue("", this.result);
+			actual = randomWebsite.contains(charBuffer);
+
+			assertEquals(expected, actual);
 		}
 	}
 
@@ -208,12 +291,26 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		final CharBuffer charBuffer = CharBuffer.allocate(Constants.LCCHARSWN.length());
 		charBuffer.put(Constants.LCCHARSWN);
 		final char[] donatedChars = Constants.LCCHARSWN.toCharArray();
+
+		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
 			final String randomName = RandomObjectsExtensions.newRandomName(donatedChars);
-			this.result = randomName.contains(charBuffer);
-			AssertJUnit.assertTrue("", this.result);
+			actual = randomName.contains(charBuffer);
+
+			assertEquals(expected, actual);
 		}
+	}
+
+	/**
+	 * Test method for {@link RandomObjectsExtensions} with {@link BeanTester}
+	 */
+	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
+			UnsupportedOperationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(RandomObjectsExtensions.class);
 	}
 
 }

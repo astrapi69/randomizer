@@ -1,6 +1,29 @@
 ## Change log
 ----------------------
 
+Version 5.3
+-------------
+
+CHANGED:
+
+- update of parent version to 3.11
+- removed unneeded .0 at the end of version
+- update of resourcebundle-inspector version to 2.21
+- update of jcommons-lang version to 4.31.0
+- update of silly-collections version to 4.28.0
+
+Version 5.2.0
+-------------
+
+ADDED:
+ 
+- new method that can include and exclude the start and the end number from randomIntBetween
+
+CHANGED:
+
+- update dependency of jobject-extensions from 1.9.2 to 1.10.0
+- code coverage increased to 100 percent
+
 Version 5.1.0
 -------------
 

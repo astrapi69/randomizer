@@ -5,8 +5,8 @@
 [![Build Status](https://travis-ci.org/astrapi69/randomizer.svg?branch=master)](https://travis-ci.org/astrapi69/randomizer) 
 [![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/randomizer?branch=develop) 
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/randomizer.svg?style=flat)](https://github.com/astrapi69/randomizer/issues) 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/randomizer/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/randomizer)
-[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/randomizer.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/randomizer/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/randomizer-core)
+[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/randomizer.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-core)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 
 </div>
@@ -19,7 +19,7 @@ The source code comes under the liberal MIT License, making randomizer great for
 
 ## Javadoc
 
-[![Javadoc](https://javadoc-emblem.rhcloud.com/doc/de.alpharogroup/randomizer/badge.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer) randomizer
+[![Javadoc](https://javadoc-emblem.rhcloud.com/doc/de.alpharogroup/randomizer/badge.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-core) randomizer-core
 
 [![Javadoc](https://javadoc-emblem.rhcloud.com/doc/de.alpharogroup/randomizer/badge.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-api) randomizer-api
 
@@ -31,7 +31,7 @@ You can first define the version properties:
 	<properties>
 			...
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>5.1.0</randomizer.version>
+		<randomizer.version>5.2.0</randomizer.version>
 		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
 		<randomizer-data.version>${randomizer.version}</randomizer-data.version>

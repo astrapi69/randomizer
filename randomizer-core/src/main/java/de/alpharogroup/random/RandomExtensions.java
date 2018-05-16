@@ -38,6 +38,7 @@ import java.util.Random;
 import java.util.Set;
 
 import de.alpharogroup.lang.ClassExtensions;
+import de.alpharogroup.math.MathExtensions;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -50,7 +51,7 @@ import lombok.experimental.UtilityClass;
  * @author Asterios Raptis
  */
 @UtilityClass
-public class RandomExtensions
+public final class RandomExtensions
 {
 
 	/** The secure random. */
@@ -60,11 +61,10 @@ public class RandomExtensions
 		secureRandom = SecureRandomBean.builder().buildQuietly();
 	}
 
-
 	/**
-	 * The Method randomLong() gets an long between the range 0-9.
+	 * Gets a random long
 	 *
-	 * @return an long between the range 0-9.
+	 * @return a random long
 	 */
 	public static long randomLong()
 	{
@@ -167,7 +167,13 @@ public class RandomExtensions
 	 */
 	public static BigDecimal getRandomBigDecimal(final int afterComma, final int beforeComma)
 	{
-		return new BigDecimal(getRandomFloatString(afterComma, beforeComma));
+		String randomFloatString;
+		do
+		{
+			randomFloatString = getRandomFloatString(afterComma, beforeComma);
+		}
+		while (randomFloatString.equals("."));
+		return new BigDecimal(randomFloatString);
 	}
 
 	/**
@@ -199,13 +205,19 @@ public class RandomExtensions
 			}
 			else
 			{
-				secureRandom.nextBytes(randomByteBox);
-				randomByteArray[i] = Byte.valueOf(randomByteBox[0]);
+				if (secureRandom != null)
+				{
+					secureRandom.nextBytes(randomByteBox);
+					randomByteArray[i] = Byte.valueOf(randomByteBox[0]);
+				}
+				else
+				{
+					randomByteArray[i] = getRandomByte();
+				}
 			}
 		}
 		return randomByteArray;
 	}
-
 
 	/**
 	 * Returns a random entry from the given List.
@@ -220,7 +232,6 @@ public class RandomExtensions
 	{
 		return list.get(getRandomIndex(list));
 	}
-
 
 	/**
 	 * Returns a random entry from the given map.
@@ -238,7 +249,6 @@ public class RandomExtensions
 		final Object[] entries = map.values().toArray();
 		return entries[randomInt(entries.length)];
 	}
-
 
 	/**
 	 * Gets the random enum.
@@ -390,7 +400,15 @@ public class RandomExtensions
 		final StringBuilder sb = new StringBuilder(maxLength);
 		for (int i = 0; i < maxLength; i++)
 		{
-			sb.append(randomInt());
+			int randomInt = randomInt();
+			if (MathExtensions.isNegative(randomInt))
+			{
+				sb.append(randomInt * (-1));
+			}
+			else
+			{
+				sb.append(randomInt);
+			}
 		}
 		return sb.toString();
 	}
@@ -529,7 +547,6 @@ public class RandomExtensions
 		return string.charAt(randomInt(string.length()));
 	}
 
-
 	/**
 	 * The Method randomDouble(double) gets an double to the spezified range. For example: if you
 	 * put range to 10.0 the random int is between 0.0-9.9.
@@ -572,20 +589,16 @@ public class RandomExtensions
 	 * @param pattern
 	 *            the pattern
 	 * @return the random double between
+	 * @throws ParseException
+	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
 	public static double randomDoubleBetween(final double start, final double end,
-		final String pattern)
+		final String pattern) throws ParseException
 	{
 		final DecimalFormat formatter = new DecimalFormat(pattern);
 		final String rd = formatter.format(randomDoubleBetween(start, end));
-		try
-		{
-			return formatter.parse(rd).doubleValue();
-		}
-		catch (final ParseException e)
-		{
-			throw new NumberFormatException("Could not be parsed:" + rd);
-		}
+		Number randomDouble = formatter.parse(rd);
+		return randomDouble.doubleValue();
 	}
 
 	/**
@@ -644,19 +657,16 @@ public class RandomExtensions
 	 * @param pattern
 	 *            the pattern
 	 * @return the random float between
+	 * @throws ParseException
+	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
 	public static float randomFloatBetween(final float start, final float end, final String pattern)
+		throws ParseException
 	{
 		final NumberFormat formatter = new DecimalFormat(pattern);
 		final String rf = formatter.format(randomFloatBetween(start, end));
-		try
-		{
-			return formatter.parse(rf).floatValue();
-		}
-		catch (final ParseException e)
-		{
-			throw new NumberFormatException("Could not be parsed:" + rf);
-		}
+		Number randomFloat = formatter.parse(rf);
+		return randomFloat.floatValue();
 	}
 
 	/**
@@ -701,7 +711,44 @@ public class RandomExtensions
 	 */
 	public static int randomIntBetween(final int start, final int end)
 	{
-		return start + randomInt(end - start);
+		return RandomExtensions.randomIntBetween(start, end, true, false);
+	}
+
+	/**
+	 * Returns a random int between the range from start and end.
+	 *
+	 * @param start
+	 *            The int from where the range starts.
+	 * @param end
+	 *            The int from where the range ends.
+	 * @param includeMin
+	 *            if true than min value is included
+	 * @param includeMax
+	 *            if true than max value is included
+	 * @return A random int between the range from start and end.
+	 */
+	public static int randomIntBetween(final int start, final int end, final boolean includeMin,
+		final boolean includeMax)
+	{
+		int randomIntBetween = start + randomInt(end - start);
+
+		if (includeMin && includeMax)
+		{
+			randomIntBetween = start + randomInt(end - (start + 1));
+		}
+		if (includeMin && !includeMax)
+		{
+			randomIntBetween = start + randomInt(end - start);
+		}
+		if (!includeMin && includeMax)
+		{
+			randomIntBetween = (start + 1) + randomInt(end - (start + 1));
+		}
+		if (!includeMin && !includeMax)
+		{
+			randomIntBetween = (start + 1) + randomInt(end - start);
+		}
+		return randomIntBetween;
 	}
 
 	/**

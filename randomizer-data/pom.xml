@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>randomizer</artifactId>
-		<version>5.1.0</version>
+		<version>5.3</version>
 	</parent>
 	
 	<artifactId>randomizer-data</artifactId>
@@ -33,6 +33,12 @@
 		<dependency>
 			<groupId>org.meanbean</groupId>
 			<artifactId>meanbean</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- JOBJECT-EVALUATE DEPENDENCY -->
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>jobject-evaluate</artifactId>
 			<scope>test</scope>
 		</dependency>
 

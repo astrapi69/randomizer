@@ -28,10 +28,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.experimental.UtilityClass;
+
 /**
  * The class {@link RandomObjectsExtensions} is a utility class to create random objects.
  */
-public class RandomObjectsExtensions
+@UtilityClass
+public final class RandomObjectsExtensions
 {
 
 	/**
@@ -54,8 +57,7 @@ public class RandomObjectsExtensions
 		}
 		else
 		{
-			startIndex = url.indexOf("//");
-			if (0 < startIndex)
+			if (0 == startIndex)
 			{
 				final String emailprefix = "info";
 				email.append(emailprefix);
