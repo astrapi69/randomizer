@@ -31,7 +31,7 @@ You can first define the version properties:
 	<properties>
 			...
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>5.2.0</randomizer.version>
+		<randomizer.version>5.3</randomizer.version>
 		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
 		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
