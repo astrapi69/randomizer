@@ -1,9 +1,16 @@
 ## Change log
 ----------------------
 
-Version 5.3.0-SNAPSHOT
+Version 5.3
 -------------
 
+CHANGED:
+
+- update of parent version to 3.11
+- removed unneeded .0 at the end of version
+- update of resourcebundle-inspector version to 2.21
+- update of jcommons-lang version to 4.31.0
+- update of silly-collections version to 4.28.0
 
 Version 5.2.0
 -------------
