@@ -1,6 +1,19 @@
 ## Change log
 ----------------------
 
+Version 5.4
+-------------
+
+CHANGED:
+
+- update of parent version to 4
+- update of jcommons-lang version to 4.34
+- update of test-objects version to 4.28
+- update of silly-collections version to 4.31
+- update of vintage-time version to 4.12 
+- update of resourcebundle-inspector version to 2.22
+- update of jobject-extensions version to 1.11
+
 Version 5.3
 -------------
 

@@ -96,37 +96,8 @@ public class RandomExtensionsTest extends BaseTestCase
 		super.tearDown();
 	}
 
-
-	// /**
-	// * Test method for {@link RandomExtensions#randomSerialNumber()}.
-	// */
-	// @Test
-	// public void testRandomSerialNumber()
-	// {
-	// BigInteger serialNumber = RandomExtensions.randomSerialNumber();
-	// assertNotNull(serialNumber);
-	// }
-	//
-	// /**
-	// * Test method for {@link RandomExtensions#getRandomPrimitiveByteArray(int)}.
-	// */
-	// @Test
-	// public void testGetRandomPrimitiveByteArray()
-	// {
-	// final byte[] randomByteArray = RandomExtensions.getRandomPrimitiveByteArray(5);
-	// assertNotNull(randomByteArray);
-	// }
-	//
-	// /**
-	// * Test method for {@link RandomExtensions#newSalt()}.
-	// */
-	// @Test
-	// public void testNewSalt()
-	// {
-	// }
-
 	/**
-	 * Test method for {@link RandomExtensions#getRandomBigDecimal(int, int)}.
+	 * Test method for {@link RandomExtensions#getRandomBigDecimal(int, int)}
 	 */
 	@Test(enabled = true)
 	public void testGetRandomBigDecimal()
@@ -137,7 +108,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomByte()}.
+	 * Test method for {@link RandomExtensions#getRandomByte()}
 	 */
 	@Test(enabled = true)
 	public void testGetRandomByte()
@@ -147,7 +118,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomByteArray(int)}.
+	 * Test method for {@link RandomExtensions#getRandomByteArray(int)}
 	 */
 	@Test(enabled = true)
 	public void testGetRandomByteArray()
@@ -176,7 +147,7 @@ public class RandomExtensionsTest extends BaseTestCase
 			final String randomEntry = RandomExtensions.getRandomEntry(list);
 
 			actual = list.contains(randomEntry);
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
@@ -200,7 +171,7 @@ public class RandomExtensionsTest extends BaseTestCase
 			final String randomValue = (String)RandomExtensions.getRandomEntry(map);
 
 			actual = values.contains(randomValue);
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
@@ -289,7 +260,7 @@ public class RandomExtensionsTest extends BaseTestCase
 			final float randomFloat = RandomExtensions.getRandomFloat(afterComma, beforeComma);
 
 			actual = 0 < randomFloat;
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
@@ -312,12 +283,12 @@ public class RandomExtensionsTest extends BaseTestCase
 			final String randomKey = (String)RandomExtensions.getRandomKey(map);
 
 			actual = keys.contains(randomKey);
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomNumericString()}.
+	 * Test method for {@link RandomExtensions#getRandomNumericString()}
 	 */
 	@Test(enabled = true)
 	public void testGetRandomNumericString()
@@ -328,7 +299,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomPrimitiveByteArray(int)}.
+	 * Test method for {@link RandomExtensions#getRandomPrimitiveByteArray(int)}
 	 */
 	@Test(enabled = true)
 	public void testGetRandomPrimitiveByteArray()
@@ -338,7 +309,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomString(int)}.
+	 * Test method for {@link RandomExtensions#getRandomString(int)}
 	 */
 	@Test(enabled = true)
 	public void testGetRandomStringInt()
@@ -349,7 +320,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#newRandomPixel()}.
+	 * Test method for {@link RandomExtensions#newRandomPixel()}
 	 */
 	@Test(enabled = true)
 	public void testNewRandomPixel()
@@ -359,7 +330,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#newRandomPixel(int, int, int, int)}.
+	 * Test method for {@link RandomExtensions#newRandomPixel(int, int, int, int)}
 	 */
 	@Test(enabled = true)
 	public void testNewRandomPixelIntIntIntInt()
@@ -371,7 +342,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#newSalt()}.
+	 * Test method for {@link RandomExtensions#newSalt()}
 	 */
 	@Test(enabled = true)
 	public void testNewSalt()
@@ -381,7 +352,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomBoolean()}.
+	 * Test method for {@link RandomExtensions#randomBoolean()}
 	 */
 	@Test(enabled = true)
 	public void testRandomBoolean()
@@ -391,7 +362,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomByteArray(int)}.
+	 * Test method for {@link RandomExtensions#randomByteArray(int)}
 	 */
 	@Test
 	public void testRandomByteArray()
@@ -415,12 +386,12 @@ public class RandomExtensionsTest extends BaseTestCase
 			final CharBuffer charBuffer = CharBuffer.allocate(1);
 			charBuffer.put(randomChar);
 			actual = string.contains(charBuffer);
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomDouble(double)}.
+	 * Test method for {@link RandomExtensions#randomDouble(double)}
 	 */
 	@Test(enabled = true)
 	public void testRandomDouble()
@@ -431,7 +402,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double)}.
+	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double)}
 	 */
 	@Test(enabled = true)
 	public void testRandomDoubleBetweenDoubleDouble()
@@ -441,8 +412,8 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double, String)}.
-	 * 
+	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double, String)}
+	 *
 	 * @throws ParseException
 	 */
 	@Test(enabled = true)
@@ -453,7 +424,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomFloat()}.
+	 * Test method for {@link RandomExtensions#randomFloat()}
 	 */
 	@Test(enabled = true)
 	public void testRandomFloat()
@@ -463,7 +434,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float)}.
+	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float)}
 	 */
 	@Test(enabled = true)
 	public void testRandomFloatBetweenFloatFloat()
@@ -473,7 +444,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float, String)}.
+	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float, String)}
 	 *
 	 * @throws ParseException
 	 *             is thrown if the beginning of the specified string cannot be parsed
@@ -486,7 +457,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomFloat(float)}.
+	 * Test method for {@link RandomExtensions#randomFloat(float)}
 	 */
 	@Test(enabled = true)
 	public void testRandomFloatFloat()
@@ -497,7 +468,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomInt()}.
+	 * Test method for {@link RandomExtensions#randomInt()}
 	 */
 	@Test(enabled = false)
 	public void testRandomInt()
@@ -507,7 +478,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link de.alpharogroup.random.RandomExtensions#randomIntBetween(int, int)}.
+	 * Test method for {@link de.alpharogroup.random.RandomExtensions#randomIntBetween(int, int)}
 	 */
 	@Test
 	public void testRandomIntBetween()
@@ -521,7 +492,7 @@ public class RandomExtensionsTest extends BaseTestCase
 
 	/**
 	 * Test method for
-	 * {@link de.alpharogroup.random.RandomExtensions#randomIntBetween(int, int, boolean, boolean)}.
+	 * {@link de.alpharogroup.random.RandomExtensions#randomIntBetween(int, int, boolean, boolean)}
 	 */
 	@Test
 	public void testRandomIntBetweenBooleanBoolean()
@@ -549,7 +520,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomInt(int)}.
+	 * Test method for {@link RandomExtensions#randomInt(int)}
 	 */
 	@Test
 	public void testRandomIntInt()
@@ -564,7 +535,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomLong()}.
+	 * Test method for {@link RandomExtensions#randomLong()}
 	 */
 	@Test(enabled = true)
 	public void testRandomLong()
@@ -574,7 +545,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomLong(long)}.
+	 * Test method for {@link RandomExtensions#randomLong(long)}
 	 */
 	@Test(enabled = true)
 	public void testRandomLongLong()
@@ -599,7 +570,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomSerialNumber()}.
+	 * Test method for {@link RandomExtensions#randomSerialNumber()}
 	 */
 	@Test(enabled = true)
 	public void testRandomSerialNumber()
@@ -609,7 +580,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomString(java.lang.String[])} .
+	 * Test method for {@link RandomExtensions#getRandomString(java.lang.String[])}
 	 */
 	@Test
 	public void testRandomStringStringArray()
@@ -622,12 +593,12 @@ public class RandomExtensionsTest extends BaseTestCase
 			final String randomString = RandomExtensions.getRandomString(array);
 
 			actual = listFromArray.contains(randomString);
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomString(java.lang.String, int)} .
+	 * Test method for {@link RandomExtensions#getRandomString(java.lang.String, int)}
 	 */
 	@Test
 	public void testRandomStringStringInt()
@@ -642,13 +613,12 @@ public class RandomExtensionsTest extends BaseTestCase
 			final String randomString = RandomExtensions.getRandomString(chars, length);
 
 			actual = randomString.contains(charBuffer);
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
-
 	/**
-	 * Test method for {@link RandomExtensions#randomToken()} .
+	 * Test method for {@link RandomExtensions#randomToken()}
 	 */
 	@Test
 	public void testRandomToken()

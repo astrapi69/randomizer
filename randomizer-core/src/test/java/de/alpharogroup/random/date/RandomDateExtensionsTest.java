@@ -56,10 +56,10 @@ import de.alpharogroup.date.ParseDateExtensions;
 public class RandomDateExtensionsTest extends BaseTestCase
 {
 
+	boolean expected;
+
 	/** The date for now. */
 	private Date now;
-
-	boolean expected;
 
 	/**
 	 * {@inheritDoc}
@@ -217,7 +217,7 @@ public class RandomDateExtensionsTest extends BaseTestCase
 
 		expected = true;
 		actual = CalculateDateExtensions.isBetween(now, end, dateAfter);
-		assertEquals(actual, expected);
+		assertEquals(actual.booleanValue(), expected);
 	}
 
 	/**
@@ -232,7 +232,7 @@ public class RandomDateExtensionsTest extends BaseTestCase
 
 		expected = true;
 		actual = CalculateDateExtensions.isBetween(now, end, dateAfter);
-		assertEquals(actual, expected);
+		assertEquals(actual.booleanValue(), expected);
 	}
 
 	/**
@@ -247,7 +247,7 @@ public class RandomDateExtensionsTest extends BaseTestCase
 
 		expected = true;
 		actual = CalculateDateExtensions.isBetween(start, now, dateBefore);
-		assertEquals(actual, expected);
+		assertEquals(actual.booleanValue(), expected);
 	}
 
 	/**
@@ -262,7 +262,7 @@ public class RandomDateExtensionsTest extends BaseTestCase
 
 		expected = true;
 		actual = CalculateDateExtensions.isBetween(start, now, dateBefore);
-		assertEquals(actual, expected);
+		assertEquals(actual.booleanValue(), expected);
 	}
 
 	/**
@@ -284,7 +284,6 @@ public class RandomDateExtensionsTest extends BaseTestCase
 		Timestamp timestamp = RandomDateExtensions.getTimestamp(now);
 		assertNotNull(timestamp);
 	}
-
 
 	/**
 	 * Test method for {@link RandomDateExtensions} with {@link BeanTester}

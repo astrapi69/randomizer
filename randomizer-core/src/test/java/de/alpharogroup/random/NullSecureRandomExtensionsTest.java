@@ -148,7 +148,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		{
 			final String randomEntry = RandomExtensions.getRandomEntry(list);
 			actual = list.contains(randomEntry);
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
@@ -171,7 +171,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		{
 			final String randomValue = (String)RandomExtensions.getRandomEntry(map);
 			actual = values.contains(randomValue);
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
@@ -242,7 +242,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		{
 			final float randomFloat = RandomExtensions.getRandomFloat(afterComma, beforeComma);
 			actual = 0 < randomFloat;
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
@@ -265,7 +265,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		{
 			final String randomKey = (String)RandomExtensions.getRandomKey(map);
 			actual = keys.contains(randomKey);
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
@@ -379,7 +379,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 			final CharBuffer charBuffer = CharBuffer.allocate(1);
 			charBuffer.put(randomChar);
 			actual = string.contains(charBuffer);
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
@@ -571,7 +571,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		{
 			final String randomString = RandomExtensions.getRandomString(array);
 			actual = listFromArray.contains(randomString);
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
@@ -591,10 +591,9 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		{
 			final String randomString = RandomExtensions.getRandomString(chars, length);
 			actual = randomString.contains(charBuffer);
-			assertEquals(actual, expected);
+			assertEquals(actual.booleanValue(), expected);
 		}
 	}
-
 
 	/**
 	 * Test method for {@link RandomExtensions#randomToken()} .

@@ -210,7 +210,6 @@ public class RandomDateExtensions
 		return randomDatebetween(startDate, endDate, "dd.MM.yyyy HH:mm:ss");
 	}
 
-
 	/**
 	 * Creates a random Date between the range from startDays and endDays from the given Date and
 	 * gives it back as a string to the given format.
@@ -231,7 +230,6 @@ public class RandomDateExtensions
 		Date between = new Date(randomLongBetween);
 		return sdf.format(between);
 	}
-
 
 	/**
 	 * Creates a random Date between the range from startDays and endDays from the given Date.
