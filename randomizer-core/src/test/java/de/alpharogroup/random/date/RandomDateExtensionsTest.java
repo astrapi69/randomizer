@@ -56,10 +56,10 @@ import de.alpharogroup.date.ParseDateExtensions;
 public class RandomDateExtensionsTest extends BaseTestCase
 {
 
+	boolean expected;
+
 	/** The date for now. */
 	private Date now;
-
-	boolean expected;
 
 	/**
 	 * {@inheritDoc}
