@@ -51,7 +51,6 @@ import de.alpharogroup.string.StringExtensions;
 public class RandomAddressExtensionsTest extends BaseTestCase
 {
 
-
 	/**
 	 * {@inheritDoc}
 	 */

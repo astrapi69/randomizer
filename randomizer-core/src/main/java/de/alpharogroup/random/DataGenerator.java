@@ -84,7 +84,6 @@ public final class DataGenerator
 		return RandomDateExtensions.dateBefore(date);
 	}
 
-
 	/**
 	 * Creates a random date that is before from the given date.
 	 *

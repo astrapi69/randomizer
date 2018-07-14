@@ -24,7 +24,6 @@
  */
 package de.alpharogroup.random;
 
-
 import static org.testng.Assert.assertEquals;
 
 import java.lang.reflect.InvocationTargetException;
@@ -90,11 +89,11 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 			final String randomInfomail = RandomObjectsExtensions.getInfomailFromWebsite(url);
 			actual = randomInfomail.startsWith(emailprefix);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 
 			actual = randomInfomail.contains(charBuffer);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 		}
 		String shortUrl = url.substring(7);
 		for (int i = 0; i < 10; i++)
@@ -103,11 +102,11 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 			final String randomInfomail = RandomObjectsExtensions.getInfomailFromWebsite(shortUrl);
 			actual = randomInfomail.startsWith(emailprefix);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 
 			actual = randomInfomail.contains(charBuffer);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 		}
 	}
 
@@ -135,7 +134,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 			final String randomEmail = RandomObjectsExtensions.getRandomEmail();
 			actual = randomEmail.contains(charBuffer);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 		}
 	}
 
@@ -156,7 +155,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 				.getRandomFaxnumber(randomPhonenumber);
 			actual = randomFaxnumber.contains(charBuffer);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 		}
 	}
 
@@ -175,7 +174,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 			final String randomMobilnumber = RandomObjectsExtensions.getRandomMobilnumber();
 			actual = randomMobilnumber.contains(charBuffer);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 		}
 	}
 
@@ -196,7 +195,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 			final String randomPassword = RandomObjectsExtensions.getRandomPassword(length);
 			actual = randomPassword.contains(charBuffer);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 		}
 	}
 
@@ -218,7 +217,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 			final String randomPassword = RandomObjectsExtensions.getRandomPassword(optLength);
 			actual = randomPassword.contains(charBuffer);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 		}
 
 		optLength = Optional.empty();
@@ -228,7 +227,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 			final String randomPassword = RandomObjectsExtensions.getRandomPassword(optLength);
 			actual = randomPassword.contains(charBuffer);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 		}
 	}
 
@@ -247,7 +246,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 			final String randomPhonenumber = RandomObjectsExtensions.getRandomPhonenumber();
 			actual = randomPhonenumber.contains(charBuffer);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 		}
 	}
 
@@ -266,7 +265,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 			final String randomWebsite = RandomObjectsExtensions.getRandomWebsite();
 			actual = randomWebsite.contains(charBuffer);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 		}
 	}
 
@@ -298,7 +297,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 			final String randomName = RandomObjectsExtensions.newRandomName(donatedChars);
 			actual = randomName.contains(charBuffer);
 
-			assertEquals(expected, actual);
+			assertEquals(expected, actual.booleanValue());
 		}
 	}
 
