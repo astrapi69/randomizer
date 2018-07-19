@@ -4,6 +4,10 @@
 Version 5.5-SNAPSHOT
 -------------
 
+CHANGED:
+
+- update of jobject-extensions version to 1.12
+
 Version 5.4
 -------------
 

@@ -31,7 +31,7 @@
 		<!-- RESOURCEBUNDLE-CORE versions -->
 		<resourcebundle-inspector.version>2.22</resourcebundle-inspector.version>
 		<!-- JOBJECT-EXTENSIONS versions -->
-		<jobject-extensions.version>1.11</jobject-extensions.version>
+		<jobject-extensions.version>1.12</jobject-extensions.version>
 		<jobject-core.version>${jobject-extensions.version}</jobject-core.version>
 		<jobject-evaluate.version>${jobject-extensions.version}</jobject-evaluate.version>
 		<!-- PARENT PROJECT versions -->
