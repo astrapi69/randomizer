@@ -4,9 +4,16 @@
 Version 5.5-SNAPSHOT
 -------------
 
+ADDED:
+ 
+- new method created for create random hex string objects from a given length of characters
+
 CHANGED:
 
-- update of jobject-extensions version to 1.12
+- update of jobject-extensions version to 2
+- update of jcommons-lang version to 5
+- update of silly-collections version to 4.35
+- update of resourcebundle-inspector version to 3
 
 Version 5.4
 -------------

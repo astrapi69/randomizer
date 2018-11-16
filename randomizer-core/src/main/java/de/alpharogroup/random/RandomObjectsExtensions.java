@@ -80,11 +80,13 @@ public final class RandomObjectsExtensions
 	public static String getRandomEmail()
 	{
 		final StringBuffer email = new StringBuffer();
-		final String emailprefix = RandomExtensions.getRandomString(Constants.LCCHARSWN,
+		final String emailprefix = RandomExtensions.getRandomString(
+			RandomCharacters.lowcaseWithNumbers.getAllowedCharacters(),
 			RandomExtensions.randomInt(20) + 1);
-		final String domain = RandomExtensions.getRandomString(Constants.LOWCASECHARS,
-			RandomExtensions.randomInt(12) + 1);
-		final String topDomain = RandomExtensions.getRandomString(Constants.LOWCASECHARS, 2);
+		final String domain = RandomExtensions.getRandomString(
+			RandomCharacters.lowcase.getAllowedCharacters(), RandomExtensions.randomInt(12) + 1);
+		final String topDomain = RandomExtensions
+			.getRandomString(RandomCharacters.lowcase.getAllowedCharacters(), 2);
 		email.append(emailprefix);
 		email.append("@");
 		email.append(domain);

@@ -25,8 +25,15 @@ The source code comes under the liberal MIT License, making randomizer great for
 
 [![Javadoc](https://javadoc-emblem.rhcloud.com/doc/de.alpharogroup/randomizer/badge.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-data) randomizer-data
 
+## Maven dependency
 
-You can first define the version properties:
+Maven dependency is now on sonatype.
+Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~randomizer~~~) for latest snapshots and releases.
+
+Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of randomizer:
+
+Than you can add the dependency to your dependencies:
+
 
 	<properties>
 			...
@@ -87,7 +94,7 @@ Release version numbers will be incremented in the following format:
 
 `<major>.<minor>.<patch>`
 
-For more information on SemVer you can visit [semver.org](http://semver.org/).
+For detailed information on versioning you can visit the [wiki page](https://github.com/lightblueseas/mvn-parent-projects/wiki/Semantic-Versioning).
 
 ## Want to Help and improve it? ###
 

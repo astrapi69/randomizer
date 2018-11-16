@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-java-parent</artifactId>
-		<version>4</version>
+		<version>4.2</version>
 	</parent>
 
 	<artifactId>randomizer</artifactId>
@@ -24,14 +24,14 @@
 
 	<properties>
 		<!-- NEW EXTENSIONS LIB versions -->
-		<jcommons-lang.version>4.34</jcommons-lang.version>
+		<jcommons-lang.version>5</jcommons-lang.version>
 		<test-objects.version>4.28</test-objects.version>
-		<silly-collections.version>4.31</silly-collections.version>
+		<silly-collections.version>4.35</silly-collections.version>
 		<vintage-time.version>4.12</vintage-time.version>
 		<!-- RESOURCEBUNDLE-CORE versions -->
-		<resourcebundle-inspector.version>2.22</resourcebundle-inspector.version>
+		<resourcebundle-inspector.version>3</resourcebundle-inspector.version>
 		<!-- JOBJECT-EXTENSIONS versions -->
-		<jobject-extensions.version>1.12</jobject-extensions.version>
+		<jobject-extensions.version>2</jobject-extensions.version>
 		<jobject-core.version>${jobject-extensions.version}</jobject-core.version>
 		<jobject-evaluate.version>${jobject-extensions.version}</jobject-evaluate.version>
 		<!-- PARENT PROJECT versions -->

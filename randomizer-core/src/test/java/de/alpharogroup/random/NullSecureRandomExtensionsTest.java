@@ -406,7 +406,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 
 	/**
 	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double, String)}.
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	@Test(enabled = true)
@@ -583,7 +583,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	{
 		final CharBuffer charBuffer = CharBuffer.allocate(45);
 		final int length = 5;
-		final String chars = Constants.LCCHARSWNASC;
+		final String chars = RandomCharacters.lowcaseWithNumbersAndSpecial.getAllowedCharacters();
 		charBuffer.put(chars);
 
 		expected = true;
