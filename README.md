@@ -11,7 +11,7 @@
 
 </div>
 
-Create or generate random data 
+Generate random data 
 
 ## License
 
@@ -38,27 +38,14 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>5.4</randomizer.version>
-		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
+		<randomizer.version>5.5</randomizer.version>
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
+		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
 		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
 			...
 	</properties>
 	
 You can add the following dependencies to your project for use the functionality of randomizer.
-
-Add the following maven dependency to your project `pom.xml` if you want to import the functionality of randomizer-core:
-
-		<dependencies>
-			...
-			<!-- RANDOMIZER DEPENDENCY -->
-			<dependency>
-				<groupId>de.alpharogroup</groupId>
-				<artifactId>randomizer-core</artifactId>
-				<version>${randomizer-core.version}</version>
-			</dependency>
-			...
-		</dependencies>
 
 Add the following maven dependency to your project `pom.xml` if you want to import the functionality of randomizer-api:
 
@@ -69,6 +56,19 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 				<groupId>de.alpharogroup</groupId>
 				<artifactId>randomizer-api</artifactId>
 				<version>${randomizer-api.version}</version>
+			</dependency>
+			...
+		</dependencies>
+
+Add the following maven dependency to your project `pom.xml` if you want to import the functionality of randomizer-core:
+
+		<dependencies>
+			...
+			<!-- RANDOMIZER DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>randomizer-core</artifactId>
+				<version>${randomizer-core.version}</version>
 			</dependency>
 			...
 		</dependencies>
