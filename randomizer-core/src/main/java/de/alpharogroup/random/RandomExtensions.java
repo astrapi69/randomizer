@@ -422,7 +422,8 @@ public final class RandomExtensions
 	 */
 	public static String getRandomNumericString(final int length)
 	{
-		final String randomNumber = getRandomString(Constants.NUMBERS, length);
+		final String randomNumber = getRandomString(RandomCharacters.numbers.getCharacters(),
+			length);
 		return randomNumber;
 	}
 
@@ -442,6 +443,23 @@ public final class RandomExtensions
 			sb.append(randomChar());
 		}
 		return sb.toString();
+	}
+
+	/**
+	 * Generates a random hexadecimal {@link String}
+	 *
+	 * @param numberOfCharacters
+	 *            the number of characters
+	 * @return the generated random hexadecimal {@link String}
+	 */
+	public static String getRandomHexString(int numberOfCharacters)
+	{
+		StringBuilder sb = new StringBuilder();
+		while (sb.length() < numberOfCharacters)
+		{
+			sb.append(Integer.toHexString(randomInt()));
+		}
+		return sb.toString().substring(0, numberOfCharacters);
 	}
 
 	/**
@@ -826,7 +844,10 @@ public final class RandomExtensions
 	 */
 	public static byte[] getRandomSalt(final int length, final Charset charset)
 	{
-		return RandomExtensions.getRandomString(Constants.LCUCCHARSWN, length).getBytes(charset);
+		return RandomExtensions
+			.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
+				length)
+			.getBytes(charset);
 	}
 
 }

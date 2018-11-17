@@ -80,11 +80,13 @@ public final class RandomObjectsExtensions
 	public static String getRandomEmail()
 	{
 		final StringBuffer email = new StringBuffer();
-		final String emailprefix = RandomExtensions.getRandomString(Constants.LCCHARSWN,
+		final String emailprefix = RandomExtensions.getRandomString(
+			RandomCharacters.lowcaseWithNumbers.getCharacters(),
 			RandomExtensions.randomInt(20) + 1);
-		final String domain = RandomExtensions.getRandomString(Constants.LOWCASECHARS,
-			RandomExtensions.randomInt(12) + 1);
-		final String topDomain = RandomExtensions.getRandomString(Constants.LOWCASECHARS, 2);
+		final String domain = RandomExtensions.getRandomString(
+			RandomCharacters.lowcase.getCharacters(), RandomExtensions.randomInt(12) + 1);
+		final String topDomain = RandomExtensions
+			.getRandomString(RandomCharacters.lowcase.getCharacters(), 2);
 		email.append(emailprefix);
 		email.append("@");
 		email.append(domain);
@@ -137,7 +139,8 @@ public final class RandomObjectsExtensions
 	 */
 	public static String getRandomPassword(final int length)
 	{
-		final String password = RandomExtensions.getRandomString(Constants.LCUCCHARSWN, length);
+		final String password = RandomExtensions.getRandomString(
+			RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(), length);
 		return password;
 	}
 
@@ -152,11 +155,12 @@ public final class RandomObjectsExtensions
 	{
 		if (length.isPresent())
 		{
-			final String password = RandomExtensions.getRandomString(Constants.LCUCCHARSWN,
-				length.get());
+			final String password = RandomExtensions.getRandomString(
+				RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(), length.get());
 			return password;
 		}
-		return RandomExtensions.getRandomString(Constants.LCUCCHARSWN, 8);
+		return RandomExtensions
+			.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(), 8);
 	}
 
 	/**
@@ -183,9 +187,10 @@ public final class RandomObjectsExtensions
 	{
 		final StringBuffer website = new StringBuffer();
 		final String websitePrefix = "http://www";
-		final String domain = RandomExtensions.getRandomString(Constants.LOWCASECHARS,
-			RandomExtensions.randomInt(12) + 1);
-		final String topDomain = RandomExtensions.getRandomString(Constants.LOWCASECHARS, 2);
+		final String domain = RandomExtensions.getRandomString(
+			RandomCharacters.lowcase.getCharacters(), RandomExtensions.randomInt(12) + 1);
+		final String topDomain = RandomExtensions
+			.getRandomString(RandomCharacters.lowcase.getCharacters(), 2);
 		website.append(websitePrefix);
 		website.append(".");
 		website.append(domain);
@@ -202,15 +207,19 @@ public final class RandomObjectsExtensions
 	public static String newRandomId()
 	{
 		final StringBuffer sb = new StringBuffer();
-		sb.append(RandomExtensions.getRandomString(Constants.LCUCCHARSWN, 2));
+		sb.append(RandomExtensions
+			.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(), 2));
 		sb.append(".");
-		sb.append(RandomExtensions.getRandomString(Constants.LCUCCHARSWN, 4));
+		sb.append(RandomExtensions
+			.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(), 4));
 		sb.append(".");
-		sb.append(RandomExtensions.getRandomString(Constants.LCUCCHARSWN, 2));
+		sb.append(RandomExtensions
+			.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(), 2));
 		sb.append(".");
 		sb.append(System.currentTimeMillis());
 		sb.append(".");
-		sb.append(RandomExtensions.getRandomString(Constants.LCUCCHARSWN, 2));
+		sb.append(RandomExtensions
+			.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(), 2));
 		return sb.toString();
 	}
 

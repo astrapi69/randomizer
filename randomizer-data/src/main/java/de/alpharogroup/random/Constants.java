@@ -28,8 +28,13 @@ package de.alpharogroup.random;
  * The constant class {@link Constants} holds data for the characters to create random Strings like
  * passwords.
  *
+ * @deprecated use instead the enum class <code>RandomCharacters</code> <br>
+ *             <br>
+ *             Note: will be removed on next minor release
+ *
  * @author Asterios Raptis
  */
+@Deprecated
 public abstract class Constants
 {
 

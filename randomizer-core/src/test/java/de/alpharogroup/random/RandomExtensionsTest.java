@@ -265,6 +265,16 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomExtensions#getRandomHexString(int)}
+	 */
+	@Test(enabled = true)
+	public void testgetRandomHexString()
+	{
+		String randomHexString = RandomExtensions.getRandomHexString(16);
+		assertTrue(randomHexString.length() == 16);
+	}
+
+	/**
 	 * Test method for {@link RandomExtensions#getRandomKey(java.util.Map)} .
 	 */
 	@Test
@@ -377,7 +387,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomCharString()
 	{
-		final String string = Constants.LOWCASECHARS;
+		final String string = RandomCharacters.lowcase.getCharacters();
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
@@ -456,6 +466,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		assertTrue(MathExtensions.isBetween(0.0f, 10.0f, random));
 	}
 
+
 	/**
 	 * Test method for {@link RandomExtensions#randomFloat(float)}
 	 */
@@ -470,7 +481,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomInt()}
 	 */
-	@Test(enabled = false)
+	@Test(enabled = true)
 	public void testRandomInt()
 	{
 		int random = RandomExtensions.randomInt();
@@ -605,7 +616,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	{
 		final CharBuffer charBuffer = CharBuffer.allocate(45);
 		final int length = 5;
-		final String chars = Constants.LCCHARSWNASC;
+		final String chars = RandomCharacters.lowcaseWithNumbersAndSpecial.getCharacters();
 		charBuffer.put(chars);
 		expected = true;
 		for (int i = 0; i < 100; i++)

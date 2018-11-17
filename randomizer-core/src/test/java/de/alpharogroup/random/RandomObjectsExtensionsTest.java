@@ -78,8 +78,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetInfomailFromWebsite()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.LCCHARSWN.length());
-		charBuffer.put(Constants.LCCHARSWN);
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.lowcaseWithNumbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.lowcaseWithNumbers.getCharacters());
 		final String url = RandomObjectsExtensions.getRandomWebsite();
 		final String emailprefix = "info@";
 
@@ -125,8 +126,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomEmail()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.LCCHARSWN.length());
-		charBuffer.put(Constants.LCCHARSWN);
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.lowcaseWithNumbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.lowcaseWithNumbers.getCharacters());
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
@@ -144,8 +146,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomFaxnumber()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.NUMBERS.length());
-		charBuffer.put(Constants.NUMBERS);
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.numbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.numbers.getCharacters());
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
@@ -165,8 +168,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomMobilnumber()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.NUMBERS.length());
-		charBuffer.put(Constants.NUMBERS);
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.numbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.numbers.getCharacters());
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
@@ -186,7 +190,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	{
 		final CharBuffer charBuffer = CharBuffer.allocate(26);
 		final int length = 5;
-		final String chars = Constants.LOWCASECHARS;
+		final String chars = RandomCharacters.lowcase.getCharacters();
 		charBuffer.put(chars);
 
 		expected = true;
@@ -208,7 +212,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		final CharBuffer charBuffer = CharBuffer.allocate(26);
 		final int length = 5;
 		Optional<Integer> optLength = Optional.of(length);
-		final String chars = Constants.LOWCASECHARS;
+		final String chars = RandomCharacters.lowcase.getCharacters();
 		charBuffer.put(chars);
 
 		expected = true;
@@ -237,8 +241,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomPhonenumber()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.NUMBERS.length());
-		charBuffer.put(Constants.NUMBERS);
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.numbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.numbers.getCharacters());
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
@@ -256,8 +261,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomWebsite()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.LCCHARSWN.length());
-		charBuffer.put(Constants.LCCHARSWN);
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.lowcaseWithNumbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.lowcaseWithNumbers.getCharacters());
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
@@ -287,9 +293,11 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testNewRandomName()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.LCCHARSWN.length());
-		charBuffer.put(Constants.LCCHARSWN);
-		final char[] donatedChars = Constants.LCCHARSWN.toCharArray();
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.lowcaseWithNumbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.lowcaseWithNumbers.getCharacters());
+		final char[] donatedChars = RandomCharacters.lowcaseWithNumbers.getCharacters()
+			.toCharArray();
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
