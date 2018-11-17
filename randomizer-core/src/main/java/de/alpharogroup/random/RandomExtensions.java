@@ -422,7 +422,7 @@ public final class RandomExtensions
 	 */
 	public static String getRandomNumericString(final int length)
 	{
-		final String randomNumber = getRandomString(RandomCharacters.numbers.getAllowedCharacters(),
+		final String randomNumber = getRandomString(RandomCharacters.numbers.getCharacters(),
 			length);
 		return randomNumber;
 	}
@@ -844,7 +844,10 @@ public final class RandomExtensions
 	 */
 	public static byte[] getRandomSalt(final int length, final Charset charset)
 	{
-		return RandomExtensions.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getAllowedCharacters(), length).getBytes(charset);
+		return RandomExtensions
+			.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
+				length)
+			.getBytes(charset);
 	}
 
 }

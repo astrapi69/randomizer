@@ -24,11 +24,13 @@
  */
 package de.alpharogroup.random;
 
+import static org.testng.AssertJUnit.assertNotNull;
+import static org.testng.AssertJUnit.assertNull;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 /**
@@ -53,10 +55,10 @@ public class SecureRandomBeanTest
 		SecureRandom sr = SecureRandomBean.builder().build();
 
 		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM).build();
-		AssertJUnit.assertNotNull(sr);
+		assertNotNull(sr);
 		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
 			.provider("SUN").build();
-		AssertJUnit.assertNotNull(sr);
+		assertNotNull(sr);
 	}
 
 	/**
@@ -70,16 +72,16 @@ public class SecureRandomBeanTest
 
 		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
 			.buildQuietly();
-		AssertJUnit.assertNotNull(sr);
+		assertNotNull(sr);
 		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
 			.provider("SUN").buildQuietly();
-		AssertJUnit.assertNotNull(sr);
+		assertNotNull(sr);
 
 		sr = SecureRandomBean.builder().algorithm("FOO").buildQuietly();
-		AssertJUnit.assertNull(sr);
+		assertNull(sr);
 		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
 			.provider("BAR").buildQuietly();
-		AssertJUnit.assertNull(sr);
+		assertNull(sr);
 	}
 
 	/**
