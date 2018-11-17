@@ -146,7 +146,8 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomFaxnumber()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(RandomCharacters.numbers.getCharacters().length());
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.numbers.getCharacters().length());
 		charBuffer.put(RandomCharacters.numbers.getCharacters());
 
 		expected = true;
@@ -167,7 +168,8 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomMobilnumber()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(RandomCharacters.numbers.getCharacters().length());
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.numbers.getCharacters().length());
 		charBuffer.put(RandomCharacters.numbers.getCharacters());
 
 		expected = true;
@@ -239,7 +241,8 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomPhonenumber()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(RandomCharacters.numbers.getCharacters().length());
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.numbers.getCharacters().length());
 		charBuffer.put(RandomCharacters.numbers.getCharacters());
 
 		expected = true;
@@ -293,7 +296,8 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		final CharBuffer charBuffer = CharBuffer
 			.allocate(RandomCharacters.lowcaseWithNumbers.getCharacters().length());
 		charBuffer.put(RandomCharacters.lowcaseWithNumbers.getCharacters());
-		final char[] donatedChars = RandomCharacters.lowcaseWithNumbers.getCharacters().toCharArray();
+		final char[] donatedChars = RandomCharacters.lowcaseWithNumbers.getCharacters()
+			.toCharArray();
 
 		expected = true;
 		for (int i = 0; i < 100; i++)

@@ -86,7 +86,8 @@ public enum RandomCharacters
 	/**
 	 * Instantiates a new {@link RandomCharacters}
 	 *
-	 * @param characters the allowed characters
+	 * @param characters
+	 *            the allowed characters
 	 */
 	private RandomCharacters(String characters)
 	{

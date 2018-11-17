@@ -29,8 +29,8 @@ package de.alpharogroup.random;
  * passwords.
  *
  * @deprecated use instead the enum class <code>RandomCharacters</code> <br>
- * <br>
- * Note: will be removed on next minor release
+ *             <br>
+ *             Note: will be removed on next minor release
  *
  * @author Asterios Raptis
  */
