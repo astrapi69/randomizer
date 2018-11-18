@@ -4,12 +4,17 @@
 Version 5.6-SNAPSHOT
 -------------
 
+CHANGED:
+
+- removed deprecated Constant class
+
 Version 5.5
 -------------
 
 ADDED:
  
-- new method created for create random hex string objects from a given length of characters
+- new method created for create random hexadecimal string objects from a given length of characters
+- new enum class created that will replace the Constant class
 
 CHANGED:
 
