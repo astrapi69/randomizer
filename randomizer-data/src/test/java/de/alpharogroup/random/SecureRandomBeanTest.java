@@ -25,7 +25,6 @@
 package de.alpharogroup.random;
 
 import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.assertNull;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
@@ -59,29 +58,6 @@ public class SecureRandomBeanTest
 		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
 			.provider("SUN").build();
 		assertNotNull(sr);
-	}
-
-	/**
-	 * Test method for {@link SecureRandomBean#buildQuietly()}
-	 */
-	@Test
-	public void testBuildQuietly()
-	{
-		SecureRandom sr;
-		sr = SecureRandomBean.builder().buildQuietly();
-
-		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
-			.buildQuietly();
-		assertNotNull(sr);
-		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
-			.provider("SUN").buildQuietly();
-		assertNotNull(sr);
-
-		sr = SecureRandomBean.builder().algorithm("FOO").buildQuietly();
-		assertNull(sr);
-		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
-			.provider("BAR").buildQuietly();
-		assertNull(sr);
 	}
 
 	/**
