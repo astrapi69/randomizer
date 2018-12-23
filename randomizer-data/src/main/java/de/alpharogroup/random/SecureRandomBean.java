@@ -28,8 +28,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
-import org.apache.log4j.Logger;
-
 import lombok.NonNull;
 
 /**
@@ -44,8 +42,6 @@ public class SecureRandomBean
 	public static final String DEFAULT_ALGORITHM = "SHA1PRNG";
 	/** The Constant DEFAULT_ALGORITHM. */
 	public static final String DEFAULT_PROVIDER = "SUN";
-	/** The Constant logger. */
-	private static final Logger logger = Logger.getLogger(SecureRandomBean.class.getName());
 
 	/**
 	 * Gets an instance of {@link SecureRandomBean} for build a {@link SecureRandom} object.
@@ -106,32 +102,6 @@ public class SecureRandomBean
 			return SecureRandom.getInstance(algorithm);
 		}
 		return SecureRandom.getInstance(DEFAULT_ALGORITHM);
-	}
-
-	/**
-	 * Builds a {@link SecureRandom} from the given algorithm and provider. If nothing is set the
-	 * default {@link SecureRandom} object with the default algorithm will be build.
-	 *
-	 * @return the new {@link SecureRandom} object
-	 */
-	public SecureRandom buildQuietly()
-	{
-		SecureRandom secureRandom = null;
-		try
-		{
-			secureRandom = build();
-		}
-		catch (final NoSuchAlgorithmException e)
-		{
-			logger.error("The specified algorithm is not available from the specified provider.",
-				e);
-		}
-		catch (final NoSuchProviderException e)
-		{
-			logger.error("The specified provider is not registered in the security provider list.",
-				e);
-		}
-		return secureRandom;
 	}
 
 	/**

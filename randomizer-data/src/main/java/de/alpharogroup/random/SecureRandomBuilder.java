@@ -30,9 +30,6 @@ import java.security.SecureRandom;
 
 import javax.annotation.Nonnull;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * The class {@link SecureRandomBuilder} builds a {@link SecureRandom} from the given algorithm and
  * provider. If nothing is set the default {@link SecureRandom} object with the default algorithm
@@ -43,10 +40,6 @@ public class SecureRandomBuilder
 
 	/** The Constant DEFAULT_ALGORITHM. */
 	public static final String DEFAULT_ALGORITHM = "SHA1PRNG";
-
-	/** The Constant logger. */
-	private static final Logger logger = LoggerFactory
-		.getLogger(SecureRandomBuilder.class.getName());
 
 	/**
 	 * Gets an instance of {@link SecureRandomBuilder} for build a {@link SecureRandom} object.
@@ -143,32 +136,6 @@ public class SecureRandomBuilder
 			return SecureRandom.getInstance(algorithm);
 		}
 		return SecureRandom.getInstance(DEFAULT_ALGORITHM);
-	}
-
-	/**
-	 * Builds a {@link SecureRandom} from the given algorithm and provider. If nothing is set the
-	 * default {@link SecureRandom} object with the default algorithm will be build.
-	 *
-	 * @return the new {@link SecureRandom} object
-	 */
-	public SecureRandom buildQueitly()
-	{
-		SecureRandom secureRandom = null;
-		try
-		{
-			secureRandom = build();
-		}
-		catch (final NoSuchAlgorithmException e)
-		{
-			logger.error("The specified algorithm is not available from the specified provider.",
-				e);
-		}
-		catch (final NoSuchProviderException e)
-		{
-			logger.error("The specified provider is not registered in the security provider list.",
-				e);
-		}
-		return secureRandom;
 	}
 
 	/**

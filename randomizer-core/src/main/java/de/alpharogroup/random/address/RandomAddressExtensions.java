@@ -60,8 +60,7 @@ public class RandomAddressExtensions
 	 */
 	public static String getRandomStreet(final Properties properties) throws IOException
 	{
-		Properties p = null;
-		p = properties != null
+		Properties p = properties != null
 			? properties
 			: PropertiesFileExtensions.loadProperties(PROP_FILE_STREETS);
 		final int size = p.size();

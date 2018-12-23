@@ -1,12 +1,25 @@
 ## Change log
 ----------------------
 
+Version 5.6
+-------------
+
+CHANGED:
+
+- removed deprecated Constant class
+- update of jobject-extensions version to 2.5
+- update of jcommons-lang version to 5
+- update of silly-collections version to 4.35
+- update of resourcebundle-inspector version to 3
+- remove of logging dependencies
+
 Version 5.5
 -------------
 
 ADDED:
  
-- new method created for create random hex string objects from a given length of characters
+- new method created for create random hexadecimal string objects from a given length of characters
+- new enum class created that will replace the Constant class
 
 CHANGED:
 
