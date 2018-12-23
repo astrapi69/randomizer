@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-java-parent</artifactId>
-		<version>4.4</version>
+		<version>4.5</version>
 	</parent>
 
 	<artifactId>randomizer</artifactId>
@@ -29,7 +29,7 @@
 		<silly-collections.version>5</silly-collections.version>
 		<vintage-time.version>5.1</vintage-time.version>
 		<!-- RESOURCEBUNDLE-CORE versions -->
-		<resourcebundle-inspector.version>3</resourcebundle-inspector.version>
+		<resourcebundle-inspector.version>3.0.1</resourcebundle-inspector.version>
 		<!-- JOBJECT-EXTENSIONS versions -->
 		<jobject-extensions.version>2.5</jobject-extensions.version>
 		<jobject-core.version>${jobject-extensions.version}</jobject-core.version>

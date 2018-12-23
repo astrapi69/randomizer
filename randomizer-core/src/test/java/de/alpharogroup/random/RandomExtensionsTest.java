@@ -45,7 +45,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.log4j.Logger;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.AfterMethod;
@@ -66,9 +65,6 @@ import de.alpharogroup.test.objects.enums.Gender;
  */
 public class RandomExtensionsTest extends BaseTestCase
 {
-
-	/** The Constant logger. */
-	private static final Logger logger = Logger.getLogger(RandomExtensionsTest.class.getName());
 
 	boolean expected;
 
@@ -378,7 +374,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	public void testRandomByteArray()
 	{
 		final byte[] randomByteArray = RandomExtensions.randomByteArray(8);
-		logger.debug(new String(randomByteArray, Charset.forName("UTF-8")));
+		assertTrue(randomByteArray.length == 8);
 	}
 
 	/**
@@ -536,7 +532,6 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomIntInt()
 	{
-		logger.debug("Generate 100 secure random numbers:");
 		for (int i = 0; i < 100; i++)
 		{
 			final int randomInt = RandomExtensions.randomInt(5);
@@ -561,7 +556,6 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test(enabled = true)
 	public void testRandomLongLong()
 	{
-		logger.debug("Generate 100 secure random numbers:");
 		for (int i = 0; i < 100; i++)
 		{
 			final long randomLong = RandomExtensions.randomLong(5l);

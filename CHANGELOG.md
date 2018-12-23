@@ -7,6 +7,10 @@ Version 5.6-SNAPSHOT
 CHANGED:
 
 - removed deprecated Constant class
+- update of jobject-extensions version to 2.5
+- update of jcommons-lang version to 5
+- update of silly-collections version to 4.35
+- update of resourcebundle-inspector version to 3
 
 Version 5.5
 -------------

@@ -25,12 +25,12 @@
 package de.alpharogroup.random;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.nio.CharBuffer;
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.AfterMethod;
@@ -47,10 +47,6 @@ import de.alpharogroup.BaseTestCase;
  */
 public class RandomObjectsExtensionsTest extends BaseTestCase
 {
-
-	/** The Constant logger. */
-	private static final Logger logger = Logger
-		.getLogger(RandomObjectsExtensionsTest.class.getName());
 
 	boolean expected;
 
@@ -281,9 +277,10 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testNewRandomId()
 	{
-		for (int i = 0; i < 1000; i++)
+		for (int i = 0; i < 10; i++)
 		{
-			logger.debug(RandomObjectsExtensions.newRandomId());
+			String newRandomId = RandomObjectsExtensions.newRandomId();
+			assertNotNull(newRandomId);
 		}
 	}
 
