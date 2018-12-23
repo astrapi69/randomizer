@@ -11,6 +11,7 @@ CHANGED:
 - update of jcommons-lang version to 5
 - update of silly-collections version to 4.35
 - update of resourcebundle-inspector version to 3
+- remove of logging dependencies
 
 Version 5.5
 -------------
