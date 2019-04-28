@@ -172,13 +172,13 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnum(Enum)} .
+	 * Test method for {@link RandomExtensions#getRandomEnumFromObject(Enum)} .
 	 */
 	@Test
 	public void testGetRandomEnum()
 	{
 		final Gender enumEntry = Gender.FEMALE;
-		final Gender randomEnumEntry = RandomExtensions.getRandomEnum(enumEntry);
+		final Gender randomEnumEntry = RandomExtensions.getRandomEnumFromObject(enumEntry);
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
@@ -186,24 +186,24 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnum(Enum[])} .
+	 * Test method for {@link RandomExtensions#getRandomEnumFromEnumValues(Enum[])} .
 	 */
 	@Test
 	public void testGetRandomEnumArray()
 	{
 		final Gender[] genders = Gender.values();
-		final Gender randomEnumEntry = RandomExtensions.getRandomEnum(genders);
+		final Gender randomEnumEntry = RandomExtensions.getRandomEnumFromEnumValues(genders);
 		assertTrue("Enum value should contain the random value.",
 			ArrayUtils.contains(genders, randomEnumEntry));
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnum(Enum)} .
+	 * Test method for {@link RandomExtensions#getRandomEnumFromObject(Enum)} .
 	 */
 	@Test
 	public void testGetRandomEnumClass()
 	{
-		final Gender randomEnumEntry = RandomExtensions.getRandomEnum(Gender.class);
+		final Gender randomEnumEntry = RandomExtensions.getRandomEnumFromClass(Gender.class);
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
@@ -211,33 +211,33 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnum(String)}
+	 * Test method for {@link RandomExtensions#getRandomEnumFromClassname(String)}
 	 */
 	@Test
 	public void testGetRandomEnumNull()
 	{
-		Gender randomEnum = RandomExtensions.getRandomEnum((Gender)null);
+		Gender randomEnum = RandomExtensions.getRandomEnumFromObject((Gender)null);
 		assertNull(randomEnum);
 
-		randomEnum = RandomExtensions.getRandomEnum((String)null);
+		randomEnum = RandomExtensions.getRandomEnumFromClassname((String)null);
 		assertNull(randomEnum);
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnum(String)} .
+	 * Test method for {@link RandomExtensions#getRandomEnumFromClassname(String)} .
 	 */
 	@Test
 	public void testGetRandomEnumString()
 	{
 		String enumClassName = "de.alpharogroup.test.objects.enums.Gender";
-		Gender randomEnumEntry = RandomExtensions.getRandomEnum(enumClassName);
+		Gender randomEnumEntry = RandomExtensions.getRandomEnumFromClassname(enumClassName);
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
 			ArrayUtils.contains(genders, randomEnumEntry));
 
 		enumClassName = "Gender";
-		randomEnumEntry = RandomExtensions.getRandomEnum(enumClassName);
+		randomEnumEntry = RandomExtensions.getRandomEnumFromClassname(enumClassName);
 		assertNull(randomEnumEntry);
 
 	}

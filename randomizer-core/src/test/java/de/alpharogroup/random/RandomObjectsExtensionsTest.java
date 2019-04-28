@@ -24,6 +24,7 @@
  */
 package de.alpharogroup.random;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
@@ -38,6 +39,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.BaseTestCase;
+import de.alpharogroup.test.objects.Person;
 
 /**
  * The unit test class for the class {@link RandomObjectsExtensions}.
@@ -285,7 +287,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsUtils#newRandomName(char[])} .
+	 * Test method for {@link RandomObjectsExtensions#newRandomName(char[])}
 	 */
 	@Test
 	public void testNewRandomName()
@@ -304,6 +306,24 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 
 			assertEquals(expected, actual.booleanValue());
 		}
+	}
+
+	/**
+	 * Test method for {@link RandomObjectsExtensions#newRandomObject(Class)}
+	 * 
+	 * @throws NoSuchFieldException
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
+	@Test
+	public void testNewRandomObject()
+		throws IllegalAccessException, InstantiationException, NoSuchFieldException
+	{
+		Person person = RandomObjectsExtensions.newRandomObject(Person.class);
+		assertNotNull(person);
+		Person person2 = RandomObjectsExtensions.newRandomObject(Person.class);
+		assertNotNull(person2);
+		assertNotEquals(person, person2);
 	}
 
 	/**

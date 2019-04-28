@@ -176,7 +176,7 @@ public final class DataGenerator
 	 */
 	public static <T extends Enum<?>> T getRandomEnum(final Class<T> clazz)
 	{
-		return RandomExtensions.getRandomEnum(clazz);
+		return RandomExtensions.getRandomEnumFromClass(clazz);
 	}
 
 	/**
@@ -190,7 +190,7 @@ public final class DataGenerator
 	 */
 	public static <T extends Enum<?>> T getRandomEnum(final String classname)
 	{
-		return RandomExtensions.getRandomEnum(classname);
+		return RandomExtensions.getRandomEnumFromClassname(classname);
 	}
 
 	/**
@@ -204,7 +204,7 @@ public final class DataGenerator
 	 */
 	public static <T extends Enum<?>> T getRandomEnum(final T obj)
 	{
-		return RandomExtensions.getRandomEnum(obj);
+		return RandomExtensions.getRandomEnumFromObject(obj);
 	}
 
 	/**
@@ -218,7 +218,7 @@ public final class DataGenerator
 	 */
 	public static <T extends Enum<?>> T getRandomEnum(final T[] values)
 	{
-		return RandomExtensions.getRandomEnum(values);
+		return RandomExtensions.getRandomEnumFromEnumValues(values);
 	}
 
 	/**

@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.UUID;
 
 import de.alpharogroup.lang.ClassExtensions;
 import de.alpharogroup.math.MathExtensions;
@@ -268,9 +269,9 @@ public final class RandomExtensions
 	 *            the clazz
 	 * @return the random enum
 	 */
-	public static <T extends Enum<?>> T getRandomEnum(final Class<T> clazz)
+	public static <T extends Enum<?>> T getRandomEnumFromClass(final Class<T> clazz)
 	{
-		return getRandomEnum(clazz.getEnumConstants());
+		return getRandomEnumFromEnumValues(clazz.getEnumConstants());
 	}
 
 	/**
@@ -283,7 +284,7 @@ public final class RandomExtensions
 	 * @return the random enum
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Enum<?>> T getRandomEnum(final String classname)
+	public static <T extends Enum<?>> T getRandomEnumFromClassname(final String classname)
 	{
 		if (classname != null && !classname.isEmpty())
 		{
@@ -291,7 +292,7 @@ public final class RandomExtensions
 			try
 			{
 				enumClass = (Class<T>)ClassExtensions.forName(classname);
-				return getRandomEnum(enumClass);
+				return getRandomEnumFromClass(enumClass);
 			}
 			catch (final ClassNotFoundException e)
 			{
@@ -311,12 +312,12 @@ public final class RandomExtensions
 	 * @return the random enum
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Enum<?>> T getRandomEnum(final T obj)
+	public static <T extends Enum<?>> T getRandomEnumFromObject(final T obj)
 	{
 		if (obj != null)
 		{
 			final Class<T> clazz = (Class<T>)obj.getClass();
-			return getRandomEnum(clazz);
+			return getRandomEnumFromClass(clazz);
 		}
 		return null;
 	}
@@ -330,7 +331,7 @@ public final class RandomExtensions
 	 *            the values
 	 * @return the random enum
 	 */
-	public static <T extends Enum<?>> T getRandomEnum(final T[] values)
+	public static <T extends Enum<?>> T getRandomEnumFromEnumValues(final T[] values)
 	{
 		return values[randomInt(values.length)];
 	}
@@ -491,6 +492,32 @@ public final class RandomExtensions
 		return ergebnis.toString();
 	}
 
+
+	/**
+	 * Generates a random string with a length between 3 and 25
+	 *
+	 * @return The produced random String.
+	 */
+	public static String getRandomString()
+	{
+		return getRandomString(3, 25);
+	}
+
+
+	/**
+	 * Generates a random string with a length between the given start and end
+	 *
+	 * @param start
+	 *            the start
+	 * @param end
+	 *            the end
+	 * @return the generated random string
+	 */
+	public static String getRandomString(final int start, int end)
+	{
+		return getRandomString(randomIntBetween(start, end));
+	}
+
 	/**
 	 * The Method randomString(String []) a random String from the Array For example: The
 	 * Stringarray test as argument. Possible values: "blab", "flih", "klap", "teta", "brut",
@@ -563,6 +590,23 @@ public final class RandomExtensions
 	}
 
 	/**
+	 * Returns a random short
+	 *
+	 * @return The generated random short
+	 */
+	public static short randomShort()
+	{
+		if (secureRandom.nextBoolean())
+		{
+			return (short)(secureRandom.nextInt(65536) - 32768);
+		}
+		else
+		{
+			return (short)secureRandom.nextInt(Short.MAX_VALUE + 1);
+		}
+	}
+
+	/**
 	 * The Method randomChar(String) selects a random char from the given String.
 	 *
 	 * @param string
@@ -589,6 +633,16 @@ public final class RandomExtensions
 			return secureRandom.nextDouble() * range;
 		}
 		return Math.random() * range;
+	}
+
+	/**
+	 * The Method randomDouble() gets a random double
+	 *
+	 * @return the random double
+	 */
+	public static double randomDouble()
+	{
+		return randomDouble(Double.MAX_VALUE);
 	}
 
 	/**
@@ -708,6 +762,16 @@ public final class RandomExtensions
 			return randomInt(secureRandom.nextInt());
 		}
 		return randomInt(new Random(System.currentTimeMillis()).nextInt());
+	}
+
+	/**
+	 * Factory method for create a new random {@link UUID}
+	 *
+	 * @return the new random {@link UUID}
+	 */
+	public static UUID randomUUID()
+	{
+		return UUID.randomUUID();
 	}
 
 	/**
@@ -858,5 +922,6 @@ public final class RandomExtensions
 				length)
 			.getBytes(charset);
 	}
+
 
 }

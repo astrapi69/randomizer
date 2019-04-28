@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-java-parent</artifactId>
-		<version>4.5</version>
+		<version>4.8</version>
 	</parent>
 
 	<artifactId>randomizer</artifactId>
@@ -24,16 +24,18 @@
 
 	<properties>
 		<!-- NEW EXTENSIONS LIB versions -->
-		<jcommons-lang.version>5.1</jcommons-lang.version>
-		<test-objects.version>5</test-objects.version>
-		<silly-collections.version>5</silly-collections.version>
+		<jcommons-lang.version>5.2</jcommons-lang.version>
+		<test-objects.version>5.1</test-objects.version>
+		<silly-collections.version>5.2</silly-collections.version>
 		<vintage-time.version>5.1</vintage-time.version>
 		<!-- RESOURCEBUNDLE-CORE versions -->
 		<resourcebundle-inspector.version>3.0.1</resourcebundle-inspector.version>
-		<!-- JOBJECT-EXTENSIONS versions -->
-		<jobject-extensions.version>2.5</jobject-extensions.version>
-		<jobject-core.version>${jobject-extensions.version}</jobject-core.version>
-		<jobject-evaluate.version>${jobject-extensions.version}</jobject-evaluate.version>
+		<!-- JOBJ-CONTRACT-VERIFIER version -->
+		<jobj-contract-verifier.version>3</jobj-contract-verifier.version>
+		<!-- JOBJ-CORE version -->
+		<jobj-core.version>3</jobj-core.version>
+		<!-- SILLY-MATH version -->
+		<silly-math.version>1</silly-math.version>
 		<!-- PARENT PROJECT versions -->
 		<!-- randomizer versions -->
 		<randomizer.version>${project.version}</randomizer.version>
@@ -46,8 +48,8 @@
 
 	<modules>
 		<module>randomizer-api</module>
-		<module>randomizer-core</module>
 		<module>randomizer-data</module>
+		<module>randomizer-core</module>
 	</modules>
 
 	<developers>
@@ -78,6 +80,24 @@
 	<dependencyManagement>
 
 		<dependencies>
+			<!-- SILLY-MATH DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>silly-math</artifactId>
+				<version>${silly-math.version}</version>
+			</dependency>
+			<!-- JOBJ-CONTRACT-VERIFIER DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>jobj-contract-verifier</artifactId>
+				<version>${jobj-contract-verifier.version}</version>
+			</dependency>
+			<!-- JOBJ-CORE DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>jobj-core</artifactId>
+				<version>${jobj-core.version}</version>
+			</dependency>
 			<!-- RESOURCEBUNDLE-CORE DEPENDENCIES -->
 			<dependency>
 				<groupId>de.alpharogroup</groupId>
@@ -131,19 +151,6 @@
 				<groupId>org.meanbean</groupId>
 				<artifactId>meanbean</artifactId>
 				<version>${meanbean.version}</version>
-			</dependency>
-			<!-- JOBJECT-EXTENSIONS DEPENDENCIES -->
-			<!-- JOBJECT-CORE DEPENDENCY -->
-			<dependency>
-				<groupId>de.alpharogroup</groupId>
-				<artifactId>jobject-core</artifactId>
-				<version>${jobject-core.version}</version>
-			</dependency>
-			<!-- JOBJECT-EVALUATE DEPENDENCY -->
-			<dependency>
-				<groupId>de.alpharogroup</groupId>
-				<artifactId>jobject-evaluate</artifactId>
-				<version>${jobject-evaluate.version}</version>
 			</dependency>
 
 		</dependencies>
