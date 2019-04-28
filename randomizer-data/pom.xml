@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>randomizer</artifactId>
-		<version>5.4</version>
+		<version>5.7</version>
 	</parent>
 	
 	<artifactId>randomizer-data</artifactId>
@@ -35,10 +35,10 @@
 			<artifactId>meanbean</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- JOBJECT-EVALUATE DEPENDENCY -->
+		<!-- JOBJ-CONTRACT-VERIFIER DEPENDENCY -->
 		<dependency>
 			<groupId>de.alpharogroup</groupId>
-			<artifactId>jobject-evaluate</artifactId>
+			<artifactId>jobj-contract-verifier</artifactId>
 			<scope>test</scope>
 		</dependency>
 

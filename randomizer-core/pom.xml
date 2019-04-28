@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>randomizer</artifactId>
-		<version>5.4</version>
+		<version>5.7</version>
 	</parent>
 
 	<artifactId>randomizer-core</artifactId>
@@ -38,6 +38,16 @@
 			<groupId>de.alpharogroup</groupId>
 			<artifactId>resourcebundle-inspector</artifactId>
 		</dependency>
+		<!-- JOBJ-CORE DEPENDENCY -->
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>jobj-core</artifactId>
+		</dependency>
+		<!-- SILLY-MATH DEPENDENCY -->
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>silly-math</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>de.alpharogroup</groupId>
@@ -48,12 +58,6 @@
 		<dependency>
 			<groupId>org.meanbean</groupId>
 			<artifactId>meanbean</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<!-- JOBJECT-CORE DEPENDENCY -->
-		<dependency>
-			<groupId>de.alpharogroup</groupId>
-			<artifactId>jobject-core</artifactId>
 			<scope>test</scope>
 		</dependency>
 

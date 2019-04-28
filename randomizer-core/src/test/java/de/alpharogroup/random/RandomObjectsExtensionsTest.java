@@ -24,13 +24,14 @@
  */
 package de.alpharogroup.random;
 
+import static org.junit.Assert.assertNotEquals;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.nio.CharBuffer;
 import java.util.Optional;
 
-import org.apache.log4j.Logger;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.AfterMethod;
@@ -38,6 +39,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.BaseTestCase;
+import de.alpharogroup.test.objects.Person;
 
 /**
  * The unit test class for the class {@link RandomObjectsExtensions}.
@@ -47,10 +49,6 @@ import de.alpharogroup.BaseTestCase;
  */
 public class RandomObjectsExtensionsTest extends BaseTestCase
 {
-
-	/** The Constant logger. */
-	private static final Logger logger = Logger
-		.getLogger(RandomObjectsExtensionsTest.class.getName());
 
 	boolean expected;
 
@@ -78,8 +76,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetInfomailFromWebsite()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.LCCHARSWN.length());
-		charBuffer.put(Constants.LCCHARSWN);
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.lowcaseWithNumbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.lowcaseWithNumbers.getCharacters());
 		final String url = RandomObjectsExtensions.getRandomWebsite();
 		final String emailprefix = "info@";
 
@@ -125,8 +124,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomEmail()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.LCCHARSWN.length());
-		charBuffer.put(Constants.LCCHARSWN);
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.lowcaseWithNumbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.lowcaseWithNumbers.getCharacters());
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
@@ -144,8 +144,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomFaxnumber()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.NUMBERS.length());
-		charBuffer.put(Constants.NUMBERS);
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.numbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.numbers.getCharacters());
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
@@ -165,8 +166,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomMobilnumber()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.NUMBERS.length());
-		charBuffer.put(Constants.NUMBERS);
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.numbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.numbers.getCharacters());
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
@@ -186,7 +188,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	{
 		final CharBuffer charBuffer = CharBuffer.allocate(26);
 		final int length = 5;
-		final String chars = Constants.LOWCASECHARS;
+		final String chars = RandomCharacters.lowcase.getCharacters();
 		charBuffer.put(chars);
 
 		expected = true;
@@ -208,7 +210,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		final CharBuffer charBuffer = CharBuffer.allocate(26);
 		final int length = 5;
 		Optional<Integer> optLength = Optional.of(length);
-		final String chars = Constants.LOWCASECHARS;
+		final String chars = RandomCharacters.lowcase.getCharacters();
 		charBuffer.put(chars);
 
 		expected = true;
@@ -237,8 +239,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomPhonenumber()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.NUMBERS.length());
-		charBuffer.put(Constants.NUMBERS);
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.numbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.numbers.getCharacters());
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
@@ -256,8 +259,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomWebsite()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.LCCHARSWN.length());
-		charBuffer.put(Constants.LCCHARSWN);
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.lowcaseWithNumbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.lowcaseWithNumbers.getCharacters());
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
@@ -275,21 +279,24 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	@Test
 	public void testNewRandomId()
 	{
-		for (int i = 0; i < 1000; i++)
+		for (int i = 0; i < 10; i++)
 		{
-			logger.debug(RandomObjectsExtensions.newRandomId());
+			String newRandomId = RandomObjectsExtensions.newRandomId();
+			assertNotNull(newRandomId);
 		}
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsUtils#newRandomName(char[])} .
+	 * Test method for {@link RandomObjectsExtensions#newRandomName(char[])}
 	 */
 	@Test
 	public void testNewRandomName()
 	{
-		final CharBuffer charBuffer = CharBuffer.allocate(Constants.LCCHARSWN.length());
-		charBuffer.put(Constants.LCCHARSWN);
-		final char[] donatedChars = Constants.LCCHARSWN.toCharArray();
+		final CharBuffer charBuffer = CharBuffer
+			.allocate(RandomCharacters.lowcaseWithNumbers.getCharacters().length());
+		charBuffer.put(RandomCharacters.lowcaseWithNumbers.getCharacters());
+		final char[] donatedChars = RandomCharacters.lowcaseWithNumbers.getCharacters()
+			.toCharArray();
 
 		expected = true;
 		for (int i = 0; i < 100; i++)
@@ -299,6 +306,24 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 
 			assertEquals(expected, actual.booleanValue());
 		}
+	}
+
+	/**
+	 * Test method for {@link RandomObjectsExtensions#newRandomObject(Class)}
+	 * 
+	 * @throws NoSuchFieldException
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
+	@Test
+	public void testNewRandomObject()
+		throws IllegalAccessException, InstantiationException, NoSuchFieldException
+	{
+		Person person = RandomObjectsExtensions.newRandomObject(Person.class);
+		assertNotNull(person);
+		Person person2 = RandomObjectsExtensions.newRandomObject(Person.class);
+		assertNotNull(person2);
+		assertNotEquals(person, person2);
 	}
 
 	/**

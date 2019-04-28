@@ -25,7 +25,6 @@
 package de.alpharogroup.random;
 
 import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
 
 import java.security.SecureRandom;
 
@@ -47,43 +46,6 @@ public class SecureRandomBuilderTest
 		assertNotNull(instance);
 		SecureRandom secureRandom = instance.build();
 		assertNotNull(secureRandom);
-	}
-
-	/**
-	 * Test method for {@link SecureRandomBuilder#buildQueitly()}.
-	 */
-	@Test
-	public void testBuildQueitly() throws Exception
-	{
-		SecureRandomBuilder instance = SecureRandomBuilder.getInstance();
-		assertNotNull(instance);
-		SecureRandom secureRandom = instance.buildQueitly();
-		assertNotNull(secureRandom);
-	}
-
-	/**
-	 * Test method for {@link SecureRandomBuilder#getInstance(String)}.
-	 */
-	@Test
-	public void testBuildQueitlyException01() throws Exception
-	{
-		SecureRandomBuilder instance = SecureRandomBuilder.getInstance("FOO");
-		assertNotNull(instance);
-		SecureRandom secureRandom = instance.buildQueitly();
-		assertNull(secureRandom);
-	}
-
-	/**
-	 * Test method for {@link SecureRandomBuilder#getInstance(String)}.
-	 */
-	@Test
-	public void testBuildQueitlyException02() throws Exception
-	{
-		SecureRandomBuilder instance = SecureRandomBuilder
-			.getInstance(SecureRandomBean.DEFAULT_ALGORITHM, "FOO");
-		assertNotNull(instance);
-		SecureRandom secureRandom = instance.buildQueitly();
-		assertNull(secureRandom);
 	}
 
 	/**

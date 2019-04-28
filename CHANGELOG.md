@@ -1,6 +1,54 @@
 ## Change log
 ----------------------
 
+Version 5.7
+-------------
+
+ADDED:
+ 
+- new dependency silly-math in version 1 added
+- new method for create random object over reflection
+- new method for create random string with default parameter
+- new method for create random short without arguments
+- new method for create random double without arguments
+- new method for create random UUID objects
+
+CHANGED:
+
+- update of parent version to 4.8
+- update of jcommons-lang version to 5.2
+- update of test-objects version to 5.1
+- update of silly-collections version to 5.2
+- replaced obsolet dependency jobject-core with new dependency jobj-core in version 3
+- replaced obsolet dependency jobject-evaluate with new dependency jobj-contract-verifier in version 3 
+
+Version 5.6
+-------------
+
+CHANGED:
+
+- removed deprecated Constant class
+- update of jobject-extensions version to 2.5
+- update of jcommons-lang version to 5
+- update of silly-collections version to 4.35
+- update of resourcebundle-inspector version to 3
+- remove of logging dependencies
+
+Version 5.5
+-------------
+
+ADDED:
+ 
+- new method created for create random hexadecimal string objects from a given length of characters
+- new enum class created that will replace the Constant class
+
+CHANGED:
+
+- update of jobject-extensions version to 2
+- update of jcommons-lang version to 5
+- update of silly-collections version to 4.35
+- update of resourcebundle-inspector version to 3
+
 Version 5.4
 -------------
 

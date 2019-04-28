@@ -45,7 +45,6 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.log4j.Logger;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.AfterMethod;
@@ -67,10 +66,6 @@ import de.alpharogroup.test.objects.enums.Gender;
  */
 public class NullSecureRandomExtensionsTest extends BaseTestCase
 {
-
-	/** The Constant logger. */
-	private static final Logger logger = Logger
-		.getLogger(NullSecureRandomExtensionsTest.class.getName());
 
 	boolean expected;
 
@@ -176,13 +171,13 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnum(Enum)} .
+	 * Test method for {@link RandomExtensions#getRandomEnumFromObject(Enum)} .
 	 */
 	@Test
 	public void testGetRandomEnum()
 	{
 		final Gender enumEntry = Gender.FEMALE;
-		final Gender randomEnumEntry = RandomExtensions.getRandomEnum(enumEntry);
+		final Gender randomEnumEntry = RandomExtensions.getRandomEnumFromObject(enumEntry);
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
@@ -190,24 +185,24 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnum(Enum[])} .
+	 * Test method for {@link RandomExtensions#getRandomEnumFromEnumValues(Enum[])} .
 	 */
 	@Test
 	public void testGetRandomEnumArray()
 	{
 		final Gender[] genders = Gender.values();
-		final Gender randomEnumEntry = RandomExtensions.getRandomEnum(genders);
+		final Gender randomEnumEntry = RandomExtensions.getRandomEnumFromEnumValues(genders);
 		assertTrue("Enum value should contain the random value.",
 			ArrayUtils.contains(genders, randomEnumEntry));
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnum(Enum)} .
+	 * Test method for {@link RandomExtensions#getRandomEnumFromObject(Enum)} .
 	 */
 	@Test
 	public void testGetRandomEnumClass()
 	{
-		final Gender randomEnumEntry = RandomExtensions.getRandomEnum(Gender.class);
+		final Gender randomEnumEntry = RandomExtensions.getRandomEnumFromClass(Gender.class);
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
@@ -215,13 +210,13 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnum(String)} .
+	 * Test method for {@link RandomExtensions#getRandomEnumFromClassname(String)} .
 	 */
 	@Test
 	public void testGetRandomEnumString()
 	{
 		final String enumClassName = "de.alpharogroup.test.objects.enums.Gender";
-		final Gender randomEnumEntry = RandomExtensions.getRandomEnum(enumClassName);
+		final Gender randomEnumEntry = RandomExtensions.getRandomEnumFromClassname(enumClassName);
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
@@ -350,7 +345,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	public void testRandomByteArray()
 	{
 		final byte[] randomByteArray = RandomExtensions.randomByteArray(8);
-		logger.debug(new String(randomByteArray, Charset.forName("UTF-8")));
+		assertTrue(randomByteArray.length == 8);
 	}
 
 	/**
@@ -371,7 +366,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomCharString()
 	{
-		final String string = Constants.LOWCASECHARS;
+		final String string = RandomCharacters.lowcase.getCharacters();
 		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
@@ -406,7 +401,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 
 	/**
 	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double, String)}.
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	@Test(enabled = true)
@@ -489,7 +484,6 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomIntInt()
 	{
-		logger.debug("Generate 100 secure random numbers:");
 		for (int i = 0; i < 100; i++)
 		{
 			final int randomInt = RandomExtensions.randomInt(5);
@@ -528,7 +522,6 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	@Test(enabled = true)
 	public void testRandomLongLong()
 	{
-		logger.debug("Generate 100 secure random numbers:");
 		for (int i = 0; i < 100; i++)
 		{
 			final long randomLong = RandomExtensions.randomLong(5l);
@@ -583,7 +576,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	{
 		final CharBuffer charBuffer = CharBuffer.allocate(45);
 		final int length = 5;
-		final String chars = Constants.LCCHARSWNASC;
+		final String chars = RandomCharacters.lowcaseWithNumbersAndSpecial.getCharacters();
 		charBuffer.put(chars);
 
 		expected = true;

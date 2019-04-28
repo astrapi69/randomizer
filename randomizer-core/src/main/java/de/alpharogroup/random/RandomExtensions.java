@@ -27,6 +27,8 @@ package de.alpharogroup.random;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -36,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.UUID;
 
 import de.alpharogroup.lang.ClassExtensions;
 import de.alpharogroup.math.MathExtensions;
@@ -58,7 +61,14 @@ public final class RandomExtensions
 	private static SecureRandom secureRandom;
 	static
 	{
-		secureRandom = SecureRandomBean.builder().buildQuietly();
+		try
+		{
+			secureRandom = SecureRandomBean.builder().build();
+		}
+		catch (NoSuchAlgorithmException | NoSuchProviderException e)
+		{
+			throw new RuntimeException("initialization of SecureRandom failed.", e);
+		}
 	}
 
 	/**
@@ -259,9 +269,9 @@ public final class RandomExtensions
 	 *            the clazz
 	 * @return the random enum
 	 */
-	public static <T extends Enum<?>> T getRandomEnum(final Class<T> clazz)
+	public static <T extends Enum<?>> T getRandomEnumFromClass(final Class<T> clazz)
 	{
-		return getRandomEnum(clazz.getEnumConstants());
+		return getRandomEnumFromEnumValues(clazz.getEnumConstants());
 	}
 
 	/**
@@ -274,7 +284,7 @@ public final class RandomExtensions
 	 * @return the random enum
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Enum<?>> T getRandomEnum(final String classname)
+	public static <T extends Enum<?>> T getRandomEnumFromClassname(final String classname)
 	{
 		if (classname != null && !classname.isEmpty())
 		{
@@ -282,7 +292,7 @@ public final class RandomExtensions
 			try
 			{
 				enumClass = (Class<T>)ClassExtensions.forName(classname);
-				return getRandomEnum(enumClass);
+				return getRandomEnumFromClass(enumClass);
 			}
 			catch (final ClassNotFoundException e)
 			{
@@ -302,12 +312,12 @@ public final class RandomExtensions
 	 * @return the random enum
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Enum<?>> T getRandomEnum(final T obj)
+	public static <T extends Enum<?>> T getRandomEnumFromObject(final T obj)
 	{
 		if (obj != null)
 		{
 			final Class<T> clazz = (Class<T>)obj.getClass();
-			return getRandomEnum(clazz);
+			return getRandomEnumFromClass(clazz);
 		}
 		return null;
 	}
@@ -321,7 +331,7 @@ public final class RandomExtensions
 	 *            the values
 	 * @return the random enum
 	 */
-	public static <T extends Enum<?>> T getRandomEnum(final T[] values)
+	public static <T extends Enum<?>> T getRandomEnumFromEnumValues(final T[] values)
 	{
 		return values[randomInt(values.length)];
 	}
@@ -422,7 +432,8 @@ public final class RandomExtensions
 	 */
 	public static String getRandomNumericString(final int length)
 	{
-		final String randomNumber = getRandomString(Constants.NUMBERS, length);
+		final String randomNumber = getRandomString(RandomCharacters.numbers.getCharacters(),
+			length);
 		return randomNumber;
 	}
 
@@ -445,6 +456,23 @@ public final class RandomExtensions
 	}
 
 	/**
+	 * Generates a random hexadecimal {@link String}
+	 *
+	 * @param numberOfCharacters
+	 *            the number of characters
+	 * @return the generated random hexadecimal {@link String}
+	 */
+	public static String getRandomHexString(int numberOfCharacters)
+	{
+		StringBuilder sb = new StringBuilder();
+		while (sb.length() < numberOfCharacters)
+		{
+			sb.append(Integer.toHexString(randomInt()));
+		}
+		return sb.toString().substring(0, numberOfCharacters);
+	}
+
+	/**
 	 * The Method randomString(String, int) makes an random String from the given String and to the
 	 * spezified length. This can be used to produce passwords.
 	 *
@@ -462,6 +490,33 @@ public final class RandomExtensions
 			ergebnis.append(randomChar(chars));
 		}
 		return ergebnis.toString();
+	}
+
+
+	/**
+	 * Generates a random string with a length between 3 and 25
+	 *
+	 * @return The produced random String.
+	 */
+	public static String getRandomString()
+	{
+		return getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
+			randomIntBetween(3, 25));
+	}
+
+
+	/**
+	 * Generates a random string with a length between the given start and end
+	 *
+	 * @param start
+	 *            the start
+	 * @param end
+	 *            the end
+	 * @return the generated random string
+	 */
+	public static String getRandomString(final int start, int end)
+	{
+		return getRandomString(randomIntBetween(start, end));
 	}
 
 	/**
@@ -536,6 +591,23 @@ public final class RandomExtensions
 	}
 
 	/**
+	 * Returns a random short
+	 *
+	 * @return The generated random short
+	 */
+	public static short randomShort()
+	{
+		if (secureRandom.nextBoolean())
+		{
+			return (short)(secureRandom.nextInt(65536) - 32768);
+		}
+		else
+		{
+			return (short)secureRandom.nextInt(Short.MAX_VALUE + 1);
+		}
+	}
+
+	/**
 	 * The Method randomChar(String) selects a random char from the given String.
 	 *
 	 * @param string
@@ -562,6 +634,16 @@ public final class RandomExtensions
 			return secureRandom.nextDouble() * range;
 		}
 		return Math.random() * range;
+	}
+
+	/**
+	 * The Method randomDouble() gets a random double
+	 *
+	 * @return the random double
+	 */
+	public static double randomDouble()
+	{
+		return randomDouble(Double.MAX_VALUE);
 	}
 
 	/**
@@ -681,6 +763,16 @@ public final class RandomExtensions
 			return randomInt(secureRandom.nextInt());
 		}
 		return randomInt(new Random(System.currentTimeMillis()).nextInt());
+	}
+
+	/**
+	 * Factory method for create a new random {@link UUID}
+	 *
+	 * @return the new random {@link UUID}
+	 */
+	public static UUID randomUUID()
+	{
+		return UUID.randomUUID();
 	}
 
 	/**
@@ -826,7 +918,11 @@ public final class RandomExtensions
 	 */
 	public static byte[] getRandomSalt(final int length, final Charset charset)
 	{
-		return RandomExtensions.getRandomString(Constants.LCUCCHARSWN, length).getBytes(charset);
+		return RandomExtensions
+			.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
+				length)
+			.getBytes(charset);
 	}
+
 
 }

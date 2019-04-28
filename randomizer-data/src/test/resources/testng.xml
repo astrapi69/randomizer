@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test name="Test">
+    <classes>
+      <class name="de.alpharogroup.random.ConstantsTest"/>
+      <class name="de.alpharogroup.random.RandomCharactersTest"/>
+      <class name="de.alpharogroup.random.SecureRandomBeanTest"/>
+      <class name="de.alpharogroup.random.SecureRandomBuilderTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
