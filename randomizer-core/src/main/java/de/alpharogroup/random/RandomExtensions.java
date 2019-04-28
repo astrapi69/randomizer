@@ -500,7 +500,8 @@ public final class RandomExtensions
 	 */
 	public static String getRandomString()
 	{
-		return getRandomString(3, 25);
+		return getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
+			randomIntBetween(3, 25));
 	}
 
 

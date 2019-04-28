@@ -356,7 +356,7 @@ public final class RandomObjectsExtensions
 		}
 		else if (type.equals(String.class))
 		{
-			return RandomExtensions.randomUUID().toString();
+			return RandomExtensions.getRandomString();
 		}
 		else if (type.equals(BigInteger.class))
 		{
