@@ -409,17 +409,6 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomDouble(double)}
-	 */
-	@Test(enabled = true)
-	public void testRandomDoubleDouble()
-	{
-		double random = RandomExtensions
-			.randomDouble(RandomExtensions.randomDoubleBetween(0.0, 10.0));
-		assertTrue(MathExtensions.isBetween(Double.MIN_VALUE, Double.MAX_VALUE, random));
-	}
-
-	/**
 	 * Test method for {@link RandomExtensions#randomDouble()}
 	 */
 	@Test(enabled = true)
@@ -449,6 +438,17 @@ public class RandomExtensionsTest extends BaseTestCase
 	{
 		double random = RandomExtensions.randomDoubleBetween(10000.0, 100000.0, "###,###.###");
 		assertTrue(MathExtensions.isBetween(10000.0, 100000.0, random, true, true));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomDouble(double)}
+	 */
+	@Test(enabled = true)
+	public void testRandomDoubleDouble()
+	{
+		double random = RandomExtensions
+			.randomDouble(RandomExtensions.randomDoubleBetween(0.0, 10.0));
+		assertTrue(MathExtensions.isBetween(Double.MIN_VALUE, Double.MAX_VALUE, random));
 	}
 
 	/**
@@ -618,7 +618,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		for (int i = 0; i < 10; i++)
 		{
 			short randomShort = RandomExtensions.randomShort();
-			assertTrue(MathExtensions.isBetween(-32768, 32767, randomShort, true, true));			
+			assertTrue(MathExtensions.isBetween(-32768, 32767, randomShort, true, true));
 		}
 	}
 
@@ -661,16 +661,6 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomUUID()}
-	 */
-	@Test
-	public void testRandomUUID()
-	{
-		UUID randomUUID = RandomExtensions.randomUUID();
-		assertNotNull(randomUUID);
-	}
-
-	/**
 	 * Test method for {@link RandomExtensions#randomToken()}
 	 */
 	@Test
@@ -678,6 +668,16 @@ public class RandomExtensionsTest extends BaseTestCase
 	{
 		final String randomToken = RandomExtensions.randomToken();
 		assertNotNull(randomToken);
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomUUID()}
+	 */
+	@Test
+	public void testRandomUUID()
+	{
+		UUID randomUUID = RandomExtensions.randomUUID();
+		assertNotNull(randomUUID);
 	}
 
 	/**

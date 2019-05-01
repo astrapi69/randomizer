@@ -48,7 +48,7 @@ public class SecureRandomFactory
 	}
 
 	/**
-	 * Factory method for create a new {@link SecureRandom} object.
+	 * Factory method for create a new {@link SecureRandom} object
 	 *
 	 * @param algorithm
 	 *            the algorithm
@@ -61,7 +61,7 @@ public class SecureRandomFactory
 	}
 
 	/**
-	 * Factory method for create a new {@link SecureRandom} object.
+	 * Factory method for create a new {@link SecureRandom} object
 	 *
 	 * @param algorithm
 	 *            the algorithm

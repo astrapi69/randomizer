@@ -81,5 +81,5 @@ public class SecureRandomFactoryTest
 		final BeanTester beanTester = new BeanTester();
 		beanTester.testBean(SecureRandomFactory.class);
 	}
-	
+
 }
