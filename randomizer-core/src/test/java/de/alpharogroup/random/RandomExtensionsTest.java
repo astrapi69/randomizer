@@ -43,6 +43,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.meanbean.test.BeanTestException;
@@ -326,6 +327,17 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomExtensions#getRandomString(int, int)}
+	 */
+	@Test(enabled = true)
+	public void testGetRandomStringwithStartEnd()
+	{
+		String randomString = RandomExtensions.getRandomString(3, 25);
+		assertNotNull(randomString);
+		assertTrue(MathExtensions.isBetween(3, 25, randomString.length(), true, true));
+	}
+
+	/**
 	 * Test method for {@link RandomExtensions#newRandomPixel()}
 	 */
 	@Test(enabled = true)
@@ -400,10 +412,20 @@ public class RandomExtensionsTest extends BaseTestCase
 	 * Test method for {@link RandomExtensions#randomDouble(double)}
 	 */
 	@Test(enabled = true)
-	public void testRandomDouble()
+	public void testRandomDoubleDouble()
 	{
 		double random = RandomExtensions
 			.randomDouble(RandomExtensions.randomDoubleBetween(0.0, 10.0));
+		assertTrue(MathExtensions.isBetween(Double.MIN_VALUE, Double.MAX_VALUE, random));
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomDouble()}
+	 */
+	@Test(enabled = true)
+	public void testRandomDouble()
+	{
+		double random = RandomExtensions.randomDouble();
 		assertTrue(MathExtensions.isBetween(Double.MIN_VALUE, Double.MAX_VALUE, random));
 	}
 
@@ -580,8 +602,21 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test(enabled = true)
 	public void testRandomSerialNumber()
 	{
-		BigInteger randomSerialNumber = RandomExtensions.randomSerialNumber();
-		assertNotNull(randomSerialNumber);
+		for (int i = 0; i < 10; i++)
+		{
+			BigInteger randomSerialNumber = RandomExtensions.randomSerialNumber();
+			assertNotNull(randomSerialNumber);
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomShort()}
+	 */
+	@Test(enabled = true)
+	public void testRandomShort()
+	{
+		short randomShort = RandomExtensions.randomShort();
+		assertTrue(MathExtensions.isBetween(-32768, 32767, randomShort, true, true));
 	}
 
 	/**
@@ -620,6 +655,16 @@ public class RandomExtensionsTest extends BaseTestCase
 			actual = randomString.contains(charBuffer);
 			assertEquals(actual.booleanValue(), expected);
 		}
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomUUID()}
+	 */
+	@Test
+	public void testRandomUUID()
+	{
+		UUID randomUUID = RandomExtensions.randomUUID();
+		assertNotNull(randomUUID);
 	}
 
 	/**

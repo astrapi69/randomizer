@@ -4,6 +4,10 @@
 Version 5.8-SNAPSHOT
 -------------
 
+ADDED:
+ 
+- new factory class for create new SecureRandom objects
+
 Version 5.7
 -------------
 

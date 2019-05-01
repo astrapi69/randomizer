@@ -27,8 +27,6 @@ package de.alpharogroup.random;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.charset.Charset;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -59,16 +57,10 @@ public final class RandomExtensions
 
 	/** The secure random. */
 	private static SecureRandom secureRandom;
+
 	static
 	{
-		try
-		{
-			secureRandom = SecureRandomBean.builder().build();
-		}
-		catch (NoSuchAlgorithmException | NoSuchProviderException e)
-		{
-			throw new RuntimeException("initialization of SecureRandom failed.", e);
-		}
+		secureRandom = SecureRandomFactory.newSecureRandom();
 	}
 
 	/**
