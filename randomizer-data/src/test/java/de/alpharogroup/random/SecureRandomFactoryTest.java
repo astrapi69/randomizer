@@ -26,8 +26,11 @@ package de.alpharogroup.random;
 
 import static org.testng.Assert.assertNotNull;
 
+import java.lang.reflect.InvocationTargetException;
 import java.security.SecureRandom;
 
+import org.meanbean.test.BeanTestException;
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 /**
@@ -68,4 +71,15 @@ public class SecureRandomFactoryTest
 		assertNotNull(secureRandom);
 	}
 
+	/**
+	 * Test method for {@link SecureRandomFactory} with {@link BeanTester}
+	 */
+	@Test(enabled = false, expectedExceptions = { BeanTestException.class,
+			InvocationTargetException.class, UnsupportedOperationException.class })
+	public void testWithBeanTester()
+	{
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(SecureRandomFactory.class);
+	}
+	
 }

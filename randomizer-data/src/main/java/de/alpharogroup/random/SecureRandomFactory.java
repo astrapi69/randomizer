@@ -27,10 +27,12 @@ package de.alpharogroup.random;
 import java.security.SecureRandom;
 
 import lombok.SneakyThrows;
+import lombok.experimental.UtilityClass;
 
 /**
  * A factory for creating {@link SecureRandom} objects
  */
+@UtilityClass
 public class SecureRandomFactory
 {
 
