@@ -615,8 +615,11 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test(enabled = true)
 	public void testRandomShort()
 	{
-		short randomShort = RandomExtensions.randomShort();
-		assertTrue(MathExtensions.isBetween(-32768, 32767, randomShort, true, true));
+		for (int i = 0; i < 10; i++)
+		{
+			short randomShort = RandomExtensions.randomShort();
+			assertTrue(MathExtensions.isBetween(-32768, 32767, randomShort, true, true));			
+		}
 	}
 
 	/**
