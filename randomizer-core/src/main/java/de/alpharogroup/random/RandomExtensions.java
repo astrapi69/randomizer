@@ -26,6 +26,7 @@ package de.alpharogroup.random;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.nio.charset.Charset;
 import java.security.SecureRandom;
 import java.text.DecimalFormat;
@@ -916,5 +917,26 @@ public final class RandomExtensions
 			.getBytes(charset);
 	}
 
+	/**
+	 * Generates a random {@link BigInteger}
+	 *
+	 * @return the random {@link BigInteger}
+	 */
+	public static BigInteger randomBigInteger()
+	{
+		return new BigInteger(randomInt(180), secureRandom);
+	}
+
+	/**
+	 * Generates a random {@link BigDecimal}
+	 *
+	 * @return the random {@link BigDecimal}
+	 */
+	public static BigDecimal randomBigDecimal()
+	{
+		BigDecimal bigDecimal = new BigDecimal(randomDouble());
+		bigDecimal.setScale(randomInt(2), RoundingMode.HALF_DOWN);
+		return bigDecimal;
+	}
 
 }

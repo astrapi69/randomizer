@@ -370,6 +370,26 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomExtensions#randomBigInteger()}
+	 */
+	@Test
+	public void testRandomBigDecimal()
+	{
+		BigDecimal randomBigDecimal = RandomExtensions.randomBigDecimal();
+		assertNotNull(randomBigDecimal);
+	}
+
+	/**
+	 * Test method for {@link RandomExtensions#randomBigInteger()}
+	 */
+	@Test
+	public void testRandomBigInteger()
+	{
+		BigInteger randomBigInteger = RandomExtensions.randomBigInteger();
+		assertNotNull(randomBigInteger);
+	}
+
+	/**
 	 * Test method for {@link RandomExtensions#randomBoolean()}
 	 */
 	@Test(enabled = true)
@@ -461,6 +481,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		assertTrue(MathExtensions.isBetween(Float.MIN_VALUE, Float.MAX_VALUE, random));
 	}
 
+
 	/**
 	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float)}
 	 */
@@ -483,7 +504,6 @@ public class RandomExtensionsTest extends BaseTestCase
 		float random = RandomExtensions.randomFloatBetween(0.0f, 10.0f, "###,###.###");
 		assertTrue(MathExtensions.isBetween(0.0f, 10.0f, random));
 	}
-
 
 	/**
 	 * Test method for {@link RandomExtensions#randomFloat(float)}

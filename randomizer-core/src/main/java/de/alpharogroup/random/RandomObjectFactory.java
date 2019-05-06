@@ -26,6 +26,7 @@ package de.alpharogroup.random;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import de.alpharogroup.reflection.ReflectionExtensions;
@@ -57,11 +58,12 @@ public class RandomObjectFactory
 	 * @throws NoSuchFieldException
 	 *             is thrown if no such field exists
 	 */
-	public static <T> T newRandomObject(final @NonNull Class<T> cls)
+	public static <T> T newRandomObject(final @NonNull Class<T> cls, String... ignoreFieldNames)
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
 	{
 		T instance = ReflectionExtensions.newInstance(cls);
-		Field[] allDeclaredFields = ReflectionExtensions.getAllDeclaredFields(cls);
+		Field[] allDeclaredFields = ReflectionExtensions.getAllDeclaredFields(cls,
+			ignoreFieldNames);
 		for (Field field : allDeclaredFields)
 		{
 			if (Modifier.isFinal(field.getModifiers()))
@@ -121,19 +123,19 @@ public class RandomObjectFactory
 		}
 		else if (type.equals(Integer.TYPE) || type.equals(Integer.class))
 		{
-			return RandomExtensions.randomInt();
+			return Integer.valueOf(RandomExtensions.randomInt());
 		}
 		else if (type.equals(Long.TYPE) || type.equals(Long.class))
 		{
-			return RandomExtensions.randomLong();
+			return Long.valueOf(RandomExtensions.randomLong());
 		}
 		else if (type.equals(Double.TYPE) || type.equals(Double.class))
 		{
-			return RandomExtensions.randomDouble();
+			return Double.valueOf(RandomExtensions.randomDouble());
 		}
 		else if (type.equals(Float.TYPE) || type.equals(Float.class))
 		{
-			return RandomExtensions.randomFloat();
+			return Float.valueOf(RandomExtensions.randomFloat());
 		}
 		else if (type.equals(String.class))
 		{
@@ -141,8 +143,13 @@ public class RandomObjectFactory
 		}
 		else if (type.equals(BigInteger.class))
 		{
-			return RandomExtensions.randomSerialNumber();
+			return RandomExtensions.randomBigInteger();
+		}
+		else if (type.equals(BigDecimal.class))
+		{
+			return RandomExtensions.randomBigDecimal();
 		}
 		return newRandomObject(type);
 	}
+
 }
