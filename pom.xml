@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>randomizer</artifactId>
-	<version>5.8</version>
+	<version>5.9-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<inceptionYear>2015</inceptionYear>
 
