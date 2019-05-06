@@ -28,6 +28,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.List;
 
 import de.alpharogroup.reflection.ReflectionExtensions;
 import lombok.NonNull;
@@ -41,14 +43,15 @@ public class RandomObjectFactory
 {
 
 	/**
-	 * Factory method for create a new random object of the given {@link Class}
+	 * Factory method for create a new random object of the given {@link Class}.
 	 *
 	 * @param <T>
 	 *            the generic type
 	 * @param cls
 	 *            the class
+	 * @param ignoreFieldNames
+	 *            an optional array with the field names that shell be ignored
 	 * @return the new random object
-	 * 
 	 * @throws IllegalAccessException
 	 *             is thrown if the class or its default constructor is not accessible.
 	 * @throws InstantiationException
@@ -60,13 +63,13 @@ public class RandomObjectFactory
 	 */
 	public static <T> T newRandomObject(final @NonNull Class<T> cls, String... ignoreFieldNames)
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
-	{
+	{		
 		T instance = ReflectionExtensions.newInstance(cls);
-		Field[] allDeclaredFields = ReflectionExtensions.getAllDeclaredFields(cls,
-			ignoreFieldNames);
+		Field[] allDeclaredFields = ReflectionExtensions.getAllDeclaredFields(cls);
+		List<String> toIgnoreFields = Arrays.asList(ignoreFieldNames);
 		for (Field field : allDeclaredFields)
 		{
-			if (Modifier.isFinal(field.getModifiers()))
+			if (Modifier.isFinal(field.getModifiers()) || toIgnoreFields.contains(field.getName()))
 			{
 				continue;
 			}

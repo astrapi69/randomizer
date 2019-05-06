@@ -68,6 +68,26 @@ public class RandomObjectFactoryTest
 	}
 
 	/**
+	 * Test method for {@link RandomObjectFactory#newRandomObject(Class)}
+	 * 
+	 * @throws IllegalAccessException
+	 *             is thrown if the class or its default constructor is not accessible.
+	 * @throws InstantiationException
+	 *             is thrown if this {@code Class} represents an abstract class, an interface, an
+	 *             array class, a primitive type, or void; or if the class has no default
+	 *             constructor; or if the instantiation fails for some other reason.
+	 * @throws NoSuchFieldException
+	 *             is thrown if no such field exists
+	 */
+	@Test
+	public void testNewRandomObjectVarargs()
+		throws IllegalAccessException, InstantiationException, NoSuchFieldException
+	{
+		Person person = RandomObjectFactory.newRandomObject(Person.class, "name");
+		assertNotNull(person);
+	}
+
+	/**
 	 * Test method for {@link RandomObjectFactory} with {@link BeanTester}
 	 */
 	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,

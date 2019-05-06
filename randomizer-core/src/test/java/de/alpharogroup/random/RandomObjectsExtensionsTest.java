@@ -315,6 +315,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	 * @throws InstantiationException
 	 * @throws IllegalAccessException
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testNewRandomObject()
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
