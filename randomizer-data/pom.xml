@@ -35,12 +35,6 @@
 			<artifactId>meanbean</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- JOBJ-CONTRACT-VERIFIER DEPENDENCY -->
-		<dependency>
-			<groupId>de.alpharogroup</groupId>
-			<artifactId>jobj-contract-verifier</artifactId>
-			<scope>test</scope>
-		</dependency>
 
 	</dependencies>
 

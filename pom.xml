@@ -36,8 +36,6 @@
 		<vintage-time.version>5.1</vintage-time.version>
 		<!-- RESOURCEBUNDLE-CORE versions -->
 		<resourcebundle-inspector.version>3.0.1</resourcebundle-inspector.version>
-		<!-- JOBJ-CONTRACT-VERIFIER version -->
-		<jobj-contract-verifier.version>3</jobj-contract-verifier.version>
 		<!-- JOBJ-CORE version -->
 		<jobj-core.version>3</jobj-core.version>
 		<!-- SILLY-MATH version -->
@@ -85,12 +83,6 @@
 				<groupId>de.alpharogroup</groupId>
 				<artifactId>silly-math</artifactId>
 				<version>${silly-math.version}</version>
-			</dependency>
-			<!-- JOBJ-CONTRACT-VERIFIER DEPENDENCY -->
-			<dependency>
-				<groupId>de.alpharogroup</groupId>
-				<artifactId>jobj-contract-verifier</artifactId>
-				<version>${jobj-contract-verifier.version}</version>
 			</dependency>
 			<!-- JOBJ-CORE DEPENDENCY -->
 			<dependency>
