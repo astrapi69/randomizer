@@ -1,6 +1,15 @@
 ## Change log
 ----------------------
 
+Version 5.8
+-------------
+
+ADDED:
+ 
+- new factory class for create new random objects with optional exclude fields
+- new factory class for create new SecureRandom objects
+- new methods created for random BigInteger and BigDecimal 
+
 Version 5.7
 -------------
 

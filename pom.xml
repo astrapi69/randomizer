@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>randomizer</artifactId>
-	<version>5.7</version>
+	<version>5.8</version>
 	<packaging>pom</packaging>
 	<inceptionYear>2015</inceptionYear>
 
@@ -23,6 +23,12 @@
 	<url>https://github.com/astrapi69/randomizer</url>
 
 	<properties>
+		<!-- PARENT PROJECT versions -->
+		<!-- RANDOMIZER versions -->
+		<randomizer.version>${project.version}</randomizer.version>
+		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
+		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
+		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
 		<!-- NEW EXTENSIONS LIB versions -->
 		<jcommons-lang.version>5.2</jcommons-lang.version>
 		<test-objects.version>5.1</test-objects.version>
@@ -36,12 +42,6 @@
 		<jobj-core.version>3</jobj-core.version>
 		<!-- SILLY-MATH version -->
 		<silly-math.version>1</silly-math.version>
-		<!-- PARENT PROJECT versions -->
-		<!-- randomizer versions -->
-		<randomizer.version>${project.version}</randomizer.version>
-		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
-		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
-		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
 		<!-- MEANBEAN version -->
 		<meanbean.version>2.0.3</meanbean.version>
 	</properties>
@@ -233,6 +233,7 @@
 								<exclude>de/alpharogroup/random/Constants.class</exclude>
 								<!-- explicit delegation classes -->
 								<exclude>de/alpharogroup/random/DataGenerator.class</exclude>
+								<exclude>de/alpharogroup/random/SecureRandomFactory.class</exclude>
 							</excludes>
 						</instrumentation>
 					</configuration>

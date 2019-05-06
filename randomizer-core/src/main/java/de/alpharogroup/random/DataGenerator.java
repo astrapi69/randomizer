@@ -37,8 +37,12 @@ import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link DataGenerator} can generate several random data of different data types. It
- * delegates to other random generator classes.
+ * delegates to other random generator classes
+ * 
+ * @deprecated use instead the appropriate Random extension classes. Note will be removed in next
+ *             minor release
  */
+@Deprecated
 @UtilityClass
 public final class DataGenerator
 {

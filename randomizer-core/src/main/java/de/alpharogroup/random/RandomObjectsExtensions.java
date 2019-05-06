@@ -205,7 +205,7 @@ public final class RandomObjectsExtensions
 	}
 
 	/**
-	 * Creates a random id and returns it.
+	 * Factory method for create a new random id and returns it
 	 *
 	 * @return the created random id.
 	 */
@@ -229,10 +229,10 @@ public final class RandomObjectsExtensions
 	}
 
 	/**
-	 * Creates a random Name from the donated chararray.
+	 * Factory method for create a new random name from the donated char array
 	 *
 	 * @param donatedChars
-	 *            The Characters for the name.
+	 *            The Characters for the name
 	 * @return A random Name.
 	 */
 	public static String newRandomName(final char[] donatedChars)
@@ -275,7 +275,9 @@ public final class RandomObjectsExtensions
 	 *             constructor; or if the instantiation fails for some other reason.
 	 * @throws NoSuchFieldException
 	 *             is thrown if no such field exists
+	 * @deprecated use instead the same name method in the factory class
 	 */
+	@Deprecated
 	public static <T> T newRandomObject(final @NonNull Class<T> cls)
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
 	{
@@ -307,7 +309,9 @@ public final class RandomObjectsExtensions
 	 *             constructor; or if the instantiation fails for some other reason.
 	 * @throws NoSuchFieldException
 	 *             is thrown if no such field exists
+	 * @deprecated use instead the same name method in the factory class
 	 */
+	@Deprecated
 	public static Object newRandomValue(Field field)
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
 	{
