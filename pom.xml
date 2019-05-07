@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>randomizer</artifactId>
-	<version>5.9-SNAPSHOT</version>
+	<version>5.8.1</version>
 	<packaging>pom</packaging>
 	<inceptionYear>2015</inceptionYear>
 
@@ -30,14 +30,14 @@
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
 		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
 		<!-- NEW EXTENSIONS LIB versions -->
-		<jcommons-lang.version>5.2</jcommons-lang.version>
+		<jcommons-lang.version>5.2.1</jcommons-lang.version>
 		<test-objects.version>5.1</test-objects.version>
 		<silly-collections.version>5.2</silly-collections.version>
 		<vintage-time.version>5.1</vintage-time.version>
 		<!-- RESOURCEBUNDLE-CORE versions -->
 		<resourcebundle-inspector.version>3.0.1</resourcebundle-inspector.version>
 		<!-- JOBJ-CORE version -->
-		<jobj-core.version>3</jobj-core.version>
+		<jobj-core.version>3.1</jobj-core.version>
 		<!-- SILLY-MATH version -->
 		<silly-math.version>1</silly-math.version>
 		<!-- MEANBEAN version -->

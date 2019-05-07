@@ -1,8 +1,13 @@
 ## Change log
 ----------------------
 
-Version 5.9-SNAPSHOT
+Version 5.8.1
 -------------
+
+CHANGED:
+
+- update of jcommons-lang version to 5.2.1
+- update of jobj-core version to 3.1
 
 Version 5.8
 -------------
