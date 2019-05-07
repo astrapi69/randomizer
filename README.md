@@ -8,6 +8,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/randomizer/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/randomizer-core)
 [![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/randomizer.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-core)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
+[![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 
 </div>
 
@@ -61,7 +62,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>5.8</randomizer.version>
+		<randomizer.version>5.8.1</randomizer.version>
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
 		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
 		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
