@@ -1,12 +1,11 @@
 ## Change log
 ----------------------
 
-Version 5.9-SNAPSHOT
+Version 5.8.2
 -------------
 
 CHANGED:
 
-- update of jcommons-lang version to 5.2.2
 - update of test-objects version to 5.0.1
 - update of silly-collections version to 5.2.1
 - remove unused dependency jcommons-lang
