@@ -63,7 +63,7 @@ public class RandomObjectFactory
 	 */
 	public static <T> T newRandomObject(final @NonNull Class<T> cls, String... ignoreFieldNames)
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
-	{		
+	{
 		T instance = ReflectionExtensions.newInstance(cls);
 		Field[] allDeclaredFields = ReflectionExtensions.getAllDeclaredFields(cls);
 		List<String> toIgnoreFields = Arrays.asList(ignoreFieldNames);
