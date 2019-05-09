@@ -4,6 +4,15 @@
 Version 5.9-SNAPSHOT
 -------------
 
+ADDED:
+ 
+- new dependency silly-strings in test scope
+
+CHANGED:
+
+- remove of dependency resourcebundle-inspector
+- update of test-objects version to 5.2
+
 Version 5.8.2
 -------------
 

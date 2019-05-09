@@ -44,7 +44,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.AfterMethod;
@@ -52,6 +51,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.BaseTestCase;
+import de.alpharogroup.collections.array.ArrayExtensions;
 import de.alpharogroup.math.MathExtensions;
 import de.alpharogroup.reflection.ReflectionExtensions;
 import de.alpharogroup.string.StringExtensions;
@@ -181,7 +181,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
-			ArrayUtils.contains(genders, randomEnumEntry));
+				ArrayExtensions.contains(genders, randomEnumEntry));
 	}
 
 	/**
@@ -193,7 +193,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		final Gender[] genders = Gender.values();
 		final Gender randomEnumEntry = RandomExtensions.getRandomEnumFromEnumValues(genders);
 		assertTrue("Enum value should contain the random value.",
-			ArrayUtils.contains(genders, randomEnumEntry));
+				ArrayExtensions.contains(genders, randomEnumEntry));
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
-			ArrayUtils.contains(genders, randomEnumEntry));
+				ArrayExtensions.contains(genders, randomEnumEntry));
 	}
 
 	/**
@@ -220,7 +220,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
-			ArrayUtils.contains(genders, randomEnumEntry));
+				ArrayExtensions.contains(genders, randomEnumEntry));
 	}
 
 	/**

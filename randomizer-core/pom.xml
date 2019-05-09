@@ -27,12 +27,6 @@
 			<groupId>de.alpharogroup</groupId>
 			<artifactId>randomizer-data</artifactId>
 		</dependency>
-
-		<!-- RESOURCEBUNDLE-CORE DEPENDENCIES -->
-		<dependency>
-			<groupId>de.alpharogroup</groupId>
-			<artifactId>resourcebundle-inspector</artifactId>
-		</dependency>
 		<!-- JOBJ-CORE DEPENDENCY -->
 		<dependency>
 			<groupId>de.alpharogroup</groupId>
@@ -53,6 +47,12 @@
 		<dependency>
 			<groupId>org.meanbean</groupId>
 			<artifactId>meanbean</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<!-- SILLY-STRINGS DEPENDENCY -->
+		<dependency>
+			<groupId>de.alpharogroup</groupId>
+			<artifactId>silly-strings</artifactId>
 			<scope>test</scope>
 		</dependency>
 

@@ -30,15 +30,15 @@
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
 		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
 		<!-- TEST-OBJECTS version -->
-		<test-objects.version>5.0.1</test-objects.version>
+		<test-objects.version>5.2</test-objects.version>
 		<silly-collections.version>5.2.1</silly-collections.version>
 		<vintage-time.version>5.1</vintage-time.version>
-		<!-- RESOURCEBUNDLE-CORE versions -->
-		<resourcebundle-inspector.version>3.0.3</resourcebundle-inspector.version>
 		<!-- JOBJ-CORE version -->
 		<jobj-core.version>3.1</jobj-core.version>
 		<!-- SILLY-MATH version -->
 		<silly-math.version>1</silly-math.version>
+		<!-- SILLY-STRINGS version -->
+		<silly-strings.version>5.3.1</silly-strings.version>
 		<!-- MEANBEAN version -->
 		<meanbean.version>2.0.3</meanbean.version>
 	</properties>
@@ -89,12 +89,6 @@
 				<artifactId>jobj-core</artifactId>
 				<version>${jobj-core.version}</version>
 			</dependency>
-			<!-- RESOURCEBUNDLE-CORE DEPENDENCIES -->
-			<dependency>
-				<groupId>de.alpharogroup</groupId>
-				<artifactId>resourcebundle-inspector</artifactId>
-				<version>${resourcebundle-inspector.version}</version>
-			</dependency>
 			<!-- NEW EXTENSIONS LIB DEPENDENCIES -->
 			<dependency>
 				<groupId>de.alpharogroup</groupId>
@@ -136,6 +130,12 @@
 				<groupId>org.meanbean</groupId>
 				<artifactId>meanbean</artifactId>
 				<version>${meanbean.version}</version>
+			</dependency>
+			<!-- SILLY-STRINGS DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>silly-strings</artifactId>
+				<version>${silly-strings.version}</version>
 			</dependency>
 
 		</dependencies>
