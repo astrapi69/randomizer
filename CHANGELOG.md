@@ -4,6 +4,11 @@
 Version 5.9-SNAPSHOT
 -------------
 
+CHANGED:
+
+- update of parent version to 5
+- update of jobj-core version to 3.2
+
 Version 5.8.3
 -------------
 
