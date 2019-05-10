@@ -67,6 +67,29 @@ public class RandomObjectFactory
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
 	{
 		T instance = ReflectionExtensions.newInstance(cls);
+		return setRandomValues(cls, instance, ignoreFieldNames);
+	}
+
+	/**
+	 * Sets the random values to the fields of the given instance
+	 *
+	 * @param <T> the generic type
+	 * @param cls the cls
+	 * @param instance the instance to set random values
+	 * @param ignoreFieldNames the ignore field names
+	 * @return the new random object
+	 * @throws IllegalAccessException
+	 *             is thrown if the class or its default constructor is not accessible.
+	 * @throws InstantiationException
+	 *             is thrown if this {@code Class} represents an abstract class, an interface, an
+	 *             array class, a primitive type, or void; or if the class has no default
+	 *             constructor; or if the instantiation fails for some other reason.
+	 * @throws NoSuchFieldException
+	 *             is thrown if no such field exists
+	 */
+	public static <T> T setRandomValues(final @NonNull Class<T> cls, final @NonNull T instance, String... ignoreFieldNames)
+		throws IllegalAccessException, InstantiationException, NoSuchFieldException
+	{
 		Field[] allDeclaredFields = ReflectionExtensions.getAllDeclaredFields(cls);
 		List<String> toIgnoreFields = Arrays.asList(ignoreFieldNames);
 		for (Field field : allDeclaredFields)
