@@ -1,6 +1,20 @@
 ## Change log
 ----------------------
 
+Version 6.0.1
+-------------
+
+ADDED:
+ 
+- new method for create random Date without arguments
+- new method for set random values to an existing object
+
+CHANGED:
+
+- removed deprecated class DataGenerator
+- adapted method newRandomValue for type Date
+- update of jobj-core version to 3.2.1
+
 Version 6
 -------------
 

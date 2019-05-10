@@ -181,7 +181,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
-				ArrayExtensions.contains(genders, randomEnumEntry));
+			ArrayExtensions.contains(genders, randomEnumEntry));
 	}
 
 	/**
@@ -193,7 +193,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		final Gender[] genders = Gender.values();
 		final Gender randomEnumEntry = RandomExtensions.getRandomEnumFromEnumValues(genders);
 		assertTrue("Enum value should contain the random value.",
-				ArrayExtensions.contains(genders, randomEnumEntry));
+			ArrayExtensions.contains(genders, randomEnumEntry));
 	}
 
 	/**
@@ -206,7 +206,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
-				ArrayExtensions.contains(genders, randomEnumEntry));
+			ArrayExtensions.contains(genders, randomEnumEntry));
 	}
 
 	/**
@@ -220,7 +220,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
-				ArrayExtensions.contains(genders, randomEnumEntry));
+			ArrayExtensions.contains(genders, randomEnumEntry));
 	}
 
 	/**

@@ -30,10 +30,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Random;
 
 import de.alpharogroup.date.CalculateDateExtensions;
 import de.alpharogroup.random.RandomExtensions;
+import de.alpharogroup.random.SecureRandomFactory;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -45,6 +45,14 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class RandomDateExtensions
 {
+
+	/** The secure random. */
+	private static SecureRandom secureRandom;
+
+	static
+	{
+		secureRandom = SecureRandomFactory.newSecureRandom();
+	}
 
 	/**
 	 * Creates a random Date that is after from the given Date.
@@ -171,11 +179,25 @@ public class RandomDateExtensions
 	 */
 	public static Date randomDate(final Date from)
 	{
-		final Random secrand = new SecureRandom();
-		final double randDouble = -secrand.nextDouble() * from.getTime();
-		final double randomDouble = from.getTime() - secrand.nextDouble();
+		final double randDouble = -secureRandom.nextDouble() * from.getTime();
+		final double randomDouble = from.getTime() - secureRandom.nextDouble();
 		final double result = (randDouble / 99999) * (randomDouble / 99999);
 		return new Date((long)result);
+	}
+
+	/**
+	 * Creates a random {@link Date}
+	 *
+	 * @return The random {@link Date}
+	 */
+	public static Date randomDate()
+	{
+		final Date now = new Date(System.currentTimeMillis());
+		if (RandomExtensions.randomBoolean())
+		{
+			return dateAfter(now, RandomExtensions.randomInt(10000));
+		}
+		return dateBefore(now, RandomExtensions.randomInt(10000));
 	}
 
 	/**
@@ -189,9 +211,8 @@ public class RandomDateExtensions
 	 */
 	public static Date randomDatebetween(final Date start, final Date end)
 	{
-		final Random secran = new SecureRandom();
 		final long randomLong = (long)(start.getTime()
-			+ (secran.nextDouble() * (end.getTime() - start.getTime())));
+			+ (secureRandom.nextDouble() * (end.getTime() - start.getTime())));
 		return new Date(randomLong);
 	}
 
