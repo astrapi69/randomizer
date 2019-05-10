@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-java-parent</artifactId>
-		<version>4.8</version>
+		<version>5</version>
 	</parent>
 
 	<artifactId>randomizer</artifactId>
-	<version>5.8.3</version>
+	<version>6</version>
 	<packaging>pom</packaging>
 	<inceptionYear>2015</inceptionYear>
 
@@ -34,7 +34,7 @@
 		<silly-collections.version>5.2.1</silly-collections.version>
 		<vintage-time.version>5.1</vintage-time.version>
 		<!-- JOBJ-CORE version -->
-		<jobj-core.version>3.1</jobj-core.version>
+		<jobj-core.version>3.2</jobj-core.version>
 		<!-- SILLY-MATH version -->
 		<silly-math.version>1</silly-math.version>
 		<!-- SILLY-STRINGS version -->
