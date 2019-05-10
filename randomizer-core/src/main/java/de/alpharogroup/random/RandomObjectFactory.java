@@ -28,6 +28,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -185,6 +188,18 @@ public class RandomObjectFactory
 		else if (type.equals(Date.class))
 		{
 			return RandomDateExtensions.randomDate();
+		}
+		else if (type.equals(LocalDateTime.class))
+		{
+			return RandomDateExtensions.randomLocalDateTime();
+		}
+		else if (type.equals(LocalDate.class))
+		{
+			return RandomDateExtensions.randomLocalDate();
+		}
+		else if (type.equals(LocalTime.class))
+		{
+			return RandomDateExtensions.randomLocalTime();
 		}
 		return newRandomObject(type);
 	}

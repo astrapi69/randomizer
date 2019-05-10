@@ -3,34 +3,36 @@
  *
  * Copyright (C) 2015 Asterios Raptis
  *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
- * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
- * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package de.alpharogroup.random.date;
 
 import java.security.SecureRandom;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
+import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.date.CalculateDateExtensions;
 import de.alpharogroup.random.RandomExtensions;
 import de.alpharogroup.random.SecureRandomFactory;
@@ -65,6 +67,70 @@ public class RandomDateExtensions
 	public static Date dateAfter(final Date date)
 	{
 		return dateAfter(date, RandomExtensions.randomInt(10000));
+	}
+	
+	/**
+	 * Creates a random {@link LocalDateTime} object
+	 *
+	 * @return the zone id
+	 */
+	public static ZoneId randomZoneId() {
+		List<String> availableZoneIds = ListFactory.newArrayList(ZoneId.getAvailableZoneIds());
+		return ZoneId.of(availableZoneIds.get(RandomExtensions.randomInt(availableZoneIds.size())));		
+	}
+
+	/**
+	 * Creates a random {@link LocalDateTime} object
+	 *
+	 * @return the random {@link LocalDateTime} object
+	 */
+	public static LocalDateTime randomLocalDateTime()
+	{
+		return LocalDateTime.of(randomLocalDate(), randomLocalTime());
+	}
+
+	/**
+	 * Creates a random {@link LocalTime} object
+	 *
+	 * @return the random {@link LocalTime} object
+	 */
+	public static LocalTime randomLocalTime()
+	{
+		LocalTime randomLocalTime;
+		LocalTime now = LocalTime.now();
+		if (RandomExtensions.randomBoolean())
+		{
+			randomLocalTime = now.plusHours(RandomExtensions.randomLong(23))
+				.plusMinutes(RandomExtensions.randomLong(59))
+				.plusSeconds(RandomExtensions.randomLong(59));
+		}
+		else
+		{
+			randomLocalTime = now.minusHours(RandomExtensions.randomLong(23))
+				.minusMinutes(RandomExtensions.randomLong(59))
+				.minusSeconds(RandomExtensions.randomLong(59));
+		}
+		return randomLocalTime;
+	}
+
+	/**
+	 * Creates a random {@link LocalDate} object
+	 *
+	 * @return the random {@link LocalDate} object
+	 */
+	public static LocalDate randomLocalDate()
+	{
+		LocalDate randomLocalDate;
+		LocalDate now = LocalDate.now();
+		if (RandomExtensions.randomBoolean())
+		{
+			randomLocalDate = now.plusDays(RandomExtensions.randomLong());
+		}
+		else
+		{
+			randomLocalDate = now.minusDays(RandomExtensions.randomLong());
+		}
+		return randomLocalDate;
 	}
 
 	/**
