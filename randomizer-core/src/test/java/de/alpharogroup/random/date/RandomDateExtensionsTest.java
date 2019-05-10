@@ -28,8 +28,8 @@
 package de.alpharogroup.random.date;
 
 import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertTrue;
 import static org.testng.AssertJUnit.assertNotNull;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
@@ -97,8 +97,7 @@ public class RandomDateExtensionsTest extends BaseTestCase
 		{
 			final Date randomBirthday = RandomDateExtensions.randomBirthday();
 			actual = CalculateDateExtensions.isBetween(past, recentlyPast, randomBirthday);
-			assertTrue("",
-				CalculateDateExtensions.isBetween(past, recentlyPast, randomBirthday));
+			assertTrue(actual);
 		}
 	}
 
@@ -119,21 +118,6 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomDateExtensions#randomDate(java.util.Date)}
-	 */
-	@Test
-	public void testCreateRandomDateWithFromDate()
-	{
-		final Date from = this.now;
-		final Date randomDate = RandomDateExtensions.randomDate(from);
-		actual = randomDate != null;
-		assertTrue("", actual);
-
-		actual = !randomDate.equals(this.now);
-		assertTrue("", actual);
-	}
-
-	/**
 	 * Test method for {@link RandomDateExtensions#randomDate()}
 	 */
 	@Test
@@ -147,7 +131,7 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomDateExtensions#randomDateBetween(java.util.Date, int, int)} 
+	 * Test method for {@link RandomDateExtensions#randomDateBetween(java.util.Date, int, int)}
 	 */
 	@Test
 	public void testCreateRandomDateBetween()
@@ -213,6 +197,21 @@ public class RandomDateExtensionsTest extends BaseTestCase
 			format);
 		final Date compare = ParseDateExtensions.parseToDate(randomDate, format);
 		actual = CalculateDateExtensions.isBetween(from, till, compare);
+		assertTrue("", actual);
+	}
+
+	/**
+	 * Test method for {@link RandomDateExtensions#randomDate(java.util.Date)}
+	 */
+	@Test
+	public void testCreateRandomDateWithFromDate()
+	{
+		final Date from = this.now;
+		final Date randomDate = RandomDateExtensions.randomDate(from);
+		actual = randomDate != null;
+		assertTrue("", actual);
+
+		actual = !randomDate.equals(this.now);
 		assertTrue("", actual);
 	}
 
