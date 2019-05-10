@@ -1,6 +1,18 @@
 ## Change log
 ----------------------
 
+Version 6.0.1
+-------------
+
+ADDED:
+ 
+- new method for create random Date without arguments
+
+CHANGED:
+
+- removed deprecated class DataGenerator
+- adapted method newRandomValue for type Date
+
 Version 6
 -------------
 

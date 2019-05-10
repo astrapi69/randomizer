@@ -29,8 +29,10 @@ import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
+import de.alpharogroup.random.date.RandomDateExtensions;
 import de.alpharogroup.reflection.ReflectionExtensions;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
@@ -151,6 +153,10 @@ public class RandomObjectFactory
 		else if (type.equals(BigDecimal.class))
 		{
 			return RandomExtensions.randomBigDecimal();
+		}
+		else if (type.equals(Date.class))
+		{
+			return RandomDateExtensions.randomDate();
 		}
 		return newRandomObject(type);
 	}

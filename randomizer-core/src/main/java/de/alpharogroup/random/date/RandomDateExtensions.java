@@ -3,24 +3,20 @@
  *
  * Copyright (C) 2015 Asterios Raptis
  *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+ * associated documentation files (the "Software"), to deal in the Software without restriction,
+ * including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ * sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in all copies or
+ * substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
- * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
- * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT
+ * NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ * DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package de.alpharogroup.random.date;
 
@@ -30,10 +26,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Random;
 
 import de.alpharogroup.date.CalculateDateExtensions;
 import de.alpharogroup.random.RandomExtensions;
+import de.alpharogroup.random.SecureRandomFactory;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -45,6 +41,14 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class RandomDateExtensions
 {
+
+	/** The secure random. */
+	private static SecureRandom secureRandom;
+
+	static
+	{
+		secureRandom = SecureRandomFactory.newSecureRandom();
+	}
 
 	/**
 	 * Creates a random Date that is after from the given Date.
@@ -84,7 +88,7 @@ public class RandomDateExtensions
 	 */
 	public static Date dateBefore(final Date date)
 	{
-		return dateBefore(date, 10000);
+		return dateBefore(date, RandomExtensions.randomInt(10000));
 	}
 
 	/**
@@ -99,7 +103,8 @@ public class RandomDateExtensions
 	 */
 	public static Date dateBefore(final Date date, final int range)
 	{
-		return CalculateDateExtensions.substractDaysFromDate(date, range);
+		return CalculateDateExtensions.substractDaysFromDate(date,
+			RandomExtensions.randomInt(range));
 	}
 
 	/**
@@ -171,11 +176,25 @@ public class RandomDateExtensions
 	 */
 	public static Date randomDate(final Date from)
 	{
-		final Random secrand = new SecureRandom();
-		final double randDouble = -secrand.nextDouble() * from.getTime();
-		final double randomDouble = from.getTime() - secrand.nextDouble();
+		final double randDouble = -secureRandom.nextDouble() * from.getTime();
+		final double randomDouble = from.getTime() - secureRandom.nextDouble();
 		final double result = (randDouble / 99999) * (randomDouble / 99999);
 		return new Date((long)result);
+	}
+
+	/**
+	 * Creates a random {@link Date}
+	 *
+	 * @return The random {@link Date}
+	 */
+	public static Date randomDate()
+	{
+		final Date now = new Date(System.currentTimeMillis());
+		if (RandomExtensions.randomBoolean())
+		{
+			return dateAfter(now);
+		}
+		return dateBefore(now);
 	}
 
 	/**
@@ -189,9 +208,8 @@ public class RandomDateExtensions
 	 */
 	public static Date randomDatebetween(final Date start, final Date end)
 	{
-		final Random secran = new SecureRandom();
 		final long randomLong = (long)(start.getTime()
-			+ (secran.nextDouble() * (end.getTime() - start.getTime())));
+			+ (secureRandom.nextDouble() * (end.getTime() - start.getTime())));
 		return new Date(randomLong);
 	}
 
