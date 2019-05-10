@@ -76,7 +76,7 @@ public class RandomObjectFactory
 				continue;
 			}
 			Object value = newRandomValue(field);
-			ReflectionExtensions.setFieldValue(instance, field.getName(), value);
+			ReflectionExtensions.setFieldValue(instance, field, value);
 		}
 		return instance;
 	}
