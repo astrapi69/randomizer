@@ -88,52 +88,6 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomDateExtensions#randomZoneId()}
-	 */
-	@Test
-	public void testRandomZoneId()
-	{
-		ZoneId randomObject = RandomDateExtensions.randomZoneId();
-		assertNotNull(randomObject);
-	}
-
-	/**
-	 * Test method for {@link RandomDateExtensions#randomLocalDateTime()}
-	 */
-	@Test
-	public void testRandomLocalDateTime()
-	{
-		LocalDateTime randomObject = RandomDateExtensions.randomLocalDateTime();
-		assertNotNull(randomObject);
-	}
-
-	/**
-	 * Test method for {@link RandomDateExtensions#randomLocalTime()}
-	 */
-	@Test
-	public void testRandomLocalTime()
-	{
-		for (int i = 0; i < 7; i++)
-		{
-			LocalTime randomObject = RandomDateExtensions.randomLocalTime();
-			assertNotNull(randomObject);
-		}
-	}
-
-	/**
-	 * Test method for {@link RandomDateExtensions#randomLocalDate()}
-	 */
-	@Test
-	public void testRandomLocalDate()
-	{
-		for (int i = 0; i < 7; i++)
-		{
-			LocalDate randomObject = RandomDateExtensions.randomLocalDate();
-			assertNotNull(randomObject);
-		}
-	}
-
-	/**
 	 * Test method for {@link RandomDateExtensions#randomBirthday()}
 	 */
 	@Test
@@ -346,6 +300,52 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	{
 		Timestamp timestamp = RandomDateExtensions.getTimestamp(now);
 		assertNotNull(timestamp);
+	}
+
+	/**
+	 * Test method for {@link RandomDateExtensions#randomLocalDate()}
+	 */
+	@Test
+	public void testRandomLocalDate()
+	{
+		for (int i = 0; i < 7; i++)
+		{
+			LocalDate randomObject = RandomDateExtensions.randomLocalDate();
+			assertNotNull(randomObject);
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomDateExtensions#randomLocalDateTime()}
+	 */
+	@Test
+	public void testRandomLocalDateTime()
+	{
+		LocalDateTime randomObject = RandomDateExtensions.randomLocalDateTime();
+		assertNotNull(randomObject);
+	}
+
+	/**
+	 * Test method for {@link RandomDateExtensions#randomLocalTime()}
+	 */
+	@Test
+	public void testRandomLocalTime()
+	{
+		for (int i = 0; i < 7; i++)
+		{
+			LocalTime randomObject = RandomDateExtensions.randomLocalTime();
+			assertNotNull(randomObject);
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomDateExtensions#randomZoneId()}
+	 */
+	@Test
+	public void testRandomZoneId()
+	{
+		ZoneId randomObject = RandomDateExtensions.randomZoneId();
+		assertNotNull(randomObject);
 	}
 
 	/**

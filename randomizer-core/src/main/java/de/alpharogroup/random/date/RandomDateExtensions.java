@@ -72,15 +72,16 @@ public class RandomDateExtensions
 	{
 		return dateAfter(date, RandomExtensions.randomInt(10000));
 	}
-	
+
 	/**
 	 * Creates a random {@link LocalDateTime} object
 	 *
 	 * @return the zone id
 	 */
-	public static ZoneId randomZoneId() {
+	public static ZoneId randomZoneId()
+	{
 		List<String> availableZoneIds = ListFactory.newArrayList(ZoneId.getAvailableZoneIds());
-		return ZoneId.of(availableZoneIds.get(RandomExtensions.randomInt(availableZoneIds.size())));		
+		return ZoneId.of(availableZoneIds.get(RandomExtensions.randomInt(availableZoneIds.size())));
 	}
 
 	/**

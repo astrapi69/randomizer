@@ -24,8 +24,6 @@
  */
 package de.alpharogroup.random;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
 import javax.annotation.Nonnull;
@@ -40,16 +38,6 @@ public class SecureRandomBuilder
 
 	/** The Constant DEFAULT_ALGORITHM */
 	public static final String DEFAULT_ALGORITHM = "SHA1PRNG";
-
-	/**
-	 * Gets an new instance of {@link SecureRandomBuilder} for build a {@link SecureRandom} object
-	 *
-	 * @return the {@link SecureRandomBuilder}
-	 */
-	private static SecureRandomBuilder newInstance()
-	{
-		return new SecureRandomBuilder();
-	}
 
 	/**
 	 * Gets an instance of {@link SecureRandomBuilder} with the default algorithm and provider
@@ -87,6 +75,16 @@ public class SecureRandomBuilder
 		return SecureRandomBuilder.newInstance().algorithm(algorithm).provider(provider);
 	}
 
+	/**
+	 * Gets an new instance of {@link SecureRandomBuilder} for build a {@link SecureRandom} object
+	 *
+	 * @return the {@link SecureRandomBuilder}
+	 */
+	private static SecureRandomBuilder newInstance()
+	{
+		return new SecureRandomBuilder();
+	}
+
 	/** The algorithm. */
 	private String algorithm;
 
@@ -118,12 +116,6 @@ public class SecureRandomBuilder
 	 * default {@link SecureRandom} object with the default algorithm will be build.
 	 *
 	 * @return the new {@link SecureRandom} object
-	 * @throws NoSuchAlgorithmException
-	 *             is thrown if a SecureRandomSpi implementation for the specified algorithm is not
-	 *             available from the specified provider.
-	 * @throws NoSuchProviderException
-	 *             is thrown if the specified provider is not registered in the security provider
-	 *             list.
 	 */
 	public SecureRandom build()
 	{
