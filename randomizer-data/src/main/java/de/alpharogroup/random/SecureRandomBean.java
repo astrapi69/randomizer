@@ -46,8 +46,9 @@ public class SecureRandomBean
 	 *
 	 * @return the {@link SecureRandomBean}
 	 *
-	 * @deprecated use the same name method of <code>SecureRandomBuilder</code> <br><br>
-	 * Note: will be removed in the next minor version
+	 * @deprecated use the same name method of <code>SecureRandomBuilder</code> <br>
+	 *             <br>
+	 *             Note: will be removed in the next minor version
 	 */
 	@Deprecated
 	public static SecureRandomBean builder()

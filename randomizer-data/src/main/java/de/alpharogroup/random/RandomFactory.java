@@ -37,8 +37,10 @@ class RandomFactory
 	/**
 	 * Factory method for create a new {@link SecureRandom} object
 	 *
-	 * @param algorithm the algorithm
-	 * @param provider the provider
+	 * @param algorithm
+	 *            the algorithm
+	 * @param provider
+	 *            the provider
 	 * @return the new {@link SecureRandom} object
 	 */
 	static SecureRandom newSecureRandom(final String algorithm, final String provider)
