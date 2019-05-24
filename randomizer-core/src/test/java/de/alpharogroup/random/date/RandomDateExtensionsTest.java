@@ -34,6 +34,10 @@ import static org.testng.AssertJUnit.assertTrue;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 import org.meanbean.test.BeanTestException;
@@ -84,7 +88,47 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomDateExtensions#randomBirthday()}.
+	 * Test method for {@link RandomDateExtensions#randomZoneId()}
+	 */
+	@Test
+	public void testRandomZoneId()
+	{
+		ZoneId randomObject = RandomDateExtensions.randomZoneId();
+		assertNotNull(randomObject);
+	}
+
+	/**
+	 * Test method for {@link RandomDateExtensions#randomLocalDateTime()}
+	 */
+	@Test
+	public void testRandomLocalDateTime()
+	{
+		LocalDateTime randomObject = RandomDateExtensions.randomLocalDateTime();
+		assertNotNull(randomObject);
+	}
+
+	/**
+	 * Test method for {@link RandomDateExtensions#randomLocalTime()}
+	 */
+	@Test
+	public void testRandomLocalTime()
+	{
+		LocalTime randomObject = RandomDateExtensions.randomLocalTime();
+		assertNotNull(randomObject);
+	}
+
+	/**
+	 * Test method for {@link RandomDateExtensions#randomLocalDate()}
+	 */
+	@Test
+	public void testRandomLocalDate()
+	{
+		LocalDate randomObject = RandomDateExtensions.randomLocalDate();
+		assertNotNull(randomObject);
+	}
+
+	/**
+	 * Test method for {@link RandomDateExtensions#randomBirthday()}
 	 */
 	@Test
 	public void testCreateRandomBirthday()
