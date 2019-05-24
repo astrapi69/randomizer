@@ -24,76 +24,50 @@
  */
 package de.alpharogroup.random;
 
-import static org.testng.AssertJUnit.assertNotNull;
+import static org.testng.Assert.assertNotNull;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.SecureRandom;
-
+import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 /**
- * The unit test class for the class {@link SecureRandomBean}.
+ * The unit test class for the class {@link SecureRandomBean}
  */
 public class SecureRandomBeanTest
 {
 
 	/**
-	 * Test method for {@link SecureRandomBean#build()} .
-	 *
-	 * @throws NoSuchAlgorithmException
-	 *             is thrown if a SecureRandomSpi implementation for the specified algorithm is not
-	 *             available from the specified provider.
-	 * @throws NoSuchProviderException
-	 *             is thrown if the specified provider is not registered in the security provider
-	 *             list.
+	 * Test method for {@link SecureRandomBean#equals(Object)}
 	 */
-	@SuppressWarnings("deprecation")
 	@Test
-	public void testBuild() throws NoSuchAlgorithmException, NoSuchProviderException
+	public void equalsContract()
 	{
-		SecureRandom sr = SecureRandomBean.builder().build();
-
-		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM).build();
-		assertNotNull(sr);
-		sr = SecureRandomBean.builder().algorithm(SecureRandomBean.DEFAULT_ALGORITHM)
-			.provider("SUN").build();
-		assertNotNull(sr);
+		EqualsVerifier.forClass(SecureRandomBean.class).verify();
 	}
 
 	/**
-	 * Test method for {@link SecureRandomBean#build()} with null value for the algorithm.
-	 *
-	 * @throws NoSuchAlgorithmException
-	 *             is thrown if a SecureRandomSpi implementation for the specified algorithm is not
-	 *             available from the specified provider.
-	 * @throws NoSuchProviderException
-	 *             is thrown if the specified provider is not registered in the security provider
-	 *             list.
+	 * Test method for {@link SecureRandomBean} constructors and builders
 	 */
-	@SuppressWarnings("deprecation")
-	@Test(expectedExceptions = NullPointerException.class)
-	public void testBuildWithNullAlgorithm()
-		throws NoSuchAlgorithmException, NoSuchProviderException
+	@Test
+	public final void testConstructors()
 	{
-		SecureRandomBean.builder().algorithm(null).build();
+		SecureRandomBean model = new SecureRandomBean();
+		assertNotNull(model);
+		model = new SecureRandomBean("SHA1PRNG", "SUN");
+		assertNotNull(model);
+		model = SecureRandomBean.builder().build();
+		assertNotNull(model);
 	}
 
 	/**
-	 * Test method for {@link SecureRandomBean#build()} with null value for the algorithm.
-	 *
-	 * @throws NoSuchAlgorithmException
-	 *             is thrown if a SecureRandomSpi implementation for the specified algorithm is not
-	 *             available from the specified provider.
-	 * @throws NoSuchProviderException
-	 *             is thrown if the specified provider is not registered in the security provider
-	 *             list.
+	 * Test method for {@link SecureRandomBean}
 	 */
-	@SuppressWarnings("deprecation")
-	@Test(expectedExceptions = NullPointerException.class)
-	public void testBuildWithNullProvider() throws NoSuchAlgorithmException, NoSuchProviderException
+	@Test
+	public void testWithBeanTester()
 	{
-		SecureRandomBean.builder().provider(null).build();
+		final BeanTester beanTester = new BeanTester();
+		beanTester.testBean(SecureRandomBean.class);
 	}
 
 }

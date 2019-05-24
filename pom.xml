@@ -1,7 +1,8 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-java-parent</artifactId>
@@ -41,6 +42,7 @@
 		<silly-strings.version>5.3.1</silly-strings.version>
 		<!-- MEANBEAN version -->
 		<meanbean.version>2.0.3</meanbean.version>
+		<equalsverifier.version>3.1.9</equalsverifier.version>
 	</properties>
 
 	<modules>
@@ -136,6 +138,12 @@
 				<groupId>de.alpharogroup</groupId>
 				<artifactId>silly-strings</artifactId>
 				<version>${silly-strings.version}</version>
+			</dependency>
+			<!-- EQUALSVERIFIER DEPENDENCY -->
+			<dependency>
+				<groupId>nl.jqno.equalsverifier</groupId>
+				<artifactId>equalsverifier</artifactId>
+				<version>${equalsverifier.version}</version>
 			</dependency>
 
 		</dependencies>
