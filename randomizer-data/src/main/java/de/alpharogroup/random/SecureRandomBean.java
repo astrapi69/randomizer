@@ -24,8 +24,6 @@
  */
 package de.alpharogroup.random;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
 import lombok.NonNull;
@@ -47,7 +45,11 @@ public class SecureRandomBean
 	 * Gets an instance of {@link SecureRandomBean} for build a {@link SecureRandom} object.
 	 *
 	 * @return the {@link SecureRandomBean}
+	 *
+	 * @deprecated use the same name method of <code>SecureRandomBuilder</code> <br><br>
+	 * Note: will be removed in the next minor version
 	 */
+	@Deprecated
 	public static SecureRandomBean builder()
 	{
 		return new SecureRandomBean();
@@ -72,7 +74,11 @@ public class SecureRandomBean
 	 * @param algorithm
 	 *            the algorithm
 	 * @return this {@link SecureRandomBean} object. For chaining.
+	 * @deprecated use the same name method of <code>SecureRandomBuilder</code> <br>
+	 *             <br>
+	 *             Note: will be removed in the next minor version
 	 */
+	@Deprecated
 	public SecureRandomBean algorithm(@NonNull final String algorithm)
 	{
 		this.algorithm = algorithm;
@@ -84,24 +90,14 @@ public class SecureRandomBean
 	 * default {@link SecureRandom} object with the default algorithm will be build.
 	 *
 	 * @return the new {@link SecureRandom} object
-	 * @throws NoSuchAlgorithmException
-	 *             is thrown if a SecureRandomSpi implementation for the specified algorithm is not
-	 *             available from the specified provider.
-	 * @throws NoSuchProviderException
-	 *             is thrown if the specified provider is not registered in the security provider
-	 *             list.
+	 * @deprecated use the same name method of <code>SecureRandomBuilder</code> <br>
+	 *             <br>
+	 *             Note: will be removed in the next minor version
 	 */
-	public SecureRandom build() throws NoSuchAlgorithmException, NoSuchProviderException
+	@Deprecated
+	public SecureRandom build()
 	{
-		if (algorithm != null && provider != null)
-		{
-			return SecureRandom.getInstance(algorithm, provider);
-		}
-		if (algorithm != null)
-		{
-			return SecureRandom.getInstance(algorithm);
-		}
-		return SecureRandom.getInstance(DEFAULT_ALGORITHM);
+		return RandomFactory.newSecureRandom(algorithm, provider);
 	}
 
 	/**
@@ -110,7 +106,11 @@ public class SecureRandomBean
 	 * @param provider
 	 *            the provider
 	 * @return this {@link SecureRandomBean} object. For chaining.
+	 * @deprecated use the same name method of <code>SecureRandomBuilder</code> <br>
+	 *             <br>
+	 *             Note: will be removed in the next minor version
 	 */
+	@Deprecated
 	public SecureRandomBean provider(@NonNull final String provider)
 	{
 		this.provider = provider;

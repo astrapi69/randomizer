@@ -217,7 +217,7 @@
 								<!-- explicit constant classes with only constants -->
 								<exclude>de/alpharogroup/random/Constants.class</exclude>
 								<!-- explicit delegation classes -->
-								<exclude>de/alpharogroup/random/DataGenerator.class</exclude>
+								<exclude>de/alpharogroup/random/RandomFactory.class</exclude>
 								<exclude>de/alpharogroup/random/SecureRandomFactory.class</exclude>
 							</excludes>
 						</instrumentation>
