@@ -4,6 +4,10 @@
 Version 6.2-SNAPSHOT
 -------------
 
+CHANGED:
+
+- removed deprecated method from SecureRandomBean and added new unit tests for it
+
 Version 6.1
 -------------
 
