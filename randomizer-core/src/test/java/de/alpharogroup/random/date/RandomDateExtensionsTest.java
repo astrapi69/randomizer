@@ -173,11 +173,14 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	@Test
 	public void testCreateRandomDate()
 	{
-		final Date randomDate = RandomDateExtensions.randomDate();
-		assertNotNull(randomDate);
+		for (int i = 0; i < 7; i++)
+		{
+			final Date randomDate = RandomDateExtensions.randomDate();
+			assertNotNull(randomDate);
 
-		actual = !randomDate.equals(this.now);
-		assertTrue(actual);
+			actual = !randomDate.equals(this.now);
+			assertTrue(actual);
+		}
 	}
 
 	/**
