@@ -48,6 +48,7 @@ public class SecureRandomBeanTest
 	 *             is thrown if the specified provider is not registered in the security provider
 	 *             list.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testBuild() throws NoSuchAlgorithmException, NoSuchProviderException
 	{
@@ -70,6 +71,7 @@ public class SecureRandomBeanTest
 	 *             is thrown if the specified provider is not registered in the security provider
 	 *             list.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(expectedExceptions = NullPointerException.class)
 	public void testBuildWithNullAlgorithm()
 		throws NoSuchAlgorithmException, NoSuchProviderException
@@ -87,6 +89,7 @@ public class SecureRandomBeanTest
 	 *             is thrown if the specified provider is not registered in the security provider
 	 *             list.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(expectedExceptions = NullPointerException.class)
 	public void testBuildWithNullProvider() throws NoSuchAlgorithmException, NoSuchProviderException
 	{

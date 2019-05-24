@@ -24,8 +24,6 @@
  */
 package de.alpharogroup.random;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
 import javax.annotation.Nonnull;
@@ -38,31 +36,21 @@ import javax.annotation.Nonnull;
 public class SecureRandomBuilder
 {
 
-	/** The Constant DEFAULT_ALGORITHM. */
+	/** The Constant DEFAULT_ALGORITHM */
 	public static final String DEFAULT_ALGORITHM = "SHA1PRNG";
 
 	/**
-	 * Gets an instance of {@link SecureRandomBuilder} for build a {@link SecureRandom} object.
-	 *
-	 * @return the {@link SecureRandomBuilder}
-	 */
-	private static SecureRandomBuilder builder()
-	{
-		return new SecureRandomBuilder();
-	}
-
-	/**
-	 * Gets an instance of {@link SecureRandomBuilder} with the default algorithm and provider.
+	 * Gets an instance of {@link SecureRandomBuilder} with the default algorithm and provider
 	 *
 	 * @return the new {@link SecureRandomBuilder} object
 	 */
 	public static SecureRandomBuilder getInstance()
 	{
-		return SecureRandomBuilder.builder();
+		return SecureRandomBuilder.newInstance();
 	}
 
 	/**
-	 * Gets an instance of {@link SecureRandomBuilder} from the given algorithm and provider.
+	 * Gets an instance of {@link SecureRandomBuilder} from the given algorithm and provider
 	 *
 	 * @param algorithm
 	 *            the algorithm
@@ -70,11 +58,11 @@ public class SecureRandomBuilder
 	 */
 	public static SecureRandomBuilder getInstance(final String algorithm)
 	{
-		return SecureRandomBuilder.builder().algorithm(algorithm);
+		return SecureRandomBuilder.newInstance().algorithm(algorithm);
 	}
 
 	/**
-	 * Gets an instance of {@link SecureRandomBuilder} from the given algorithm and provider.
+	 * Gets an instance of {@link SecureRandomBuilder} from the given algorithm and provider
 	 *
 	 * @param algorithm
 	 *            the algorithm
@@ -84,7 +72,17 @@ public class SecureRandomBuilder
 	 */
 	public static SecureRandomBuilder getInstance(final String algorithm, final String provider)
 	{
-		return SecureRandomBuilder.builder().algorithm(algorithm).provider(provider);
+		return SecureRandomBuilder.newInstance().algorithm(algorithm).provider(provider);
+	}
+
+	/**
+	 * Gets an new instance of {@link SecureRandomBuilder} for build a {@link SecureRandom} object
+	 *
+	 * @return the {@link SecureRandomBuilder}
+	 */
+	private static SecureRandomBuilder newInstance()
+	{
+		return new SecureRandomBuilder();
 	}
 
 	/** The algorithm. */
@@ -94,7 +92,7 @@ public class SecureRandomBuilder
 	private String provider;
 
 	/**
-	 * Instantiates a new {@link SecureRandomBuilder}.
+	 * Instantiates a new {@link SecureRandomBuilder}
 	 */
 	private SecureRandomBuilder()
 	{
@@ -118,24 +116,10 @@ public class SecureRandomBuilder
 	 * default {@link SecureRandom} object with the default algorithm will be build.
 	 *
 	 * @return the new {@link SecureRandom} object
-	 * @throws NoSuchAlgorithmException
-	 *             is thrown if a SecureRandomSpi implementation for the specified algorithm is not
-	 *             available from the specified provider.
-	 * @throws NoSuchProviderException
-	 *             is thrown if the specified provider is not registered in the security provider
-	 *             list.
 	 */
-	public SecureRandom build() throws NoSuchAlgorithmException, NoSuchProviderException
+	public SecureRandom build()
 	{
-		if (algorithm != null && provider != null)
-		{
-			return SecureRandom.getInstance(algorithm, provider);
-		}
-		if (algorithm != null)
-		{
-			return SecureRandom.getInstance(algorithm);
-		}
-		return SecureRandom.getInstance(DEFAULT_ALGORITHM);
+		return RandomFactory.newSecureRandom(algorithm, provider);
 	}
 
 	/**

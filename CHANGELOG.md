@@ -1,6 +1,19 @@
 ## Change log
 ----------------------
 
+Version 6.1
+-------------
+
+ADDED:
+ 
+- new methods created for create random object from java.time package
+- changed jdk from oraclejdk8 to openjdk8 in .travis.yml
+- code coverage increased to 100 percent
+
+CHANGED:
+
+- build method from SecureRandomBuilder throws no more checked exceptions
+
 Version 6.0.1
 -------------
 

@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>randomizer</artifactId>
-	<version>6.0.1</version>
+	<version>6.1</version>
 	<packaging>pom</packaging>
 	<inceptionYear>2015</inceptionYear>
 
@@ -217,7 +217,8 @@
 								<!-- explicit constant classes with only constants -->
 								<exclude>de/alpharogroup/random/Constants.class</exclude>
 								<!-- explicit delegation classes -->
-								<exclude>de/alpharogroup/random/DataGenerator.class</exclude>
+								<exclude>de/alpharogroup/random/RandomFactory.class</exclude>
+								<exclude>de/alpharogroup/random/PropertiesLoader.class</exclude>
 								<exclude>de/alpharogroup/random/SecureRandomFactory.class</exclude>
 							</excludes>
 						</instrumentation>

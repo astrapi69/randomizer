@@ -24,38 +24,15 @@
  */
 package de.alpharogroup.random;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
-import lombok.experimental.UtilityClass;
-
 /**
- * A factory for creating {@link SecureRandom} objects
+ * A package private factory for creating {@link SecureRandom} objects
  */
-@UtilityClass
-public class SecureRandomFactory
+class RandomFactory
 {
-
-	/**
-	 * Factory method for create a new {@link SecureRandom} object
-	 *
-	 * @return the new {@link SecureRandom} object
-	 */
-	public static SecureRandom newSecureRandom()
-	{
-		return SecureRandomBuilder.getInstance().build();
-	}
-
-	/**
-	 * Factory method for create a new {@link SecureRandom} object
-	 *
-	 * @param algorithm
-	 *            the algorithm
-	 * @return the new {@link SecureRandom} object
-	 */
-	public static SecureRandom newSecureRandom(final String algorithm)
-	{
-		return SecureRandomBuilder.getInstance().algorithm(algorithm).build();
-	}
 
 	/**
 	 * Factory method for create a new {@link SecureRandom} object
@@ -66,9 +43,38 @@ public class SecureRandomFactory
 	 *            the provider
 	 * @return the new {@link SecureRandom} object
 	 */
-	public static SecureRandom newSecureRandom(final String algorithm, final String provider)
+	static SecureRandom newSecureRandom(final String algorithm, final String provider)
 	{
-		return SecureRandomBuilder.getInstance().algorithm(algorithm).provider(provider).build();
+		if (algorithm != null && provider != null)
+		{
+			try
+			{
+				return SecureRandom.getInstance(algorithm, provider);
+			}
+			catch (NoSuchAlgorithmException | NoSuchProviderException e)
+			{
+				throw new RuntimeException(e);
+			}
+		}
+		if (algorithm != null)
+		{
+			try
+			{
+				return SecureRandom.getInstance(algorithm);
+			}
+			catch (NoSuchAlgorithmException e)
+			{
+				throw new RuntimeException(e);
+			}
+		}
+		try
+		{
+			return SecureRandom.getInstance(SecureRandomBuilder.DEFAULT_ALGORITHM);
+		}
+		catch (NoSuchAlgorithmException e)
+		{
+			throw new RuntimeException(e);
+		}
 	}
 
 }
