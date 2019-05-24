@@ -113,8 +113,11 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomLocalTime()
 	{
-		LocalTime randomObject = RandomDateExtensions.randomLocalTime();
-		assertNotNull(randomObject);
+		for (int i = 0; i < 7; i++)
+		{
+			LocalTime randomObject = RandomDateExtensions.randomLocalTime();
+			assertNotNull(randomObject);
+		}
 	}
 
 	/**
@@ -123,8 +126,11 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomLocalDate()
 	{
-		LocalDate randomObject = RandomDateExtensions.randomLocalDate();
-		assertNotNull(randomObject);
+		for (int i = 0; i < 7; i++)
+		{
+			LocalDate randomObject = RandomDateExtensions.randomLocalDate();
+			assertNotNull(randomObject);
+		}
 	}
 
 	/**
