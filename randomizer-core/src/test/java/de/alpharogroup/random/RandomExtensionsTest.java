@@ -80,7 +80,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		Field sourceField = ReflectionExtensions.getDeclaredField(RandomExtensions.class,
 			"secureRandom");
 		sourceField.setAccessible(true);
-		sourceField.set(null, SecureRandomBean.builder().build());
+		sourceField.set(null, SecureRandomBuilder.getInstance().build());
 	}
 
 	/**
