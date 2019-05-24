@@ -61,12 +61,6 @@ public class SecureRandomBeanTest
 		assertNotNull(sr);
 	}
 
-	@Test
-	public void testBuildSuffix() throws Exception
-	{
-		throw new RuntimeException("not yet implemented");
-	}
-
 	/**
 	 * Test method for {@link SecureRandomBean#build()} with null value for the algorithm.
 	 *
