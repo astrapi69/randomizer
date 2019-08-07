@@ -532,7 +532,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomIntBetween()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomIntBetween = RandomExtensions.randomIntBetween(1, 10);
 			MathExtensions.isBetween(1, 9, randomIntBetween, true, true);
@@ -540,13 +540,25 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link de.alpharogroup.random.RandomExtensions#getRandomIntBetween(int, int)}
+	 */
+	@Test
+	public void testGetRandomIntBetween()
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			final int randomIntBetween = RandomExtensions.getRandomIntBetween(1, 10);
+			MathExtensions.isBetween(1, 10, randomIntBetween, true, true);
+		}
+	}
+	/**
 	 * Test method for
 	 * {@link de.alpharogroup.random.RandomExtensions#randomIntBetween(int, int, boolean, boolean)}
 	 */
 	@Test
 	public void testRandomIntBetweenBooleanBoolean()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomIntBetween = RandomExtensions.randomIntBetween(1, 10, false, false);
 			MathExtensions.isBetween(2, 9, randomIntBetween, true, true);
