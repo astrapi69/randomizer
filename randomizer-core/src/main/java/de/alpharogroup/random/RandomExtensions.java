@@ -41,6 +41,7 @@ import java.util.UUID;
 
 import de.alpharogroup.lang.ClassExtensions;
 import de.alpharogroup.math.MathExtensions;
+import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -834,6 +835,21 @@ public final class RandomExtensions
 			randomIntBetween = (start + 1) + randomInt(end - start);
 		}
 		return randomIntBetween;
+	}
+
+	/**
+	 * Returns a random int between the range from minVolume and maxVolume with the <code>Math.abs</code> method.
+	 *
+	 * @param minVolume
+	 *            the min volume
+	 * @param maxVolume
+	 *            the max volume
+	 * @return A random int between the range from minVolume and maxVolume
+	 */
+	public static int getRandomIntBetween(int minVolume,
+								 int maxVolume)
+	{
+		return minVolume + Math.abs(secureRandom.nextInt()) % maxVolume;
 	}
 
 	/**
