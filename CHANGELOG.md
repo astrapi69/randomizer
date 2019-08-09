@@ -4,6 +4,10 @@
 Version 6.2-SNAPSHOT
 -------------
 
+ADDED:
+ 
+- new random method created for get a random int between the given range generated with with the Math.abs method.
+
 CHANGED:
 
 - removed deprecated method from SecureRandomBean and added new unit tests for it
