@@ -101,7 +101,7 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 		final String string = RandomCharacters.lowcase.getCharacters();
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final char randomChar = RandomPrimitivesExtensions.randomChar(string);
 			final CharBuffer charBuffer = CharBuffer.allocate(1);
@@ -217,7 +217,7 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomIntBetween()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(1, 10);
 			MathExtensions.isBetween(1, 9, randomIntBetween, true, true);
@@ -231,25 +231,25 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomIntBetweenBooleanBoolean()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(1, 10, false,
 				false);
 			MathExtensions.isBetween(2, 9, randomIntBetween, true, true);
 		}
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(1, 10, false,
 				true);
 			MathExtensions.isBetween(2, 10, randomIntBetween, true, true);
 		}
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(1, 10, true,
 				false);
 			MathExtensions.isBetween(1, 9, randomIntBetween, true, true);
 		}
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(1, 10, true,
 				true);
@@ -263,7 +263,7 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomIntInt()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomInt = RandomPrimitivesExtensions.randomInt(5);
 			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
@@ -287,7 +287,7 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	@Test(enabled = true)
 	public void testRandomLongLong()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final long randomLong = RandomPrimitivesExtensions.randomLong(5l);
 			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",

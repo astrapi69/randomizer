@@ -112,10 +112,9 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	@Test(enabled = true)
 	public void testGetRandomByte()
 	{
-		for (int i = 0; i < 1000; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			Byte random = RandomExtensions.getRandomByte();
-			System.out.println(random);
 			assertTrue(
 				MathExtensions.isBetween(Byte.MIN_VALUE, Byte.MAX_VALUE, random, true, true));
 		}
@@ -146,7 +145,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		list.add("Katerina");
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomEntry = RandomExtensions.getRandomEntry(list);
 			actual = list.contains(randomEntry);
@@ -169,7 +168,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		final Collection<String> values = map.values();
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomValue = (String)RandomExtensions.getRandomEntry(map);
 			actual = values.contains(randomValue);
@@ -240,7 +239,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		final int afterComma = 4;
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final float randomFloat = RandomExtensions.getRandomFloat(afterComma, beforeComma);
 			actual = 0 < randomFloat;
@@ -263,7 +262,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		final Set<String> keys = map.keySet();
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomKey = (String)RandomExtensions.getRandomKey(map);
 			actual = keys.contains(randomKey);
@@ -379,7 +378,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	{
 		final String string = RandomCharacters.lowcase.getCharacters();
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final char randomChar = RandomExtensions.randomChar(string);
 			final CharBuffer charBuffer = CharBuffer.allocate(1);
@@ -491,7 +490,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomIntBetween()
 	{
-		for (int i = 0; i < 1000; i++)
+		for (int i = 0; i < 100; i++)
 		{
 			final int randomIntBetween = RandomExtensions.randomIntBetween(1, 10);
 			System.out.println(randomIntBetween);
@@ -505,7 +504,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomIntInt()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomInt = RandomExtensions.randomInt(5);
 			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
@@ -545,7 +544,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	@Test(enabled = true)
 	public void testRandomLongLong()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final long randomLong = RandomExtensions.randomLong(5l);
 			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",
@@ -583,7 +582,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		final List<String> listFromArray = Arrays.asList(array);
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomString = RandomExtensions.getRandomString(array);
 			actual = listFromArray.contains(randomString);
@@ -603,7 +602,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		charBuffer.put(chars);
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomString = RandomExtensions.getRandomString(chars, length);
 			actual = randomString.contains(charBuffer);

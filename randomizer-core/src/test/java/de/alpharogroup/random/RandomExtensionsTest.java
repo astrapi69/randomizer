@@ -141,7 +141,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		list.add("Katerina");
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomEntry = RandomExtensions.getRandomEntry(list);
 
@@ -165,7 +165,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		final Collection<String> values = map.values();
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomValue = (String)RandomExtensions.getRandomEntry(map);
 
@@ -254,7 +254,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		final int beforeComma = 2;
 		final int afterComma = 4;
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final float randomFloat = RandomExtensions.getRandomFloat(afterComma, beforeComma);
 
@@ -300,7 +300,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		map.put("5", "value");
 		final Set<String> keys = map.keySet();
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomKey = (String)RandomExtensions.getRandomKey(map);
 
@@ -440,7 +440,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		final String string = RandomCharacters.lowcase.getCharacters();
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final char randomChar = RandomExtensions.randomChar(string);
 			final CharBuffer charBuffer = CharBuffer.allocate(1);
@@ -584,17 +584,17 @@ public class RandomExtensionsTest extends BaseTestCase
 			final int randomIntBetween = RandomExtensions.randomIntBetween(1, 10, false, false);
 			MathExtensions.isBetween(2, 9, randomIntBetween, true, true);
 		}
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomIntBetween = RandomExtensions.randomIntBetween(1, 10, false, true);
 			MathExtensions.isBetween(2, 10, randomIntBetween, true, true);
 		}
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomIntBetween = RandomExtensions.randomIntBetween(1, 10, true, false);
 			MathExtensions.isBetween(1, 9, randomIntBetween, true, true);
 		}
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomIntBetween = RandomExtensions.randomIntBetween(1, 10, true, true);
 			MathExtensions.isBetween(1, 10, randomIntBetween, true, true);
@@ -608,7 +608,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomIntInt()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomInt = RandomExtensions.randomInt(5);
 			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
@@ -634,7 +634,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	@Test(enabled = true)
 	public void testRandomLongLong()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final long randomLong = RandomExtensions.randomLong(5l);
 			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",
@@ -688,7 +688,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		final String[] array = { "blab", "flih", "klap", "teta", "brut", "gzft", "ccp" };
 		final List<String> listFromArray = Arrays.asList(array);
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomString = RandomExtensions.getRandomString(array);
 
@@ -708,7 +708,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		final String chars = RandomCharacters.lowcaseWithNumbersAndSpecial.getCharacters();
 		charBuffer.put(chars);
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomString = RandomExtensions.getRandomString(chars, length);
 
