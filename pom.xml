@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>randomizer</artifactId>
-	<version>6.2-SNAPSHOT</version>
+	<version>6.2</version>
 	<packaging>pom</packaging>
 	<inceptionYear>2015</inceptionYear>
 
