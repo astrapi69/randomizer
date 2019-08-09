@@ -40,7 +40,6 @@ import org.testng.annotations.Test;
 
 import de.alpharogroup.BaseTestCase;
 import de.alpharogroup.random.RandomCharacters;
-import de.alpharogroup.random.object.RandomObjectsExtensions;
 import de.alpharogroup.test.objects.Person;
 
 /**

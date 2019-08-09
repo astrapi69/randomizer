@@ -27,7 +27,6 @@ package de.alpharogroup.random.number;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -39,8 +38,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.BaseTestCase;
-import de.alpharogroup.random.SecureRandomBuilder;
-import de.alpharogroup.reflection.ReflectionExtensions;
 import de.alpharogroup.string.StringExtensions;
 
 /**
@@ -62,10 +59,6 @@ public class RandomNumberExtensionsTest extends BaseTestCase
 	protected void setUp() throws Exception
 	{
 		super.setUp();
-		Field sourceField = ReflectionExtensions.getDeclaredField(RandomNumberExtensions.class,
-			"secureRandom");
-		sourceField.setAccessible(true);
-		sourceField.set(null, SecureRandomBuilder.getInstance().build());
 	}
 
 	/**
@@ -80,6 +73,38 @@ public class RandomNumberExtensionsTest extends BaseTestCase
 
 
 	/**
+	 * Test method for {@link RandomNumberExtensions#getRandomBigDecimal(int, int)}
+	 */
+	@Test
+	public void testGetRandomBigDecimal()
+	{
+		int beforeComma;
+		int afterComma;
+		beforeComma = 3;
+		afterComma = 2;
+		BigDecimal randomBigDecimal = RandomNumberExtensions.getRandomBigDecimal(afterComma,
+			beforeComma);
+		assertNotNull(randomBigDecimal);
+	}
+
+	/**
+	 * Test method for {@link RandomNumberExtensions#getRandomFloatString(int, int)}
+	 */
+	@Test(enabled = true)
+	public void testGetRandomFloatString()
+	{
+		int beforeComma;
+		int afterComma;
+		beforeComma = 3;
+		afterComma = 2;
+		String randomFloatString = RandomNumberExtensions.getRandomFloatString(afterComma,
+			beforeComma);
+		assertNotNull(randomFloatString);
+		Float floatObj = Float.valueOf(randomFloatString);
+		assertNotNull(floatObj);
+	}
+
+	/**
 	 * Test method for {@link RandomNumberExtensions#getRandomNumericString()}
 	 */
 	@Test(enabled = true)
@@ -89,6 +114,7 @@ public class RandomNumberExtensionsTest extends BaseTestCase
 		assertNotNull(randomNumericString);
 		assertTrue(StringExtensions.isNumber(randomNumericString));
 	}
+
 
 	/**
 	 * Test method for {@link RandomNumberExtensions#randomBigInteger()}

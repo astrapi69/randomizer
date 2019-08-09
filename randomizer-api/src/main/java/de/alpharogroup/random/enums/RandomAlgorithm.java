@@ -22,38 +22,23 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.random.util;
-
-import static org.testng.AssertJUnit.assertTrue;
-
-import java.io.IOException;
-import java.util.Properties;
-
-import org.testng.annotations.Test;
-
-import de.alpharogroup.lang.PackageExtensions;
+package de.alpharogroup.random.enums;
 
 /**
- * The unit test class for the class {@link PropertiesLoader}
+ * The enum {@link RandomAlgorithm} holds the algorithm for calculate random values
  */
-public class PropertiesLoaderTest
+public enum RandomAlgorithm
 {
 
-	/**
-	 * Test method for {@link PropertiesLoader#loadProperties(String)}
-	 *
-	 * @throws IOException
-	 *             Signals that an I/O exception has occurred.
-	 */
-	@Test(enabled = true)
-	public void testLoadPropertiesPackagePath() throws IOException
-	{
-		final String propertiesFilename = "resources.properties";
-		final String pathFromObject = PackageExtensions.getPackagePathWithSlash(this);
-		final String path = pathFromObject + propertiesFilename;
+	/** The algorithm with <code>Math#abs</code> method */
+	MATH_ABS,
 
-		final Properties prop = PropertiesLoader.loadProperties(path);
-		final boolean result = null != prop;
-		assertTrue("", result);
-	}
+	/** The algorithm with <code>Math#random</code> method */
+	MATH_RANDOM,
+
+	/** The algorithm with <code>Random</code> class */
+	RANDOM,
+
+	/** The algorithm with <code>SecureRandom</code> class */
+	SECURE_RANDOM;
 }

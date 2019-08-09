@@ -274,6 +274,19 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link de.alpharogroup.random.RandomExtensions#getRandomIntBetween(int, int)}
+	 */
+	@Test
+	public void testGetRandomIntBetween()
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			final int randomIntBetween = RandomExtensions.getRandomIntBetween(1, 10);
+			MathExtensions.isBetween(1, 10, randomIntBetween, true, true);
+		}
+	}
+
+	/**
 	 * Test method for {@link RandomExtensions#getRandomKey(java.util.Map)} .
 	 */
 	@Test
@@ -484,6 +497,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		assertTrue(MathExtensions.isBetween(Double.MIN_VALUE, Double.MAX_VALUE, random));
 	}
 
+
 	/**
 	 * Test method for {@link RandomExtensions#randomFloat()}
 	 */
@@ -494,7 +508,6 @@ public class RandomExtensionsTest extends BaseTestCase
 		float random = RandomExtensions.randomFloat();
 		assertTrue(MathExtensions.isBetween(Float.MIN_VALUE, Float.MAX_VALUE, random));
 	}
-
 
 	/**
 	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float)}
@@ -558,18 +571,6 @@ public class RandomExtensionsTest extends BaseTestCase
 		}
 	}
 
-	/**
-	 * Test method for {@link de.alpharogroup.random.RandomExtensions#getRandomIntBetween(int, int)}
-	 */
-	@Test
-	public void testGetRandomIntBetween()
-	{
-		for (int i = 0; i < 10; i++)
-		{
-			final int randomIntBetween = RandomExtensions.getRandomIntBetween(1, 10);
-			MathExtensions.isBetween(1, 10, randomIntBetween, true, true);
-		}
-	}
 	/**
 	 * Test method for
 	 * {@link de.alpharogroup.random.RandomExtensions#randomIntBetween(int, int, boolean, boolean)}

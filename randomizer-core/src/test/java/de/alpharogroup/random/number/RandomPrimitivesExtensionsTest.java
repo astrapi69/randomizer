@@ -62,6 +62,56 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomPrimitivesExtensions#randomBoolean()}
+	 */
+	@Test(enabled = true)
+	public void testRandomBoolean()
+	{
+		boolean randomBoolean = RandomPrimitivesExtensions.randomBoolean();
+		assertTrue(randomBoolean == true || randomBoolean == false);
+	}
+
+	/**
+	 * Test method for {@link RandomPrimitivesExtensions#randomByte()}
+	 */
+	@Test
+	public void testRandomByte()
+	{
+		final byte randomByte = RandomPrimitivesExtensions.randomByte();
+		assertTrue(
+			MathExtensions.isBetween(Byte.MIN_VALUE, Byte.MAX_VALUE, randomByte, true, true));
+	}
+
+	/**
+	 * Test method for {@link RandomPrimitivesExtensions#randomByteArray(int)}
+	 */
+	@Test
+	public void testRandomByteArray()
+	{
+		final byte[] randomByteArray = RandomPrimitivesExtensions.randomByteArray(8);
+		assertTrue(randomByteArray.length == 8);
+	}
+
+	/**
+	 * Test method for {@link RandomPrimitivesExtensions#randomChar(String)}
+	 */
+	@Test
+	public void testRandomCharString()
+	{
+		final String string = RandomCharacters.lowcase.getCharacters();
+
+		expected = true;
+		for (int i = 0; i < 100; i++)
+		{
+			final char randomChar = RandomPrimitivesExtensions.randomChar(string);
+			final CharBuffer charBuffer = CharBuffer.allocate(1);
+			charBuffer.put(randomChar);
+			actual = string.contains(charBuffer);
+			assertEquals(actual.booleanValue(), expected);
+		}
+	}
+
+	/**
 	 * Test method for {@link RandomPrimitivesExtensions#randomDouble()}
 	 */
 	@Test(enabled = true)
@@ -70,6 +120,7 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 		double random = RandomPrimitivesExtensions.randomDouble();
 		assertTrue(MathExtensions.isBetween(Double.MIN_VALUE, Double.MAX_VALUE, random));
 	}
+
 
 	/**
 	 * Test method for {@link RandomPrimitivesExtensions#randomDoubleBetween(double, double)}
@@ -115,7 +166,6 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 		float random = RandomPrimitivesExtensions.randomFloat();
 		assertTrue(MathExtensions.isBetween(Float.MIN_VALUE, Float.MAX_VALUE, random));
 	}
-
 
 	/**
 	 * Test method for {@link RandomPrimitivesExtensions#randomFloatBetween(float, float)}
@@ -242,55 +292,6 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 			final long randomLong = RandomPrimitivesExtensions.randomLong(5l);
 			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",
 				MathExtensions.isBetween(-1, 5, randomLong));
-		}
-	}
-
-	/**
-	 * Test method for {@link RandomPrimitivesExtensions#randomBoolean()}
-	 */
-	@Test(enabled = true)
-	public void testRandomBoolean()
-	{
-		boolean randomBoolean = RandomPrimitivesExtensions.randomBoolean();
-		assertTrue(randomBoolean == true || randomBoolean == false);
-	}
-
-	/**
-	 * Test method for {@link RandomPrimitivesExtensions#randomByte()}
-	 */
-	@Test
-	public void testRandomByte()
-	{
-		final byte randomByte = RandomPrimitivesExtensions.randomByte();
-		assertTrue(MathExtensions.isBetween(-128, 127, randomByte, true, true));
-	}
-
-	/**
-	 * Test method for {@link RandomPrimitivesExtensions#randomByteArray(int)}
-	 */
-	@Test
-	public void testRandomByteArray()
-	{
-		final byte[] randomByteArray = RandomPrimitivesExtensions.randomByteArray(8);
-		assertTrue(randomByteArray.length == 8);
-	}
-
-	/**
-	 * Test method for {@link RandomPrimitivesExtensions#randomChar(String)}
-	 */
-	@Test
-	public void testRandomCharString()
-	{
-		final String string = RandomCharacters.lowcase.getCharacters();
-
-		expected = true;
-		for (int i = 0; i < 100; i++)
-		{
-			final char randomChar = RandomPrimitivesExtensions.randomChar(string);
-			final CharBuffer charBuffer = CharBuffer.allocate(1);
-			charBuffer.put(randomChar);
-			actual = string.contains(charBuffer);
-			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 

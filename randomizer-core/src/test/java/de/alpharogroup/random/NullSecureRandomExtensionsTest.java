@@ -112,8 +112,13 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	@Test(enabled = true)
 	public void testGetRandomByte()
 	{
-		Byte random = RandomExtensions.getRandomByte();
-		assertTrue(MathExtensions.isBetween(Byte.MIN_VALUE, Byte.MAX_VALUE, random));
+		for (int i = 0; i < 1000; i++)
+		{
+			Byte random = RandomExtensions.getRandomByte();
+			System.out.println(random);
+			assertTrue(
+				MathExtensions.isBetween(Byte.MIN_VALUE, Byte.MAX_VALUE, random, true, true));
+		}
 	}
 
 	/**

@@ -114,8 +114,8 @@ public final class RandomNumberExtensions
 	 */
 	public static String getRandomNumericString(final int length)
 	{
-		final String randomNumber = RandomExtensions.getRandomString(RandomCharacters.numbers.getCharacters(),
-			length);
+		final String randomNumber = RandomExtensions
+			.getRandomString(RandomCharacters.numbers.getCharacters(), length);
 		return randomNumber;
 	}
 

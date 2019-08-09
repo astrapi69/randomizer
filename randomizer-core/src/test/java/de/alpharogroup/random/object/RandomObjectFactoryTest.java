@@ -33,7 +33,6 @@ import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-import de.alpharogroup.random.object.RandomObjectFactory;
 import de.alpharogroup.test.objects.Person;
 
 /**

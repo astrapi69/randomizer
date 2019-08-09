@@ -413,4 +413,19 @@ public final class RandomPrimitivesExtensions
 		return randomIntBetween;
 	}
 
+	/**
+	 * Returns a random int between the range from minVolume and maxVolume with the
+	 * <code>Math.abs</code> method.
+	 *
+	 * @param minVolume
+	 *            the min volume
+	 * @param maxVolume
+	 *            the max volume
+	 * @return A random int between the range from minVolume and maxVolume
+	 */
+	public static int getRandomIntBetween(int minVolume, int maxVolume)
+	{
+		return minVolume + Math.abs(DefaultSecureRandom.get().nextInt()) % maxVolume;
+	}
+
 }

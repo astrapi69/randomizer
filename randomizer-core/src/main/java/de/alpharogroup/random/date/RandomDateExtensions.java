@@ -81,7 +81,8 @@ public class RandomDateExtensions
 	public static ZoneId randomZoneId()
 	{
 		List<String> availableZoneIds = ListFactory.newArrayList(ZoneId.getAvailableZoneIds());
-		return ZoneId.of(availableZoneIds.get(RandomPrimitivesExtensions.randomInt(availableZoneIds.size())));
+		return ZoneId.of(
+			availableZoneIds.get(RandomPrimitivesExtensions.randomInt(availableZoneIds.size())));
 	}
 
 	/**
