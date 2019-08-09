@@ -1,6 +1,22 @@
 ## Change log
 ----------------------
 
+Version 6.2
+-------------
+
+ADDED:
+ 
+- new random method created for get a random int between the given range generated with with the Math.abs method.
+- new class RandomNumberExtensions for generate random number objects
+- new class RandomPrimitivesExtensions for generate random primitive type values
+- new enum for define the random algorithm created
+
+CHANGED:
+
+- removed deprecated method from SecureRandomBean and added new unit tests for it
+- refactored RandomExtensions to the appropriate named classes
+- moved RandomObjectFactory and RandomObjectsExtensions moved to the appropriate package
+
 Version 6.1
 -------------
 

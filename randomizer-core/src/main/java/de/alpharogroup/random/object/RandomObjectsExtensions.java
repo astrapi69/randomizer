@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.random;
+package de.alpharogroup.random.object;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -31,6 +31,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import de.alpharogroup.random.RandomCharacters;
+import de.alpharogroup.random.RandomExtensions;
+import de.alpharogroup.random.number.RandomNumberExtensions;
+import de.alpharogroup.random.number.RandomPrimitivesExtensions;
 import de.alpharogroup.reflection.ReflectionExtensions;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
@@ -87,9 +91,9 @@ public final class RandomObjectsExtensions
 		final StringBuffer email = new StringBuffer();
 		final String emailprefix = RandomExtensions.getRandomString(
 			RandomCharacters.lowcaseWithNumbers.getCharacters(),
-			RandomExtensions.randomInt(20) + 1);
+			RandomPrimitivesExtensions.randomInt(20) + 1);
 		final String domain = RandomExtensions.getRandomString(
-			RandomCharacters.lowcase.getCharacters(), RandomExtensions.randomInt(12) + 1);
+			RandomCharacters.lowcase.getCharacters(), RandomPrimitivesExtensions.randomInt(12) + 1);
 		final String topDomain = RandomExtensions
 			.getRandomString(RandomCharacters.lowcase.getCharacters(), 2);
 		email.append(emailprefix);
@@ -129,9 +133,9 @@ public final class RandomObjectsExtensions
 	{
 		final StringBuffer randomPhonenumber = new StringBuffer();
 		randomPhonenumber.append("0");
-		randomPhonenumber.append(RandomExtensions.getRandomNumericString(3));
+		randomPhonenumber.append(RandomNumberExtensions.getRandomNumericString(3));
 		randomPhonenumber.append("/");
-		randomPhonenumber.append(RandomExtensions.getRandomNumericString(7));
+		randomPhonenumber.append(RandomNumberExtensions.getRandomNumericString(7));
 		return randomPhonenumber.toString();
 	}
 
@@ -177,9 +181,9 @@ public final class RandomObjectsExtensions
 	{
 		final StringBuffer randomPhonenumber = new StringBuffer();
 		randomPhonenumber.append("0");
-		randomPhonenumber.append(RandomExtensions.getRandomNumericString(4));
+		randomPhonenumber.append(RandomNumberExtensions.getRandomNumericString(4));
 		randomPhonenumber.append("/");
-		randomPhonenumber.append(RandomExtensions.getRandomNumericString(7));
+		randomPhonenumber.append(RandomNumberExtensions.getRandomNumericString(7));
 		return randomPhonenumber.toString();
 	}
 
@@ -193,7 +197,7 @@ public final class RandomObjectsExtensions
 		final StringBuffer website = new StringBuffer();
 		final String websitePrefix = "http://www";
 		final String domain = RandomExtensions.getRandomString(
-			RandomCharacters.lowcase.getCharacters(), RandomExtensions.randomInt(12) + 1);
+			RandomCharacters.lowcase.getCharacters(), RandomPrimitivesExtensions.randomInt(12) + 1);
 		final String topDomain = RandomExtensions
 			.getRandomString(RandomCharacters.lowcase.getCharacters(), 2);
 		website.append(websitePrefix);
@@ -246,7 +250,7 @@ public final class RandomObjectsExtensions
 		boolean fullList = true;
 		while (fullList)
 		{
-			final int randomIndex = RandomExtensions.randomInt(dc.size());
+			final int randomIndex = RandomPrimitivesExtensions.randomInt(dc.size());
 			final Character c = dc.get(randomIndex);
 			sb.append(c);
 			dc.remove(randomIndex);
@@ -266,7 +270,7 @@ public final class RandomObjectsExtensions
 	 * @param cls
 	 *            the class
 	 * @return the new random object
-	 * 
+	 *
 	 * @throws IllegalAccessException
 	 *             is thrown if the class or its default constructor is not accessible.
 	 * @throws InstantiationException
@@ -275,7 +279,9 @@ public final class RandomObjectsExtensions
 	 *             constructor; or if the instantiation fails for some other reason.
 	 * @throws NoSuchFieldException
 	 *             is thrown if no such field exists
-	 * @deprecated use instead the same name method in the factory class
+	 * @deprecated use instead the same name method in the factory class<br>
+	 *             <br>
+	 *             Note: will be remove in the next minor release
 	 */
 	@Deprecated
 	public static <T> T newRandomObject(final @NonNull Class<T> cls)
@@ -309,7 +315,9 @@ public final class RandomObjectsExtensions
 	 *             constructor; or if the instantiation fails for some other reason.
 	 * @throws NoSuchFieldException
 	 *             is thrown if no such field exists
-	 * @deprecated use instead the same name method in the factory class
+	 * @deprecated use instead the same name method in the factory class<br>
+	 *             <br>
+	 *             Note: will be remove in the next minor release
 	 */
 	@Deprecated
 	public static Object newRandomValue(Field field)

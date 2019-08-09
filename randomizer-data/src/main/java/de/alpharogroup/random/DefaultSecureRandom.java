@@ -24,50 +24,33 @@
  */
 package de.alpharogroup.random;
 
-import static org.testng.Assert.assertNotNull;
+import java.security.SecureRandom;
 
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
-
-import nl.jqno.equalsverifier.EqualsVerifier;
+import lombok.experimental.UtilityClass;
 
 /**
- * The unit test class for the class {@link SecureRandomBean}
+ * The class {@link DefaultSecureRandom} holds a {@link SecureRandom} with the default algorithm and
+ * provider
  */
-public class SecureRandomBeanTest
+@UtilityClass
+public class DefaultSecureRandom
 {
 
-	/**
-	 * Test method for {@link SecureRandomBean#equals(Object)}
-	 */
-	@Test
-	public void equalsContract()
+	/** The secure random */
+	private static SecureRandom secureRandom;
+
+	static
 	{
-		EqualsVerifier.forClass(SecureRandomBean.class).verify();
+		secureRandom = SecureRandomFactory.newSecureRandom();
 	}
 
 	/**
-	 * Test method for {@link SecureRandomBean} constructors and builders
+	 * Gets the secure random
+	 *
+	 * @return the secure random
 	 */
-	@Test
-	public final void testConstructors()
+	public static SecureRandom get()
 	{
-		SecureRandomBean model = new SecureRandomBean();
-		assertNotNull(model);
-		model = new SecureRandomBean("SHA1PRNG", "SUN");
-		assertNotNull(model);
-		model = SecureRandomBean.builder().build();
-		assertNotNull(model);
+		return secureRandom;
 	}
-
-	/**
-	 * Test method for {@link SecureRandomBean}
-	 */
-	@Test
-	public void testWithBeanTester()
-	{
-		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(SecureRandomBean.class);
-	}
-
 }

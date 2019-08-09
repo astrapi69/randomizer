@@ -22,48 +22,38 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.random;
+package de.alpharogroup.random.util;
+
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.Properties;
 
-import de.alpharogroup.lang.ClassExtensions;
-import lombok.experimental.UtilityClass;
+import org.testng.annotations.Test;
 
-@UtilityClass
-public class PropertiesLoader
+import de.alpharogroup.lang.PackageExtensions;
+
+/**
+ * The unit test class for the class {@link PropertiesLoader}
+ */
+public class PropertiesLoaderTest
 {
 
 	/**
-	 * Gives a Properties-object from the given packagepath.
+	 * Test method for {@link PropertiesLoader#loadProperties(String)}
 	 *
-	 * @param packagePath
-	 *            The package-path and the name from the resource as a String.
-	 * @return The Properties-object from the given packagepath.
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public static Properties loadProperties(final String packagePath) throws IOException
+	@Test(enabled = true)
+	public void testLoadPropertiesPackagePath() throws IOException
 	{
-		Properties properties = null;
-		final URL url = ClassExtensions.getResource(packagePath);
-		if (url != null)
-		{
-			properties = new Properties();
-			properties.load(url.openStream());
-		}
-		else
-		{
-			final InputStream is = ClassExtensions.getResourceAsStream(packagePath);
-			if (is != null)
-			{
-				properties = new Properties();
-				properties.load(is);
-			}
-		}
-		return properties;
-	}
+		final String propertiesFilename = "resources.properties";
+		final String pathFromObject = PackageExtensions.getPackagePathWithSlash(this);
+		final String path = pathFromObject + propertiesFilename;
 
+		final Properties prop = PropertiesLoader.loadProperties(path);
+		final boolean result = null != prop;
+		assertTrue("", result);
+	}
 }

@@ -96,6 +96,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomBigDecimal(int, int)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testGetRandomBigDecimal()
 	{
@@ -107,11 +108,16 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomByte()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testGetRandomByte()
 	{
-		Byte random = RandomExtensions.getRandomByte();
-		assertTrue(MathExtensions.isBetween(Byte.MIN_VALUE, Byte.MAX_VALUE, random));
+		for (int i = 0; i < 10; i++)
+		{
+			Byte random = RandomExtensions.getRandomByte();
+			assertTrue(
+				MathExtensions.isBetween(Byte.MIN_VALUE, Byte.MAX_VALUE, random, true, true));
+		}
 	}
 
 	/**
@@ -139,7 +145,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		list.add("Katerina");
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomEntry = RandomExtensions.getRandomEntry(list);
 			actual = list.contains(randomEntry);
@@ -162,7 +168,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		final Collection<String> values = map.values();
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomValue = (String)RandomExtensions.getRandomEntry(map);
 			actual = values.contains(randomValue);
@@ -233,7 +239,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		final int afterComma = 4;
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final float randomFloat = RandomExtensions.getRandomFloat(afterComma, beforeComma);
 			actual = 0 < randomFloat;
@@ -256,7 +262,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		final Set<String> keys = map.keySet();
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomKey = (String)RandomExtensions.getRandomKey(map);
 			actual = keys.contains(randomKey);
@@ -267,6 +273,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomNumericString()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testGetRandomNumericString()
 	{
@@ -309,6 +316,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#newRandomPixel(int, int, int, int)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testNewRandomPixelIntIntIntInt()
 	{
@@ -331,6 +339,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomBoolean()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomBoolean()
 	{
@@ -341,6 +350,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomByteArray(int)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomByteArray()
 	{
@@ -351,24 +361,24 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomChar()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = false)
 	public void testRandomChar()
 	{
 		char randomChar = RandomExtensions.randomChar();
 		assertTrue(Character.isDefined(randomChar));
-		// TODO implement unit test scenarios...
-
 	}
 
 	/**
 	 * Test method for {@link RandomExtensions#randomChar(java.lang.String)} .
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomCharString()
 	{
 		final String string = RandomCharacters.lowcase.getCharacters();
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final char randomChar = RandomExtensions.randomChar(string);
 			final CharBuffer charBuffer = CharBuffer.allocate(1);
@@ -381,6 +391,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomDouble(double)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomDouble()
 	{
@@ -392,6 +403,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomDoubleBetweenDoubleDouble()
 	{
@@ -404,6 +416,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	 *
 	 * @throws ParseException
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomDoubleBetweenDoubleDoubleString() throws ParseException
 	{
@@ -414,6 +427,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomFloat()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloat()
 	{
@@ -424,6 +438,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloatBetweenFloatFloat()
 	{
@@ -437,6 +452,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	 * @throws ParseException
 	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloatBetweenFloatFloatString() throws ParseException
 	{
@@ -447,6 +463,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomFloat(float)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloatFloat()
 	{
@@ -458,6 +475,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomInt()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = false)
 	public void testRandomInt()
 	{
@@ -468,10 +486,11 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link de.alpharogroup.random.RandomExtensions#randomIntBetween(int, int)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomIntBetween()
 	{
-		for (int i = 0; i < 1000; i++)
+		for (int i = 0; i < 100; i++)
 		{
 			final int randomIntBetween = RandomExtensions.randomIntBetween(1, 10);
 			System.out.println(randomIntBetween);
@@ -481,10 +500,11 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomInt(int)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomIntInt()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final int randomInt = RandomExtensions.randomInt(5);
 			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
@@ -500,6 +520,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	 * @throws SecurityException
 	 * @throws NoSuchFieldException
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomLong() throws NoSuchFieldException, SecurityException,
 		IllegalArgumentException, IllegalAccessException
@@ -519,10 +540,11 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomLong(long)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomLongLong()
 	{
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final long randomLong = RandomExtensions.randomLong(5l);
 			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",
@@ -560,7 +582,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		final List<String> listFromArray = Arrays.asList(array);
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomString = RandomExtensions.getRandomString(array);
 			actual = listFromArray.contains(randomString);
@@ -580,7 +602,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 		charBuffer.put(chars);
 
 		expected = true;
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final String randomString = RandomExtensions.getRandomString(chars, length);
 			actual = randomString.contains(charBuffer);

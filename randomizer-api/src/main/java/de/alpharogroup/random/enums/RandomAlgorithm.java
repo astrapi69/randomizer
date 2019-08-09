@@ -22,52 +22,23 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.random;
-
-import static org.testng.Assert.assertNotNull;
-
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
-
-import nl.jqno.equalsverifier.EqualsVerifier;
+package de.alpharogroup.random.enums;
 
 /**
- * The unit test class for the class {@link SecureRandomBean}
+ * The enum {@link RandomAlgorithm} holds the algorithm for calculate random values
  */
-public class SecureRandomBeanTest
+public enum RandomAlgorithm
 {
 
-	/**
-	 * Test method for {@link SecureRandomBean#equals(Object)}
-	 */
-	@Test
-	public void equalsContract()
-	{
-		EqualsVerifier.forClass(SecureRandomBean.class).verify();
-	}
+	/** The algorithm with <code>Math#abs</code> method */
+	MATH_ABS,
 
-	/**
-	 * Test method for {@link SecureRandomBean} constructors and builders
-	 */
-	@Test
-	public final void testConstructors()
-	{
-		SecureRandomBean model = new SecureRandomBean();
-		assertNotNull(model);
-		model = new SecureRandomBean("SHA1PRNG", "SUN");
-		assertNotNull(model);
-		model = SecureRandomBean.builder().build();
-		assertNotNull(model);
-	}
+	/** The algorithm with <code>Math#random</code> method */
+	MATH_RANDOM,
 
-	/**
-	 * Test method for {@link SecureRandomBean}
-	 */
-	@Test
-	public void testWithBeanTester()
-	{
-		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(SecureRandomBean.class);
-	}
+	/** The algorithm with <code>Random</code> class */
+	RANDOM,
 
+	/** The algorithm with <code>SecureRandom</code> class */
+	SECURE_RANDOM;
 }

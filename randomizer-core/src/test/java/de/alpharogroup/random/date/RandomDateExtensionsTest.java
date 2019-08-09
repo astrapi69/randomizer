@@ -97,7 +97,7 @@ public class RandomDateExtensionsTest extends BaseTestCase
 		final Date past = RandomDateExtensions.dateBefore(this.now, 20000);
 		// About 9 years.
 		final Date recentlyPast = RandomDateExtensions.dateBefore(this.now, 3000);
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final Date randomBirthday = RandomDateExtensions.randomBirthday();
 			actual = CalculateDateExtensions.isBetween(past, recentlyPast, randomBirthday);
@@ -113,7 +113,7 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	{
 		final Date from = CalculateDateExtensions.substractDaysFromDate(this.now, 20000);
 		final Date till = CalculateDateExtensions.substractDaysFromDate(this.now, 3000);
-		for (int i = 0; i < 100; i++)
+		for (int i = 0; i < 10; i++)
 		{
 			final Date randomBirthday = RandomDateExtensions.randomBirthday(from, till);
 			actual = CalculateDateExtensions.isBetween(from, till, randomBirthday);

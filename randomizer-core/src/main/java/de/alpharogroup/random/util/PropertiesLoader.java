@@ -22,52 +22,48 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.random;
+package de.alpharogroup.random.util;
 
-import static org.testng.Assert.assertNotNull;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.Properties;
 
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
+import de.alpharogroup.lang.ClassExtensions;
+import lombok.experimental.UtilityClass;
 
-import nl.jqno.equalsverifier.EqualsVerifier;
-
-/**
- * The unit test class for the class {@link SecureRandomBean}
- */
-public class SecureRandomBeanTest
+@UtilityClass
+public class PropertiesLoader
 {
 
 	/**
-	 * Test method for {@link SecureRandomBean#equals(Object)}
+	 * Gives a Properties-object from the given packagepath.
+	 *
+	 * @param packagePath
+	 *            The package-path and the name from the resource as a String.
+	 * @return The Properties-object from the given packagepath.
+	 * @throws IOException
+	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test
-	public void equalsContract()
+	public static Properties loadProperties(final String packagePath) throws IOException
 	{
-		EqualsVerifier.forClass(SecureRandomBean.class).verify();
-	}
-
-	/**
-	 * Test method for {@link SecureRandomBean} constructors and builders
-	 */
-	@Test
-	public final void testConstructors()
-	{
-		SecureRandomBean model = new SecureRandomBean();
-		assertNotNull(model);
-		model = new SecureRandomBean("SHA1PRNG", "SUN");
-		assertNotNull(model);
-		model = SecureRandomBean.builder().build();
-		assertNotNull(model);
-	}
-
-	/**
-	 * Test method for {@link SecureRandomBean}
-	 */
-	@Test
-	public void testWithBeanTester()
-	{
-		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(SecureRandomBean.class);
+		Properties properties = null;
+		final URL url = ClassExtensions.getResource(packagePath);
+		if (url != null)
+		{
+			properties = new Properties();
+			properties.load(url.openStream());
+		}
+		else
+		{
+			final InputStream is = ClassExtensions.getResourceAsStream(packagePath);
+			if (is != null)
+			{
+				properties = new Properties();
+				properties.load(is);
+			}
+		}
+		return properties;
 	}
 
 }
