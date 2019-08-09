@@ -96,6 +96,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomBigDecimal(int, int)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testGetRandomBigDecimal()
 	{
@@ -107,6 +108,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomByte()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testGetRandomByte()
 	{
@@ -267,6 +269,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomNumericString()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testGetRandomNumericString()
 	{
@@ -309,6 +312,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#newRandomPixel(int, int, int, int)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testNewRandomPixelIntIntIntInt()
 	{
@@ -331,6 +335,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomBoolean()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomBoolean()
 	{
@@ -341,6 +346,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomByteArray(int)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomByteArray()
 	{
@@ -351,18 +357,18 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomChar()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = false)
 	public void testRandomChar()
 	{
 		char randomChar = RandomExtensions.randomChar();
 		assertTrue(Character.isDefined(randomChar));
-		// TODO implement unit test scenarios...
-
 	}
 
 	/**
 	 * Test method for {@link RandomExtensions#randomChar(java.lang.String)} .
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomCharString()
 	{
@@ -381,6 +387,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomDouble(double)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomDouble()
 	{
@@ -392,6 +399,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomDoubleBetweenDoubleDouble()
 	{
@@ -404,6 +412,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	 *
 	 * @throws ParseException
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomDoubleBetweenDoubleDoubleString() throws ParseException
 	{
@@ -414,6 +423,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomFloat()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloat()
 	{
@@ -424,6 +434,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloatBetweenFloatFloat()
 	{
@@ -437,6 +448,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	 * @throws ParseException
 	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloatBetweenFloatFloatString() throws ParseException
 	{
@@ -447,6 +459,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomFloat(float)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloatFloat()
 	{
@@ -458,6 +471,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomInt()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = false)
 	public void testRandomInt()
 	{
@@ -468,6 +482,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link de.alpharogroup.random.RandomExtensions#randomIntBetween(int, int)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomIntBetween()
 	{
@@ -481,6 +496,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomInt(int)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomIntInt()
 	{
@@ -500,6 +516,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	 * @throws SecurityException
 	 * @throws NoSuchFieldException
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomLong() throws NoSuchFieldException, SecurityException,
 		IllegalArgumentException, IllegalAccessException
@@ -519,6 +536,7 @@ public class NullSecureRandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomLong(long)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomLongLong()
 	{

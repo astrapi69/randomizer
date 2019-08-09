@@ -96,6 +96,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomBigDecimal(int, int)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testGetRandomBigDecimal()
 	{
@@ -107,6 +108,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomByte()}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testGetRandomByte()
 	{
@@ -297,6 +299,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomNumericString()}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testGetRandomNumericString()
 	{
@@ -350,6 +353,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#newRandomPixel(int, int, int, int)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testNewRandomPixelIntIntIntInt()
 	{
@@ -372,6 +376,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomBigInteger()}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomBigDecimal()
 	{
@@ -382,6 +387,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomBigInteger()}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomBigInteger()
 	{
@@ -392,6 +398,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomBoolean()}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomBoolean()
 	{
@@ -402,6 +409,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomByteArray(int)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomByteArray()
 	{
@@ -412,6 +420,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomChar(java.lang.String)} .
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomCharString()
 	{
@@ -431,6 +440,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomDouble()}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomDouble()
 	{
@@ -441,6 +451,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomDoubleBetween(double, double)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomDoubleBetweenDoubleDouble()
 	{
@@ -453,6 +464,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	 *
 	 * @throws ParseException
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomDoubleBetweenDoubleDoubleString() throws ParseException
 	{
@@ -463,6 +475,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomDouble(double)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomDoubleDouble()
 	{
@@ -474,6 +487,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomFloat()}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloat()
 	{
@@ -485,6 +499,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomFloatBetween(float, float)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloatBetweenFloatFloat()
 	{
@@ -498,6 +513,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	 * @throws ParseException
 	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloatBetweenFloatFloatString() throws ParseException
 	{
@@ -508,6 +524,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomFloat(float)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloatFloat()
 	{
@@ -519,6 +536,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomInt()}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomInt()
 	{
@@ -529,6 +547,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link de.alpharogroup.random.RandomExtensions#randomIntBetween(int, int)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomIntBetween()
 	{
@@ -543,6 +562,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	 * Test method for
 	 * {@link de.alpharogroup.random.RandomExtensions#randomIntBetween(int, int, boolean, boolean)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomIntBetweenBooleanBoolean()
 	{
@@ -571,6 +591,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomInt(int)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomIntInt()
 	{
@@ -585,6 +606,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomLong()}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomLong()
 	{
@@ -595,6 +617,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomLong(long)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomLongLong()
 	{
@@ -632,6 +655,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#randomShort()}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomShort()
 	{

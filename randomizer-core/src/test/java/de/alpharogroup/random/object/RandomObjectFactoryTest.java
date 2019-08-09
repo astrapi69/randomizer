@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.random;
+package de.alpharogroup.random.object;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.testng.Assert.assertNotNull;
@@ -33,6 +33,7 @@ import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.random.object.RandomObjectFactory;
 import de.alpharogroup.test.objects.Person;
 
 /**

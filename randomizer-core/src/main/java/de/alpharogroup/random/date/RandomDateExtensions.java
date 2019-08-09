@@ -38,8 +38,8 @@ import java.util.List;
 
 import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.date.CalculateDateExtensions;
-import de.alpharogroup.random.RandomExtensions;
 import de.alpharogroup.random.SecureRandomFactory;
+import de.alpharogroup.random.number.RandomPrimitivesExtensions;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -70,7 +70,7 @@ public class RandomDateExtensions
 	 */
 	public static Date dateAfter(final Date date)
 	{
-		return dateAfter(date, RandomExtensions.randomInt(10000));
+		return dateAfter(date, RandomPrimitivesExtensions.randomInt(10000));
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class RandomDateExtensions
 	public static ZoneId randomZoneId()
 	{
 		List<String> availableZoneIds = ListFactory.newArrayList(ZoneId.getAvailableZoneIds());
-		return ZoneId.of(availableZoneIds.get(RandomExtensions.randomInt(availableZoneIds.size())));
+		return ZoneId.of(availableZoneIds.get(RandomPrimitivesExtensions.randomInt(availableZoneIds.size())));
 	}
 
 	/**
@@ -103,17 +103,17 @@ public class RandomDateExtensions
 	{
 		LocalTime randomLocalTime;
 		LocalTime now = LocalTime.now();
-		if (RandomExtensions.randomBoolean())
+		if (RandomPrimitivesExtensions.randomBoolean())
 		{
-			randomLocalTime = now.plusHours(RandomExtensions.randomLong(23))
-				.plusMinutes(RandomExtensions.randomLong(59))
-				.plusSeconds(RandomExtensions.randomLong(59));
+			randomLocalTime = now.plusHours(RandomPrimitivesExtensions.randomLong(23))
+				.plusMinutes(RandomPrimitivesExtensions.randomLong(59))
+				.plusSeconds(RandomPrimitivesExtensions.randomLong(59));
 		}
 		else
 		{
-			randomLocalTime = now.minusHours(RandomExtensions.randomLong(23))
-				.minusMinutes(RandomExtensions.randomLong(59))
-				.minusSeconds(RandomExtensions.randomLong(59));
+			randomLocalTime = now.minusHours(RandomPrimitivesExtensions.randomLong(23))
+				.minusMinutes(RandomPrimitivesExtensions.randomLong(59))
+				.minusSeconds(RandomPrimitivesExtensions.randomLong(59));
 		}
 		return randomLocalTime;
 	}
@@ -127,13 +127,13 @@ public class RandomDateExtensions
 	{
 		LocalDate randomLocalDate;
 		LocalDate now = LocalDate.now();
-		if (RandomExtensions.randomBoolean())
+		if (RandomPrimitivesExtensions.randomBoolean())
 		{
-			randomLocalDate = now.plusDays(RandomExtensions.randomLong());
+			randomLocalDate = now.plusDays(RandomPrimitivesExtensions.randomLong());
 		}
 		else
 		{
-			randomLocalDate = now.minusDays(RandomExtensions.randomLong());
+			randomLocalDate = now.minusDays(RandomPrimitivesExtensions.randomLong());
 		}
 		return randomLocalDate;
 	}
@@ -150,7 +150,7 @@ public class RandomDateExtensions
 	 */
 	public static Date dateAfter(final Date date, final int range)
 	{
-		return CalculateDateExtensions.addDays(date, RandomExtensions.randomInt(range));
+		return CalculateDateExtensions.addDays(date, RandomPrimitivesExtensions.randomInt(range));
 	}
 
 	/**
@@ -264,11 +264,11 @@ public class RandomDateExtensions
 	public static Date randomDate()
 	{
 		final Date now = new Date(System.currentTimeMillis());
-		if (RandomExtensions.randomBoolean())
+		if (RandomPrimitivesExtensions.randomBoolean())
 		{
-			return dateAfter(now, RandomExtensions.randomInt(10000));
+			return dateAfter(now, RandomPrimitivesExtensions.randomInt(10000));
 		}
-		return dateBefore(now, RandomExtensions.randomInt(10000));
+		return dateBefore(now, RandomPrimitivesExtensions.randomInt(10000));
 	}
 
 	/**
@@ -318,7 +318,7 @@ public class RandomDateExtensions
 		final String format)
 	{
 		final SimpleDateFormat sdf = new SimpleDateFormat(format);
-		long randomLongBetween = RandomExtensions.randomLongBetween(startDate, endDate);
+		long randomLongBetween = RandomPrimitivesExtensions.randomLongBetween(startDate, endDate);
 		Date between = new Date(randomLongBetween);
 		return sdf.format(between);
 	}
@@ -336,7 +336,7 @@ public class RandomDateExtensions
 	 */
 	public static Date randomDateBetween(final Date from, final int startDays, final int endDays)
 	{
-		return dateAfter(from, RandomExtensions.randomIntBetween(startDays, endDays));
+		return dateAfter(from, RandomPrimitivesExtensions.randomIntBetween(startDays, endDays));
 	}
 
 }

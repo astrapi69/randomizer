@@ -39,7 +39,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.BaseTestCase;
-import de.alpharogroup.random.PropertiesLoader;
+import de.alpharogroup.random.util.PropertiesLoader;
 import de.alpharogroup.string.StringExtensions;
 
 /**

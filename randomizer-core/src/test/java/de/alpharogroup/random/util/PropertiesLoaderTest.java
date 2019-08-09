@@ -1,4 +1,4 @@
-package de.alpharogroup.random;
+package de.alpharogroup.random.util;
 
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -8,6 +8,7 @@ import java.util.Properties;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.lang.PackageExtensions;
+import de.alpharogroup.random.util.PropertiesLoader;
 
 /**
  * The unit test class for the class {@link PropertiesLoader}

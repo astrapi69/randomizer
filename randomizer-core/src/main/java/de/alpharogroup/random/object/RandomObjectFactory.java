@@ -22,7 +22,7 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.random;
+package de.alpharogroup.random.object;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -35,7 +35,10 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import de.alpharogroup.random.RandomExtensions;
 import de.alpharogroup.random.date.RandomDateExtensions;
+import de.alpharogroup.random.number.RandomNumberExtensions;
+import de.alpharogroup.random.number.RandomPrimitivesExtensions;
 import de.alpharogroup.reflection.ReflectionExtensions;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
@@ -143,35 +146,35 @@ public class RandomObjectFactory
 		}
 		else if (type.equals(Byte.TYPE) || type.equals(Byte.class))
 		{
-			return Byte.valueOf(RandomExtensions.randomByte());
+			return Byte.valueOf(RandomPrimitivesExtensions.randomByte());
 		}
 		else if (type.equals(Character.TYPE) || type.equals(Character.class))
 		{
-			return Character.valueOf(RandomExtensions.randomChar());
+			return Character.valueOf(RandomPrimitivesExtensions.randomChar());
 		}
 		else if (type.equals(Short.TYPE) || type.equals(Short.class))
 		{
-			return Short.valueOf(RandomExtensions.randomShort());
+			return Short.valueOf(RandomPrimitivesExtensions.randomShort());
 		}
 		else if (type.equals(Boolean.TYPE) || type.equals(Boolean.class))
 		{
-			return Boolean.valueOf(RandomExtensions.randomBoolean());
+			return Boolean.valueOf(RandomPrimitivesExtensions.randomBoolean());
 		}
 		else if (type.equals(Integer.TYPE) || type.equals(Integer.class))
 		{
-			return Integer.valueOf(RandomExtensions.randomInt());
+			return Integer.valueOf(RandomPrimitivesExtensions.randomInt());
 		}
 		else if (type.equals(Long.TYPE) || type.equals(Long.class))
 		{
-			return Long.valueOf(RandomExtensions.randomLong());
+			return Long.valueOf(RandomPrimitivesExtensions.randomLong());
 		}
 		else if (type.equals(Double.TYPE) || type.equals(Double.class))
 		{
-			return Double.valueOf(RandomExtensions.randomDouble());
+			return Double.valueOf(RandomPrimitivesExtensions.randomDouble());
 		}
 		else if (type.equals(Float.TYPE) || type.equals(Float.class))
 		{
-			return Float.valueOf(RandomExtensions.randomFloat());
+			return Float.valueOf(RandomPrimitivesExtensions.randomFloat());
 		}
 		else if (type.equals(String.class))
 		{
@@ -179,11 +182,11 @@ public class RandomObjectFactory
 		}
 		else if (type.equals(BigInteger.class))
 		{
-			return RandomExtensions.randomBigInteger();
+			return RandomNumberExtensions.randomBigInteger();
 		}
 		else if (type.equals(BigDecimal.class))
 		{
-			return RandomExtensions.randomBigDecimal();
+			return RandomNumberExtensions.randomBigDecimal();
 		}
 		else if (type.equals(Date.class))
 		{
