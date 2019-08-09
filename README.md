@@ -62,7 +62,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>6.1</randomizer.version>
+		<randomizer.version>6.2</randomizer.version>
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
 		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
 		<randomizer-data.version>${randomizer.version}</randomizer-data.version>

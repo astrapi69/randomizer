@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>randomizer</artifactId>
-		<version>6.2</version>
+		<version>6.3-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>randomizer-data</artifactId>
