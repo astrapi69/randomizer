@@ -47,16 +47,6 @@ public class RandomObjectFactoryTest
 {
 
 	/**
-	 * Test method for {@link RandomObjectFactory#newRandomByteObjects(int)}
-	 */
-	@Test(enabled = true)
-	public void testNewRandomByteObjects()
-	{
-		Byte[] randomByteArray = RandomObjectFactory.newRandomByteObjects(5);
-		assertTrue(randomByteArray.length == 5);
-	}
-
-	/**
 	 * Test method for {@link RandomObjectFactory#newRandomAlgorithm()}
 	 */
 	@Test(enabled = true)
@@ -64,6 +54,16 @@ public class RandomObjectFactoryTest
 	{
 		RandomAlgorithm randomAlgorithm = RandomObjectFactory.newRandomAlgorithm();
 		assertNotNull(randomAlgorithm);
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#newRandomByteObjects(int)}
+	 */
+	@Test(enabled = true)
+	public void testNewRandomByteObjects()
+	{
+		Byte[] randomByteArray = RandomObjectFactory.newRandomByteObjects(5);
+		assertTrue(randomByteArray.length == 5);
 	}
 
 	/**

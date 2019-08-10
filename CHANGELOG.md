@@ -12,6 +12,7 @@ ADDED:
 CHANGED:
 
 - removed deprecated methods from RandomExtensions and RandomObjectsExtensions
+- code coverage increased to 100 percent
 
 Version 6.2
 -------------
