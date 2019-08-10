@@ -82,7 +82,7 @@ public final class RandomPrimitivesExtensions
 			else
 			{
 				DefaultSecureRandom.get().nextBytes(randomByteBox);
-				randomByteArray[i] = Byte.valueOf(randomByteBox[0]);
+				randomByteArray[i] = randomByteBox[0];
 			}
 		}
 		return randomByteArray;
@@ -156,11 +156,7 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static long randomLong(final long range)
 	{
-		if (DefaultSecureRandom.get() != null)
-		{
-			return (long)(DefaultSecureRandom.get().nextDouble() * range);
-		}
-		return (long)(Math.random() * range);
+		return (long)(DefaultSecureRandom.get().nextDouble() * range);
 	}
 
 	/**
@@ -184,11 +180,7 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static float randomFloat()
 	{
-		if (DefaultSecureRandom.get() != null)
-		{
-			return randomFloat(DefaultSecureRandom.get().nextFloat());
-		}
-		return randomFloat(new Random(System.currentTimeMillis()).nextFloat());
+		return randomFloat(DefaultSecureRandom.get().nextFloat());
 	}
 
 	/**
@@ -201,11 +193,7 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static double randomDouble(final double range)
 	{
-		if (DefaultSecureRandom.get() != null)
-		{
-			return DefaultSecureRandom.get().nextDouble() * range;
-		}
-		return Math.random() * range;
+		return DefaultSecureRandom.get().nextDouble() * range;
 	}
 
 	/**
@@ -265,11 +253,7 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static float randomFloat(final float range)
 	{
-		if (DefaultSecureRandom.get() != null)
-		{
-			return (float)(DefaultSecureRandom.get().nextDouble() * range);
-		}
-		return (float)(Math.random() * range);
+		return (float)(DefaultSecureRandom.get().nextDouble() * range);
 	}
 
 	/**
@@ -297,10 +281,8 @@ public final class RandomPrimitivesExtensions
 	 */
 	private static String getRandomFloatString(final int afterComma, final int beforeComma)
 	{
-		final String nachkommastellen = RandomNumberExtensions.getRandomNumericString(afterComma);
-		final String vorkommastellen = RandomNumberExtensions.getRandomNumericString(beforeComma);
-		final String result = nachkommastellen + "." + vorkommastellen;
-		return result;
+		return RandomNumberExtensions.getRandomNumericString(afterComma) + "."
+			+ RandomNumberExtensions.getRandomNumericString(beforeComma);
 	}
 
 	/**
@@ -347,11 +329,7 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static int randomInt()
 	{
-		if (DefaultSecureRandom.get() != null)
-		{
-			return randomInt(DefaultSecureRandom.get().nextInt());
-		}
-		return randomInt(new Random(System.currentTimeMillis()).nextInt());
+		return randomInt(DefaultSecureRandom.get().nextInt());
 	}
 
 	/**
@@ -364,11 +342,7 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static int randomInt(final int range)
 	{
-		if (DefaultSecureRandom.get() != null)
-		{
-			return (int)(DefaultSecureRandom.get().nextDouble() * range);
-		}
-		return (int)(Math.random() * range);
+		return (int)(DefaultSecureRandom.get().nextDouble() * range);
 	}
 
 	/**

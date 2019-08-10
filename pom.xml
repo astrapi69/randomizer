@@ -210,7 +210,9 @@
 							<excludes>
 								<!-- abstract classes -->
 								<!-- enums -->
+								<exclude>de/alpharogroup/random/enums/**/*.class</exclude>
 								<!-- beans -->
+								<exclude>de/alpharogroup/random/DefaultSecureRandom.class</exclude>
 								<!-- constant classes with only constants -->
 								<exclude>de/alpharogroup/random/address/**/*.class</exclude>
 								<!-- interfaces -->
@@ -226,7 +228,7 @@
 								<exclude>de/alpharogroup/random/Constants.class</exclude>
 								<!-- explicit delegation classes -->
 								<exclude>de/alpharogroup/random/RandomFactory.class</exclude>
-								<exclude>de/alpharogroup/random/PropertiesLoader.class</exclude>
+								<exclude>de/alpharogroup/random/util/PropertiesLoader.class</exclude>
 								<exclude>de/alpharogroup/random/SecureRandomFactory.class</exclude>
 							</excludes>
 						</instrumentation>
