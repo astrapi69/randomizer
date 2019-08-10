@@ -72,9 +72,18 @@ public final class RandomPrimitivesExtensions
 	public static byte[] randomByteArray(final int length)
 	{
 		final byte[] randomByteArray = new byte[length];
+		final byte[] randomByteBox = new byte[1];
 		for (int i = 0; i < length; i++)
 		{
-			randomByteArray[i] = randomByte();
+			if (RandomPrimitivesExtensions.randomBoolean())
+			{
+				randomByteArray[i] = RandomPrimitivesExtensions.randomByte();
+			}
+			else
+			{
+				DefaultSecureRandom.get().nextBytes(randomByteBox);
+				randomByteArray[i] = Byte.valueOf(randomByteBox[0]);
+			}
 		}
 		return randomByteArray;
 	}

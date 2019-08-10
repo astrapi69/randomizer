@@ -26,6 +26,7 @@ package de.alpharogroup.random.object;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.testng.Assert.assertNotNull;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -45,8 +46,18 @@ public class RandomObjectFactoryTest
 {
 
 	/**
+	 * Test method for {@link RandomObjectFactory#newRandomByteObjects(int)}
+	 */
+	@Test(enabled = true)
+	public void testGetRandomByteArray()
+	{
+		Byte[] randomByteArray = RandomObjectFactory.newRandomByteObjects(5);
+		assertTrue(randomByteArray.length == 5);
+	}
+
+	/**
 	 * Test method for {@link RandomObjectFactory#newRandomObject(Class)}
-	 * 
+	 *
 	 * @throws IllegalAccessException
 	 *             is thrown if the class or its default constructor is not accessible.
 	 * @throws InstantiationException
@@ -69,7 +80,7 @@ public class RandomObjectFactoryTest
 
 	/**
 	 * Test method for {@link RandomObjectFactory#newRandomObject(Class)}
-	 * 
+	 *
 	 * @throws IllegalAccessException
 	 *             is thrown if the class or its default constructor is not accessible.
 	 * @throws InstantiationException
