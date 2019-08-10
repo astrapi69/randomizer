@@ -39,6 +39,7 @@ import org.testng.annotations.Test;
 import de.alpharogroup.BaseTestCase;
 import de.alpharogroup.math.MathExtensions;
 import de.alpharogroup.random.RandomCharacters;
+import de.alpharogroup.random.enums.RandomAlgorithm;
 
 /**
  * The unit test class for the class {@link RandomPrimitivesExtensions}
@@ -59,6 +60,19 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	protected void tearDown() throws Exception
 	{
 		super.tearDown();
+	}
+
+	/**
+	 * Test method for {@link RandomPrimitivesExtensions#getRandomIntBetween(int, int)}
+	 */
+	@Test
+	public void testGetRandomIntBetween()
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			final int randomIntBetween = RandomPrimitivesExtensions.getRandomIntBetween(1, 10);
+			MathExtensions.isBetween(1, 10, randomIntBetween, true, true);
+		}
 	}
 
 	/**
@@ -158,6 +172,40 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomPrimitivesExtensions#randomDouble(double, RandomAlgorithm)}
+	 */
+	@Test
+	public void testRandomDoubleRandomAlgorithm()
+	{
+		RandomAlgorithm algorithm;
+		double random;
+		// scenario with RandomAlgorithm.MATH_ABS
+		algorithm = RandomAlgorithm.MATH_ABS;
+		for (int i = 0; i < 10; i++)
+		{
+			random = RandomPrimitivesExtensions.randomDouble(5d, algorithm);
+			assertTrue("random result is " + random + " but should be between 0-4.",
+				MathExtensions.isBetween(-1d, 5d, random));
+		}
+		// scenario with RandomAlgorithm.MATH_RANDOM
+		algorithm = RandomAlgorithm.MATH_RANDOM;
+		for (int i = 0; i < 10; i++)
+		{
+			random = RandomPrimitivesExtensions.randomDouble(5d, algorithm);
+			assertTrue("random result is " + random + " but should be between 0-4.",
+				MathExtensions.isBetween(-1d, 5d, random));
+		}
+		// scenario with RandomAlgorithm.RANDOM
+		algorithm = RandomAlgorithm.RANDOM;
+		for (int i = 0; i < 10; i++)
+		{
+			random = RandomPrimitivesExtensions.randomDouble(5d, algorithm);
+			assertTrue("random result is " + random + " but should be between 0-4.",
+				MathExtensions.isBetween(-1d, 5d, random));
+		}
+	}
+
+	/**
 	 * Test method for {@link RandomPrimitivesExtensions#randomFloat()}
 	 */
 	@Test(enabled = true)
@@ -196,9 +244,47 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	@Test(enabled = true)
 	public void testRandomFloatFloat()
 	{
-		float random = RandomPrimitivesExtensions
-			.randomFloat(RandomPrimitivesExtensions.randomFloatBetween(0.0f, 10.0f));
-		assertTrue(MathExtensions.isBetween(Float.MIN_VALUE, Float.MAX_VALUE, random));
+		float random;
+		for (int i = 0; i < 10; i++)
+		{
+			random = RandomPrimitivesExtensions.randomFloat(5f);
+			assertTrue("random result is " + random + " but should be between 0-4.",
+				MathExtensions.isBetween(-1f, 5f, random));
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomPrimitivesExtensions#randomFloat(float, RandomAlgorithm)}
+	 */
+	@Test
+	public void testRandomFloatRandomAlgorithm()
+	{
+		RandomAlgorithm algorithm;
+		float random;
+		// scenario with RandomAlgorithm.MATH_ABS
+		algorithm = RandomAlgorithm.MATH_ABS;
+		for (int i = 0; i < 10; i++)
+		{
+			random = RandomPrimitivesExtensions.randomFloat(5f, algorithm);
+			assertTrue("random result is " + random + " but should be between 0-4.",
+				MathExtensions.isBetween(-1f, 5f, random));
+		}
+		// scenario with RandomAlgorithm.MATH_RANDOM
+		algorithm = RandomAlgorithm.MATH_RANDOM;
+		for (int i = 0; i < 10; i++)
+		{
+			random = RandomPrimitivesExtensions.randomFloat(5f, algorithm);
+			assertTrue("random result is " + random + " but should be between 0-4.",
+				MathExtensions.isBetween(-1f, 5f, random));
+		}
+		// scenario with RandomAlgorithm.RANDOM
+		algorithm = RandomAlgorithm.RANDOM;
+		for (int i = 0; i < 10; i++)
+		{
+			random = RandomPrimitivesExtensions.randomFloat(5f, algorithm);
+			assertTrue("random result is " + random + " but should be between 0-4.",
+				MathExtensions.isBetween(-1f, 5f, random));
+		}
 	}
 
 	/**
@@ -272,6 +358,42 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for
+	 * {@link RandomPrimitivesExtensions#randomInt(int, de.alpharogroup.random.enums.RandomAlgorithm)}
+	 */
+	@Test
+	public void testRandomIntRandomAlgorithm()
+	{
+		RandomAlgorithm algorithm;
+		// scenario with RandomAlgorithm.MATH_ABS
+		algorithm = RandomAlgorithm.MATH_ABS;
+		for (int i = 0; i < 10; i++)
+		{
+			final int randomInt = RandomPrimitivesExtensions.randomInt(5, algorithm);
+			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
+				MathExtensions.isBetween(-1, 5, randomInt));
+		}
+		// scenario with RandomAlgorithm.MATH_RANDOM
+		algorithm = RandomAlgorithm.MATH_RANDOM;
+		for (int i = 0; i < 10; i++)
+		{
+			final int randomInt = RandomPrimitivesExtensions.randomInt(5, algorithm);
+			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
+				MathExtensions.isBetween(-1, 5, randomInt));
+		}
+		// scenario with RandomAlgorithm.RANDOM
+		algorithm = RandomAlgorithm.RANDOM;
+		for (int i = 0; i < 10; i++)
+		{
+			final int randomInt = RandomPrimitivesExtensions.randomInt(5, algorithm);
+			assertTrue(
+				"randomInt result is " + randomInt
+					+ " but should be between Integer.MIN_VALUE-Integer.MAX_VALUE.",
+				MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, randomInt));
+		}
+	}
+
+	/**
 	 * Test method for {@link RandomPrimitivesExtensions#randomLong()}
 	 */
 	@Test(enabled = true)
@@ -296,6 +418,40 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomPrimitivesExtensions#randomLong(long, RandomAlgorithm)}
+	 */
+	@Test
+	public void testRandomLongRandomAlgorithm()
+	{
+		RandomAlgorithm algorithm;
+		long randomLong;
+		// scenario with RandomAlgorithm.MATH_ABS
+		algorithm = RandomAlgorithm.MATH_ABS;
+		for (int i = 0; i < 10; i++)
+		{
+			randomLong = RandomPrimitivesExtensions.randomLong(5l, algorithm);
+			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",
+				MathExtensions.isBetween(-1l, 5l, randomLong));
+		}
+		// scenario with RandomAlgorithm.MATH_RANDOM
+		algorithm = RandomAlgorithm.MATH_RANDOM;
+		for (int i = 0; i < 10; i++)
+		{
+			randomLong = RandomPrimitivesExtensions.randomLong(5l, algorithm);
+			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",
+				MathExtensions.isBetween(-1l, 5l, randomLong));
+		}
+		// scenario with RandomAlgorithm.RANDOM
+		algorithm = RandomAlgorithm.RANDOM;
+		for (int i = 0; i < 10; i++)
+		{
+			randomLong = RandomPrimitivesExtensions.randomLong(5l, algorithm);
+			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",
+				MathExtensions.isBetween(-1l, 5l, randomLong));
+		}
+	}
+
+	/**
 	 * Test method for {@link RandomPrimitivesExtensions#randomShort()}
 	 */
 	@Test(enabled = true)
@@ -311,7 +467,7 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomPrimitivesExtensions} with {@link BeanTester}
 	 */
-	@Test(enabled = false, expectedExceptions = { BeanTestException.class,
+	@Test(enabled = true, expectedExceptions = { BeanTestException.class,
 			InvocationTargetException.class, UnsupportedOperationException.class })
 	public void testWithBeanTester()
 	{

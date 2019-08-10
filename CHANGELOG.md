@@ -1,6 +1,19 @@
 ## Change log
 ----------------------
 
+Version 6.3-SNAPSHOT
+-------------
+
+ADDED:
+ 
+- new method to create random numbers over the RandomAlgorithm for the primitive types int, long, float and double 
+- unit tests for the new methods created
+
+CHANGED:
+
+- removed deprecated methods from RandomExtensions and RandomObjectsExtensions
+- code coverage increased to 100 percent
+
 Version 6.2
 -------------
 

@@ -24,23 +24,17 @@
  */
 package de.alpharogroup.random;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.math.RoundingMode;
 import java.nio.charset.Charset;
-import java.security.SecureRandom;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.Set;
 import java.util.UUID;
 
 import de.alpharogroup.lang.ClassExtensions;
-import de.alpharogroup.math.MathExtensions;
+import de.alpharogroup.random.number.RandomPrimitivesExtensions;
+import de.alpharogroup.random.object.RandomObjectFactory;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -56,103 +50,6 @@ import lombok.experimental.UtilityClass;
 public final class RandomExtensions
 {
 
-	/** The secure random. */
-	private static SecureRandom secureRandom = DefaultSecureRandom.get();
-
-	static
-	{
-		secureRandom = SecureRandomFactory.newSecureRandom();
-	}
-
-	/**
-	 * Gets a random long
-	 *
-	 * @return a random long
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static long randomLong()
-	{
-		return randomLong(new Random(System.currentTimeMillis()).nextInt());
-	}
-
-	/**
-	 * The Method randomLong(long) gets an long to the spezified range. For example: if you put
-	 * range to 10 the random int is between 0-9.
-	 *
-	 * @param range
-	 *            the range
-	 * @return an long not greater then the range.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static long randomLong(final long range)
-	{
-		if (secureRandom != null)
-		{
-			return (long)(secureRandom.nextDouble() * range);
-		}
-		return (long)(Math.random() * range);
-	}
-
-	/**
-	 * Returns a random long between the range from start and end.
-	 *
-	 * @param start
-	 *            The long from where the range starts.
-	 * @param end
-	 *            The long from where the range ends.
-	 * @return A random long between the range from start and end.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static long randomLongBetween(final long start, final long end)
-	{
-		return start + randomLong(end - start);
-	}
-
-	/**
-	 * Generates a random float between the range 0.0-9.9.
-	 *
-	 * @return the generated random float between the range 0.0-9.9.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomNumberExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static float randomFloat()
-	{
-		if (secureRandom != null)
-		{
-			return randomFloat(secureRandom.nextFloat());
-		}
-		return randomFloat(new Random(System.currentTimeMillis()).nextFloat());
-	}
-
-	/**
-	 * Gets the secure random.
-	 *
-	 * @return the secure random
-	 */
-	public static SecureRandom getSecureRandom()
-	{
-		return secureRandom;
-	}
-
 	/**
 	 * Generates a random int for use with pixel.
 	 *
@@ -160,7 +57,9 @@ public final class RandomExtensions
 	 */
 	public static int newRandomPixel()
 	{
-		return newRandomPixel(randomInt(256), randomInt(256), randomInt(256), randomInt(256));
+		return newRandomPixel(RandomPrimitivesExtensions.randomInt(256),
+			RandomPrimitivesExtensions.randomInt(256), RandomPrimitivesExtensions.randomInt(256),
+			RandomPrimitivesExtensions.randomInt(256));
 	}
 
 	/**
@@ -184,78 +83,21 @@ public final class RandomExtensions
 	}
 
 	/**
-	 * The Method getRandomBigDecimal(int,int) gets an random BigDecimal.
-	 *
-	 * @param afterComma
-	 *            How many decimal places after the comma.
-	 * @param beforeComma
-	 *            How many decimal places before the comma.
-	 * @return The produced BigDecimal.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomNumberExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static BigDecimal getRandomBigDecimal(final int afterComma, final int beforeComma)
-	{
-		String randomFloatString;
-		do
-		{
-			randomFloatString = getRandomFloatString(afterComma, beforeComma);
-		}
-		while (randomFloatString.equals("."));
-		return new BigDecimal(randomFloatString);
-	}
-
-	/**
-	 * The Method getRandomByte() selects a random Byte object.
-	 *
-	 * @return The random Byte object.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static Byte getRandomByte()
-	{
-		return randomByte();
-	}
-
-	/**
 	 * The Method getRandomByteArray(int) generates a random Byte array.
 	 *
 	 * @param length
 	 *            the length.
 	 * @return the Byte[]
+	 *
+	 * @deprecated use instead the method <code>newRandomByteObjects</code> in the
+	 *             <code>RandomObjectFactory</code> class. <br>
+	 *             <br>
+	 *             Note: will be remove in the next minor release
 	 */
+	@Deprecated
 	public static Byte[] getRandomByteArray(final int length)
 	{
-		final Byte[] randomByteArray = new Byte[length];
-		final byte[] randomByteBox = new byte[1];
-		for (int i = 0; i < length; i++)
-		{
-			if (randomBoolean())
-			{
-				randomByteArray[i] = getRandomByte();
-			}
-			else
-			{
-				if (secureRandom != null)
-				{
-					secureRandom.nextBytes(randomByteBox);
-					randomByteArray[i] = Byte.valueOf(randomByteBox[0]);
-				}
-				else
-				{
-					randomByteArray[i] = getRandomByte();
-				}
-			}
-		}
-		return randomByteArray;
+		return RandomObjectFactory.newRandomByteObjects(length);
 	}
 
 	/**
@@ -286,7 +128,7 @@ public final class RandomExtensions
 	public static <K, V> Object getRandomEntry(final Map<K, V> map)
 	{
 		final Object[] entries = map.values().toArray();
-		return entries[randomInt(entries.length)];
+		return entries[RandomPrimitivesExtensions.randomInt(entries.length)];
 	}
 
 	/**
@@ -362,7 +204,7 @@ public final class RandomExtensions
 	 */
 	public static <T extends Enum<?>> T getRandomEnumFromEnumValues(final T[] values)
 	{
-		return values[randomInt(values.length)];
+		return values[RandomPrimitivesExtensions.randomInt(values.length)];
 	}
 
 	/**
@@ -373,27 +215,16 @@ public final class RandomExtensions
 	 * @param beforeComma
 	 *            How many decimal places before the comma.
 	 * @return The produced float.
+	 *
+	 * @deprecated use instead the method <code>newRandomByteObjects</code> in the
+	 *             <code>RandomObjectFactory</code> class. <br>
+	 *             <br>
+	 *             Note: will be remove in the next minor release
 	 */
+	@Deprecated
 	public static Float getRandomFloat(final int afterComma, final int beforeComma)
 	{
-		return randomFloat(afterComma, beforeComma);
-	}
-
-	/**
-	 * Gets the random float string.
-	 *
-	 * @param afterComma
-	 *            How many decimal places after the comma.
-	 * @param beforeComma
-	 *            How many decimal places before the comma.
-	 * @return the random float string
-	 */
-	private static String getRandomFloatString(final int afterComma, final int beforeComma)
-	{
-		final String nachkommastellen = getRandomNumericString(afterComma);
-		final String vorkommastellen = getRandomNumericString(beforeComma);
-		final String result = nachkommastellen + "." + vorkommastellen;
-		return result;
+		return RandomObjectFactory.newRandomFloat(afterComma, beforeComma);
 	}
 
 	/**
@@ -407,7 +238,7 @@ public final class RandomExtensions
 	 */
 	public static <T> int getRandomIndex(final Collection<T> list)
 	{
-		return randomInt(list.size());
+		return RandomPrimitivesExtensions.randomInt(list.size());
 	}
 
 	/**
@@ -425,57 +256,7 @@ public final class RandomExtensions
 	{
 		final Set<K> keySet = map.keySet();
 		final Object[] keys = keySet.toArray();
-		return keys[randomInt(keys.length)];
-	}
-
-	/**
-	 * Generates a random numeric string.
-	 *
-	 * @return the generated random numeric string.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomNumberExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static String getRandomNumericString()
-	{
-		final int maxLength = Math.min(randomInt(1000), 1024);
-		final StringBuilder sb = new StringBuilder(maxLength);
-		for (int i = 0; i < maxLength; i++)
-		{
-			int randomInt = randomInt();
-			if (MathExtensions.isNegative(randomInt))
-			{
-				sb.append(randomInt * (-1));
-			}
-			else
-			{
-				sb.append(randomInt);
-			}
-		}
-		return sb.toString();
-	}
-
-	/**
-	 * The Method getRandomNumericString(int) produces a random Number to the specified length.
-	 *
-	 * @param length
-	 *            The length from the random number.
-	 * @return The random number as String.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomNumberExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static String getRandomNumericString(final int length)
-	{
-		final String randomNumber = getRandomString(RandomCharacters.numbers.getCharacters(),
-			length);
-		return randomNumber;
+		return keys[RandomPrimitivesExtensions.randomInt(keys.length)];
 	}
 
 	/**
@@ -491,7 +272,7 @@ public final class RandomExtensions
 		final StringBuilder sb = new StringBuilder(maxLength);
 		for (int i = 0; i < maxLength; i++)
 		{
-			sb.append(randomChar());
+			sb.append(RandomPrimitivesExtensions.randomChar());
 		}
 		return sb.toString();
 	}
@@ -508,7 +289,7 @@ public final class RandomExtensions
 		StringBuilder sb = new StringBuilder();
 		while (sb.length() < numberOfCharacters)
 		{
-			sb.append(Integer.toHexString(randomInt()));
+			sb.append(Integer.toHexString(RandomPrimitivesExtensions.randomInt()));
 		}
 		return sb.toString().substring(0, numberOfCharacters);
 	}
@@ -528,7 +309,7 @@ public final class RandomExtensions
 		final StringBuffer ergebnis = new StringBuffer();
 		for (int i = 0; i < length; i++)
 		{
-			ergebnis.append(randomChar(chars));
+			ergebnis.append(RandomPrimitivesExtensions.randomChar(chars));
 		}
 		return ergebnis.toString();
 	}
@@ -542,7 +323,7 @@ public final class RandomExtensions
 	public static String getRandomString()
 	{
 		return getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
-			randomIntBetween(3, 25));
+			RandomPrimitivesExtensions.randomIntBetween(3, 25));
 	}
 
 
@@ -557,7 +338,7 @@ public final class RandomExtensions
 	 */
 	public static String getRandomString(final int start, int end)
 	{
-		return getRandomString(randomIntBetween(start, end));
+		return getRandomString(RandomPrimitivesExtensions.randomIntBetween(start, end));
 	}
 
 	/**
@@ -572,326 +353,7 @@ public final class RandomExtensions
 	 */
 	public static String getRandomString(final String[] array)
 	{
-		return array[randomInt(array.length)];
-	}
-
-	/**
-	 * Returns a random boolean.
-	 *
-	 * @return The random boolean.
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static boolean randomBoolean()
-	{
-		return randomInt(2) == 0;
-	}
-
-	/**
-	 * The Method randomByte() selects a random byte.
-	 *
-	 * @return The random byte.
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static byte randomByte()
-	{
-		return (byte)randomInt(255);
-	}
-
-	/**
-	 * The Method randomByteArray(int) generates a random byte array.
-	 *
-	 * @param length
-	 *            the length.
-	 * @return the byte[]
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static byte[] randomByteArray(final int length)
-	{
-		final byte[] randomByteArray = new byte[length];
-		for (int i = 0; i < length; i++)
-		{
-			randomByteArray[i] = randomByte();
-		}
-		return randomByteArray;
-	}
-
-	/**
-	 * Returns a random char.
-	 *
-	 * @return The generated random char.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static char randomChar()
-	{
-		if (secureRandom.nextBoolean())
-		{
-			// random character
-			return (char)(secureRandom.nextInt(26) + 65);
-		}
-		else
-		{
-			// random digit
-			return (char)secureRandom.nextInt(10);
-		}
-	}
-
-	/**
-	 * Returns a random short
-	 *
-	 * @return The generated random short
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static short randomShort()
-	{
-		if (secureRandom.nextBoolean())
-		{
-			return (short)(secureRandom.nextInt(65536) - 32768);
-		}
-		else
-		{
-			return (short)secureRandom.nextInt(Short.MAX_VALUE + 1);
-		}
-	}
-
-	/**
-	 * The Method randomChar(String) selects a random char from the given String.
-	 *
-	 * @param string
-	 *            The String from who to select the char.
-	 * @return The selected char.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static char randomChar(final String string)
-	{
-		return string.charAt(randomInt(string.length()));
-	}
-
-	/**
-	 * The Method randomDouble(double) gets an double to the spezified range. For example: if you
-	 * put range to 10.0 the random int is between 0.0-9.9.
-	 *
-	 * @param range
-	 *            the range
-	 * @return the double
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static double randomDouble(final double range)
-	{
-		if (secureRandom != null)
-		{
-			return secureRandom.nextDouble() * range;
-		}
-		return Math.random() * range;
-	}
-
-	/**
-	 * The Method randomDouble() gets a random double
-	 *
-	 * @return the random double
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static double randomDouble()
-	{
-		return randomDouble(Double.MAX_VALUE);
-	}
-
-	/**
-	 * Gets the random double between the range from start and end.
-	 *
-	 * @param start
-	 *            the start
-	 * @param end
-	 *            the end
-	 * @return the random double between
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static double randomDoubleBetween(final double start, final double end)
-	{
-		return start + randomDouble(end - start);
-	}
-
-	/**
-	 * Gets the random double between the range from start and end in the given pattern. Refer to
-	 * class @see {@link java.text.DecimalFormat}.
-	 *
-	 * @param start
-	 *            the start
-	 * @param end
-	 *            the end
-	 * @param pattern
-	 *            the pattern
-	 * @return the random double between
-	 * @throws ParseException
-	 *             is thrown if the beginning of the specified string cannot be parsed
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static double randomDoubleBetween(final double start, final double end,
-		final String pattern) throws ParseException
-	{
-		final DecimalFormat formatter = new DecimalFormat(pattern);
-		final String rd = formatter.format(randomDoubleBetween(start, end));
-		Number randomDouble = formatter.parse(rd);
-		return randomDouble.doubleValue();
-	}
-
-	/**
-	 * The Method randomFloat(float) gets an float to the spezified range. For example: if you put
-	 * range to 10.0 the random int is between 0.0-9.9.
-	 *
-	 * @param range
-	 *            the range
-	 * @return the float
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static float randomFloat(final float range)
-	{
-		if (secureRandom != null)
-		{
-			return (float)(secureRandom.nextDouble() * range);
-		}
-		return (float)(Math.random() * range);
-	}
-
-	/**
-	 * The Method getRandomFloat(int,int) gets an random float.
-	 *
-	 * @param afterComma
-	 *            How many decimal places after the comma.
-	 * @param beforeComma
-	 *            How many decimal places before the comma.
-	 * @return The produced float.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static float randomFloat(final int afterComma, final int beforeComma)
-	{
-		return Float.parseFloat(getRandomFloatString(afterComma, beforeComma));
-	}
-
-	/**
-	 * Gets the random float between the range from start and end.
-	 *
-	 * @param start
-	 *            the start
-	 * @param end
-	 *            the end
-	 * @return the random float between
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static float randomFloatBetween(final float start, final float end)
-	{
-		return start + randomFloat(end - start);
-	}
-
-	/**
-	 * Gets the random float between the range from start and end in the given pattern. Refer to
-	 * class @see {@link java.text.DecimalFormat}.
-	 *
-	 * @param start
-	 *            the start
-	 * @param end
-	 *            the end
-	 * @param pattern
-	 *            the pattern
-	 * @return the random float between
-	 * @throws ParseException
-	 *             is thrown if the beginning of the specified string cannot be parsed
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static float randomFloatBetween(final float start, final float end, final String pattern)
-		throws ParseException
-	{
-		final NumberFormat formatter = new DecimalFormat(pattern);
-		final String rf = formatter.format(randomFloatBetween(start, end));
-		Number randomFloat = formatter.parse(rf);
-		return randomFloat.floatValue();
-	}
-
-	/**
-	 * The Method randomInt() gets an int between the range 0-9.
-	 *
-	 * @return an int between the range 0-9.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static int randomInt()
-	{
-		if (secureRandom != null)
-		{
-			return randomInt(secureRandom.nextInt());
-		}
-		return randomInt(new Random(System.currentTimeMillis()).nextInt());
+		return array[RandomPrimitivesExtensions.randomInt(array.length)];
 	}
 
 	/**
@@ -905,114 +367,13 @@ public final class RandomExtensions
 	}
 
 	/**
-	 * The Method randomInt(int) gets an int to the spezified range. For example: if you put range
-	 * to 10 the random int is between 0-9.
-	 *
-	 * @param range
-	 *            The Range.
-	 * @return an int not greater then the range.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static int randomInt(final int range)
-	{
-		if (secureRandom != null)
-		{
-			return (int)(secureRandom.nextDouble() * range);
-		}
-		return (int)(Math.random() * range);
-	}
-
-	/**
-	 * Returns a random int between the range from start and end.
-	 *
-	 * @param start
-	 *            The int from where the range starts.
-	 * @param end
-	 *            The int from where the range ends.
-	 * @return A random int between the range from start and end.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static int randomIntBetween(final int start, final int end)
-	{
-		return RandomExtensions.randomIntBetween(start, end, true, false);
-	}
-
-	/**
-	 * Returns a random int between the range from start and end.
-	 *
-	 * @param start
-	 *            The int from where the range starts.
-	 * @param end
-	 *            The int from where the range ends.
-	 * @param includeMin
-	 *            if true than min value is included
-	 * @param includeMax
-	 *            if true than max value is included
-	 * @return A random int between the range from start and end.
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomPrimitivesExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static int randomIntBetween(final int start, final int end, final boolean includeMin,
-		final boolean includeMax)
-	{
-		int randomIntBetween = start + randomInt(end - start);
-
-		if (includeMin && includeMax)
-		{
-			randomIntBetween = start + randomInt(end - (start + 1));
-		}
-		if (includeMin && !includeMax)
-		{
-			randomIntBetween = start + randomInt(end - start);
-		}
-		if (!includeMin && includeMax)
-		{
-			randomIntBetween = (start + 1) + randomInt(end - (start + 1));
-		}
-		if (!includeMin && !includeMax)
-		{
-			randomIntBetween = (start + 1) + randomInt(end - start);
-		}
-		return randomIntBetween;
-	}
-
-	/**
-	 * Returns a random int between the range from minVolume and maxVolume with the
-	 * <code>Math.abs</code> method.
-	 *
-	 * @param minVolume
-	 *            the min volume
-	 * @param maxVolume
-	 *            the max volume
-	 * @return A random int between the range from minVolume and maxVolume
-	 */
-	public static int getRandomIntBetween(int minVolume, int maxVolume)
-	{
-		return minVolume + Math.abs(secureRandom.nextInt()) % maxVolume;
-	}
-
-	/**
 	 * Returns a random token for use in web services.
 	 *
 	 * @return A random token.
 	 */
 	public static String randomToken()
 	{
-		final BigInteger token = new BigInteger(130, RandomExtensions.getSecureRandom());
+		final BigInteger token = new BigInteger(130, DefaultSecureRandom.get());
 		final String randomToken = token.toString(32);
 		return randomToken;
 	}
@@ -1024,7 +385,7 @@ public final class RandomExtensions
 	 */
 	public static BigInteger randomSerialNumber()
 	{
-		long next = RandomExtensions.getSecureRandom().nextLong();
+		long next = DefaultSecureRandom.get().nextLong();
 		if (next < 0)
 		{
 			next = next * (-1);
@@ -1034,39 +395,13 @@ public final class RandomExtensions
 	}
 
 	/**
-	 * The Method getRandomPrimitiveByteArray(int) generates a random byte array.
-	 *
-	 * @param length
-	 *            the length.
-	 * @return the byte[]
-	 */
-	public static byte[] getRandomPrimitiveByteArray(final int length)
-	{
-		final byte[] randomByteArray = new byte[length];
-		final byte[] randomByteBox = new byte[1];
-		for (int i = 0; i < length; i++)
-		{
-			if (randomBoolean())
-			{
-				randomByteArray[i] = getRandomByte();
-			}
-			else
-			{
-				secureRandom.nextBytes(randomByteBox);
-				randomByteArray[i] = Byte.valueOf(randomByteBox[0]);
-			}
-		}
-		return randomByteArray;
-	}
-
-	/**
 	 * Factory method for create a new random salt.
 	 *
 	 * @return the byte[] with the new random salt.
 	 */
 	public static byte[] newSalt()
 	{
-		return getRandomPrimitiveByteArray(16);
+		return RandomPrimitivesExtensions.randomByteArray(16);
 	}
 
 	/**
@@ -1084,40 +419,6 @@ public final class RandomExtensions
 			.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
 				length)
 			.getBytes(charset);
-	}
-
-	/**
-	 * Generates a random {@link BigInteger}
-	 *
-	 * @return the random {@link BigInteger}
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomNumberExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static BigInteger randomBigInteger()
-	{
-		return new BigInteger(randomInt(180), secureRandom);
-	}
-
-	/**
-	 * Generates a random {@link BigDecimal}
-	 *
-	 * @return the random {@link BigDecimal}
-	 *
-	 * @deprecated use instead the same name method in the <code>RandomNumberExtensions</code>
-	 *             class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static BigDecimal randomBigDecimal()
-	{
-		BigDecimal bigDecimal = new BigDecimal(randomDouble());
-		bigDecimal.setScale(randomInt(2), RoundingMode.HALF_DOWN);
-		return bigDecimal;
 	}
 
 }

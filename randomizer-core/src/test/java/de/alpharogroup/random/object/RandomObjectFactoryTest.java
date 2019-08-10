@@ -26,6 +26,7 @@ package de.alpharogroup.random.object;
 
 import static org.junit.Assert.assertNotEquals;
 import static org.testng.Assert.assertNotNull;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -33,6 +34,7 @@ import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.random.enums.RandomAlgorithm;
 import de.alpharogroup.test.objects.Person;
 
 /**
@@ -45,8 +47,28 @@ public class RandomObjectFactoryTest
 {
 
 	/**
+	 * Test method for {@link RandomObjectFactory#newRandomAlgorithm()}
+	 */
+	@Test(enabled = true)
+	public void testNewRandomAlgorithm()
+	{
+		RandomAlgorithm randomAlgorithm = RandomObjectFactory.newRandomAlgorithm();
+		assertNotNull(randomAlgorithm);
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#newRandomByteObjects(int)}
+	 */
+	@Test(enabled = true)
+	public void testNewRandomByteObjects()
+	{
+		Byte[] randomByteArray = RandomObjectFactory.newRandomByteObjects(5);
+		assertTrue(randomByteArray.length == 5);
+	}
+
+	/**
 	 * Test method for {@link RandomObjectFactory#newRandomObject(Class)}
-	 * 
+	 *
 	 * @throws IllegalAccessException
 	 *             is thrown if the class or its default constructor is not accessible.
 	 * @throws InstantiationException
@@ -69,7 +91,7 @@ public class RandomObjectFactoryTest
 
 	/**
 	 * Test method for {@link RandomObjectFactory#newRandomObject(Class)}
-	 * 
+	 *
 	 * @throws IllegalAccessException
 	 *             is thrown if the class or its default constructor is not accessible.
 	 * @throws InstantiationException

@@ -37,6 +37,7 @@ import java.util.List;
 
 import de.alpharogroup.random.RandomExtensions;
 import de.alpharogroup.random.date.RandomDateExtensions;
+import de.alpharogroup.random.enums.RandomAlgorithm;
 import de.alpharogroup.random.number.RandomNumberExtensions;
 import de.alpharogroup.random.number.RandomPrimitivesExtensions;
 import de.alpharogroup.reflection.ReflectionExtensions;
@@ -49,6 +50,49 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class RandomObjectFactory
 {
+
+	/**
+	 * Factory method for create a new random {@link RandomAlgorithm} object
+	 *
+	 * @return the random algorithm
+	 */
+	public static RandomAlgorithm newRandomAlgorithm()
+	{
+		return RandomExtensions.getRandomEnumFromEnumValues(RandomAlgorithm.values());
+	}
+
+	/**
+	 * Factory method for create a new random {@link Float} object
+	 *
+	 * @param afterComma
+	 *            How many decimal places after the comma
+	 * @param beforeComma
+	 *            How many decimal places before the comma
+	 * @return the new random {@link Float} object
+	 */
+	public static Float newRandomFloat(final int afterComma, final int beforeComma)
+	{
+		return RandomPrimitivesExtensions.randomFloat(afterComma, beforeComma);
+	}
+
+	/**
+	 * Factory method for create a new random {@link Byte} object array
+	 *
+	 * @param length
+	 *            the length.
+	 * @return the Byte[]
+	 * @return the new random {@link Byte} object array
+	 */
+	public static Byte[] newRandomByteObjects(final int length)
+	{
+		final Byte[] randomByteObjects = new Byte[length];
+		byte[] randomBytes = RandomPrimitivesExtensions.randomByteArray(length);
+		for (int i = 0; i < length; i++)
+		{
+			randomByteObjects[i] = randomBytes[i];
+		}
+		return randomByteObjects;
+	}
 
 	/**
 	 * Factory method for create a new random object of the given {@link Class}.
