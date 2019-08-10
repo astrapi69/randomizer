@@ -29,7 +29,10 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Random;
 
+import de.alpharogroup.math.MathExtensions;
 import de.alpharogroup.random.DefaultSecureRandom;
+import de.alpharogroup.random.enums.RandomAlgorithm;
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -156,7 +159,35 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static long randomLong(final long range)
 	{
-		return (long)(DefaultSecureRandom.get().nextDouble() * range);
+		return randomLong(range, RandomAlgorithm.SECURE_RANDOM);
+	}
+
+	/**
+	 * Gets an random long to the given range with the given random algorithm <br>
+	 * <br>
+	 * For example: if you put range to 10 the random int is between 0-9
+	 *
+	 * @param range
+	 *            the range
+	 * @param algorithm
+	 *            the random algorithm
+	 * @return an random long not greater then the range
+	 */
+	public static long randomLong(final long range, @NonNull RandomAlgorithm algorithm)
+	{
+		switch (algorithm)
+		{
+			case MATH_ABS :
+				return (long)(Math.abs(DefaultSecureRandom.get().nextDouble()) % range);
+			case MATH_RANDOM :
+				return (long)(Math.random() * range);
+			case RANDOM :
+				long random = (long)new Random(System.currentTimeMillis()).nextDouble() % range;
+				return MathExtensions.isPositive(random) ? random : random * -1;
+			case SECURE_RANDOM :
+			default :
+				return (long)(DefaultSecureRandom.get().nextDouble() * range);
+		}
 	}
 
 	/**
@@ -193,7 +224,35 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static double randomDouble(final double range)
 	{
-		return DefaultSecureRandom.get().nextDouble() * range;
+		return randomDouble(range, RandomAlgorithm.SECURE_RANDOM);
+	}
+
+	/**
+	 * Gets an random double to the given range with the given random algorithm <br>
+	 * <br>
+	 * For example: if you put range to 10 the random float is between 0.0-9.9
+	 *
+	 * @param range
+	 *            the range
+	 * @param algorithm
+	 *            the random algorithm
+	 * @return an random double not greater then the range
+	 */
+	public static double randomDouble(final double range, @NonNull RandomAlgorithm algorithm)
+	{
+		switch (algorithm)
+		{
+			case MATH_ABS :
+				return Math.abs(DefaultSecureRandom.get().nextDouble()) % range;
+			case MATH_RANDOM :
+				return Math.random() * range;
+			case RANDOM :
+				double random = new Random(System.currentTimeMillis()).nextDouble() % range;
+				return MathExtensions.isPositive(random) ? random : random * -1;
+			case SECURE_RANDOM :
+			default :
+				return DefaultSecureRandom.get().nextDouble() * range;
+		}
 	}
 
 	/**
@@ -253,7 +312,36 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static float randomFloat(final float range)
 	{
-		return (float)(DefaultSecureRandom.get().nextDouble() * range);
+		return randomFloat(range, RandomAlgorithm.SECURE_RANDOM);
+	}
+
+
+	/**
+	 * Gets an random float to the given range with the given random algorithm <br>
+	 * <br>
+	 * For example: if you put range to 10 the random float is between 0.0-9.9
+	 *
+	 * @param range
+	 *            the range
+	 * @param algorithm
+	 *            the random algorithm
+	 * @return an random float not greater then the range
+	 */
+	public static float randomFloat(final float range, @NonNull RandomAlgorithm algorithm)
+	{
+		switch (algorithm)
+		{
+			case MATH_ABS :
+				return (float)(Math.abs(DefaultSecureRandom.get().nextDouble()) % range);
+			case MATH_RANDOM :
+				return (float)(Math.random() * range);
+			case RANDOM :
+				float random = (float)new Random(System.currentTimeMillis()).nextDouble() % range;
+				return MathExtensions.isPositive(random) ? random : random * -1;
+			case SECURE_RANDOM :
+			default :
+				return (float)(DefaultSecureRandom.get().nextDouble() * range);
+		}
 	}
 
 	/**
@@ -342,7 +430,34 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static int randomInt(final int range)
 	{
-		return (int)(DefaultSecureRandom.get().nextDouble() * range);
+		return randomInt(range, RandomAlgorithm.SECURE_RANDOM);
+	}
+
+	/**
+	 * The Method randomInt(int) gets an int to the spezified range. For example: if you put range
+	 * to 10 the random int is between 0-9.
+	 *
+	 * @param range
+	 *            The range
+	 * @param algorithm
+	 *            the random algorithm
+	 * @return an int not greater then the range
+	 */
+	public static int randomInt(final int range, @NonNull RandomAlgorithm algorithm)
+	{
+		switch (algorithm)
+		{
+			case MATH_ABS :
+				return Math.abs(DefaultSecureRandom.get().nextInt()) % range;
+			case MATH_RANDOM :
+				return (int)(Math.random() * range);
+			case RANDOM :
+				int random = new Random(System.currentTimeMillis()).nextInt() % range;
+				return MathExtensions.isPositive(random) ? random : random * -1;
+			case SECURE_RANDOM :
+			default :
+				return (int)(DefaultSecureRandom.get().nextDouble() * range);
+		}
 	}
 
 	/**

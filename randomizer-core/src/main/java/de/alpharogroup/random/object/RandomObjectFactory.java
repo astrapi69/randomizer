@@ -37,6 +37,7 @@ import java.util.List;
 
 import de.alpharogroup.random.RandomExtensions;
 import de.alpharogroup.random.date.RandomDateExtensions;
+import de.alpharogroup.random.enums.RandomAlgorithm;
 import de.alpharogroup.random.number.RandomNumberExtensions;
 import de.alpharogroup.random.number.RandomPrimitivesExtensions;
 import de.alpharogroup.reflection.ReflectionExtensions;
@@ -49,6 +50,16 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class RandomObjectFactory
 {
+
+	/**
+	 * Factory method for create a new random {@link RandomAlgorithm} object
+	 *
+	 * @return the random algorithm
+	 */
+	public static RandomAlgorithm newRandomAlgorithm()
+	{
+		return RandomExtensions.getRandomEnumFromEnumValues(RandomAlgorithm.values());
+	}
 
 	/**
 	 * Factory method for create a new random {@link Float} object

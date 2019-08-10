@@ -34,6 +34,7 @@ import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import de.alpharogroup.random.enums.RandomAlgorithm;
 import de.alpharogroup.test.objects.Person;
 
 /**
@@ -49,10 +50,20 @@ public class RandomObjectFactoryTest
 	 * Test method for {@link RandomObjectFactory#newRandomByteObjects(int)}
 	 */
 	@Test(enabled = true)
-	public void testGetRandomByteArray()
+	public void testNewRandomByteObjects()
 	{
 		Byte[] randomByteArray = RandomObjectFactory.newRandomByteObjects(5);
 		assertTrue(randomByteArray.length == 5);
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#newRandomAlgorithm()}
+	 */
+	@Test(enabled = true)
+	public void testNewRandomAlgorithm()
+	{
+		RandomAlgorithm randomAlgorithm = RandomObjectFactory.newRandomAlgorithm();
+		assertNotNull(randomAlgorithm);
 	}
 
 	/**
