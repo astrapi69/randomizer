@@ -139,7 +139,7 @@ public class RandomNumberExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomNumberExtensions} with {@link BeanTester}
 	 */
-	@Test(enabled = false, expectedExceptions = { BeanTestException.class,
+	@Test(enabled = true, expectedExceptions = { BeanTestException.class,
 			InvocationTargetException.class, UnsupportedOperationException.class })
 	public void testWithBeanTester()
 	{

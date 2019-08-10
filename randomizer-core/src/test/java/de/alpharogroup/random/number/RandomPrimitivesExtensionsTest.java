@@ -467,7 +467,7 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomPrimitivesExtensions} with {@link BeanTester}
 	 */
-	@Test(enabled = false, expectedExceptions = { BeanTestException.class,
+	@Test(enabled = true, expectedExceptions = { BeanTestException.class,
 			InvocationTargetException.class, UnsupportedOperationException.class })
 	public void testWithBeanTester()
 	{
