@@ -43,11 +43,11 @@ The source code comes under the liberal MIT License, making randomizer great for
 
 ## Javadoc
 
-[![Javadoc](https://javadoc-emblem.rhcloud.com/doc/de.alpharogroup/randomizer/badge.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-core) randomizer-core
+[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/randomizer.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-core) randomizer-core
 
-[![Javadoc](https://javadoc-emblem.rhcloud.com/doc/de.alpharogroup/randomizer/badge.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-api) randomizer-api
+[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/randomizer.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-api) randomizer-api
 
-[![Javadoc](https://javadoc-emblem.rhcloud.com/doc/de.alpharogroup/randomizer/badge.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-data) randomizer-data
+[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/randomizer.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-data) randomizer-data
 
 ## Maven dependency
 
