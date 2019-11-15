@@ -26,7 +26,7 @@
 	<properties>
 		<!-- PARENT PROJECT versions -->
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>${project.version}</randomizer.version>
+		<randomizer.version>6.3</randomizer.version>
 		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
 		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
