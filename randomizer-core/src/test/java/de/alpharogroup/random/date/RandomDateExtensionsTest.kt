@@ -190,11 +190,7 @@ class RandomDateExtensionsTest : BaseTestCase() {
     fun testCreateRandomDateWithFromDate() {
         val from = this.now
         val randomDate = RandomDateExtensions.randomDate(from!!)
-        actual = randomDate != null
-        assertTrue("", actual)
-
-        actual = randomDate != this.now
-        assertTrue("", actual)
+        assertNotNull(randomDate)
     }
 
     /**
@@ -314,8 +310,7 @@ class RandomDateExtensionsTest : BaseTestCase() {
     /**
      * Test method for [RandomDateExtensions] with [BeanTester]
      */
-    @Test(expectedExceptions = [BeanTestException::class, InvocationTargetException::class, UnsupportedOperationException::class])
-    fun testWithBeanTester() {
+    @Test fun testWithBeanTester() {
         val beanTester = BeanTester()
         beanTester.testBean(RandomDateExtensions::class.java)
     }

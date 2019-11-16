@@ -103,8 +103,7 @@ class RandomObjectFactoryTest {
     /**
      * Test method for [RandomObjectFactory] with [BeanTester]
      */
-    @Test(expectedExceptions = [BeanTestException::class, InvocationTargetException::class, UnsupportedOperationException::class])
-    fun testWithBeanTester() {
+    @Test fun testWithBeanTester() {
         val beanTester = BeanTester()
         beanTester.testBean(RandomObjectFactory::class.java)
     }

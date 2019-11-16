@@ -321,8 +321,7 @@ class RandomExtensionsTest : BaseTestCase() {
     /**
      * Test method for [RandomExtensions] with [BeanTester]
      */
-    @Test(enabled = true, expectedExceptions = [BeanTestException::class, InvocationTargetException::class, UnsupportedOperationException::class])
-    fun testWithBeanTester() {
+    @Test fun testWithBeanTester() {
         val beanTester = BeanTester()
         beanTester.testBean(RandomExtensions::class.java)
     }

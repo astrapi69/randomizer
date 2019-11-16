@@ -256,7 +256,8 @@ class RandomObjectsExtensionsTest : BaseTestCase() {
     /**
      * Test method for [RandomObjectsExtensions] with [BeanTester]
      */
-    @Test    fun testWithBeanTester() {
+    @Test
+    fun testWithBeanTester() {
         val beanTester = BeanTester()
         beanTester.testBean(RandomObjectsExtensions::class.java)
     }

@@ -34,18 +34,14 @@ class DefaultSecureRandom {
     companion object {
 
         /** The secure random  */
-        private var secureRandom: SecureRandom? = null
-
-        init {
-            secureRandom = SecureRandomFactory.newSecureRandom()
-        }
+        private val secureRandom: SecureRandom = SecureRandomFactory.newSecureRandom()
 
         /**
          * Gets the secure random
          *
          * @return the secure random
          */
-        fun get(): SecureRandom? {
+        fun get(): SecureRandom {
             return secureRandom
         }
     }

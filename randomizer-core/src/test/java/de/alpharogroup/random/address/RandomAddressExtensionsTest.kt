@@ -74,10 +74,8 @@ class RandomAddressExtensionsTest : BaseTestCase() {
         val germanstreets = PropertiesLoader
                 .loadProperties(RandomAddressExtensions.PROP_FILE_STREETS)
         val germanStreet = RandomAddressExtensions.getRandomStreet(germanstreets)
-        actual = germanStreet != null
-        AssertJUnit.assertTrue("", actual)
 
-        actual = germanstreets!!.contains(germanStreet!!)
+        actual = germanstreets!!.contains(germanStreet)
         AssertJUnit.assertTrue("", actual)
     }
 
@@ -117,8 +115,6 @@ class RandomAddressExtensionsTest : BaseTestCase() {
                 .loadProperties(RandomAddressExtensions.PROP_FILE_ZIP_CITIES)
 
         val randomZip = RandomAddressExtensions.getRandomZip(germanzips!!)
-        actual = randomZip != null
-        AssertJUnit.assertTrue("", actual)
 
         actual = StringExtensions.isNumber(randomZip)
         AssertJUnit.assertTrue("", actual)
@@ -127,8 +123,7 @@ class RandomAddressExtensionsTest : BaseTestCase() {
     /**
      * Test method for [RandomAddressExtensions] with [BeanTester]
      */
-    @Test(expectedExceptions = [BeanTestException::class, InvocationTargetException::class, UnsupportedOperationException::class])
-    fun testWithBeanTester() {
+    @Test fun testWithBeanTester() {
         val beanTester = BeanTester()
         beanTester.testBean(RandomAddressExtensions::class.java)
     }
