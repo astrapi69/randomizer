@@ -83,24 +83,6 @@ public final class RandomExtensions
 	}
 
 	/**
-	 * The Method getRandomByteArray(int) generates a random Byte array.
-	 *
-	 * @param length
-	 *            the length.
-	 * @return the Byte[]
-	 *
-	 * @deprecated use instead the method <code>newRandomByteObjects</code> in the
-	 *             <code>RandomObjectFactory</code> class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static Byte[] getRandomByteArray(final int length)
-	{
-		return RandomObjectFactory.newRandomByteObjects(length);
-	}
-
-	/**
 	 * Returns a random entry from the given List.
 	 *
 	 * @param <T>
@@ -205,26 +187,6 @@ public final class RandomExtensions
 	public static <T extends Enum<?>> T getRandomEnumFromEnumValues(final T[] values)
 	{
 		return values[RandomPrimitivesExtensions.randomInt(values.length)];
-	}
-
-	/**
-	 * The Method getRandomFloat(int,int) gets an random float.
-	 *
-	 * @param afterComma
-	 *            How many decimal places after the comma.
-	 * @param beforeComma
-	 *            How many decimal places before the comma.
-	 * @return The produced float.
-	 *
-	 * @deprecated use instead the method <code>newRandomByteObjects</code> in the
-	 *             <code>RandomObjectFactory</code> class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static Float getRandomFloat(final int afterComma, final int beforeComma)
-	{
-		return RandomObjectFactory.newRandomFloat(afterComma, beforeComma);
 	}
 
 	/**
