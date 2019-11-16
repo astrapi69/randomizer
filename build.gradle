@@ -1,0 +1,48 @@
+
+allprojects {
+    group = 'de.alpharogroup'
+    version = '6.4-SNAPSHOT'
+}
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+
+    repositories {
+        mavenLocal()
+        maven {
+            url = 'http://repo.maven.apache.org/maven2'
+        }
+    }
+
+    dependencies {
+        testCompile 'org.testng:testng:7.0.0'
+        testCompile 'junit:junit:4.12'
+        testCompile 'org.mockito:mockito-core:2.28.2'
+    }
+
+    sourceCompatibility = '1.7'
+
+    task sourcesJar(type: Jar) {
+        classifier = 'sources'
+        from(sourceSets.main.allJava)
+    }
+
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from(components.java)
+                artifact(sourcesJar)
+            }
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+
+    test {
+        useTestNG()
+    }
+}

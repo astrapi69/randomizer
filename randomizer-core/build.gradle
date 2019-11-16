@@ -1,0 +1,11 @@
+
+dependencies {
+    compile 'de.alpharogroup:vintage-time:5.1'
+    compile project(':randomizer-api')
+    compile project(':randomizer-data')
+    compile 'de.alpharogroup:jobj-core:3.3'
+    compile 'de.alpharogroup:silly-math:1'
+    testCompile 'de.alpharogroup:test-objects:5.2'
+    testCompile 'org.meanbean:meanbean:2.0.3'
+    testCompile 'de.alpharogroup:silly-strings:5.3.1'
+}

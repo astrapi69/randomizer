@@ -1,0 +1,8 @@
+
+dependencies {
+    compile 'com.google.code.findbugs:jsr305:3.0.2'
+    compile 'de.alpharogroup:silly-collections:5.4.1'
+    testCompile 'de.alpharogroup:test-objects:5.2'
+    testCompile 'org.meanbean:meanbean:2.0.3'
+    testCompile 'nl.jqno.equalsverifier:equalsverifier:3.1.10'
+}
