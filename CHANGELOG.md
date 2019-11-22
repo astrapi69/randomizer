@@ -1,7 +1,10 @@
 ## Change log
 ----------------------
 
-Version 6.4-SNAPSHOT
+Version 6.5-SNAPSHOT
+-------------
+
+Version 6.4
 -------------
 
 CHANGED:
