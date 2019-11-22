@@ -30,6 +30,7 @@ import static org.testng.AssertJUnit.assertTrue;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.CharBuffer;
 import java.text.ParseException;
+import java.util.Map;
 
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
@@ -37,6 +38,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.BaseTestCase;
+import de.alpharogroup.collections.map.MapFactory;
 import de.alpharogroup.math.MathExtensions;
 import de.alpharogroup.random.RandomCharacters;
 import de.alpharogroup.random.enums.RandomAlgorithm;
@@ -49,6 +51,25 @@ import de.alpharogroup.random.enums.RandomAlgorithm;
  */
 public class RandomPrimitivesExtensionsTest extends BaseTestCase
 {
+
+	/**
+	 * Factory method for create a map for count drawn numbers
+	 *
+	 * @param minVolume
+	 *            the min volume
+	 * @param maxVolume
+	 *            the max volume
+	 * @return the new map with the initial values
+	 */
+	public static Map<Integer, Integer> newNumberCounterMap(int minVolume, int maxVolume)
+	{
+		Map<Integer, Integer> numberCount = MapFactory.newHashMap();
+		for (int i = minVolume; i <= maxVolume; i++)
+		{
+			numberCount.put(i, 0);
+		}
+		return numberCount;
+	}
 
 	boolean expected;
 
@@ -134,7 +155,6 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 		double random = RandomPrimitivesExtensions.randomDouble();
 		assertTrue(MathExtensions.isBetween(Double.MIN_VALUE, Double.MAX_VALUE, random));
 	}
-
 
 	/**
 	 * Test method for {@link RandomPrimitivesExtensions#randomDoubleBetween(double, double)}
@@ -317,30 +337,47 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomIntBetweenBooleanBoolean()
 	{
-		for (int i = 0; i < 10; i++)
-		{
-			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(1, 10, false,
-				false);
-			MathExtensions.isBetween(2, 9, randomIntBetween, true, true);
-		}
-		for (int i = 0; i < 10; i++)
-		{
-			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(1, 10, false,
-				true);
-			MathExtensions.isBetween(2, 10, randomIntBetween, true, true);
-		}
-		for (int i = 0; i < 10; i++)
-		{
-			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(1, 10, true,
-				false);
-			MathExtensions.isBetween(1, 9, randomIntBetween, true, true);
-		}
-		for (int i = 0; i < 10; i++)
-		{
-			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(1, 10, true,
-				true);
-			MathExtensions.isBetween(1, 10, randomIntBetween, true, true);
-		}
+		int start;
+		int end;
+		int iterations;
+		int minVolume;
+		int maxVolume;
+		boolean includeMin;
+		boolean includeMax;
+		// test data
+		start = 1;
+		end = 10;
+		iterations = 100;
+		// new scenario
+		minVolume = start + 1;
+		maxVolume = end - 1;
+		includeMin = false;
+		includeMax = false;
+		testScenarioRandomIntBetween(start, end, minVolume, maxVolume, includeMin, includeMax,
+			iterations);
+		// new scenario
+		minVolume = start + 1;
+		maxVolume = end;
+		includeMin = false;
+		includeMax = true;
+		testScenarioRandomIntBetween(start, end, minVolume, maxVolume, includeMin, includeMax,
+			iterations);
+
+		// new scenario
+		minVolume = start;
+		maxVolume = end - 1;
+		includeMin = true;
+		includeMax = false;
+		testScenarioRandomIntBetween(start, end, minVolume, maxVolume, includeMin, includeMax,
+			iterations);
+
+		// new scenario
+		minVolume = start;
+		maxVolume = end;
+		includeMin = true;
+		includeMax = true;
+		testScenarioRandomIntBetween(start, end, minVolume, maxVolume, includeMin, includeMax,
+			iterations);
 	}
 
 	/**
@@ -461,6 +498,23 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 		{
 			short randomShort = RandomPrimitivesExtensions.randomShort();
 			assertTrue(MathExtensions.isBetween(-32768, 32767, randomShort, true, true));
+		}
+	}
+
+	private void testScenarioRandomIntBetween(int start, int end, int minVolume, int maxVolume,
+		boolean includeMin, boolean includeMax, int iterations)
+	{
+		Map<Integer, Integer> testMap = newNumberCounterMap(minVolume, maxVolume);
+		for (int i = 0; i < iterations; i++)
+		{
+			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(start, end,
+				includeMin, includeMax);
+			testMap.merge(randomIntBetween, 1, Integer::sum);
+			MathExtensions.isBetween(minVolume, maxVolume, randomIntBetween, true, true);
+		}
+		for (int i = minVolume; i <= maxVolume; i++)
+		{
+			assertTrue(0 < testMap.get(i));
 		}
 	}
 

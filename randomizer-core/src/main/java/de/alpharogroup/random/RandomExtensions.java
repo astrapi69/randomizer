@@ -34,7 +34,6 @@ import java.util.UUID;
 
 import de.alpharogroup.lang.ClassExtensions;
 import de.alpharogroup.random.number.RandomPrimitivesExtensions;
-import de.alpharogroup.random.object.RandomObjectFactory;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -80,24 +79,6 @@ public final class RandomExtensions
 	{
 		final int pixel = (alpha << 24) | (red << 16) | (green << 8) | blue;
 		return pixel;
-	}
-
-	/**
-	 * The Method getRandomByteArray(int) generates a random Byte array.
-	 *
-	 * @param length
-	 *            the length.
-	 * @return the Byte[]
-	 *
-	 * @deprecated use instead the method <code>newRandomByteObjects</code> in the
-	 *             <code>RandomObjectFactory</code> class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static Byte[] getRandomByteArray(final int length)
-	{
-		return RandomObjectFactory.newRandomByteObjects(length);
 	}
 
 	/**
@@ -208,26 +189,6 @@ public final class RandomExtensions
 	}
 
 	/**
-	 * The Method getRandomFloat(int,int) gets an random float.
-	 *
-	 * @param afterComma
-	 *            How many decimal places after the comma.
-	 * @param beforeComma
-	 *            How many decimal places before the comma.
-	 * @return The produced float.
-	 *
-	 * @deprecated use instead the method <code>newRandomByteObjects</code> in the
-	 *             <code>RandomObjectFactory</code> class. <br>
-	 *             <br>
-	 *             Note: will be remove in the next minor release
-	 */
-	@Deprecated
-	public static Float getRandomFloat(final int afterComma, final int beforeComma)
-	{
-		return RandomObjectFactory.newRandomFloat(afterComma, beforeComma);
-	}
-
-	/**
 	 * Returns a random index from the given List.
 	 *
 	 * @param <T>
@@ -314,7 +275,6 @@ public final class RandomExtensions
 		return ergebnis.toString();
 	}
 
-
 	/**
 	 * Generates a random string with a length between 3 and 25
 	 *
@@ -325,7 +285,6 @@ public final class RandomExtensions
 		return getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
 			RandomPrimitivesExtensions.randomIntBetween(3, 25));
 	}
-
 
 	/**
 	 * Generates a random string with a length between the given start and end

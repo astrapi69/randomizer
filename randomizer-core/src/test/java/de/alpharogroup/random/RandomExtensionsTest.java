@@ -85,17 +85,6 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomByteArray(int)}
-	 */
-	@SuppressWarnings("deprecation")
-	@Test(enabled = true)
-	public void testGetRandomByteArray()
-	{
-		Byte[] randomByteArray = RandomExtensions.getRandomByteArray(5);
-		assertTrue(randomByteArray.length == 5);
-	}
-
-	/**
 	 * Test method for {@link RandomExtensions#getRandomEntry(java.util.List)} .
 	 */
 	@Test
@@ -212,25 +201,6 @@ public class RandomExtensionsTest extends BaseTestCase
 		randomEnumEntry = RandomExtensions.getRandomEnumFromClassname(enumClassName);
 		assertNull(randomEnumEntry);
 
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#getRandomFloat(int, int)} .
-	 */
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testGetRandomFloat()
-	{
-		final int beforeComma = 2;
-		final int afterComma = 4;
-		expected = true;
-		for (int i = 0; i < 10; i++)
-		{
-			final float randomFloat = RandomExtensions.getRandomFloat(afterComma, beforeComma);
-
-			actual = 0 < randomFloat;
-			assertEquals(actual.booleanValue(), expected);
-		}
 	}
 
 	/**

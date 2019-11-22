@@ -6,11 +6,11 @@
 	<parent>
 		<groupId>de.alpharogroup</groupId>
 		<artifactId>mvn-java-parent</artifactId>
-		<version>5</version>
+		<version>5.3</version>
 	</parent>
 
 	<artifactId>randomizer</artifactId>
-	<version>6.3</version>
+	<version>6.4</version>
 	<packaging>pom</packaging>
 	<inceptionYear>2015</inceptionYear>
 
@@ -26,23 +26,23 @@
 	<properties>
 		<!-- PARENT PROJECT versions -->
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>${project.version}</randomizer.version>
+		<randomizer.version>6.3</randomizer.version>
 		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
 		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
 		<!-- TEST-OBJECTS version -->
 		<test-objects.version>5.2</test-objects.version>
-		<silly-collections.version>5.2.1</silly-collections.version>
+		<silly-collections.version>5.5.1</silly-collections.version>
 		<vintage-time.version>5.1</vintage-time.version>
 		<!-- JOBJ-CORE version -->
-		<jobj-core.version>3.2.1</jobj-core.version>
+		<jobj-core.version>3.3</jobj-core.version>
 		<!-- SILLY-MATH version -->
 		<silly-math.version>1</silly-math.version>
 		<!-- SILLY-STRINGS version -->
 		<silly-strings.version>5.3.1</silly-strings.version>
 		<!-- MEANBEAN version -->
 		<meanbean.version>2.0.3</meanbean.version>
-		<equalsverifier.version>3.1.9</equalsverifier.version>
+		<equalsverifier.version>3.1.10</equalsverifier.version>
 	</properties>
 
 	<modules>
