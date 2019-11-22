@@ -33,9 +33,7 @@ or over ether with:
 
 0xaB6EaE10F352268B0CA672Dd6e999C86344D49D8
 
-or over flattr: <a href="http://flattr.com/thing/4152938/astrapi69randomizer-on-GitHub" target="_blank">
-<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" />
-</a>
+or over the donation buttons at the top.
 
 ## License
 
@@ -62,7 +60,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>6.3</randomizer.version>
+		<randomizer.version>6.4</randomizer.version>
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
 		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
 		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
@@ -109,6 +107,26 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 			</dependency>
 			...
 		</dependencies>
+			
+## gradle dependency
+
+You can first define the version in the ext section and add than the following gradle dependency to your project `build.gradle` if you want to import the core functionality of randomizer:
+
+```
+ext {
+			...
+    randomizerVersion = "6.4"
+			...
+}
+dependencies {
+			...
+compile "de.alpharogroup:randomizer-api:${randomizerVersion}"
+compile "de.alpharogroup:randomizer-core:${randomizerVersion}"
+compile "de.alpharogroup:randomizer-data:${randomizerVersion}"
+			...
+}
+```
+		
 
 ## Semantic Versioning
 
