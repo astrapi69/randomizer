@@ -7,9 +7,10 @@ Version 6.4-SNAPSHOT
 CHANGED:
 
 - update of parent version to 5.3
-- update of silly-collections version to 5.4.1
+- update of silly-collections version to 5.5.1
 - update of jobj-core version to 3.3
 - update of equalsverifier version to 3.1.10
+- bug in RandomPrimitivesExtensions.randomIntBetween fixed and unit tests extended 
 
 Version 6.3
 -------------

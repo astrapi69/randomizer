@@ -34,7 +34,6 @@ import java.util.UUID;
 
 import de.alpharogroup.lang.ClassExtensions;
 import de.alpharogroup.random.number.RandomPrimitivesExtensions;
-import de.alpharogroup.random.object.RandomObjectFactory;
 import lombok.experimental.UtilityClass;
 
 /**
@@ -276,7 +275,6 @@ public final class RandomExtensions
 		return ergebnis.toString();
 	}
 
-
 	/**
 	 * Generates a random string with a length between 3 and 25
 	 *
@@ -287,7 +285,6 @@ public final class RandomExtensions
 		return getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
 			RandomPrimitivesExtensions.randomIntBetween(3, 25));
 	}
-
 
 	/**
 	 * Generates a random string with a length between the given start and end

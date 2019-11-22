@@ -71,7 +71,6 @@ public class RandomNumberExtensionsTest extends BaseTestCase
 		super.tearDown();
 	}
 
-
 	/**
 	 * Test method for {@link RandomNumberExtensions#getRandomBigDecimal(int, int)}
 	 */
@@ -114,7 +113,6 @@ public class RandomNumberExtensionsTest extends BaseTestCase
 		assertNotNull(randomNumericString);
 		assertTrue(StringExtensions.isNumber(randomNumericString));
 	}
-
 
 	/**
 	 * Test method for {@link RandomNumberExtensions#randomBigInteger()}

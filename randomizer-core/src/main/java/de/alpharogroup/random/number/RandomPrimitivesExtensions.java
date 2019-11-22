@@ -315,7 +315,6 @@ public final class RandomPrimitivesExtensions
 		return randomFloat(range, RandomAlgorithm.SECURE_RANDOM);
 	}
 
-
 	/**
 	 * Gets an random float to the given range with the given random algorithm <br>
 	 * <br>
@@ -490,23 +489,18 @@ public final class RandomPrimitivesExtensions
 	public static int randomIntBetween(final int start, final int end, final boolean includeMin,
 		final boolean includeMax)
 	{
-		int randomIntBetween = start + randomInt(end - start);
-
-		if (includeMin && includeMax)
-		{
-			randomIntBetween = start + randomInt(end - (start + 1));
-		}
+		int randomIntBetween = start + randomInt(end - (start - 1));
 		if (includeMin && !includeMax)
 		{
 			randomIntBetween = start + randomInt(end - start);
 		}
 		if (!includeMin && includeMax)
 		{
-			randomIntBetween = (start + 1) + randomInt(end - (start + 1));
+			randomIntBetween = (start + 1) + randomInt(end - (start - 1));
 		}
 		if (!includeMin && !includeMax)
 		{
-			randomIntBetween = (start + 1) + randomInt(end - start);
+			randomIntBetween = (start + 1) + randomInt(end - (start + 1));
 		}
 		return randomIntBetween;
 	}

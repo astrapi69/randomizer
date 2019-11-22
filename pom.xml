@@ -32,7 +32,7 @@
 		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
 		<!-- TEST-OBJECTS version -->
 		<test-objects.version>5.2</test-objects.version>
-		<silly-collections.version>5.4.1</silly-collections.version>
+		<silly-collections.version>5.5.1</silly-collections.version>
 		<vintage-time.version>5.1</vintage-time.version>
 		<!-- JOBJ-CORE version -->
 		<jobj-core.version>3.3</jobj-core.version>
