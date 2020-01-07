@@ -159,6 +159,7 @@ Here is a list of awesome projects:
 
  * [random-beans](https://github.com/benas/random-beans) Because life is too short to generate random Java beans by hand..
  * [junit-quickcheck](https://github.com/pholser/junit-quickcheck) Property-based testing, JUnit-style
+ * [jfairy](https://github.com/Devskiller/jfairy) Java fake data generator 
 
 ## Credits
 
