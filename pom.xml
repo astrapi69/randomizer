@@ -49,6 +49,7 @@
 		<module>randomizer-api</module>
 		<module>randomizer-data</module>
 		<module>randomizer-core</module>
+		<module>randomizer-address</module>
 	</modules>
 
 	<developers>
