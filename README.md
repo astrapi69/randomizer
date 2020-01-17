@@ -60,8 +60,9 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>6.4</randomizer.version>
+		<randomizer.version>6.5</randomizer.version>
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
+		<randomizer-address.version>${randomizer.version}</randomizer-address.version>
 		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
 		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
 			...
@@ -78,6 +79,19 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 				<groupId>de.alpharogroup</groupId>
 				<artifactId>randomizer-api</artifactId>
 				<version>${randomizer-api.version}</version>
+			</dependency>
+			...
+		</dependencies>
+		
+Add the following maven dependency to your project `pom.xml` if you want to import the functionality of randomizer-address:
+
+		<dependencies>
+			...
+			<!-- RANDOMIZER DEPENDENCY -->
+			<dependency>
+				<groupId>de.alpharogroup</groupId>
+				<artifactId>randomizer-address</artifactId>
+				<version>${randomizer-address.version}</version>
 			</dependency>
 			...
 		</dependencies>
@@ -115,12 +129,13 @@ You can first define the version in the ext section and add than the following g
 ```
 ext {
 			...
-    randomizerVersion = "6.4"
+    randomizerVersion = "6.5"
 			...
 }
 dependencies {
 			...
 compile "de.alpharogroup:randomizer-api:${randomizerVersion}"
+compile "de.alpharogroup:randomizer-address:${randomizerVersion}"
 compile "de.alpharogroup:randomizer-core:${randomizerVersion}"
 compile "de.alpharogroup:randomizer-data:${randomizerVersion}"
 			...
@@ -159,6 +174,7 @@ Here is a list of awesome projects:
 
  * [random-beans](https://github.com/benas/random-beans) Because life is too short to generate random Java beans by hand..
  * [junit-quickcheck](https://github.com/pholser/junit-quickcheck) Property-based testing, JUnit-style
+ * [jfairy](https://github.com/Devskiller/jfairy) Java fake data generator 
 
 ## Credits
 
