@@ -4,6 +4,18 @@
 Version 6.5-SNAPSHOT
 -------------
 
+ADDED:
+ 
+- new module project for address related classes 
+
+CHANGED:
+
+- update of parent version to 5.4
+- moved all address related classes and files to its own module project
+- update of silly-collections version to 5.8
+- update of silly-strings version to 5.4
+- update of equalsverifier version to 3.1.11
+
 Version 6.4
 -------------
 
