@@ -13,3 +13,106 @@ dependencies {
     testCompile "org.meanbean:meanbean:$meanbeanVersion"
     testCompile "de.alpharogroup:silly-strings:$sillyStringsVersion"
 }
+
+
+license {
+    ext.year="2015"
+    ext.owner="Asterios Raptis"
+    header rootProject.file('src/main/resources/LICENSE.txt')
+    excludes(["**/README",
+              "**/README.md",
+              "**/LICENSE",
+              "**/NOTICE",
+              "**/*.xml",
+              "**/*.xsl",
+              "**/*.xsd",
+              "**/*.dtd",
+              "**/*.html",
+              "**/*.jsp",
+              "**/*.jpa",
+              "**/*.sql",
+              "**/*.properties",
+              "**/*.bat",
+              "**/*.gradle",
+              "**/*.MF",
+              "**/*.txt",
+              "**/*.vm",
+              "**/*.log",
+              "**/*.map",
+              "**/*.js.map",
+              "**/*.tmpl",
+              "**/*.js.tmpl",
+              "**/*.editorconfig",
+              "**/*.lombok.config",
+              "src/test/resources/**",
+              "src/main/resources/**",
+              "out/**",
+              "build/**"])
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set("sources")
+    from(sourceSets.main.allJava)
+}
+
+task javadocJar(type: Jar) {
+    from javadoc
+    archiveClassifier.set("javadoc")
+    javadoc.properties.failOnError = true
+}
+
+def releaseVersion = !version.endsWith("SNAPSHOT")
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = "${project.name}"
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            pom {
+                name = "${project.name}"
+                description = "This project holds utility classes to create or generate random data"
+                url = "https://github.com/astrapi69/"+"${rootProject.name}"
+                organization {
+                    name = "Alpha Ro Group UG (haftungsbeschrängt)"
+                    url = "http://www.alpharogroup.de/"
+                }
+                issueManagement {
+                    system = "GitHub"
+                    url = "https://github.com/astrapi69/"+"${rootProject.name}"+"/issues"
+                }
+                licenses {
+                    license {
+                        name = "MIT License"
+                        url = "http://www.opensource.org/licenses/mit-license.php"
+                        distribution = "repo"
+                    }
+                }
+                developers {
+                    developer {
+                        id = "astrapi69"
+                        name = "Asterios Raptis"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git:@github.com:astrapi69/"+"${rootProject.name}"+".git"
+                    developerConnection = "scm:git:git@github.com:astrapi69/"+"${rootProject.name}"+".git"
+                    url = "git:@github.com:astrapi69/"+"${rootProject.name}"+".git"
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            credentials {
+                username System.getenv("ossrhUsername") ?: project.property("ossrhUsername")
+                password System.getenv("ossrhPassword") ?: project.property("ossrhPassword")
+            }
+            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            url = releaseVersion ? releasesRepoUrl : snapshotsRepoUrl
+        }
+    }
+}
+

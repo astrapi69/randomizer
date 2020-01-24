@@ -7,8 +7,13 @@
 # intellij files #
 ##################
 *.iml
-.idea
-*/.idea
+!.idea/runConfigurations
+.idea/inspectionProfiles
+.idea/copyright
+.idea/libraries
+.idea/codeStyles
+.idea/*.*
+/out/
 
 #################
 # eclipse files #
