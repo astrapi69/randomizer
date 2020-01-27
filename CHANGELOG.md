@@ -1,6 +1,13 @@
 ## Change log
 ----------------------
 
+Version 6.6
+-------------
+
+CHANGED:
+
+- build system to gradle migrated and transformed to multi-module gradle project  
+
 Version 6.5
 -------------
 

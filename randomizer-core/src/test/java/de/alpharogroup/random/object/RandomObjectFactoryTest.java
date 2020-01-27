@@ -25,8 +25,8 @@
 package de.alpharogroup.random.object;
 
 import static org.junit.Assert.assertNotEquals;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
-import static org.testng.AssertJUnit.assertTrue;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -62,12 +62,16 @@ public class RandomObjectFactoryTest
 	@Test(enabled = true)
 	public void testNewRandomByteObjects()
 	{
-		Byte[] randomByteArray = RandomObjectFactory.newRandomByteObjects(5);
-		assertTrue(randomByteArray.length == 5);
+		int actual;
+		int expected;
+		expected = 5;
+		Byte[] randomByteArray = RandomObjectFactory.newRandomByteObjects(expected);
+		actual = randomByteArray.length;
+		assertEquals(actual, expected);
 	}
 
 	/**
-	 * Test method for {@link RandomObjectFactory#newRandomObject(Class)}
+	 * Test method for {@link RandomObjectFactory#newRandomObject(Class, String...)}
 	 *
 	 * @throws IllegalAccessException
 	 *             is thrown if the class or its default constructor is not accessible.
@@ -82,15 +86,15 @@ public class RandomObjectFactoryTest
 	public void testNewRandomObject()
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
 	{
-		Person person = RandomObjectFactory.newRandomObject(Person.class);
+		Person person = RandomObjectFactory.newRandomObject(Person.class, "$jacocoData");
 		assertNotNull(person);
-		Person person2 = RandomObjectFactory.newRandomObject(Person.class);
+		Person person2 = RandomObjectFactory.newRandomObject(Person.class, "$jacocoData");
 		assertNotNull(person2);
 		assertNotEquals(person, person2);
 	}
 
 	/**
-	 * Test method for {@link RandomObjectFactory#newRandomObject(Class)}
+	 * Test method for {@link RandomObjectFactory#newRandomObject(Class, String...)}
 	 *
 	 * @throws IllegalAccessException
 	 *             is thrown if the class or its default constructor is not accessible.
@@ -105,7 +109,7 @@ public class RandomObjectFactoryTest
 	public void testNewRandomObjectVarargs()
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
 	{
-		Person person = RandomObjectFactory.newRandomObject(Person.class, "name");
+		Person person = RandomObjectFactory.newRandomObject(Person.class, "name", "$jacocoData");
 		assertNotNull(person);
 	}
 
