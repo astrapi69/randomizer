@@ -15,7 +15,7 @@ buildscript {
 
 allprojects {
     group = "de.alpharogroup"
-    version = "6.6-SNAPSHOT"
+    version = "6.6"
 }
 
 subprojects {
@@ -76,9 +76,4 @@ subprojects {
 
     check.dependsOn jacocoTestReport
 
-    signing {
-        if (releaseVersion) {
-            sign publishing.publications.mavenJava
-        }
-    }
 }
