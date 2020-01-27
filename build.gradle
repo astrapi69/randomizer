@@ -27,8 +27,6 @@ subprojects {
     apply plugin: "com.github.ben-manes.versions"
     apply plugin: "com.github.hierynomus.license"
 
-    def releaseVersion = !version.endsWith("SNAPSHOT")
-
     repositories {
         mavenLocal()
         maven {
