@@ -57,7 +57,7 @@ public final class RandomObjectsExtensions
 			final String emailprefix = "info";
 			email.append(emailprefix);
 			email.append("@");
-			email.append(url.substring(startIndex + 4, url.length()));
+			email.append(url.substring(startIndex + 4));
 		}
 		else
 		{
@@ -66,7 +66,7 @@ public final class RandomObjectsExtensions
 				final String emailprefix = "info";
 				email.append(emailprefix);
 				email.append("@");
-				email.append(url.substring(startIndex + 2, url.length()));
+				email.append(url.substring(startIndex + 2));
 			}
 			else
 			{
@@ -83,7 +83,7 @@ public final class RandomObjectsExtensions
 	 */
 	public static String getRandomEmail()
 	{
-		final StringBuffer email = new StringBuffer();
+		final StringBuilder email = new StringBuilder();
 		final String emailprefix = RandomExtensions.getRandomString(
 			RandomCharacters.lowcaseWithNumbers.getCharacters(),
 			RandomPrimitivesExtensions.randomInt(20) + 1);
@@ -108,12 +108,12 @@ public final class RandomObjectsExtensions
 	 */
 	public static String getRandomFaxnumber(final String phonenumber)
 	{
-		final StringBuffer sb = new StringBuffer();
+		final StringBuilder sb = new StringBuilder();
 		final String randomFax = phonenumber.substring(0, phonenumber.length() - 2);
 		sb.append(randomFax);
 		final String phoneExtension = phonenumber.substring(phonenumber.length() - 2,
 			phonenumber.length());
-		final Integer phEx = new Integer(phoneExtension);
+		final Integer phEx = Integer.valueOf(phoneExtension);
 		final int pe = phEx + 1;
 		sb.append(pe);
 		return sb.toString();
@@ -126,7 +126,7 @@ public final class RandomObjectsExtensions
 	 */
 	public static String getRandomMobilnumber()
 	{
-		final StringBuffer randomPhonenumber = new StringBuffer();
+		final StringBuilder randomPhonenumber = new StringBuilder();
 		randomPhonenumber.append("0");
 		randomPhonenumber.append(RandomNumberExtensions.getRandomNumericString(3));
 		randomPhonenumber.append("/");
@@ -174,7 +174,7 @@ public final class RandomObjectsExtensions
 	 */
 	public static String getRandomPhonenumber()
 	{
-		final StringBuffer randomPhonenumber = new StringBuffer();
+		final StringBuilder randomPhonenumber = new StringBuilder();
 		randomPhonenumber.append("0");
 		randomPhonenumber.append(RandomNumberExtensions.getRandomNumericString(4));
 		randomPhonenumber.append("/");
@@ -189,7 +189,7 @@ public final class RandomObjectsExtensions
 	 */
 	public static String getRandomWebsite()
 	{
-		final StringBuffer website = new StringBuffer();
+		final StringBuilder website = new StringBuilder();
 		final String websitePrefix = "http://www";
 		final String domain = RandomExtensions.getRandomString(
 			RandomCharacters.lowcase.getCharacters(), RandomPrimitivesExtensions.randomInt(12) + 1);
@@ -210,7 +210,7 @@ public final class RandomObjectsExtensions
 	 */
 	public static String newRandomId()
 	{
-		final StringBuffer sb = new StringBuffer();
+		final StringBuilder sb = new StringBuilder();
 		sb.append(RandomExtensions
 			.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(), 2));
 		sb.append(".");
@@ -236,7 +236,7 @@ public final class RandomObjectsExtensions
 	 */
 	public static String newRandomName(final char[] donatedChars)
 	{
-		final StringBuffer sb = new StringBuffer(donatedChars.length);
+		final StringBuilder sb = new StringBuilder(donatedChars.length);
 		final List<Character> dc = new ArrayList<>(donatedChars.length);
 		for (final char donatedChar : donatedChars)
 		{
