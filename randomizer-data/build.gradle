@@ -111,3 +111,8 @@ publishing {
     }
 }
 
+signing {
+    if (releaseVersion) {
+        sign publishing.publications.mavenJava
+    }
+}
