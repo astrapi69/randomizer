@@ -24,15 +24,9 @@
  */
 package de.alpharogroup.random;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.experimental.FieldDefaults;
-
 /**
  * The enum {@link RandomCharacters}
  */
-@Getter
-@FieldDefaults(level = AccessLevel.PRIVATE)
 public enum RandomCharacters
 {
 
@@ -81,7 +75,7 @@ public enum RandomCharacters
 	private static final String SPECIALCHARS = "#@$%^&*?!";
 
 	/** The allowed characters. */
-	String characters;
+	private final String characters;
 
 	/**
 	 * Instantiates a new {@link RandomCharacters}
@@ -94,4 +88,8 @@ public enum RandomCharacters
 		this.characters = characters;
 	}
 
+	public String getCharacters()
+	{
+		return characters;
+	}
 }

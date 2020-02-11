@@ -1,6 +1,7 @@
 
 buildscript {
     repositories {
+        mavenCentral()
         google()
         jcenter()
         maven {
@@ -16,7 +17,7 @@ buildscript {
 
 allprojects {
     group = "de.alpharogroup"
-    version = "6.7-SNAPSHOT"
+    version = "$projectVersion"
 }
 
 subprojects {
@@ -35,11 +36,8 @@ subprojects {
     }
 
     dependencies {
-        compileOnly("org.projectlombok:lombok:$lombokVersion")
-        annotationProcessor("org.projectlombok:lombok:$lombokVersion")
         testCompile("org.testng:testng:$testngVersion")
-        testCompile("junit:junit:$junitVersion")
-        testCompile("org.mockito:mockito-core:$mockitoCoreVersion")
+        testCompile("org.meanbean:meanbean:$meanbeanVersion")
     }
 
     // workhack for license issue #76
@@ -56,10 +54,6 @@ subprojects {
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
-    }
-
-    test {
-        useTestNG()
     }
 
     test {

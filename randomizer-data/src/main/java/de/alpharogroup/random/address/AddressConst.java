@@ -24,17 +24,43 @@
  */
 package de.alpharogroup.random.address;
 
-import lombok.experimental.UtilityClass;
-
 /**
  * The class {@link AddressConst} is a constant class for Address data like cities and countries.
  *
  * @version 1.0
  * @author Asterios Raptis
  */
-@UtilityClass
-public class AddressConst
+public final class AddressConst
 {
+	/**
+	 * Constant from an Array with cities.
+	 */
+	public final static String[] CITIES = { "Abidjan", "Abu", "Acapulco", "Aguascalientes", "Akron",
+			"Alexandria", "Allentown", "Amarillo", "Amsterdam", "Anchorage", "Appleton", "Aruba",
+			"Asheville", "Athens", "Atlanta", "Augusta", "Austin", "Baltimore", "Bamako", "Bangor",
+			"Barbados", "Barcelona", "Basel", "Baton", "Beaumont", "Berlin", "Bermuda",
+			"Birmingham", "Boise", "Bologna", "Boston", "Brussels", "Bucharest", "Budapest",
+			"Buffalo", "Cairo", "Calgary", "Cancun", "Cape", "Caracas", "Casper", "Cedar",
+			"Charleston", "Charlotte", "Charlottesville", "Chicago", "Chihuahua", "Cincinnati",
+			"Cleveland", "Colorado", "Columbia", "Columbus", "Conakry", "Copenhagen", "Corpus",
+			"Dakar", "Dallas", "Dayton", "Daytona", "Denver", "Detroit", "Dubai", "Dublin",
+			"Durango", "Durban", "Dusseldorf", "East", "Evansville", "Fairbanks", "Fayetteville",
+			"Florence", "Fort", "Fortaleza", "Frankfurt", "Fresno", "Gainesville", "Geneva",
+			"George", "Glasgow", "Gothenburg", "Greensboro", "Greenville", "Grenada", "Guadalajara",
+			"Guangzhou", "Guatemala", "Guaymas", "Gulfport", "Gunnison", "Hamburg", "Harrisburg",
+			"Hartford", "Hermosillo", "Honolulu", "Houston", "Huntington", "Huntsville", "Idaho",
+			"Indianapolis", "Istanbul", "Jackson", "Jacksonville", "Johannesburg", "Kalamazoo",
+			"Kalispell", "Kansas", "Kiev", "Las Vegas", "Lexington", "Lima", "Lisbon", "Little",
+			"London", "Louisville", "Lubbock", "Lynchburg", "Lyon", "Macon", "Madison", "Madrid",
+			"Manchester", "Melbourne", "Memphis", "Mexico City", "Miami", "Milan", "Milwaukee",
+			"Minneapolis", "Monroe", "Monterrey", "Montgomery", "Montreal", "Moscow", "Munich",
+			"Nashville", "Nassau", "Newcastle", "Norfolk", "Oakland", "Oklahoma", "Omaha",
+			"Ontario", "Orange", "Orlando", "Paris", "Philadelphia", "Phoenix", "Pittsburgh",
+			"Pocatello", "Portland", "Prague", "Richmond", "Rio", "Rochester", "Rome", "Sacramento",
+			"Santiago", "Sao Paolo", "Sarasota", "Savannah", "Seattle", "Shannon", "Shreveport",
+			"Stockholm", "Stuttgart", "Tokyo", "Toledo", "Toronto", "Torreon", "Toulouse", "Tucson",
+			"Tulsa", "Turin", "Vancouver", "Venice", "Veracruz", "Vienna", "Villahermosa", "Warsaw",
+			"Washington", "Wichita", "Worcester", "Zurich" };
 
 	/**
 	 * Constant from an Array with the countries.
@@ -78,34 +104,8 @@ public class AddressConst
 			"Uruguay", "Uzbekistan", "Vanuatu", "Vatican City State", "Venezuela", "Viet Nam",
 			"Western Sahara", "Yemen", "Zaire", "Zambia", "Zimbabwe" };
 
-	/**
-	 * Constant from an Array with cities.
-	 */
-	public final static String[] CITIES = { "Abidjan", "Abu", "Acapulco", "Aguascalientes", "Akron",
-			"Alexandria", "Allentown", "Amarillo", "Amsterdam", "Anchorage", "Appleton", "Aruba",
-			"Asheville", "Athens", "Atlanta", "Augusta", "Austin", "Baltimore", "Bamako", "Bangor",
-			"Barbados", "Barcelona", "Basel", "Baton", "Beaumont", "Berlin", "Bermuda",
-			"Birmingham", "Boise", "Bologna", "Boston", "Brussels", "Bucharest", "Budapest",
-			"Buffalo", "Cairo", "Calgary", "Cancun", "Cape", "Caracas", "Casper", "Cedar",
-			"Charleston", "Charlotte", "Charlottesville", "Chicago", "Chihuahua", "Cincinnati",
-			"Cleveland", "Colorado", "Columbia", "Columbus", "Conakry", "Copenhagen", "Corpus",
-			"Dakar", "Dallas", "Dayton", "Daytona", "Denver", "Detroit", "Dubai", "Dublin",
-			"Durango", "Durban", "Dusseldorf", "East", "Evansville", "Fairbanks", "Fayetteville",
-			"Florence", "Fort", "Fortaleza", "Frankfurt", "Fresno", "Gainesville", "Geneva",
-			"George", "Glasgow", "Gothenburg", "Greensboro", "Greenville", "Grenada", "Guadalajara",
-			"Guangzhou", "Guatemala", "Guaymas", "Gulfport", "Gunnison", "Hamburg", "Harrisburg",
-			"Hartford", "Hermosillo", "Honolulu", "Houston", "Huntington", "Huntsville", "Idaho",
-			"Indianapolis", "Istanbul", "Jackson", "Jacksonville", "Johannesburg", "Kalamazoo",
-			"Kalispell", "Kansas", "Kiev", "Las Vegas", "Lexington", "Lima", "Lisbon", "Little",
-			"London", "Louisville", "Lubbock", "Lynchburg", "Lyon", "Macon", "Madison", "Madrid",
-			"Manchester", "Melbourne", "Memphis", "Mexico City", "Miami", "Milan", "Milwaukee",
-			"Minneapolis", "Monroe", "Monterrey", "Montgomery", "Montreal", "Moscow", "Munich",
-			"Nashville", "Nassau", "Newcastle", "Norfolk", "Oakland", "Oklahoma", "Omaha",
-			"Ontario", "Orange", "Orlando", "Paris", "Philadelphia", "Phoenix", "Pittsburgh",
-			"Pocatello", "Portland", "Prague", "Richmond", "Rio", "Rochester", "Rome", "Sacramento",
-			"Santiago", "Sao Paolo", "Sarasota", "Savannah", "Seattle", "Shannon", "Shreveport",
-			"Stockholm", "Stuttgart", "Tokyo", "Toledo", "Toronto", "Torreon", "Toulouse", "Tucson",
-			"Tulsa", "Turin", "Vancouver", "Venice", "Veracruz", "Vienna", "Villahermosa", "Warsaw",
-			"Washington", "Wichita", "Worcester", "Zurich" };
+	private AddressConst()
+	{
+	}
 
 }

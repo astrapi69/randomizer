@@ -40,7 +40,6 @@ import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.date.CalculateDateExtensions;
 import de.alpharogroup.random.SecureRandomFactory;
 import de.alpharogroup.random.number.RandomPrimitivesExtensions;
-import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link RandomDateExtensions} is a utility class for creating random random dates.
@@ -48,10 +47,8 @@ import lombok.experimental.UtilityClass;
  * @version 1.0
  * @author Asterios Raptis
  */
-@UtilityClass
-public class RandomDateExtensions
+public final class RandomDateExtensions
 {
-
 	/** The secure random. */
 	private static SecureRandom secureRandom;
 
@@ -71,72 +68,6 @@ public class RandomDateExtensions
 	public static Date dateAfter(final Date date)
 	{
 		return dateAfter(date, RandomPrimitivesExtensions.randomInt(10000));
-	}
-
-	/**
-	 * Creates a random {@link LocalDateTime} object
-	 *
-	 * @return the zone id
-	 */
-	public static ZoneId randomZoneId()
-	{
-		List<String> availableZoneIds = ListFactory.newArrayList(ZoneId.getAvailableZoneIds());
-		return ZoneId.of(
-			availableZoneIds.get(RandomPrimitivesExtensions.randomInt(availableZoneIds.size())));
-	}
-
-	/**
-	 * Creates a random {@link LocalDateTime} object
-	 *
-	 * @return the random {@link LocalDateTime} object
-	 */
-	public static LocalDateTime randomLocalDateTime()
-	{
-		return LocalDateTime.of(randomLocalDate(), randomLocalTime());
-	}
-
-	/**
-	 * Creates a random {@link LocalTime} object
-	 *
-	 * @return the random {@link LocalTime} object
-	 */
-	public static LocalTime randomLocalTime()
-	{
-		LocalTime randomLocalTime;
-		LocalTime now = LocalTime.now();
-		if (RandomPrimitivesExtensions.randomBoolean())
-		{
-			randomLocalTime = now.plusHours(RandomPrimitivesExtensions.randomLong(23))
-				.plusMinutes(RandomPrimitivesExtensions.randomLong(59))
-				.plusSeconds(RandomPrimitivesExtensions.randomLong(59));
-		}
-		else
-		{
-			randomLocalTime = now.minusHours(RandomPrimitivesExtensions.randomLong(23))
-				.minusMinutes(RandomPrimitivesExtensions.randomLong(59))
-				.minusSeconds(RandomPrimitivesExtensions.randomLong(59));
-		}
-		return randomLocalTime;
-	}
-
-	/**
-	 * Creates a random {@link LocalDate} object
-	 *
-	 * @return the random {@link LocalDate} object
-	 */
-	public static LocalDate randomLocalDate()
-	{
-		LocalDate randomLocalDate;
-		LocalDate now = LocalDate.now();
-		if (RandomPrimitivesExtensions.randomBoolean())
-		{
-			randomLocalDate = now.plusDays(RandomPrimitivesExtensions.randomLong());
-		}
-		else
-		{
-			randomLocalDate = now.minusDays(RandomPrimitivesExtensions.randomLong());
-		}
-		return randomLocalDate;
 	}
 
 	/**
@@ -243,21 +174,6 @@ public class RandomDateExtensions
 	}
 
 	/**
-	 * Creates a random date.
-	 *
-	 * @param from
-	 *            The date from where to begin.
-	 * @return The random date.
-	 */
-	public static Date randomDate(final Date from)
-	{
-		final double randDouble = -secureRandom.nextDouble() * from.getTime();
-		final double randomDouble = from.getTime() - secureRandom.nextDouble();
-		final double result = (randDouble / 99999) * (randomDouble / 99999);
-		return new Date((long)result);
-	}
-
-	/**
 	 * Creates a random {@link Date}
 	 *
 	 * @return The random {@link Date}
@@ -270,6 +186,21 @@ public class RandomDateExtensions
 			return dateAfter(now, RandomPrimitivesExtensions.randomInt(10000));
 		}
 		return dateBefore(now, RandomPrimitivesExtensions.randomInt(10000));
+	}
+
+	/**
+	 * Creates a random date.
+	 *
+	 * @param from
+	 *            The date from where to begin.
+	 * @return The random date.
+	 */
+	public static Date randomDate(final Date from)
+	{
+		final double randDouble = -secureRandom.nextDouble() * from.getTime();
+		final double randomDouble = from.getTime() - secureRandom.nextDouble();
+		final double result = (randDouble / 99999) * (randomDouble / 99999);
+		return new Date((long)result);
 	}
 
 	/**
@@ -338,6 +269,76 @@ public class RandomDateExtensions
 	public static Date randomDateBetween(final Date from, final int startDays, final int endDays)
 	{
 		return dateAfter(from, RandomPrimitivesExtensions.randomIntBetween(startDays, endDays));
+	}
+
+	/**
+	 * Creates a random {@link LocalDate} object
+	 *
+	 * @return the random {@link LocalDate} object
+	 */
+	public static LocalDate randomLocalDate()
+	{
+		LocalDate randomLocalDate;
+		LocalDate now = LocalDate.now();
+		if (RandomPrimitivesExtensions.randomBoolean())
+		{
+			randomLocalDate = now.plusDays(RandomPrimitivesExtensions.randomLong());
+		}
+		else
+		{
+			randomLocalDate = now.minusDays(RandomPrimitivesExtensions.randomLong());
+		}
+		return randomLocalDate;
+	}
+
+	/**
+	 * Creates a random {@link LocalDateTime} object
+	 *
+	 * @return the random {@link LocalDateTime} object
+	 */
+	public static LocalDateTime randomLocalDateTime()
+	{
+		return LocalDateTime.of(randomLocalDate(), randomLocalTime());
+	}
+
+	/**
+	 * Creates a random {@link LocalTime} object
+	 *
+	 * @return the random {@link LocalTime} object
+	 */
+	public static LocalTime randomLocalTime()
+	{
+		LocalTime randomLocalTime;
+		LocalTime now = LocalTime.now();
+		if (RandomPrimitivesExtensions.randomBoolean())
+		{
+			randomLocalTime = now.plusHours(RandomPrimitivesExtensions.randomLong(23))
+				.plusMinutes(RandomPrimitivesExtensions.randomLong(59))
+				.plusSeconds(RandomPrimitivesExtensions.randomLong(59));
+		}
+		else
+		{
+			randomLocalTime = now.minusHours(RandomPrimitivesExtensions.randomLong(23))
+				.minusMinutes(RandomPrimitivesExtensions.randomLong(59))
+				.minusSeconds(RandomPrimitivesExtensions.randomLong(59));
+		}
+		return randomLocalTime;
+	}
+
+	/**
+	 * Creates a random {@link LocalDateTime} object
+	 *
+	 * @return the zone id
+	 */
+	public static ZoneId randomZoneId()
+	{
+		List<String> availableZoneIds = ListFactory.newArrayList(ZoneId.getAvailableZoneIds());
+		return ZoneId.of(
+			availableZoneIds.get(RandomPrimitivesExtensions.randomInt(availableZoneIds.size())));
+	}
+
+	private RandomDateExtensions()
+	{
 	}
 
 }

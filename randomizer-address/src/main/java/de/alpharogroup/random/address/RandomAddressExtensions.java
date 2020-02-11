@@ -30,7 +30,6 @@ import java.util.Set;
 
 import de.alpharogroup.random.number.RandomPrimitivesExtensions;
 import de.alpharogroup.random.util.PropertiesLoader;
-import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link RandomAddressExtensions} is a utility class to create random addresses.
@@ -38,8 +37,7 @@ import lombok.experimental.UtilityClass;
  * @version 1.0
  * @author Asterios Raptis
  */
-@UtilityClass
-public class RandomAddressExtensions
+public final class RandomAddressExtensions
 {
 
 	/** Resource for get german streets. */
@@ -100,6 +98,10 @@ public class RandomAddressExtensions
 		final int randomIndex = RandomPrimitivesExtensions.randomInt(keys.length);
 		final String zip = (String)keys[randomIndex];
 		return zip;
+	}
+
+	private RandomAddressExtensions()
+	{
 	}
 
 }

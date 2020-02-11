@@ -4,7 +4,12 @@
 Version 6.7-SNAPSHOT
 -------------
 
+CHANGED:
 
+- update of dependency jobj-core version to 3.5
+- update of dependency silly-beans version to 1.1
+- update of test dependency equalsverifier version to 3.1.12
+- removed lombok dependency
 
 Version 6.6
 -------------

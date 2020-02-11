@@ -1,14 +1,13 @@
 
 dependencies {
-    compile "de.alpharogroup:vintage-time:$vintageTimeVersion"
+    compile("de.alpharogroup:vintage-time:$vintageTimeVersion")
     compile project(":randomizer-api")
     compile project(":randomizer-data")
-    compile "de.alpharogroup:jobj-core:$jobjCoreVersion"
-    compile "de.alpharogroup:silly-math:$sillyMathVersion"
-    testCompile "de.alpharogroup:silly-beans:$sillyBeansVersion"
-    testCompile "de.alpharogroup:test-objects:$testObjectsVersion"
-    testCompile "org.meanbean:meanbean:$meanbeanVersion"
-    testCompile "de.alpharogroup:silly-strings:$sillyStringsVersion"
+    compile("de.alpharogroup:jobj-core:$jobjCoreVersion")
+    compile("de.alpharogroup:silly-math:$sillyMathVersion")
+    testCompile("de.alpharogroup:silly-beans:$sillyBeansVersion")
+    testCompile("de.alpharogroup:test-objects:$testObjectsVersion")
+    testCompile("de.alpharogroup:silly-strings:$sillyStringsVersion")
 }
 
 

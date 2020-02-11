@@ -27,13 +27,12 @@ package de.alpharogroup.random.number;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.Objects;
 import java.util.Random;
 
 import de.alpharogroup.math.MathExtensions;
 import de.alpharogroup.random.DefaultSecureRandom;
 import de.alpharogroup.random.enums.RandomAlgorithm;
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
 
 /**
  * Utility class for producing random privimitive types
@@ -41,9 +40,37 @@ import lombok.experimental.UtilityClass;
  * @version 1.1
  * @author Asterios Raptis
  */
-@UtilityClass
 public final class RandomPrimitivesExtensions
 {
+	/**
+	 * Gets the random float as {@link String} object.
+	 *
+	 * @param afterComma
+	 *            How many decimal places after the comma.
+	 * @param beforeComma
+	 *            How many decimal places before the comma.
+	 * @return the random float string
+	 */
+	private static String getRandomFloatString(final int afterComma, final int beforeComma)
+	{
+		return RandomNumberExtensions.getRandomNumericString(afterComma) + "."
+			+ RandomNumberExtensions.getRandomNumericString(beforeComma);
+	}
+
+	/**
+	 * Returns a random int between the range from minVolume and maxVolume with the
+	 * <code>Math.abs</code> method.
+	 *
+	 * @param minVolume
+	 *            the min volume
+	 * @param maxVolume
+	 *            the max volume
+	 * @return A random int between the range from minVolume and maxVolume
+	 */
+	public static int getRandomIntBetween(int minVolume, int maxVolume)
+	{
+		return minVolume + Math.abs(DefaultSecureRandom.get().nextInt()) % maxVolume;
+	}
 
 	/**
 	 * Returns a random boolean.
@@ -111,23 +138,6 @@ public final class RandomPrimitivesExtensions
 	}
 
 	/**
-	 * Returns a random short
-	 *
-	 * @return The generated random short
-	 */
-	public static short randomShort()
-	{
-		if (DefaultSecureRandom.get().nextBoolean())
-		{
-			return (short)(DefaultSecureRandom.get().nextInt(65536) - 32768);
-		}
-		else
-		{
-			return (short)DefaultSecureRandom.get().nextInt(Short.MAX_VALUE + 1);
-		}
-	}
-
-	/**
 	 * The Method randomChar(String) selects a random char from the given String.
 	 *
 	 * @param string
@@ -140,78 +150,13 @@ public final class RandomPrimitivesExtensions
 	}
 
 	/**
-	 * Gets a random long
+	 * The Method randomDouble() gets a random double
 	 *
-	 * @return a random long
+	 * @return the random double
 	 */
-	public static long randomLong()
+	public static double randomDouble()
 	{
-		return randomLong(new Random(System.currentTimeMillis()).nextInt());
-	}
-
-	/**
-	 * The Method randomLong(long) gets an long to the spezified range. For example: if you put
-	 * range to 10 the random int is between 0-9.
-	 *
-	 * @param range
-	 *            the range
-	 * @return an long not greater then the range.
-	 */
-	public static long randomLong(final long range)
-	{
-		return randomLong(range, RandomAlgorithm.SECURE_RANDOM);
-	}
-
-	/**
-	 * Gets an random long to the given range with the given random algorithm <br>
-	 * <br>
-	 * For example: if you put range to 10 the random int is between 0-9
-	 *
-	 * @param range
-	 *            the range
-	 * @param algorithm
-	 *            the random algorithm
-	 * @return an random long not greater then the range
-	 */
-	public static long randomLong(final long range, @NonNull RandomAlgorithm algorithm)
-	{
-		switch (algorithm)
-		{
-			case MATH_ABS :
-				return (long)(Math.abs(DefaultSecureRandom.get().nextDouble()) % range);
-			case MATH_RANDOM :
-				return (long)(Math.random() * range);
-			case RANDOM :
-				long random = (long)new Random(System.currentTimeMillis()).nextDouble() % range;
-				return MathExtensions.isPositive(random) ? random : random * -1;
-			case SECURE_RANDOM :
-			default :
-				return (long)(DefaultSecureRandom.get().nextDouble() * range);
-		}
-	}
-
-	/**
-	 * Returns a random long between the range from start and end.
-	 *
-	 * @param start
-	 *            The long from where the range starts.
-	 * @param end
-	 *            The long from where the range ends.
-	 * @return A random long between the range from start and end.
-	 */
-	public static long randomLongBetween(final long start, final long end)
-	{
-		return start + randomLong(end - start);
-	}
-
-	/**
-	 * Generates a random float between the range 0.0-9.9.
-	 *
-	 * @return the generated random float between the range 0.0-9.9.
-	 */
-	public static float randomFloat()
-	{
-		return randomFloat(DefaultSecureRandom.get().nextFloat());
+		return randomDouble(Double.MAX_VALUE);
 	}
 
 	/**
@@ -238,8 +183,9 @@ public final class RandomPrimitivesExtensions
 	 *            the random algorithm
 	 * @return an random double not greater then the range
 	 */
-	public static double randomDouble(final double range, @NonNull RandomAlgorithm algorithm)
+	public static double randomDouble(final double range, final RandomAlgorithm algorithm)
 	{
+		Objects.requireNonNull(algorithm);
 		switch (algorithm)
 		{
 			case MATH_ABS :
@@ -253,16 +199,6 @@ public final class RandomPrimitivesExtensions
 			default :
 				return DefaultSecureRandom.get().nextDouble() * range;
 		}
-	}
-
-	/**
-	 * The Method randomDouble() gets a random double
-	 *
-	 * @return the random double
-	 */
-	public static double randomDouble()
-	{
-		return randomDouble(Double.MAX_VALUE);
 	}
 
 	/**
@@ -303,6 +239,16 @@ public final class RandomPrimitivesExtensions
 	}
 
 	/**
+	 * Generates a random float between the range 0.0-9.9.
+	 *
+	 * @return the generated random float between the range 0.0-9.9.
+	 */
+	public static float randomFloat()
+	{
+		return randomFloat(DefaultSecureRandom.get().nextFloat());
+	}
+
+	/**
 	 * The Method randomFloat(float) gets an float to the spezified range. For example: if you put
 	 * range to 10.0 the random int is between 0.0-9.9.
 	 *
@@ -326,8 +272,9 @@ public final class RandomPrimitivesExtensions
 	 *            the random algorithm
 	 * @return an random float not greater then the range
 	 */
-	public static float randomFloat(final float range, @NonNull RandomAlgorithm algorithm)
+	public static float randomFloat(final float range, final RandomAlgorithm algorithm)
 	{
+		Objects.requireNonNull(algorithm);
 		switch (algorithm)
 		{
 			case MATH_ABS :
@@ -355,21 +302,6 @@ public final class RandomPrimitivesExtensions
 	public static float randomFloat(final int afterComma, final int beforeComma)
 	{
 		return Float.parseFloat(getRandomFloatString(afterComma, beforeComma));
-	}
-
-	/**
-	 * Gets the random float as {@link String} object.
-	 *
-	 * @param afterComma
-	 *            How many decimal places after the comma.
-	 * @param beforeComma
-	 *            How many decimal places before the comma.
-	 * @return the random float string
-	 */
-	private static String getRandomFloatString(final int afterComma, final int beforeComma)
-	{
-		return RandomNumberExtensions.getRandomNumericString(afterComma) + "."
-			+ RandomNumberExtensions.getRandomNumericString(beforeComma);
 	}
 
 	/**
@@ -442,8 +374,9 @@ public final class RandomPrimitivesExtensions
 	 *            the random algorithm
 	 * @return an int not greater then the range
 	 */
-	public static int randomInt(final int range, @NonNull RandomAlgorithm algorithm)
+	public static int randomInt(final int range, final RandomAlgorithm algorithm)
 	{
+		Objects.requireNonNull(algorithm);
 		switch (algorithm)
 		{
 			case MATH_ABS :
@@ -506,18 +439,90 @@ public final class RandomPrimitivesExtensions
 	}
 
 	/**
-	 * Returns a random int between the range from minVolume and maxVolume with the
-	 * <code>Math.abs</code> method.
+	 * Gets a random long
 	 *
-	 * @param minVolume
-	 *            the min volume
-	 * @param maxVolume
-	 *            the max volume
-	 * @return A random int between the range from minVolume and maxVolume
+	 * @return a random long
 	 */
-	public static int getRandomIntBetween(int minVolume, int maxVolume)
+	public static long randomLong()
 	{
-		return minVolume + Math.abs(DefaultSecureRandom.get().nextInt()) % maxVolume;
+		return randomLong(new Random(System.currentTimeMillis()).nextInt());
+	}
+
+	/**
+	 * The Method randomLong(long) gets an long to the spezified range. For example: if you put
+	 * range to 10 the random int is between 0-9.
+	 *
+	 * @param range
+	 *            the range
+	 * @return an long not greater then the range.
+	 */
+	public static long randomLong(final long range)
+	{
+		return randomLong(range, RandomAlgorithm.SECURE_RANDOM);
+	}
+
+	/**
+	 * Gets an random long to the given range with the given random algorithm <br>
+	 * <br>
+	 * For example: if you put range to 10 the random int is between 0-9
+	 *
+	 * @param range
+	 *            the range
+	 * @param algorithm
+	 *            the random algorithm
+	 * @return an random long not greater then the range
+	 */
+	public static long randomLong(final long range, final RandomAlgorithm algorithm)
+	{
+		Objects.requireNonNull(algorithm);
+		switch (algorithm)
+		{
+			case MATH_ABS :
+				return (long)(Math.abs(DefaultSecureRandom.get().nextDouble()) % range);
+			case MATH_RANDOM :
+				return (long)(Math.random() * range);
+			case RANDOM :
+				long random = (long)new Random(System.currentTimeMillis()).nextDouble() % range;
+				return MathExtensions.isPositive(random) ? random : random * -1;
+			case SECURE_RANDOM :
+			default :
+				return (long)(DefaultSecureRandom.get().nextDouble() * range);
+		}
+	}
+
+	/**
+	 * Returns a random long between the range from start and end.
+	 *
+	 * @param start
+	 *            The long from where the range starts.
+	 * @param end
+	 *            The long from where the range ends.
+	 * @return A random long between the range from start and end.
+	 */
+	public static long randomLongBetween(final long start, final long end)
+	{
+		return start + randomLong(end - start);
+	}
+
+	/**
+	 * Returns a random short
+	 *
+	 * @return The generated random short
+	 */
+	public static short randomShort()
+	{
+		if (DefaultSecureRandom.get().nextBoolean())
+		{
+			return (short)(DefaultSecureRandom.get().nextInt(65536) - 32768);
+		}
+		else
+		{
+			return (short)DefaultSecureRandom.get().nextInt(Short.MAX_VALUE + 1);
+		}
+	}
+
+	private RandomPrimitivesExtensions()
+	{
 	}
 
 }

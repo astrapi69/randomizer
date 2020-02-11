@@ -34,6 +34,7 @@ import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import de.alpharogroup.random.RandomExtensions;
 import de.alpharogroup.random.date.RandomDateExtensions;
@@ -41,16 +42,12 @@ import de.alpharogroup.random.enums.RandomAlgorithm;
 import de.alpharogroup.random.number.RandomNumberExtensions;
 import de.alpharogroup.random.number.RandomPrimitivesExtensions;
 import de.alpharogroup.reflection.ReflectionExtensions;
-import lombok.NonNull;
-import lombok.experimental.UtilityClass;
 
 /**
  * A factory for creating random objects
  */
-@UtilityClass
-public class RandomObjectFactory
+public final class RandomObjectFactory
 {
-
 	/**
 	 * Factory method for create a new random {@link RandomAlgorithm} object
 	 *
@@ -59,20 +56,6 @@ public class RandomObjectFactory
 	public static RandomAlgorithm newRandomAlgorithm()
 	{
 		return RandomExtensions.getRandomEnumFromEnumValues(RandomAlgorithm.values());
-	}
-
-	/**
-	 * Factory method for create a new random {@link Float} object
-	 *
-	 * @param afterComma
-	 *            How many decimal places after the comma
-	 * @param beforeComma
-	 *            How many decimal places before the comma
-	 * @return the new random {@link Float} object
-	 */
-	public static Float newRandomFloat(final int afterComma, final int beforeComma)
-	{
-		return RandomPrimitivesExtensions.randomFloat(afterComma, beforeComma);
 	}
 
 	/**
@@ -95,6 +78,20 @@ public class RandomObjectFactory
 	}
 
 	/**
+	 * Factory method for create a new random {@link Float} object
+	 *
+	 * @param afterComma
+	 *            How many decimal places after the comma
+	 * @param beforeComma
+	 *            How many decimal places before the comma
+	 * @return the new random {@link Float} object
+	 */
+	public static Float newRandomFloat(final int afterComma, final int beforeComma)
+	{
+		return RandomPrimitivesExtensions.randomFloat(afterComma, beforeComma);
+	}
+
+	/**
 	 * Factory method for create a new random object of the given {@link Class}.
 	 *
 	 * @param <T>
@@ -113,50 +110,12 @@ public class RandomObjectFactory
 	 * @throws NoSuchFieldException
 	 *             is thrown if no such field exists
 	 */
-	public static <T> T newRandomObject(final @NonNull Class<T> cls, String... ignoreFieldNames)
+	public static <T> T newRandomObject(final Class<T> cls, String... ignoreFieldNames)
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
 	{
+		Objects.requireNonNull(cls);
 		T instance = ReflectionExtensions.newInstance(cls);
 		return setRandomValues(cls, instance, ignoreFieldNames);
-	}
-
-	/**
-	 * Sets the random values to the fields of the given instance
-	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param cls
-	 *            the cls
-	 * @param instance
-	 *            the instance to set random values
-	 * @param ignoreFieldNames
-	 *            the ignore field names
-	 * @return the new random object
-	 * @throws IllegalAccessException
-	 *             is thrown if the class or its default constructor is not accessible.
-	 * @throws InstantiationException
-	 *             is thrown if this {@code Class} represents an abstract class, an interface, an
-	 *             array class, a primitive type, or void; or if the class has no default
-	 *             constructor; or if the instantiation fails for some other reason.
-	 * @throws NoSuchFieldException
-	 *             is thrown if no such field exists
-	 */
-	public static <T> T setRandomValues(final @NonNull Class<T> cls, final @NonNull T instance,
-		String... ignoreFieldNames)
-		throws IllegalAccessException, InstantiationException, NoSuchFieldException
-	{
-		Field[] allDeclaredFields = ReflectionExtensions.getAllDeclaredFields(cls);
-		List<String> toIgnoreFields = Arrays.asList(ignoreFieldNames);
-		for (Field field : allDeclaredFields)
-		{
-			if (Modifier.isFinal(field.getModifiers()) || toIgnoreFields.contains(field.getName()))
-			{
-				continue;
-			}
-			Object value = newRandomValue(field);
-			ReflectionExtensions.setFieldValue(instance, field, value);
-		}
-		return instance;
 	}
 
 	/**
@@ -249,6 +208,51 @@ public class RandomObjectFactory
 			return RandomDateExtensions.randomLocalTime();
 		}
 		return newRandomObject(type);
+	}
+
+	/**
+	 * Sets the random values to the fields of the given instance
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param cls
+	 *            the cls
+	 * @param instance
+	 *            the instance to set random values
+	 * @param ignoreFieldNames
+	 *            the ignore field names
+	 * @return the new random object
+	 * @throws IllegalAccessException
+	 *             is thrown if the class or its default constructor is not accessible.
+	 * @throws InstantiationException
+	 *             is thrown if this {@code Class} represents an abstract class, an interface, an
+	 *             array class, a primitive type, or void; or if the class has no default
+	 *             constructor; or if the instantiation fails for some other reason.
+	 * @throws NoSuchFieldException
+	 *             is thrown if no such field exists
+	 */
+	public static <T> T setRandomValues(final Class<T> cls, final T instance,
+		String... ignoreFieldNames)
+		throws IllegalAccessException, InstantiationException, NoSuchFieldException
+	{
+		Objects.requireNonNull(cls);
+		Objects.requireNonNull(instance);
+		Field[] allDeclaredFields = ReflectionExtensions.getAllDeclaredFields(cls);
+		List<String> toIgnoreFields = Arrays.asList(ignoreFieldNames);
+		for (Field field : allDeclaredFields)
+		{
+			if (Modifier.isFinal(field.getModifiers()) || toIgnoreFields.contains(field.getName()))
+			{
+				continue;
+			}
+			Object value = newRandomValue(field);
+			ReflectionExtensions.setFieldValue(instance, field, value);
+		}
+		return instance;
+	}
+
+	private RandomObjectFactory()
+	{
 	}
 
 }

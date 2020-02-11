@@ -34,7 +34,6 @@ import java.util.UUID;
 
 import de.alpharogroup.lang.ClassExtensions;
 import de.alpharogroup.random.number.RandomPrimitivesExtensions;
-import lombok.experimental.UtilityClass;
 
 /**
  * Utility class for producing random data. Existing name conventions:
@@ -45,41 +44,8 @@ import lombok.experimental.UtilityClass;
  * @version 1.1
  * @author Asterios Raptis
  */
-@UtilityClass
 public final class RandomExtensions
 {
-
-	/**
-	 * Generates a random int for use with pixel.
-	 *
-	 * @return a random int for use with pixel.
-	 */
-	public static int newRandomPixel()
-	{
-		return newRandomPixel(RandomPrimitivesExtensions.randomInt(256),
-			RandomPrimitivesExtensions.randomInt(256), RandomPrimitivesExtensions.randomInt(256),
-			RandomPrimitivesExtensions.randomInt(256));
-	}
-
-	/**
-	 * Generates a random int for use with pixel.
-	 *
-	 * @param red
-	 *            The red value.
-	 * @param green
-	 *            The green value.
-	 * @param blue
-	 *            The blue value.
-	 * @param alpha
-	 *            The alpha value.
-	 * @return a random int for use with pixel.
-	 */
-	public static int newRandomPixel(final int red, final int green, final int blue,
-		final int alpha)
-	{
-		final int pixel = (alpha << 24) | (red << 16) | (green << 8) | blue;
-		return pixel;
-	}
 
 	/**
 	 * Returns a random entry from the given List.
@@ -159,6 +125,20 @@ public final class RandomExtensions
 	 *
 	 * @param <T>
 	 *            the generic type
+	 * @param values
+	 *            the values
+	 * @return the random enum
+	 */
+	public static <T extends Enum<?>> T getRandomEnumFromEnumValues(final T[] values)
+	{
+		return values[RandomPrimitivesExtensions.randomInt(values.length)];
+	}
+
+	/**
+	 * Gets the random enum.
+	 *
+	 * @param <T>
+	 *            the generic type
 	 * @param obj
 	 *            the obj
 	 * @return the random enum
@@ -175,17 +155,20 @@ public final class RandomExtensions
 	}
 
 	/**
-	 * Gets the random enum.
+	 * Generates a random hexadecimal {@link String}
 	 *
-	 * @param <T>
-	 *            the generic type
-	 * @param values
-	 *            the values
-	 * @return the random enum
+	 * @param numberOfCharacters
+	 *            the number of characters
+	 * @return the generated random hexadecimal {@link String}
 	 */
-	public static <T extends Enum<?>> T getRandomEnumFromEnumValues(final T[] values)
+	public static String getRandomHexString(int numberOfCharacters)
 	{
-		return values[RandomPrimitivesExtensions.randomInt(values.length)];
+		StringBuilder sb = new StringBuilder();
+		while (sb.length() < numberOfCharacters)
+		{
+			sb.append(Integer.toHexString(RandomPrimitivesExtensions.randomInt()));
+		}
+		return sb.toString().substring(0, numberOfCharacters);
 	}
 
 	/**
@@ -221,6 +204,34 @@ public final class RandomExtensions
 	}
 
 	/**
+	 * Gets the random salt.
+	 *
+	 * @param length
+	 *            the length
+	 * @param charset
+	 *            the charset
+	 * @return the random salt
+	 */
+	public static byte[] getRandomSalt(final int length, final Charset charset)
+	{
+		return RandomExtensions
+			.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
+				length)
+			.getBytes(charset);
+	}
+
+	/**
+	 * Generates a random string with a length between 3 and 25
+	 *
+	 * @return The produced random String.
+	 */
+	public static String getRandomString()
+	{
+		return getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
+			RandomPrimitivesExtensions.randomIntBetween(3, 25));
+	}
+
+	/**
 	 * Generates a random string.
 	 *
 	 * @param length
@@ -239,20 +250,17 @@ public final class RandomExtensions
 	}
 
 	/**
-	 * Generates a random hexadecimal {@link String}
+	 * Generates a random string with a length between the given start and end
 	 *
-	 * @param numberOfCharacters
-	 *            the number of characters
-	 * @return the generated random hexadecimal {@link String}
+	 * @param start
+	 *            the start
+	 * @param end
+	 *            the end
+	 * @return the generated random string
 	 */
-	public static String getRandomHexString(int numberOfCharacters)
+	public static String getRandomString(final int start, int end)
 	{
-		StringBuilder sb = new StringBuilder();
-		while (sb.length() < numberOfCharacters)
-		{
-			sb.append(Integer.toHexString(RandomPrimitivesExtensions.randomInt()));
-		}
-		return sb.toString().substring(0, numberOfCharacters);
+		return getRandomString(RandomPrimitivesExtensions.randomIntBetween(start, end));
 	}
 
 	/**
@@ -276,31 +284,6 @@ public final class RandomExtensions
 	}
 
 	/**
-	 * Generates a random string with a length between 3 and 25
-	 *
-	 * @return The produced random String.
-	 */
-	public static String getRandomString()
-	{
-		return getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
-			RandomPrimitivesExtensions.randomIntBetween(3, 25));
-	}
-
-	/**
-	 * Generates a random string with a length between the given start and end
-	 *
-	 * @param start
-	 *            the start
-	 * @param end
-	 *            the end
-	 * @return the generated random string
-	 */
-	public static String getRandomString(final int start, int end)
-	{
-		return getRandomString(RandomPrimitivesExtensions.randomIntBetween(start, end));
-	}
-
-	/**
 	 * The Method randomString(String []) a random String from the Array For example: The
 	 * Stringarray test as argument. Possible values: "blab", "flih", "klap", "teta", "brut",
 	 * "gzft", "ccp". Possible selection can be one value from the Stringarray like "blab" or
@@ -316,25 +299,45 @@ public final class RandomExtensions
 	}
 
 	/**
-	 * Factory method for create a new random {@link UUID}
+	 * Generates a random int for use with pixel.
 	 *
-	 * @return the new random {@link UUID}
+	 * @return a random int for use with pixel.
 	 */
-	public static UUID randomUUID()
+	public static int newRandomPixel()
 	{
-		return UUID.randomUUID();
+		return newRandomPixel(RandomPrimitivesExtensions.randomInt(256),
+			RandomPrimitivesExtensions.randomInt(256), RandomPrimitivesExtensions.randomInt(256),
+			RandomPrimitivesExtensions.randomInt(256));
 	}
 
 	/**
-	 * Returns a random token for use in web services.
+	 * Generates a random int for use with pixel.
 	 *
-	 * @return A random token.
+	 * @param red
+	 *            The red value.
+	 * @param green
+	 *            The green value.
+	 * @param blue
+	 *            The blue value.
+	 * @param alpha
+	 *            The alpha value.
+	 * @return a random int for use with pixel.
 	 */
-	public static String randomToken()
+	public static int newRandomPixel(final int red, final int green, final int blue,
+		final int alpha)
 	{
-		final BigInteger token = new BigInteger(130, DefaultSecureRandom.get());
-		final String randomToken = token.toString(32);
-		return randomToken;
+		final int pixel = (alpha << 24) | (red << 16) | (green << 8) | blue;
+		return pixel;
+	}
+
+	/**
+	 * Factory method for create a new random salt.
+	 *
+	 * @return the byte[] with the new random salt.
+	 */
+	public static byte[] newSalt()
+	{
+		return RandomPrimitivesExtensions.randomByteArray(16);
 	}
 
 	/**
@@ -354,30 +357,29 @@ public final class RandomExtensions
 	}
 
 	/**
-	 * Factory method for create a new random salt.
+	 * Returns a random token for use in web services.
 	 *
-	 * @return the byte[] with the new random salt.
+	 * @return A random token.
 	 */
-	public static byte[] newSalt()
+	public static String randomToken()
 	{
-		return RandomPrimitivesExtensions.randomByteArray(16);
+		final BigInteger token = new BigInteger(130, DefaultSecureRandom.get());
+		final String randomToken = token.toString(32);
+		return randomToken;
 	}
 
 	/**
-	 * Gets the random salt.
+	 * Factory method for create a new random {@link UUID}
 	 *
-	 * @param length
-	 *            the length
-	 * @param charset
-	 *            the charset
-	 * @return the random salt
+	 * @return the new random {@link UUID}
 	 */
-	public static byte[] getRandomSalt(final int length, final Charset charset)
+	public static UUID randomUUID()
 	{
-		return RandomExtensions
-			.getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
-				length)
-			.getBytes(charset);
+		return UUID.randomUUID();
+	}
+
+	private RandomExtensions()
+	{
 	}
 
 }

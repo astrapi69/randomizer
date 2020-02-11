@@ -27,12 +27,10 @@ package de.alpharogroup.random.number;
 import static org.testng.Assert.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
-import java.lang.reflect.InvocationTargetException;
 import java.nio.CharBuffer;
 import java.text.ParseException;
 import java.util.Map;
 
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -521,8 +519,7 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomPrimitivesExtensions} with {@link BeanTester}
 	 */
-	@Test(enabled = true, expectedExceptions = { BeanTestException.class,
-			InvocationTargetException.class, UnsupportedOperationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

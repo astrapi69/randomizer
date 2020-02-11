@@ -30,12 +30,9 @@ import java.net.URL;
 import java.util.Properties;
 
 import de.alpharogroup.lang.ClassExtensions;
-import lombok.experimental.UtilityClass;
 
-@UtilityClass
-public class PropertiesLoader
+public final class PropertiesLoader
 {
-
 	/**
 	 * Gives a Properties-object from the given packagepath.
 	 *
@@ -64,6 +61,10 @@ public class PropertiesLoader
 			}
 		}
 		return properties;
+	}
+
+	private PropertiesLoader()
+	{
 	}
 
 }

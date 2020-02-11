@@ -32,15 +32,12 @@ import de.alpharogroup.random.RandomCharacters;
 import de.alpharogroup.random.RandomExtensions;
 import de.alpharogroup.random.number.RandomNumberExtensions;
 import de.alpharogroup.random.number.RandomPrimitivesExtensions;
-import lombok.experimental.UtilityClass;
 
 /**
  * The class {@link RandomObjectsExtensions} is a utility class to create random objects.
  */
-@UtilityClass
 public final class RandomObjectsExtensions
 {
-
 	/**
 	 * Gets an infomail address from the given url.
 	 *
@@ -255,6 +252,10 @@ public final class RandomObjectsExtensions
 			}
 		}
 		return sb.toString();
+	}
+
+	private RandomObjectsExtensions()
+	{
 	}
 
 }
