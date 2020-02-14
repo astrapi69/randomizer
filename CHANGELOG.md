@@ -1,6 +1,20 @@
 ## Change log
 ----------------------
 
+Version 6.7
+-------------
+
+CHANGED:
+
+- update of dependency vintage-time version to 5.2
+- update of dependency jobj-core version to 3.5
+- update of dependency silly-beans version to 1.1
+- update of dependency silly-math version to 1.1
+- update of dependency silly-strings version to 5.5
+- update of test dependency equalsverifier version to 3.1.12
+- update of test dependency test-objects version to 5.3
+- removed lombok dependency
+
 Version 6.6
 -------------
 

@@ -29,7 +29,6 @@ import static org.testng.Assert.assertNull;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
-import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
@@ -43,7 +42,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.apache.commons.lang3.ArrayUtils;
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -362,8 +360,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions} with {@link BeanTester}
 	 */
-	@Test(enabled = true, expectedExceptions = { BeanTestException.class,
-			InvocationTargetException.class, UnsupportedOperationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

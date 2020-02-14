@@ -26,16 +26,12 @@ package de.alpharogroup.random;
 
 import java.security.SecureRandom;
 
-import lombok.experimental.UtilityClass;
-
 /**
  * The class {@link DefaultSecureRandom} holds a {@link SecureRandom} with the default algorithm and
  * provider
  */
-@UtilityClass
-public class DefaultSecureRandom
+public final class DefaultSecureRandom
 {
-
 	/** The secure random */
 	private static SecureRandom secureRandom;
 
@@ -52,5 +48,9 @@ public class DefaultSecureRandom
 	public static SecureRandom get()
 	{
 		return secureRandom;
+	}
+
+	private DefaultSecureRandom()
+	{
 	}
 }

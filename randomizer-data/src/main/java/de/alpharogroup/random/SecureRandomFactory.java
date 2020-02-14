@@ -26,15 +26,11 @@ package de.alpharogroup.random;
 
 import java.security.SecureRandom;
 
-import lombok.experimental.UtilityClass;
-
 /**
  * A factory for creating {@link SecureRandom} objects
  */
-@UtilityClass
-public class SecureRandomFactory
+public final class SecureRandomFactory
 {
-
 	/**
 	 * Factory method for create a new {@link SecureRandom} object
 	 *
@@ -69,6 +65,10 @@ public class SecureRandomFactory
 	public static SecureRandom newSecureRandom(final String algorithm, final String provider)
 	{
 		return SecureRandomBuilder.getInstance().algorithm(algorithm).provider(provider).build();
+	}
+
+	private SecureRandomFactory()
+	{
 	}
 
 }

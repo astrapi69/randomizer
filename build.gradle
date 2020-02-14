@@ -1,5 +1,7 @@
+
 buildscript {
     repositories {
+        mavenCentral()
         google()
         jcenter()
         maven {
@@ -15,7 +17,7 @@ buildscript {
 
 allprojects {
     group = "de.alpharogroup"
-    version = "6.6"
+    version = "$projectVersion"
 }
 
 subprojects {
@@ -26,8 +28,6 @@ subprojects {
     apply plugin: "com.github.ben-manes.versions"
     apply plugin: "com.github.hierynomus.license"
 
-    def releaseVersion = !version.endsWith("SNAPSHOT")
-
     repositories {
         mavenLocal()
         maven {
@@ -36,11 +36,8 @@ subprojects {
     }
 
     dependencies {
-        compileOnly("org.projectlombok:lombok:$lombokVersion")
-        annotationProcessor("org.projectlombok:lombok:$lombokVersion")
         testCompile("org.testng:testng:$testngVersion")
-        testCompile("junit:junit:$junitVersion")
-        testCompile("org.mockito:mockito-core:$mockitoCoreVersion")
+        testCompile("org.meanbean:meanbean:$meanbeanVersion")
     }
 
     // workhack for license issue #76
@@ -57,10 +54,6 @@ subprojects {
 
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
-    }
-
-    test {
-        useTestNG()
     }
 
     test {

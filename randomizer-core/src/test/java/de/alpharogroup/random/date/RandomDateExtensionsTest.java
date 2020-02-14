@@ -31,7 +31,6 @@ import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
-import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -40,7 +39,6 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -351,8 +349,7 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomDateExtensions} with {@link BeanTester}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
-			UnsupportedOperationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

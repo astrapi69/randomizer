@@ -60,7 +60,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>6.6</randomizer.version>
+		<randomizer.version>6.7</randomizer.version>
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
 		<randomizer-address.version>${randomizer.version}</randomizer-address.version>
 		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
@@ -129,7 +129,7 @@ You can first define the version in the ext section and add than the following g
 ```
 ext {
 			...
-    randomizerVersion = "6.6"
+    randomizerVersion = "6.7"
 			...
 }
 dependencies {

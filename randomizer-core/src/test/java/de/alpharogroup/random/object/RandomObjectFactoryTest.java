@@ -24,13 +24,10 @@
  */
 package de.alpharogroup.random.object;
 
-import static org.junit.Assert.assertNotEquals;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertNotNull;
 
-import java.lang.reflect.InvocationTargetException;
-
-import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
@@ -116,8 +113,7 @@ public class RandomObjectFactoryTest
 	/**
 	 * Test method for {@link RandomObjectFactory} with {@link BeanTester}
 	 */
-	@Test(expectedExceptions = { BeanTestException.class, InvocationTargetException.class,
-			UnsupportedOperationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

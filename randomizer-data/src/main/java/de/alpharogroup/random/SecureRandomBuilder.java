@@ -33,7 +33,7 @@ import javax.annotation.Nonnull;
  * provider. If nothing is set the default {@link SecureRandom} object with the default algorithm
  * will be build.
  */
-public class SecureRandomBuilder
+public final class SecureRandomBuilder
 {
 
 	/** The Constant DEFAULT_ALGORITHM */

@@ -27,7 +27,6 @@ license {
               "**/*.tmpl",
               "**/*.js.tmpl",
               "**/*.editorconfig",
-              "**/*.lombok.config",
               "src/test/resources/**",
               "src/main/resources/**",
               "out/**",

@@ -1,9 +1,8 @@
 
 dependencies {
     compile project(":randomizer-core")
-    testCompile "de.alpharogroup:test-objects:$testObjectsVersion"
-    testCompile "org.meanbean:meanbean:$meanbeanVersion"
-    testCompile "de.alpharogroup:silly-strings:$sillyStringsVersion"
+    testCompile("de.alpharogroup:test-objects:$testObjectsVersion")
+    testCompile("de.alpharogroup:silly-strings:$sillyStringsVersion")
 }
 
 license {
@@ -34,7 +33,6 @@ license {
               "**/*.tmpl",
               "**/*.js.tmpl",
               "**/*.editorconfig",
-              "**/*.lombok.config",
               "src/test/resources/**",
               "src/main/resources/**",
               "out/**",

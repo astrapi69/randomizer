@@ -1,10 +1,9 @@
 
 dependencies {
-    compile "com.google.code.findbugs:jsr305:$jsr305Version"
-    compile "de.alpharogroup:silly-collections:$sillyCollectionsVersion"
-    testCompile "de.alpharogroup:test-objects:$testObjectsVersion"
-    testCompile "org.meanbean:meanbean:$meanbeanVersion"
-    testCompile "nl.jqno.equalsverifier:equalsverifier:$equalsverifierVersion"
+    compile("com.google.code.findbugs:jsr305:$jsr305Version")
+    compile("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
+    testCompile("de.alpharogroup:test-objects:$testObjectsVersion")
+    testCompile("nl.jqno.equalsverifier:equalsverifier:$equalsverifierVersion")
 }
 
 license {
@@ -35,7 +34,6 @@ license {
               "**/*.tmpl",
               "**/*.js.tmpl",
               "**/*.editorconfig",
-              "**/*.lombok.config",
               "src/test/resources/**",
               "src/main/resources/**",
               "out/**",

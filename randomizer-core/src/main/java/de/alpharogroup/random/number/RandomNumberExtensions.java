@@ -32,7 +32,6 @@ import de.alpharogroup.math.MathExtensions;
 import de.alpharogroup.random.DefaultSecureRandom;
 import de.alpharogroup.random.RandomCharacters;
 import de.alpharogroup.random.RandomExtensions;
-import lombok.experimental.UtilityClass;
 
 /**
  * Utility class for producing random numbers.
@@ -40,7 +39,6 @@ import lombok.experimental.UtilityClass;
  * @version 1.1
  * @author Asterios Raptis
  */
-@UtilityClass
 public final class RandomNumberExtensions
 {
 
@@ -120,16 +118,6 @@ public final class RandomNumberExtensions
 	}
 
 	/**
-	 * Generates a random {@link BigInteger}
-	 *
-	 * @return the random {@link BigInteger}
-	 */
-	public static BigInteger randomBigInteger()
-	{
-		return new BigInteger(RandomPrimitivesExtensions.randomInt(180), DefaultSecureRandom.get());
-	}
-
-	/**
 	 * Generates a random {@link BigDecimal}
 	 *
 	 * @return the random {@link BigDecimal}
@@ -139,6 +127,20 @@ public final class RandomNumberExtensions
 		BigDecimal bigDecimal = new BigDecimal(RandomPrimitivesExtensions.randomDouble());
 		bigDecimal.setScale(RandomPrimitivesExtensions.randomInt(2), RoundingMode.HALF_DOWN);
 		return bigDecimal;
+	}
+
+	/**
+	 * Generates a random {@link BigInteger}
+	 *
+	 * @return the random {@link BigInteger}
+	 */
+	public static BigInteger randomBigInteger()
+	{
+		return new BigInteger(RandomPrimitivesExtensions.randomInt(180), DefaultSecureRandom.get());
+	}
+
+	private RandomNumberExtensions()
+	{
 	}
 
 }
