@@ -73,10 +73,10 @@ public final class RandomNumberExtensions
 	 */
 	public static String getRandomFloatString(final int afterComma, final int beforeComma)
 	{
-		final String nachkommastellen = getRandomNumericString(afterComma);
-		final String vorkommastellen = getRandomNumericString(beforeComma);
-		final String result = nachkommastellen + "." + vorkommastellen;
-		return result;
+		final String decimals = getRandomNumericString(afterComma);
+		final String preDecimals = getRandomNumericString(beforeComma);
+		final String randomFloatString = decimals + "." + preDecimals;
+		return randomFloatString;
 	}
 
 	/**
