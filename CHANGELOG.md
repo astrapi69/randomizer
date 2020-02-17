@@ -4,6 +4,9 @@
 Version 6.8-SNAPSHOT
 -------------
 
+CHANGED:
+
+- update of test dependency testng version to 7.1.0
 
 Version 6.7
 -------------
