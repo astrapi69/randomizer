@@ -25,6 +25,7 @@
 package de.alpharogroup.random;
 
 import java.security.SecureRandom;
+import java.util.Random;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -49,7 +50,6 @@ import lombok.experimental.FieldDefaults;
 public final class SecureRandomBean
 {
 
-
 	/** The Constant DEFAULT_ALGORITHM. */
 	public static final String DEFAULT_ALGORITHM = "SHA1PRNG";
 	/** The Constant DEFAULT_ALGORITHM. */
@@ -61,11 +61,14 @@ public final class SecureRandomBean
 	/** The provider. */
 	String provider;
 
+	/** The seed. */
+	long seed;
+
 	/**
 	 * Instantiates a new {@link SecureRandomBean} object with the default values
 	 */
 	public SecureRandomBean()
 	{
-		this(DEFAULT_ALGORITHM, DEFAULT_PROVIDER);
+		this(DEFAULT_ALGORITHM, DEFAULT_PROVIDER, System.currentTimeMillis());
 	}
 }
