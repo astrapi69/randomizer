@@ -154,8 +154,7 @@ public final class RandomDateExtensions
 		final Date past = dateBefore(now, 20000);
 		// About 9 years.
 		final Date recentlyPast = dateBefore(now, 3000);
-		final Date randomBirthday = randomBirthday(recentlyPast, past);
-		return randomBirthday;
+		return randomBirthday(recentlyPast, past);
 	}
 
 	/**
@@ -169,8 +168,7 @@ public final class RandomDateExtensions
 	 */
 	public static Date randomBirthday(final Date from, final Date till)
 	{
-		final Date randomBirthday = randomDatebetween(from, till);
-		return randomBirthday;
+		return randomDatebetween(from, till);
 	}
 
 	/**
@@ -282,11 +280,13 @@ public final class RandomDateExtensions
 		LocalDate now = LocalDate.now();
 		if (RandomPrimitivesExtensions.randomBoolean())
 		{
-			randomLocalDate = now.plusDays(RandomPrimitivesExtensions.randomLong());
+			randomLocalDate = now
+				.plusDays(RandomPrimitivesExtensions.randomLongBetween(-999999999L, 999999999L));
 		}
 		else
 		{
-			randomLocalDate = now.minusDays(RandomPrimitivesExtensions.randomLong());
+			randomLocalDate = now
+				.minusDays(RandomPrimitivesExtensions.randomLongBetween(-999999999L, 999999999L));
 		}
 		return randomLocalDate;
 	}
