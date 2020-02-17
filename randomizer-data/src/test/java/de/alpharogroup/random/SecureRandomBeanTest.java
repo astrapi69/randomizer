@@ -54,7 +54,7 @@ public class SecureRandomBeanTest
 	{
 		SecureRandomBean model = new SecureRandomBean();
 		assertNotNull(model);
-		model = new SecureRandomBean("SHA1PRNG", "SUN");
+		model = new SecureRandomBean("SHA1PRNG", "SUN", System.currentTimeMillis());
 		assertNotNull(model);
 		model = SecureRandomBean.builder().build();
 		assertNotNull(model);
