@@ -7,6 +7,7 @@ Version 6.8-SNAPSHOT
 ADDED:
  
 - new seed field for init with a long from a Date object, for instance of a draw date of lottery
+- new methods in class RandomPrimitivesExtensions with new SecureRandom argument for create random numbers
 
 CHANGED:
 
