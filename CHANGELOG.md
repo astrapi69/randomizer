@@ -4,6 +4,10 @@
 Version 6.8-SNAPSHOT
 -------------
 
+ADDED:
+ 
+- new seed field for init with a long from a Date object, for instance of a draw date of lottery
+
 CHANGED:
 
 - update of test dependency testng version to 7.1.0
