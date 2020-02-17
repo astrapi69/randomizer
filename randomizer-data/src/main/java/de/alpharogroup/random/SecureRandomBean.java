@@ -66,6 +66,7 @@ public final class SecureRandomBean
 			return this;
 		}
 
+		@Override
 		public String toString()
 		{
 			return "SecureRandomBean.SecureRandomBeanBuilder(algorithm=" + this.algorithm
@@ -108,6 +109,7 @@ public final class SecureRandomBean
 		this.seed = seed;
 	}
 
+	@Override
 	public boolean equals(final Object o)
 	{
 		if (o == this)
@@ -145,6 +147,7 @@ public final class SecureRandomBean
 		return this.seed;
 	}
 
+	@Override
 	public int hashCode()
 	{
 		final int PRIME = 59;
@@ -164,6 +167,7 @@ public final class SecureRandomBean
 			.seed(this.seed);
 	}
 
+	@Override
 	public String toString()
 	{
 		return "SecureRandomBean(algorithm=" + this.getAlgorithm() + ", provider="
