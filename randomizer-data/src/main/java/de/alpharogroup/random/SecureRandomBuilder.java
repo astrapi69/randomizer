@@ -76,6 +76,21 @@ public final class SecureRandomBuilder
 	}
 
 	/**
+	 * Gets an instance of {@link SecureRandomBuilder} from the given algorithm and provider
+	 *
+	 * @param algorithm
+	 *            the algorithm
+	 * @param provider
+	 *            the provider
+	 * @return the new {@link SecureRandomBuilder} object
+	 */
+	public static SecureRandomBuilder getInstance(final String algorithm, final String provider,
+		final long seed)
+	{
+		return SecureRandomBuilder.newInstance().algorithm(algorithm).provider(provider).seed(seed);
+	}
+
+	/**
 	 * Gets an new instance of {@link SecureRandomBuilder} for build a {@link SecureRandom} object
 	 *
 	 * @return the {@link SecureRandomBuilder}
@@ -90,6 +105,9 @@ public final class SecureRandomBuilder
 
 	/** The provider. */
 	private String provider;
+
+	/** The seed. */
+	private long seed = System.currentTimeMillis();
 
 	/**
 	 * Instantiates a new {@link SecureRandomBuilder}
@@ -119,7 +137,7 @@ public final class SecureRandomBuilder
 	 */
 	public SecureRandom build()
 	{
-		return RandomFactory.newSecureRandom(algorithm, provider);
+		return RandomFactory.newSecureRandom(algorithm, provider, seed);
 	}
 
 	/**
@@ -132,6 +150,19 @@ public final class SecureRandomBuilder
 	public SecureRandomBuilder provider(@Nonnull final String provider)
 	{
 		this.provider = provider;
+		return this;
+	}
+
+	/**
+	 * Sets the seed.
+	 *
+	 * @param seed
+	 *            the seed
+	 * @return this {@link SecureRandomBuilder} object. For chaining.
+	 */
+	public SecureRandomBuilder seed(final long seed)
+	{
+		this.seed = seed;
 		return this;
 	}
 }

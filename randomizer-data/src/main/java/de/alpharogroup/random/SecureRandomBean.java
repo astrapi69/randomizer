@@ -72,6 +72,7 @@ public final class SecureRandomBean
 				+ ", provider=" + this.provider + ", seed=" + this.seed + ")";
 		}
 	}
+
 	/** The Constant DEFAULT_ALGORITHM. */
 	public static final String DEFAULT_ALGORITHM = "SHA1PRNG";
 

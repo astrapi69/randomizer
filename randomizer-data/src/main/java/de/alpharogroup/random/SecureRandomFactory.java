@@ -67,6 +67,23 @@ public final class SecureRandomFactory
 		return SecureRandomBuilder.getInstance().algorithm(algorithm).provider(provider).build();
 	}
 
+	/**
+	 * Factory method for create a new {@link SecureRandom} object
+	 *
+	 * @param algorithm
+	 *            the algorithm
+	 * @param provider
+	 *            the provider
+	 * @return the new {@link SecureRandom} object
+	 */
+	public static SecureRandom newSecureRandom(final String algorithm, final String provider,
+		final long seed)
+	{
+		return SecureRandomBuilder.getInstance().algorithm(algorithm).provider(provider).seed(seed)
+			.build();
+	}
+
+
 	private SecureRandomFactory()
 	{
 	}

@@ -27,6 +27,8 @@ package de.alpharogroup.random;
 import static org.testng.Assert.assertNotNull;
 
 import java.security.SecureRandom;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 
 import org.testng.annotations.Test;
 
@@ -40,7 +42,7 @@ public class SecureRandomBuilderTest
 	 * Test method for {@link SecureRandomBuilder#build()}.
 	 */
 	@Test
-	public void testBuild() throws Exception
+	public void testBuild()
 	{
 		SecureRandomBuilder instance = SecureRandomBuilder.getInstance();
 		assertNotNull(instance);
@@ -52,7 +54,7 @@ public class SecureRandomBuilderTest
 	 * Test method for {@link SecureRandomBuilder#getInstance()}.
 	 */
 	@Test
-	public void testGetInstance() throws Exception
+	public void testGetInstance()
 	{
 		SecureRandomBuilder instance = SecureRandomBuilder.getInstance();
 		assertNotNull(instance);
@@ -62,7 +64,7 @@ public class SecureRandomBuilderTest
 	 * Test method for {@link SecureRandomBuilder#getInstance(String)}.
 	 */
 	@Test
-	public void testGetInstanceString() throws Exception
+	public void testGetInstanceString()
 	{
 		SecureRandomBuilder instance = SecureRandomBuilder
 			.getInstance(SecureRandomBean.DEFAULT_ALGORITHM);
@@ -75,10 +77,25 @@ public class SecureRandomBuilderTest
 	 * Test method for {@link SecureRandomBuilder#getInstance(String, String)}.
 	 */
 	@Test
-	public void testGetInstanceStringString() throws Exception
+	public void testGetInstanceStringString()
 	{
 		SecureRandomBuilder instance = SecureRandomBuilder
 			.getInstance(SecureRandomBean.DEFAULT_ALGORITHM, SecureRandomBean.DEFAULT_PROVIDER);
+		assertNotNull(instance);
+		SecureRandom secureRandom = instance.build();
+		assertNotNull(secureRandom);
+	}
+
+	/**
+	 * Test method for {@link SecureRandomBuilder#getInstance(String, String, long)}.
+	 */
+	@Test
+	public void testGetInstanceStringStringLong()
+	{
+		LocalDate localDate = LocalDate.of(2020, 2, 15);
+		long localDateLong = localDate.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
+		SecureRandomBuilder instance = SecureRandomBuilder.getInstance(
+			SecureRandomBean.DEFAULT_ALGORITHM, SecureRandomBean.DEFAULT_PROVIDER, localDateLong);
 		assertNotNull(instance);
 		SecureRandom secureRandom = instance.build();
 		assertNotNull(secureRandom);
