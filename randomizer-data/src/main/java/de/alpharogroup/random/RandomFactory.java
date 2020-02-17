@@ -43,13 +43,14 @@ class RandomFactory
 	 *            the provider
 	 * @return the new {@link SecureRandom} object
 	 */
-	static SecureRandom newSecureRandom(final String algorithm, final String provider)
+	static SecureRandom newSecureRandom(final String algorithm, final String provider, final long seed)
 	{
+		SecureRandom secureRandom = null;
 		if (algorithm != null && provider != null)
 		{
 			try
 			{
-				return SecureRandom.getInstance(algorithm, provider);
+				secureRandom = SecureRandom.getInstance(algorithm, provider);
 			}
 			catch (NoSuchAlgorithmException | NoSuchProviderException e)
 			{
@@ -60,21 +61,24 @@ class RandomFactory
 		{
 			try
 			{
-				return SecureRandom.getInstance(algorithm);
+				secureRandom = SecureRandom.getInstance(algorithm);
 			}
 			catch (NoSuchAlgorithmException e)
 			{
 				throw new RuntimeException(e);
 			}
 		}
+		if(secureRandom == null)
 		try
 		{
-			return SecureRandom.getInstance(SecureRandomBuilder.DEFAULT_ALGORITHM);
+			secureRandom = SecureRandom.getInstance(SecureRandomBuilder.DEFAULT_ALGORITHM);
 		}
 		catch (NoSuchAlgorithmException e)
 		{
 			throw new RuntimeException(e);
 		}
+		secureRandom.setSeed(seed);
+		return secureRandom;
 	}
 
 }

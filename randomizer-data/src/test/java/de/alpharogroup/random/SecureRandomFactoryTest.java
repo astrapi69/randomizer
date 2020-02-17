@@ -28,6 +28,9 @@ import static org.testng.Assert.assertNotNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.security.SecureRandom;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
+import java.time.temporal.ChronoField;
 
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
@@ -68,6 +71,19 @@ public class SecureRandomFactoryTest
 	{
 		SecureRandom secureRandom = SecureRandomFactory
 			.newSecureRandom(SecureRandomBean.DEFAULT_ALGORITHM, SecureRandomBean.DEFAULT_PROVIDER);
+		assertNotNull(secureRandom);
+	}
+	/**
+	 * Test method for {@link SecureRandomFactory#newSecureRandom(String, String, long)}
+	 */
+	@Test
+	public void testNewSecureRandomAlgorithmProviderSeed()
+	{
+		LocalDate localDate = LocalDate.of(2020, 2, 15);
+		long localDateLong = localDate.atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli();
+		SecureRandom secureRandom = SecureRandomFactory
+			.newSecureRandom(SecureRandomBean.DEFAULT_ALGORITHM, SecureRandomBean.DEFAULT_PROVIDER,
+				localDateLong);
 		assertNotNull(secureRandom);
 	}
 
