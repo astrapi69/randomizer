@@ -25,6 +25,7 @@
 package de.alpharogroup.random.number;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
 import java.nio.CharBuffer;
@@ -90,7 +91,8 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 		for (int i = 0; i < 10; i++)
 		{
 			final int randomIntBetween = RandomPrimitivesExtensions.getRandomIntBetween(1, 10);
-			MathExtensions.isBetween(1, 10, randomIntBetween, true, true);
+			boolean isBetween = MathExtensions.isBetween(1, 10, randomIntBetween, true, true);
+			assertTrue(isBetween);
 		}
 	}
 
@@ -101,7 +103,7 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	public void testRandomBoolean()
 	{
 		boolean randomBoolean = RandomPrimitivesExtensions.randomBoolean();
-		assertTrue(randomBoolean == true || randomBoolean == false);
+		assertNotNull(Boolean.valueOf(randomBoolean));
 	}
 
 	/**
@@ -169,7 +171,9 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	 * {@link RandomPrimitivesExtensions#randomDoubleBetween(double, double, String)}
 	 *
 	 * @throws ParseException
+	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomDoubleBetweenDoubleDoubleString() throws ParseException
 	{
@@ -249,6 +253,7 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	 * @throws ParseException
 	 *             is thrown if the beginning of the specified string cannot be parsed
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testRandomFloatBetweenFloatFloatString() throws ParseException
 	{
@@ -321,10 +326,12 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	@Test
 	public void testRandomIntBetween()
 	{
-		for (int i = 0; i < 10; i++)
+		for (int i = 0; i < 1000; i++)
 		{
 			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(1, 10);
-			MathExtensions.isBetween(1, 9, randomIntBetween, true, true);
+			System.out.println(randomIntBetween);
+			boolean isBetween = MathExtensions.isBetween(1, 9, randomIntBetween, true, true);
+			assertTrue(isBetween);
 		}
 	}
 
@@ -503,12 +510,18 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 		boolean includeMin, boolean includeMax, int iterations)
 	{
 		Map<Integer, Integer> testMap = newNumberCounterMap(minVolume, maxVolume);
+		System.out.println("start:"+start+"\n"+
+			"end:"+end+"\n"+
+			"minVolume:"+minVolume+"\n"+
+			"maxVolume:"+maxVolume+"\n"+
+			"includeMin:"+includeMin+"\n"+
+			"includeMax:"+includeMax+"\n");
 		for (int i = 0; i < iterations; i++)
 		{
 			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(start, end,
 				includeMin, includeMax);
+			System.out.println(randomIntBetween);
 			testMap.merge(randomIntBetween, 1, Integer::sum);
-			MathExtensions.isBetween(minVolume, maxVolume, randomIntBetween, true, true);
 		}
 		for (int i = minVolume; i <= maxVolume; i++)
 		{

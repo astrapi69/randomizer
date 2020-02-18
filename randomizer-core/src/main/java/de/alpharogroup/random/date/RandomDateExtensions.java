@@ -26,18 +26,17 @@ package de.alpharogroup.random.date;
 
 import java.security.SecureRandom;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.date.CalculateDateExtensions;
+import de.alpharogroup.date.ConvertDateExtensions;
+import de.alpharogroup.date.CreateDateExtensions;
 import de.alpharogroup.random.SecureRandomFactory;
 import de.alpharogroup.random.number.RandomPrimitivesExtensions;
 
@@ -49,13 +48,6 @@ import de.alpharogroup.random.number.RandomPrimitivesExtensions;
  */
 public final class RandomDateExtensions
 {
-	/** The secure random. */
-	private static SecureRandom secureRandom;
-
-	static
-	{
-		secureRandom = SecureRandomFactory.newSecureRandom();
-	}
 
 	/**
 	 * Creates a random Date that is after from the given Date.
@@ -110,14 +102,19 @@ public final class RandomDateExtensions
 	 */
 	public static Date dateBefore(final Date date, final int range)
 	{
-		return CalculateDateExtensions.substractDaysFromDate(date, range);
+		return RandomDateFactory.dateBefore(date, range, SecureRandomFactory.newSecureRandom());
 	}
 
 	/**
 	 * Creates a java.sql.Timestamp from now.
 	 *
 	 * @return Timestamp.
+	 * @deprecated use instead method <code>toTimestamp</code> from the class
+	 *             <code>ConvertDateExtensions</code><br>
+	 *             <br>
+	 *             Note: will be removed in the next minor release
 	 */
+	@Deprecated
 	public static Timestamp getTimestamp()
 	{
 		return getTimestamp(new Date());
@@ -130,16 +127,15 @@ public final class RandomDateExtensions
 	 *            The date
 	 *
 	 * @return Timestamp.
+	 * @deprecated use instead method <code>toTimestamp</code> from the class
+	 *             <code>ConvertDateExtensions</code><br>
+	 *             <br>
+	 *             Note: will be removed in the next minor release
 	 */
+	@Deprecated
 	public static Timestamp getTimestamp(final Date date)
 	{
-		final Calendar gregCal = new GregorianCalendar();
-		gregCal.setTime(date);
-		gregCal.set(Calendar.HOUR_OF_DAY, 0);
-		gregCal.set(Calendar.MINUTE, 0);
-		gregCal.set(Calendar.SECOND, 0);
-		gregCal.set(Calendar.MILLISECOND, 0);
-		return new Timestamp(gregCal.getTime().getTime());
+		return ConvertDateExtensions.toTimestamp(date);
 	}
 
 	/**
@@ -149,7 +145,7 @@ public final class RandomDateExtensions
 	 */
 	public static Date randomBirthday()
 	{
-		final Date now = new Date(System.currentTimeMillis());
+		final Date now = CreateDateExtensions.now();
 		// About 55 years.
 		final Date past = dateBefore(now, 20000);
 		// About 9 years.
@@ -178,12 +174,7 @@ public final class RandomDateExtensions
 	 */
 	public static Date randomDate()
 	{
-		final Date now = new Date(System.currentTimeMillis());
-		if (RandomPrimitivesExtensions.randomBoolean())
-		{
-			return dateAfter(now, RandomPrimitivesExtensions.randomInt(10000));
-		}
-		return dateBefore(now, RandomPrimitivesExtensions.randomInt(10000));
+		return RandomDateFactory.randomDate(SecureRandomFactory.newSecureRandom());
 	}
 
 	/**
@@ -195,10 +186,21 @@ public final class RandomDateExtensions
 	 */
 	public static Date randomDate(final Date from)
 	{
-		final double randDouble = -secureRandom.nextDouble() * from.getTime();
-		final double randomDouble = from.getTime() - secureRandom.nextDouble();
-		final double result = (randDouble / 99999) * (randomDouble / 99999);
-		return new Date((long)result);
+		return randomDate(from, SecureRandomFactory.newSecureRandom());
+	}
+
+	/**
+	 * Creates a random date.
+	 *
+	 * @param from
+	 *            The date from where to begin.
+	 * @param secureRandom
+	 *            the secure random for date generation
+	 * @return The random date.
+	 */
+	public static Date randomDate(final Date from, SecureRandom secureRandom)
+	{
+		return RandomDateFactory.randomDate(from, secureRandom);
 	}
 
 	/**
@@ -212,9 +214,8 @@ public final class RandomDateExtensions
 	 */
 	public static Date randomDatebetween(final Date start, final Date end)
 	{
-		final long randomLong = (long)(start.getTime()
-			+ (secureRandom.nextDouble() * (end.getTime() - start.getTime())));
-		return new Date(randomLong);
+		return RandomDateFactory.randomDateBetween(start, end,
+			SecureRandomFactory.newSecureRandom());
 	}
 
 	/**
@@ -247,10 +248,8 @@ public final class RandomDateExtensions
 	public static String randomDatebetween(final long startDate, final long endDate,
 		final String format)
 	{
-		final SimpleDateFormat sdf = new SimpleDateFormat(format);
-		long randomLongBetween = RandomPrimitivesExtensions.randomLongBetween(startDate, endDate);
-		Date between = new Date(randomLongBetween);
-		return sdf.format(between);
+		return RandomDateFactory.randomDateBetween(startDate, endDate, format,
+			SecureRandomFactory.newSecureRandom());
 	}
 
 	/**

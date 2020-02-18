@@ -74,6 +74,7 @@ public final class SecureRandomFactory
 	 *            the algorithm
 	 * @param provider
 	 *            the provider
+	 * @param seed      the seed
 	 * @return the new {@link SecureRandom} object
 	 */
 	public static SecureRandom newSecureRandom(final String algorithm, final String provider,
@@ -82,7 +83,6 @@ public final class SecureRandomFactory
 		return SecureRandomBuilder.getInstance().algorithm(algorithm).provider(provider).seed(seed)
 			.build();
 	}
-
 
 	private SecureRandomFactory()
 	{
