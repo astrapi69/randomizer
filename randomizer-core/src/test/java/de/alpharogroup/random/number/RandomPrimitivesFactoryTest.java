@@ -89,6 +89,23 @@ public class RandomPrimitivesFactoryTest
 
 	/**
 	 * Test method for
+	 * {@link RandomPrimitivesFactory#randomDoubleBetween(double, double, SecureRandom)}
+	 */
+	@Test
+	public void testRandomDoubleBetween()
+	{
+		for (int i = 0; i < 100; i++)
+		{
+			final double randomDoubleBetween = RandomPrimitivesFactory.randomDoubleBetween(0.0,
+				10.0, DefaultSecureRandom.get());
+			boolean isBetween = MathExtensions.isBetween(0.0, 10.0, randomDoubleBetween, true,
+				true);
+			assertTrue(isBetween);
+		}
+	}
+
+	/**
+	 * Test method for
 	 * {@link RandomPrimitivesFactory#randomDouble(double, RandomAlgorithm, SecureRandom)}
 	 */
 	@Test
@@ -145,16 +162,16 @@ public class RandomPrimitivesFactoryTest
 
 	/**
 	 * Test method for
-	 * {@link RandomPrimitivesFactory#randomDoubleBetween(double, double, SecureRandom)}
+	 * {@link RandomPrimitivesFactory#randomFloatBetween(float, float, SecureRandom)}
 	 */
 	@Test
-	public void testRandomDoubleBetween()
+	public void testRandomFloatBetween()
 	{
 		for (int i = 0; i < 100; i++)
 		{
-			final double randomDoubleBetween = RandomPrimitivesFactory.randomDoubleBetween(0.0,
-				10.0, DefaultSecureRandom.get());
-			boolean isBetween = MathExtensions.isBetween(0.0, 10.0, randomDoubleBetween, true,
+			final float randomFloatBetween = RandomPrimitivesFactory.randomFloatBetween(0.0F, 10.0F,
+				DefaultSecureRandom.get());
+			boolean isBetween = MathExtensions.isBetween(0.0F, 10.0F, randomFloatBetween, true,
 				true);
 			assertTrue(isBetween);
 		}
@@ -221,18 +238,16 @@ public class RandomPrimitivesFactoryTest
 	}
 
 	/**
-	 * Test method for
-	 * {@link RandomPrimitivesFactory#randomFloatBetween(float, float, SecureRandom)}
+	 * Test method for {@link RandomPrimitivesFactory#randomIntBetween(int, int, SecureRandom)}
 	 */
 	@Test
-	public void testRandomFloatBetween()
+	public void testRandomIntBetween()
 	{
 		for (int i = 0; i < 100; i++)
 		{
-			final float randomFloatBetween = RandomPrimitivesFactory.randomFloatBetween(0.0F, 10.0F,
+			final int randomIntBetween = RandomPrimitivesFactory.randomIntBetween(0, 10,
 				DefaultSecureRandom.get());
-			boolean isBetween = MathExtensions.isBetween(0.0F, 10.0F, randomFloatBetween, true,
-				true);
+			boolean isBetween = MathExtensions.isBetween(0, 10, randomIntBetween, true, true);
 			assertTrue(isBetween);
 		}
 	}
@@ -297,16 +312,16 @@ public class RandomPrimitivesFactoryTest
 	}
 
 	/**
-	 * Test method for {@link RandomPrimitivesFactory#randomIntBetween(int, int, SecureRandom)}
+	 * Test method for {@link RandomPrimitivesFactory#randomLongBetween(long, long, SecureRandom)}
 	 */
 	@Test
-	public void testRandomIntBetween()
+	public void testRandomLongBetween()
 	{
 		for (int i = 0; i < 100; i++)
 		{
-			final int randomIntBetween = RandomPrimitivesFactory.randomIntBetween(0, 10,
+			final long randomFloatBetween = RandomPrimitivesFactory.randomLongBetween(0L, 10L,
 				DefaultSecureRandom.get());
-			boolean isBetween = MathExtensions.isBetween(0, 10, randomIntBetween, true, true);
+			boolean isBetween = MathExtensions.isBetween(0L, 10L, randomFloatBetween, true, true);
 			assertTrue(isBetween);
 		}
 	}
@@ -369,22 +384,6 @@ public class RandomPrimitivesFactoryTest
 	{
 		long random = RandomPrimitivesFactory.randomLong(DefaultSecureRandom.get());
 		assertTrue(MathExtensions.isBetween(Long.MIN_VALUE, Long.MAX_VALUE, random));
-	}
-
-	/**
-	 * Test method for {@link RandomPrimitivesFactory#randomLongBetween(long, long, SecureRandom)}
-	 */
-	@Test
-	public void testRandomLongBetween()
-	{
-		for (int i = 0; i < 100; i++)
-		{
-			final long randomFloatBetween = RandomPrimitivesFactory.randomLongBetween(0L, 10L,
-				DefaultSecureRandom.get());
-			boolean isBetween = MathExtensions.isBetween(0L, 10L, randomFloatBetween, true,
-				true);
-			assertTrue(isBetween);
-		}
 	}
 
 	/**

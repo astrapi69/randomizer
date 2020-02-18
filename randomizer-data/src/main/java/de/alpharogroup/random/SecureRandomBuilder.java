@@ -78,9 +78,12 @@ public final class SecureRandomBuilder
 	/**
 	 * Gets an instance of {@link SecureRandomBuilder} from the given algorithm and provider
 	 *
-	 * @param algorithm the algorithm
-	 * @param provider  the provider
-	 * @param seed      the seed
+	 * @param algorithm
+	 *            the algorithm
+	 * @param provider
+	 *            the provider
+	 * @param seed
+	 *            the seed
 	 * @return the new {@link SecureRandomBuilder} object
 	 */
 	public static SecureRandomBuilder getInstance(final String algorithm, final String provider,

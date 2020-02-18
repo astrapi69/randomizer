@@ -510,12 +510,9 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 		boolean includeMin, boolean includeMax, int iterations)
 	{
 		Map<Integer, Integer> testMap = newNumberCounterMap(minVolume, maxVolume);
-		System.out.println("start:"+start+"\n"+
-			"end:"+end+"\n"+
-			"minVolume:"+minVolume+"\n"+
-			"maxVolume:"+maxVolume+"\n"+
-			"includeMin:"+includeMin+"\n"+
-			"includeMax:"+includeMax+"\n");
+		System.out.println("start:" + start + "\n" + "end:" + end + "\n" + "minVolume:" + minVolume
+			+ "\n" + "maxVolume:" + maxVolume + "\n" + "includeMin:" + includeMin + "\n"
+			+ "includeMax:" + includeMax + "\n");
 		for (int i = 0; i < iterations; i++)
 		{
 			final int randomIntBetween = RandomPrimitivesExtensions.randomIntBetween(start, end,

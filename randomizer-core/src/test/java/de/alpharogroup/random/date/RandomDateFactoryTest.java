@@ -39,7 +39,6 @@ import de.alpharogroup.date.CalculateDateExtensions;
 import de.alpharogroup.date.DatePatterns;
 import de.alpharogroup.date.ParseDateExtensions;
 import de.alpharogroup.random.DefaultSecureRandom;
-import de.alpharogroup.random.number.RandomPrimitivesFactory;
 
 
 /**
@@ -61,6 +60,7 @@ public class RandomDateFactoryTest
 	{
 		this.now = new Date(System.currentTimeMillis());
 	}
+
 	/**
 	 * Test method for {@link RandomDateFactory#dateAfter(Date, int, SecureRandom)}
 	 */
@@ -89,6 +89,41 @@ public class RandomDateFactoryTest
 	}
 
 	/**
+	 * Test method for {@link RandomDateFactory#randomDateBetween(Date, Date, SecureRandom)}
+	 */
+	@Test
+	public void testRandomDateBetweenDateDateSecureRandom()
+	{
+		final Date end = CalculateDateExtensions.addDays(this.now, 30);
+		final Date start = this.now;
+		final Date randomDate = RandomDateFactory.randomDateBetween(start, end,
+			DefaultSecureRandom.get());
+		boolean actual = CalculateDateExtensions.isBetween(start, end, randomDate);
+		assertTrue(actual);
+	}
+
+	/**
+	 * Test method for {@link RandomDateFactory#randomDateBetween(long, long, String, SecureRandom)}
+	 *
+	 * @throws ParseException
+	 *             occurs when their are problems with parsing the String to Date.
+	 */
+	@Test
+	public void testRandomDateBetweenLongLongStringSecureRandom() throws ParseException
+	{
+		final Date from = CalculateDateExtensions.substractDaysFromDate(this.now, 1);
+		final Date till = CalculateDateExtensions.addDays(this.now, 30);
+		final long endDate = till.getTime();
+		final long startDate = from.getTime();
+		final String format = DatePatterns.DOT_DD_MM_YYYY_HH_MM_SS;
+		final String randomDate = RandomDateFactory.randomDateBetween(startDate, endDate, format,
+			DefaultSecureRandom.get());
+		final Date compare = ParseDateExtensions.parseToDate(randomDate, format);
+		boolean actual = CalculateDateExtensions.isBetween(from, till, compare);
+		assertTrue(actual);
+	}
+
+	/**
 	 * Test method for {@link RandomDateFactory#randomDate(Date, SecureRandom)}
 	 */
 	@Test
@@ -111,40 +146,6 @@ public class RandomDateFactoryTest
 		assertNotNull(randomDate);
 
 		boolean actual = !randomDate.equals(this.now);
-		assertTrue(actual);
-	}
-
-	/**
-	 * Test method for {@link RandomDateFactory#randomDateBetween(Date, Date, SecureRandom)}
-	 */
-	@Test
-	public void testRandomDateBetweenDateDateSecureRandom()
-	{
-		final Date end = CalculateDateExtensions.addDays(this.now, 30);
-		final Date start = this.now;
-		final Date randomDate = RandomDateFactory.randomDateBetween(start, end, DefaultSecureRandom.get());
-		boolean actual = CalculateDateExtensions.isBetween(start, end, randomDate);
-		assertTrue(actual);
-	}
-
-	/**
-	 * Test method for {@link RandomDateFactory#randomDateBetween(long, long, String, SecureRandom)}
-	 *
-	 * @throws ParseException
-	 *             occurs when their are problems with parsing the String to Date.
-	 */
-	@Test
-	public void testRandomDateBetweenLongLongStringSecureRandom() throws ParseException
-	{
-		final Date from = CalculateDateExtensions.substractDaysFromDate(this.now, 1);
-		final Date till = CalculateDateExtensions.addDays(this.now, 30);
-		final long endDate = till.getTime();
-		final long startDate = from.getTime();
-		final String format = DatePatterns.DOT_DD_MM_YYYY_HH_MM_SS;
-		final String randomDate = RandomDateFactory.randomDateBetween(startDate, endDate,
-			format, DefaultSecureRandom.get());
-		final Date compare = ParseDateExtensions.parseToDate(randomDate, format);
-		boolean actual = CalculateDateExtensions.isBetween(from, till, compare);
 		assertTrue(actual);
 	}
 
