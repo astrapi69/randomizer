@@ -22,9 +22,6 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-/**
- *
- */
 package de.alpharogroup.random.date;
 
 import static org.testng.AssertJUnit.assertEquals;
@@ -92,9 +89,8 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	public void testCreateRandomBirthday()
 	{
 		// About 55 years.
-		final Date past = RandomDateExtensions.dateBefore(this.now, 20000);
-		// About 9 years.
-		final Date recentlyPast = RandomDateExtensions.dateBefore(this.now, 3000);
+		final Date past = CalculateDateExtensions.substractDaysFromDate(this.now, 21001);
+		final Date recentlyPast = CalculateDateExtensions.substractDaysFromDate(this.now, 1);
 		for (int i = 0; i < 10; i++)
 		{
 			final Date randomBirthday = RandomDateExtensions.randomBirthday();
@@ -213,11 +209,10 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	{
 		final Date from = this.now;
 		final Date randomDate = RandomDateExtensions.randomDate(from);
-		actual = randomDate != null;
-		assertTrue("", actual);
+		assertNotNull(randomDate);
 
 		actual = !randomDate.equals(this.now);
-		assertTrue("", actual);
+		assertTrue(actual);
 	}
 
 	/**
@@ -283,6 +278,7 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomDateExtensions#getTimestamp()}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetTimestamp()
 	{
@@ -293,6 +289,7 @@ public class RandomDateExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomDateExtensions#getTimestamp(Date)}.
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testGetTimestampDate()
 	{

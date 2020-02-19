@@ -44,6 +44,16 @@ public class RandomObjectFactoryTest
 {
 
 	/**
+	 * Test method for {@link RandomObjectFactory#newRandomFloat(int, int)}
+	 */
+	@Test
+	public void testGetRandomFloatString()
+	{
+		float randomFloat = RandomObjectFactory.newRandomFloat(4, 4);
+		assertNotNull(Float.valueOf(randomFloat));
+	}
+
+	/**
 	 * Test method for {@link RandomObjectFactory#newRandomAlgorithm()}
 	 */
 	@Test(enabled = true)

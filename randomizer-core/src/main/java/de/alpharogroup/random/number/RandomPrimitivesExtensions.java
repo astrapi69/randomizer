@@ -28,10 +28,9 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Objects;
-import java.util.Random;
 
-import de.alpharogroup.math.MathExtensions;
 import de.alpharogroup.random.DefaultSecureRandom;
+import de.alpharogroup.random.SecureRandomFactory;
 import de.alpharogroup.random.enums.RandomAlgorithm;
 
 /**
@@ -69,7 +68,8 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static int getRandomIntBetween(int minVolume, int maxVolume)
 	{
-		return minVolume + Math.abs(DefaultSecureRandom.get().nextInt()) % maxVolume;
+		return RandomPrimitivesFactory.randomIntBetween(minVolume, maxVolume,
+			DefaultSecureRandom.get());
 	}
 
 	/**
@@ -101,21 +101,7 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static byte[] randomByteArray(final int length)
 	{
-		final byte[] randomByteArray = new byte[length];
-		final byte[] randomByteBox = new byte[1];
-		for (int i = 0; i < length; i++)
-		{
-			if (RandomPrimitivesExtensions.randomBoolean())
-			{
-				randomByteArray[i] = RandomPrimitivesExtensions.randomByte();
-			}
-			else
-			{
-				DefaultSecureRandom.get().nextBytes(randomByteBox);
-				randomByteArray[i] = randomByteBox[0];
-			}
-		}
-		return randomByteArray;
+		return RandomPrimitivesFactory.randomByteArray(length, DefaultSecureRandom.get());
 	}
 
 	/**
@@ -125,16 +111,7 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static char randomChar()
 	{
-		if (DefaultSecureRandom.get().nextBoolean())
-		{
-			// random character
-			return (char)(DefaultSecureRandom.get().nextInt(26) + 65);
-		}
-		else
-		{
-			// random digit
-			return (char)DefaultSecureRandom.get().nextInt(10);
-		}
+		return RandomPrimitivesFactory.randomChar(DefaultSecureRandom.get());
 	}
 
 	/**
@@ -185,20 +162,8 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static double randomDouble(final double range, final RandomAlgorithm algorithm)
 	{
-		Objects.requireNonNull(algorithm);
-		switch (algorithm)
-		{
-			case MATH_ABS :
-				return Math.abs(DefaultSecureRandom.get().nextDouble()) % range;
-			case MATH_RANDOM :
-				return Math.random() * range;
-			case RANDOM :
-				double random = new Random(System.currentTimeMillis()).nextDouble() % range;
-				return MathExtensions.isPositive(random) ? random : random * -1;
-			case SECURE_RANDOM :
-			default :
-				return DefaultSecureRandom.get().nextDouble() * range;
-		}
+		return RandomPrimitivesFactory.randomDouble(range, Objects.requireNonNull(algorithm),
+			DefaultSecureRandom.get());
 	}
 
 	/**
@@ -212,7 +177,8 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static double randomDoubleBetween(final double start, final double end)
 	{
-		return start + randomDouble(end - start);
+		return RandomPrimitivesFactory.randomDoubleBetween(start, end,
+			SecureRandomFactory.newSecureRandom());
 	}
 
 	/**
@@ -228,7 +194,12 @@ public final class RandomPrimitivesExtensions
 	 * @return the random double between
 	 * @throws ParseException
 	 *             is thrown if the beginning of the specified string cannot be parsed
+	 * @deprecated use instead method <code>randomDoubleBetween</code> from the class
+	 *             <code>RandomPrimitivesFactory</code><br>
+	 *             <br>
+	 *             Note: will be removed in the next minor release
 	 */
+	@Deprecated
 	public static double randomDoubleBetween(final double start, final double end,
 		final String pattern) throws ParseException
 	{
@@ -245,7 +216,7 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static float randomFloat()
 	{
-		return randomFloat(DefaultSecureRandom.get().nextFloat());
+		return RandomPrimitivesFactory.randomFloat(DefaultSecureRandom.get());
 	}
 
 	/**
@@ -274,20 +245,8 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static float randomFloat(final float range, final RandomAlgorithm algorithm)
 	{
-		Objects.requireNonNull(algorithm);
-		switch (algorithm)
-		{
-			case MATH_ABS :
-				return (float)(Math.abs(DefaultSecureRandom.get().nextDouble()) % range);
-			case MATH_RANDOM :
-				return (float)(Math.random() * range);
-			case RANDOM :
-				float random = (float)new Random(System.currentTimeMillis()).nextDouble() % range;
-				return MathExtensions.isPositive(random) ? random : random * -1;
-			case SECURE_RANDOM :
-			default :
-				return (float)(DefaultSecureRandom.get().nextDouble() * range);
-		}
+		return RandomPrimitivesFactory.randomFloat(range, Objects.requireNonNull(algorithm),
+			DefaultSecureRandom.get());
 	}
 
 	/**
@@ -315,7 +274,8 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static float randomFloatBetween(final float start, final float end)
 	{
-		return start + randomFloat(end - start);
+		return RandomPrimitivesFactory.randomFloatBetween(start, end,
+			SecureRandomFactory.newSecureRandom());
 	}
 
 	/**
@@ -331,7 +291,12 @@ public final class RandomPrimitivesExtensions
 	 * @return the random float between
 	 * @throws ParseException
 	 *             is thrown if the beginning of the specified string cannot be parsed
+	 * @deprecated use instead method <code>randomFloatBetween</code> from the class
+	 *             <code>RandomPrimitivesFactory</code><br>
+	 *             <br>
+	 *             Note: will be removed in the next minor release
 	 */
+	@Deprecated
 	public static float randomFloatBetween(final float start, final float end, final String pattern)
 		throws ParseException
 	{
@@ -348,7 +313,7 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static int randomInt()
 	{
-		return randomInt(DefaultSecureRandom.get().nextInt());
+		return RandomPrimitivesFactory.randomInt(DefaultSecureRandom.get());
 	}
 
 	/**
@@ -376,20 +341,8 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static int randomInt(final int range, final RandomAlgorithm algorithm)
 	{
-		Objects.requireNonNull(algorithm);
-		switch (algorithm)
-		{
-			case MATH_ABS :
-				return Math.abs(DefaultSecureRandom.get().nextInt()) % range;
-			case MATH_RANDOM :
-				return (int)(Math.random() * range);
-			case RANDOM :
-				int random = new Random(System.currentTimeMillis()).nextInt() % range;
-				return MathExtensions.isPositive(random) ? random : random * -1;
-			case SECURE_RANDOM :
-			default :
-				return (int)(DefaultSecureRandom.get().nextDouble() * range);
-		}
+		return RandomPrimitivesFactory.randomInt(range, Objects.requireNonNull(algorithm),
+			DefaultSecureRandom.get());
 	}
 
 	/**
@@ -427,9 +380,9 @@ public final class RandomPrimitivesExtensions
 		{
 			randomIntBetween = start + randomInt(end - start);
 		}
-		if (!includeMin && includeMax)
+		if (!includeMin && includeMax && randomIntBetween == start)
 		{
-			randomIntBetween = (start + 1) + randomInt(end - (start - 1));
+			randomIntBetween++;
 		}
 		if (!includeMin && !includeMax)
 		{
@@ -445,7 +398,7 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static long randomLong()
 	{
-		return randomLong(new Random(System.currentTimeMillis()).nextInt());
+		return RandomPrimitivesFactory.randomLong(DefaultSecureRandom.get());
 	}
 
 	/**
@@ -474,20 +427,8 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static long randomLong(final long range, final RandomAlgorithm algorithm)
 	{
-		Objects.requireNonNull(algorithm);
-		switch (algorithm)
-		{
-			case MATH_ABS :
-				return (long)(Math.abs(DefaultSecureRandom.get().nextDouble()) % range);
-			case MATH_RANDOM :
-				return (long)(Math.random() * range);
-			case RANDOM :
-				long random = (long)new Random(System.currentTimeMillis()).nextDouble() % range;
-				return MathExtensions.isPositive(random) ? random : random * -1;
-			case SECURE_RANDOM :
-			default :
-				return (long)(DefaultSecureRandom.get().nextDouble() * range);
-		}
+		return RandomPrimitivesFactory.randomLong(range, Objects.requireNonNull(algorithm),
+			DefaultSecureRandom.get());
 	}
 
 	/**
@@ -501,7 +442,8 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static long randomLongBetween(final long start, final long end)
 	{
-		return start + randomLong(end - start);
+		return RandomPrimitivesFactory.randomLongBetween(start, end,
+			SecureRandomFactory.newSecureRandom());
 	}
 
 	/**
@@ -511,14 +453,7 @@ public final class RandomPrimitivesExtensions
 	 */
 	public static short randomShort()
 	{
-		if (DefaultSecureRandom.get().nextBoolean())
-		{
-			return (short)(DefaultSecureRandom.get().nextInt(65536) - 32768);
-		}
-		else
-		{
-			return (short)DefaultSecureRandom.get().nextInt(Short.MAX_VALUE + 1);
-		}
+		return RandomPrimitivesFactory.randomShort(DefaultSecureRandom.get());
 	}
 
 	private RandomPrimitivesExtensions()

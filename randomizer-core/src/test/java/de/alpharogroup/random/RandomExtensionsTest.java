@@ -237,6 +237,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomString(int)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testGetRandomStringInt()
 	{
@@ -248,6 +249,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomString(int, int)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test(enabled = true)
 	public void testGetRandomStringwithStartEnd()
 	{
@@ -302,6 +304,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomString(java.lang.String[])}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomStringStringArray()
 	{
@@ -320,6 +323,7 @@ public class RandomExtensionsTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomExtensions#getRandomString(java.lang.String, int)}
 	 */
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testRandomStringStringInt()
 	{
