@@ -24,9 +24,6 @@
  */
 package de.alpharogroup.random.number;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
 import java.util.Objects;
 
 import de.alpharogroup.random.DefaultSecureRandom;
@@ -182,34 +179,6 @@ public final class RandomPrimitivesExtensions
 	}
 
 	/**
-	 * Gets the random double between the range from start and end in the given pattern. Refer to
-	 * class @see {@link java.text.DecimalFormat}.
-	 *
-	 * @param start
-	 *            the start
-	 * @param end
-	 *            the end
-	 * @param pattern
-	 *            the pattern
-	 * @return the random double between
-	 * @throws ParseException
-	 *             is thrown if the beginning of the specified string cannot be parsed
-	 * @deprecated use instead method <code>randomDoubleBetween</code> from the class
-	 *             <code>RandomPrimitivesFactory</code><br>
-	 *             <br>
-	 *             Note: will be removed in the next minor release
-	 */
-	@Deprecated
-	public static double randomDoubleBetween(final double start, final double end,
-		final String pattern) throws ParseException
-	{
-		final DecimalFormat formatter = new DecimalFormat(pattern);
-		final String rd = formatter.format(randomDoubleBetween(start, end));
-		Number randomDouble = formatter.parse(rd);
-		return randomDouble.doubleValue();
-	}
-
-	/**
 	 * Generates a random float between the range 0.0-9.9.
 	 *
 	 * @return the generated random float between the range 0.0-9.9.
@@ -276,34 +245,6 @@ public final class RandomPrimitivesExtensions
 	{
 		return RandomPrimitivesFactory.randomFloatBetween(start, end,
 			SecureRandomFactory.newSecureRandom());
-	}
-
-	/**
-	 * Gets the random float between the range from start and end in the given pattern. Refer to
-	 * class @see {@link java.text.DecimalFormat}.
-	 *
-	 * @param start
-	 *            the start
-	 * @param end
-	 *            the end
-	 * @param pattern
-	 *            the pattern
-	 * @return the random float between
-	 * @throws ParseException
-	 *             is thrown if the beginning of the specified string cannot be parsed
-	 * @deprecated use instead method <code>randomFloatBetween</code> from the class
-	 *             <code>RandomPrimitivesFactory</code><br>
-	 *             <br>
-	 *             Note: will be removed in the next minor release
-	 */
-	@Deprecated
-	public static float randomFloatBetween(final float start, final float end, final String pattern)
-		throws ParseException
-	{
-		final NumberFormat formatter = new DecimalFormat(pattern);
-		final String rf = formatter.format(randomFloatBetween(start, end));
-		Number randomFloat = formatter.parse(rf);
-		return randomFloat.floatValue();
 	}
 
 	/**

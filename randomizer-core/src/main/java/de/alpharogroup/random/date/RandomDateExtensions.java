@@ -25,7 +25,6 @@
 package de.alpharogroup.random.date;
 
 import java.security.SecureRandom;
-import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -35,7 +34,6 @@ import java.util.List;
 
 import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.date.CalculateDateExtensions;
-import de.alpharogroup.date.ConvertDateExtensions;
 import de.alpharogroup.date.CreateDateExtensions;
 import de.alpharogroup.random.SecureRandomFactory;
 import de.alpharogroup.random.number.RandomPrimitivesExtensions;
@@ -103,39 +101,6 @@ public final class RandomDateExtensions
 	public static Date dateBefore(final Date date, final int range)
 	{
 		return RandomDateFactory.dateBefore(date, range, SecureRandomFactory.newSecureRandom());
-	}
-
-	/**
-	 * Creates a java.sql.Timestamp from now.
-	 *
-	 * @return Timestamp.
-	 * @deprecated use instead method <code>toTimestamp</code> from the class
-	 *             <code>ConvertDateExtensions</code><br>
-	 *             <br>
-	 *             Note: will be removed in the next minor release
-	 */
-	@Deprecated
-	public static Timestamp getTimestamp()
-	{
-		return getTimestamp(new Date());
-	}
-
-	/**
-	 * Creates a java.sql.Timestamp(to match the ones in the database) from the given date.
-	 *
-	 * @param date
-	 *            The date
-	 *
-	 * @return Timestamp.
-	 * @deprecated use instead method <code>toTimestamp</code> from the class
-	 *             <code>ConvertDateExtensions</code><br>
-	 *             <br>
-	 *             Note: will be removed in the next minor release
-	 */
-	@Deprecated
-	public static Timestamp getTimestamp(final Date date)
-	{
-		return ConvertDateExtensions.toTimestamp(date);
 	}
 
 	/**

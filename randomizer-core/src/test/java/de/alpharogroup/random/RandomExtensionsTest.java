@@ -30,10 +30,8 @@ import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
 import java.math.BigInteger;
-import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -235,30 +233,6 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomString(int)}
-	 */
-	@SuppressWarnings("deprecation")
-	@Test(enabled = true)
-	public void testGetRandomStringInt()
-	{
-		String randomString = RandomExtensions.getRandomString(10);
-		assertNotNull(randomString);
-		assertTrue(randomString.length() < 11);
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#getRandomString(int, int)}
-	 */
-	@SuppressWarnings("deprecation")
-	@Test(enabled = true)
-	public void testGetRandomStringwithStartEnd()
-	{
-		String randomString = RandomExtensions.getRandomString(3, 25);
-		assertNotNull(randomString);
-		assertTrue(MathExtensions.isBetween(3, 25, randomString.length(), true, true));
-	}
-
-	/**
 	 * Test method for {@link RandomExtensions#newRandomPixel()}
 	 */
 	@Test(enabled = true)
@@ -298,46 +272,6 @@ public class RandomExtensionsTest extends BaseTestCase
 		{
 			BigInteger randomSerialNumber = RandomExtensions.randomSerialNumber();
 			assertNotNull(randomSerialNumber);
-		}
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#getRandomString(java.lang.String[])}
-	 */
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testRandomStringStringArray()
-	{
-		final String[] array = { "blab", "flih", "klap", "teta", "brut", "gzft", "ccp" };
-		final List<String> listFromArray = Arrays.asList(array);
-		expected = true;
-		for (int i = 0; i < 10; i++)
-		{
-			final String randomString = RandomExtensions.getRandomString(array);
-
-			actual = listFromArray.contains(randomString);
-			assertEquals(actual.booleanValue(), expected);
-		}
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#getRandomString(java.lang.String, int)}
-	 */
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testRandomStringStringInt()
-	{
-		final CharBuffer charBuffer = CharBuffer.allocate(45);
-		final int length = 5;
-		final String chars = RandomCharacters.lowcaseWithNumbersAndSpecial.getCharacters();
-		charBuffer.put(chars);
-		expected = true;
-		for (int i = 0; i < 10; i++)
-		{
-			final String randomString = RandomExtensions.getRandomString(chars, length);
-
-			actual = randomString.contains(charBuffer);
-			assertEquals(actual.booleanValue(), expected);
 		}
 	}
 
