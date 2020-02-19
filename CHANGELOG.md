@@ -1,7 +1,7 @@
 ## Change log
 ----------------------
 
-Version 6.8-SNAPSHOT
+Version 6.8
 -------------
 
 ADDED:
@@ -9,10 +9,11 @@ ADDED:
 - new seed field for init with a long from a Date object, for instance of a draw date of lottery
 - new class RandomPrimitivesFactory that generates random primitives with SecureRandom argument
 - new class RandomDateFactory that generates random date objects with SecureRandom argument
+- new class RandomStringFactory that generates random String objects
 
 CHANGED:
 
-- update of test dependency testng version to 7.1.0
+- update of test dependency testng version to 7.1.1
 
 Version 6.7
 -------------
