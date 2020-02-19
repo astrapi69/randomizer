@@ -83,6 +83,16 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	}
 
 	/**
+	 * Test method for {@link RandomPrimitivesExtensions#randomFloat(int, int)}
+	 */
+	@Test
+	public void testGetRandomFloatString()
+	{
+		float randomFloat = RandomPrimitivesExtensions.randomFloat(4,4);
+		assertNotNull(Float.valueOf(randomFloat));
+	}
+
+	/**
 	 * Test method for {@link RandomPrimitivesExtensions#getRandomIntBetween(int, int)}
 	 */
 	@Test

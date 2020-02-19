@@ -224,6 +224,10 @@ public final class RandomExtensions
 	 * Generates a random string with a length between 3 and 25
 	 *
 	 * @return The produced random String.
+	 * @deprecated use instead method <code>newRandomString</code> from the class
+	 *             <code>RandomStringFactory</code><br>
+	 *             <br>
+	 *             Note: will be removed in the next minor release
 	 */
 	public static String getRandomString()
 	{
@@ -237,6 +241,10 @@ public final class RandomExtensions
 	 * @param length
 	 *            the specified length.
 	 * @return the generated random string.
+	 * @deprecated use instead method <code>newRandomString</code> from the class
+	 *             <code>RandomStringFactory</code><br>
+	 *             <br>
+	 *             Note: will be removed in the next minor release
 	 */
 	public static String getRandomString(final int length)
 	{
@@ -257,6 +265,10 @@ public final class RandomExtensions
 	 * @param end
 	 *            the end
 	 * @return the generated random string
+	 * @deprecated use instead method <code>newRandomString</code> from the class
+	 *             <code>RandomStringFactory</code><br>
+	 *             <br>
+	 *             Note: will be removed in the next minor release
 	 */
 	public static String getRandomString(final int start, int end)
 	{
@@ -272,6 +284,10 @@ public final class RandomExtensions
 	 * @param length
 	 *            The length from the random String.
 	 * @return The produced random String.
+	 * @deprecated use instead method <code>newRandomString</code> from the class
+	 *             <code>RandomStringFactory</code><br>
+	 *             <br>
+	 *             Note: will be removed in the next minor release
 	 */
 	public static String getRandomString(final String chars, final int length)
 	{
@@ -292,6 +308,10 @@ public final class RandomExtensions
 	 * @param array
 	 *            The array with the String to be selected.
 	 * @return The selected String from the array.
+	 * @deprecated use instead method <code>newRandomString</code> from the class
+	 *             <code>RandomStringFactory</code><br>
+	 *             <br>
+	 *             Note: will be removed in the next minor release
 	 */
 	public static String getRandomString(final String[] array)
 	{
