@@ -61,12 +61,12 @@ public final class RandomStringFactory {
      */
     public static String newRandomString(final String chars, final int length)
     {
-        final StringBuffer ergebnis = new StringBuffer();
+        final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < length; i++)
         {
-            ergebnis.append(RandomPrimitivesExtensions.randomChar(chars));
+            sb.append(RandomPrimitivesExtensions.randomChar(chars));
         }
-        return ergebnis.toString();
+        return sb.toString();
     }
 
     /**
