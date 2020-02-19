@@ -229,6 +229,7 @@ public final class RandomExtensions
 	 *             <br>
 	 *             Note: will be removed in the next minor release
 	 */
+	@Deprecated
 	public static String getRandomString()
 	{
 		return getRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
@@ -246,6 +247,7 @@ public final class RandomExtensions
 	 *             <br>
 	 *             Note: will be removed in the next minor release
 	 */
+	@Deprecated
 	public static String getRandomString(final int length)
 	{
 		final int maxLength = Math.min(length, 1024);
@@ -270,6 +272,7 @@ public final class RandomExtensions
 	 *             <br>
 	 *             Note: will be removed in the next minor release
 	 */
+	@Deprecated
 	public static String getRandomString(final int start, int end)
 	{
 		return getRandomString(RandomPrimitivesExtensions.randomIntBetween(start, end));
@@ -289,6 +292,7 @@ public final class RandomExtensions
 	 *             <br>
 	 *             Note: will be removed in the next minor release
 	 */
+	@Deprecated
 	public static String getRandomString(final String chars, final int length)
 	{
 		final StringBuffer ergebnis = new StringBuffer();
@@ -313,6 +317,7 @@ public final class RandomExtensions
 	 *             <br>
 	 *             Note: will be removed in the next minor release
 	 */
+	@Deprecated
 	public static String getRandomString(final String[] array)
 	{
 		return array[RandomPrimitivesExtensions.randomInt(array.length)];

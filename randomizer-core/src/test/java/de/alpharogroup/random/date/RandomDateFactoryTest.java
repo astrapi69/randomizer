@@ -142,11 +142,14 @@ public class RandomDateFactoryTest
 	@Test
 	public void testRandomDateSecureRandom()
 	{
-		Date randomDate = RandomDateFactory.randomDate(DefaultSecureRandom.get());
-		assertNotNull(randomDate);
+		for (int i = 0; i < 7; i++)
+		{
+			Date randomDate = RandomDateFactory.randomDate(DefaultSecureRandom.get());
+			assertNotNull(randomDate);
 
-		boolean actual = !randomDate.equals(this.now);
-		assertTrue(actual);
+			boolean actual = !randomDate.equals(this.now);
+			assertTrue(actual);
+		}
 	}
 
 	/**

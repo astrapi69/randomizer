@@ -63,7 +63,6 @@ public final class RandomObjectFactory
 	 *
 	 * @param length
 	 *            the length.
-	 * @return the Byte[]
 	 * @return the new random {@link Byte} object array
 	 */
 	public static Byte[] newRandomByteObjects(final int length)
@@ -181,7 +180,7 @@ public final class RandomObjectFactory
 		}
 		else if (type.equals(String.class))
 		{
-			return RandomExtensions.getRandomString();
+			return RandomStringFactory.newRandomString();
 		}
 		else if (type.equals(BigInteger.class))
 		{

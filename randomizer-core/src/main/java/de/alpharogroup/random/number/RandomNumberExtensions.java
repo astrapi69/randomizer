@@ -31,7 +31,7 @@ import java.math.RoundingMode;
 import de.alpharogroup.math.MathExtensions;
 import de.alpharogroup.random.DefaultSecureRandom;
 import de.alpharogroup.random.RandomCharacters;
-import de.alpharogroup.random.RandomExtensions;
+import de.alpharogroup.random.object.RandomStringFactory;
 
 /**
  * Utility class for producing random numbers.
@@ -112,8 +112,8 @@ public final class RandomNumberExtensions
 	 */
 	public static String getRandomNumericString(final int length)
 	{
-		final String randomNumber = RandomExtensions
-			.getRandomString(RandomCharacters.numbers.getCharacters(), length);
+		final String randomNumber = RandomStringFactory
+			.newRandomString(RandomCharacters.numbers.getCharacters(), length);
 		return randomNumber;
 	}
 

@@ -88,7 +88,7 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	@Test
 	public void testGetRandomFloatString()
 	{
-		float randomFloat = RandomPrimitivesExtensions.randomFloat(4,4);
+		float randomFloat = RandomPrimitivesExtensions.randomFloat(4, 4);
 		assertNotNull(Float.valueOf(randomFloat));
 	}
 

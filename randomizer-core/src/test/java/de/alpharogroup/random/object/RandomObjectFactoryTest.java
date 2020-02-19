@@ -28,7 +28,6 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertNotNull;
 
-import de.alpharogroup.random.number.RandomPrimitivesExtensions;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
@@ -50,7 +49,7 @@ public class RandomObjectFactoryTest
 	@Test
 	public void testGetRandomFloatString()
 	{
-		float randomFloat = RandomObjectFactory.newRandomFloat(4,4);
+		float randomFloat = RandomObjectFactory.newRandomFloat(4, 4);
 		assertNotNull(Float.valueOf(randomFloat));
 	}
 
