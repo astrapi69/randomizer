@@ -4,6 +4,10 @@
 Version 6.9-SNAPSHOT
 -------------
 
+CHANGED:
+
+- extracted project properties to gradle.properties
+
 Version 6.8
 -------------
 

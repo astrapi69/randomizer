@@ -61,39 +61,39 @@ def releaseVersion = !version.endsWith("SNAPSHOT")
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId = "${project.name}"
+            artifactId = "$rootProject.name"
             from components.java
             artifact sourcesJar
             artifact javadocJar
             pom {
-                name = "${project.name}"
-                description = "This project holds utility classes to create or generate random data"
-                url = "https://github.com/astrapi69/"+"${rootProject.name}"
+                name = "$rootProject.name"
+                description = "$projectCoreDescription"
+                url = "$projectScmProviderUrl"+"$projectHolderUsername"+"/"+"$rootProject.name"
                 organization {
-                    name = "Alpha Ro Group UG (haftungsbeschrängt)"
-                    url = "http://www.alpharogroup.de/"
+                    name = "$projectOrganizationName"
+                    url = "$projectOrganizationUrl"
                 }
                 issueManagement {
-                    system = "GitHub"
-                    url = "https://github.com/astrapi69/"+"${rootProject.name}"+"/issues"
+                    system = "$projectIssueManagementSystem"
+                    url = "$projectScmProviderUrl"+"$projectHolderUsername"+"/"+"$rootProject.name"+"/issues"
                 }
                 licenses {
                     license {
-                        name = "MIT License"
-                        url = "http://www.opensource.org/licenses/mit-license.php"
-                        distribution = "repo"
+                        name = "$projectLicenseName"
+                        url = "$projectLicenseUrl"
+                        distribution = "$projectLicenseDistribution"
                     }
                 }
                 developers {
                     developer {
-                        id = "astrapi69"
-                        name = "Asterios Raptis"
+                        id = "$projectHolderUsername"
+                        name = "$projectLeaderName"
                     }
                 }
                 scm {
-                    connection = "scm:git:git:@github.com:astrapi69/"+"${rootProject.name}"+".git"
-                    developerConnection = "scm:git:git@github.com:astrapi69/"+"${rootProject.name}"+".git"
-                    url = "git:@github.com:astrapi69/"+"${rootProject.name}"+".git"
+                    connection = "scm:git:git:@" + "$projectScmProviderDomain" + ":" + "$projectHolderUsername" + "/" + "$rootProject.name" + ".git"
+                    developerConnection = "scm:git:git:@" + "$projectScmProviderDomain" + ":" + "$projectHolderUsername" + "/" + "$rootProject.name" + ".git"
+                    url = "scm:git:git:@" + "$projectScmProviderDomain" + ":" + "$projectHolderUsername" + "/" + "$rootProject.name" + ".git"
                 }
             }
         }
@@ -104,8 +104,8 @@ publishing {
                 username System.getenv("ossrhUsername") ?: project.property("ossrhUsername")
                 password System.getenv("ossrhPassword") ?: project.property("ossrhPassword")
             }
-            def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
-            def snapshotsRepoUrl = "https://oss.sonatype.org/content/repositories/snapshots"
+            def releasesRepoUrl = "$projectRepositoriesReleasesRepoUrl"
+            def snapshotsRepoUrl = "$projectRepositoriesSnapshotsRepoUrl"
             url = releaseVersion ? releasesRepoUrl : snapshotsRepoUrl
         }
     }

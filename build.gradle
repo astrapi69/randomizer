@@ -16,7 +16,7 @@ buildscript {
 }
 
 allprojects {
-    group = "de.alpharogroup"
+    group = "$groupPackage"
     version = "$projectVersion"
 }
 
