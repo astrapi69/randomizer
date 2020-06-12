@@ -7,6 +7,9 @@ Version 6.9-SNAPSHOT
 CHANGED:
 
 - extracted project properties to gradle.properties
+- update of gradle version to 6.5
+- update of silly-collections version to 8.2
+- update of test dependency equalsverifier version to 3.3
 
 Version 6.8
 -------------
