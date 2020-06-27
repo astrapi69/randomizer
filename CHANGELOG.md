@@ -11,6 +11,9 @@ CHANGED:
 - update of silly-math version to 1.2
 - update of test dependency equalsverifier version to 3.4.1
 - extracted project properties to gradle.properties
+- removed deprecated methods for Timestamp in class RandomDateExtensions
+- removed deprecated methods for create random double and float between the range from start to end  in class RandomPrimitivesExtensions
+- removed deprecated methods for create random String object in class RandomExtensions
 
 Version 6.8
 -------------
