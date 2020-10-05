@@ -1,8 +1,8 @@
 
 dependencies {
-    compile project(":randomizer-core")
-    testCompile("de.alpharogroup:test-objects:$testObjectsVersion")
-    testCompile("de.alpharogroup:silly-strings:$sillyStringsVersion")
+    implementation project(":randomizer-core")
+    testImplementation("de.alpharogroup:test-objects:$testObjectsVersion")
+    testImplementation("de.alpharogroup:silly-strings:$sillyStringsVersion")
 }
 
 license {

@@ -10,7 +10,6 @@ dependencies {
     testCompile("de.alpharogroup:silly-strings:$sillyStringsVersion")
 }
 
-
 license {
     ext.year="2015"
     ext.owner="Asterios Raptis"

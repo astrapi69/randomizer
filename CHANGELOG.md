@@ -13,6 +13,9 @@ CHANGED:
 - update of test dependency testng to new version 7.3.0
 - update of test dependency equalsverifier version to 3.4.3
 - extracted project properties to gradle.properties
+- removed deprecated methods for Timestamp in class RandomDateExtensions
+- removed deprecated methods for create random double and float between the range from start to end  in class RandomPrimitivesExtensions
+- removed deprecated methods for create random String object in class RandomExtensions
 
 
 Version 6.8

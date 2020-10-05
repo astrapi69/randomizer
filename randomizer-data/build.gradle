@@ -1,9 +1,9 @@
 
 dependencies {
-    compile("com.google.code.findbugs:jsr305:$jsr305Version")
-    compile("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
-    testCompile("de.alpharogroup:test-objects:$testObjectsVersion")
-    testCompile("nl.jqno.equalsverifier:equalsverifier:$equalsverifierVersion")
+    implementation("com.google.code.findbugs:jsr305:$jsr305Version")
+    implementation("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
+    testImplementation("de.alpharogroup:test-objects:$testObjectsVersion")
+    testImplementation("nl.jqno.equalsverifier:equalsverifier:$equalsverifierVersion")
 }
 
 license {

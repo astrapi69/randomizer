@@ -30,14 +30,12 @@ subprojects {
 
     repositories {
         mavenLocal()
-        maven {
-            url = "https://repo.maven.apache.org/maven2"
-        }
+        mavenCentral()
     }
 
     dependencies {
-        testCompile("org.testng:testng:$testngVersion")
-        testCompile("org.meanbean:meanbean:$meanbeanVersion")
+        testImplementation("org.testng:testng:$testngVersion")
+        testImplementation("org.meanbean:meanbean:$meanbeanVersion")
     }
 
     // workhack for license issue #76
