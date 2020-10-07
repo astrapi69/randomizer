@@ -21,7 +21,6 @@ allprojects {
 
 subprojects {
     apply plugin: "java"
-    apply plugin: "java-library"
     apply plugin: "maven-publish"
     apply plugin: "signing"
     apply plugin: "com.github.ben-manes.versions"
@@ -42,7 +41,7 @@ subprojects {
     gradle.startParameter.excludedTaskNames += "licenseMain"
     gradle.startParameter.excludedTaskNames += "licenseTest"
 
-    sourceCompatibility = "1.8"
+    sourceCompatibility = "$projectSourceCompatibility"
 
     javadoc {
         if(JavaVersion.current().isJava9Compatible()) {
