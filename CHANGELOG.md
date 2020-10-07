@@ -1,6 +1,9 @@
 ## Change log
 ----------------------
 
+Version 8-SNAPSHOT
+-------------
+
 Version 6.9
 -------------
 
