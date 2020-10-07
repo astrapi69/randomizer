@@ -23,7 +23,7 @@ Version 6.8
 
 ADDED:
  
-- new seed field for init with a long from a Date object, for instance of a draw date of lottery
+- new seed field in the SecureRandomBuilder class for init with a long from a Date object, for instance for a draw date of a lottery game 
 - new class RandomPrimitivesFactory that generates random primitives with SecureRandom argument
 - new class RandomDateFactory that generates random date objects with SecureRandom argument
 - new class RandomStringFactory that generates random String objects
