@@ -29,7 +29,6 @@ import static org.testng.Assert.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
 import java.nio.CharBuffer;
-import java.text.ParseException;
 import java.util.Map;
 
 import org.meanbean.test.BeanTester;
@@ -177,22 +176,6 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for
-	 * {@link RandomPrimitivesExtensions#randomDoubleBetween(double, double, String)}
-	 *
-	 * @throws ParseException
-	 *             is thrown if the beginning of the specified string cannot be parsed
-	 */
-	@SuppressWarnings("deprecation")
-	@Test(enabled = true)
-	public void testRandomDoubleBetweenDoubleDoubleString() throws ParseException
-	{
-		double random = RandomPrimitivesExtensions.randomDoubleBetween(10000.0, 100000.0,
-			"###,###.###");
-		assertTrue(MathExtensions.isBetween(10000.0, 100000.0, random, true, true));
-	}
-
-	/**
 	 * Test method for {@link RandomPrimitivesExtensions#randomDouble(double)}
 	 */
 	@Test(enabled = true)
@@ -254,20 +237,6 @@ public class RandomPrimitivesExtensionsTest extends BaseTestCase
 	public void testRandomFloatBetweenFloatFloat()
 	{
 		float random = RandomPrimitivesExtensions.randomFloatBetween(0.0f, 10.0f);
-		assertTrue(MathExtensions.isBetween(0.0f, 10.0f, random));
-	}
-
-	/**
-	 * Test method for {@link RandomPrimitivesExtensions#randomFloatBetween(float, float, String)}
-	 *
-	 * @throws ParseException
-	 *             is thrown if the beginning of the specified string cannot be parsed
-	 */
-	@SuppressWarnings("deprecation")
-	@Test(enabled = true)
-	public void testRandomFloatBetweenFloatFloatString() throws ParseException
-	{
-		float random = RandomPrimitivesExtensions.randomFloatBetween(0.0f, 10.0f, "###,###.###");
 		assertTrue(MathExtensions.isBetween(0.0f, 10.0f, random));
 	}
 

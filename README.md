@@ -13,6 +13,10 @@
 </div>
 
 Generate random data
+> Please support this project by simply putting a Github <!-- Place this tag where you want the button to render. -->
+                                                         <a class="github-button" href="https://github.com/astrapi69/randomizer" data-icon="octicon-star" aria-label="Star astrapi69/randomizer on GitHub">Star ⭐</a>. Share this library with friends on Twitter and everywhere else you can.
+If you love this project [![donation](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
+   
 
 ## Note
 
@@ -60,7 +64,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>6.8</randomizer.version>
+		<randomizer.version>6.9</randomizer.version>
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
 		<randomizer-address.version>${randomizer.version}</randomizer-address.version>
 		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
@@ -129,7 +133,7 @@ You can first define the version in the ext section and add than the following g
 ```
 ext {
 			...
-    randomizerVersion = "6.8"
+    randomizerVersion = "6.9"
 			...
 }
 dependencies {

@@ -108,8 +108,7 @@ public final class RandomObjectsExtensions
 		int length = phonenumber.length();
 		final String randomFax = phonenumber.substring(0, length - 2);
 		sb.append(randomFax);
-		final String phoneExtension = phonenumber.substring(length - 2,
-			length);
+		final String phoneExtension = phonenumber.substring(length - 2, length);
 		final Integer phEx = Integer.valueOf(phoneExtension);
 		final int pe = phEx + 1;
 		sb.append(pe);

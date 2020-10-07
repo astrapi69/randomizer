@@ -28,7 +28,6 @@ import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
-import java.sql.Timestamp;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -273,28 +272,6 @@ public class RandomDateExtensionsTest extends BaseTestCase
 		expected = true;
 		actual = CalculateDateExtensions.isBetween(start, now, dateBefore);
 		assertEquals(actual.booleanValue(), expected);
-	}
-
-	/**
-	 * Test method for {@link RandomDateExtensions#getTimestamp()}.
-	 */
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testGetTimestamp()
-	{
-		Timestamp timestamp = RandomDateExtensions.getTimestamp();
-		assertNotNull(timestamp);
-	}
-
-	/**
-	 * Test method for {@link RandomDateExtensions#getTimestamp(Date)}.
-	 */
-	@SuppressWarnings("deprecation")
-	@Test
-	public void testGetTimestampDate()
-	{
-		Timestamp timestamp = RandomDateExtensions.getTimestamp(now);
-		assertNotNull(timestamp);
 	}
 
 	/**
