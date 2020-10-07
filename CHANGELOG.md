@@ -8,7 +8,7 @@ CHANGED:
 
 - update of gradle version to 6.6.1
 - update of silly-collections version to 8.2
-- update of silly-math version to 1.2
+- update of silly-math version to 1.3
 - update of dependency jobj-core version to 3.6
 - update of test dependency testng to new version 7.3.0
 - update of test dependency equalsverifier version to 3.4.3

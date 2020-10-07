@@ -24,6 +24,8 @@
  */
 package de.alpharogroup.random;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
 
 import javax.annotation.Nonnull;
@@ -108,7 +110,7 @@ public final class SecureRandomBuilder
 	/** The provider. */
 	private String provider;
 
-	/** The seed. */
+	/** The seed. Default seed is the current time milliseconds */
 	private long seed = System.currentTimeMillis();
 
 	/**
@@ -139,7 +141,40 @@ public final class SecureRandomBuilder
 	 */
 	public SecureRandom build()
 	{
-		return RandomFactory.newSecureRandom(algorithm, provider, seed);
+		SecureRandom secureRandom = null;
+		if (algorithm != null && provider != null)
+		{
+			try
+			{
+				secureRandom = SecureRandom.getInstance(algorithm, provider);
+			}
+			catch (NoSuchAlgorithmException | NoSuchProviderException e)
+			{
+				throw new RuntimeException(e);
+			}
+		}
+		if (algorithm != null)
+		{
+			try
+			{
+				secureRandom = SecureRandom.getInstance(algorithm);
+			}
+			catch (NoSuchAlgorithmException e)
+			{
+				throw new RuntimeException(e);
+			}
+		}
+		if (secureRandom == null)
+			try
+			{
+				secureRandom = SecureRandom.getInstance(SecureRandomBuilder.DEFAULT_ALGORITHM);
+			}
+			catch (NoSuchAlgorithmException e)
+			{
+				throw new RuntimeException(e);
+			}
+		secureRandom.setSeed(seed);
+		return secureRandom;
 	}
 
 	/**
