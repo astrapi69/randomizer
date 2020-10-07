@@ -56,12 +56,12 @@ def releaseVersion = !version.endsWith("SNAPSHOT")
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId = "$rootProject.name"
+            artifactId = "$project.name"
             from components.java
             artifact sourcesJar
             artifact javadocJar
             pom {
-                name = "$rootProject.name"
+                name = "$project.name"
                 description = "$projectDataDescription"
                 url = "$projectScmProviderUrl"+"$projectHolderUsername"+"$slash"+"$rootProject.name"
                 organization {
