@@ -42,7 +42,7 @@ subprojects {
     gradle.startParameter.excludedTaskNames += "licenseMain"
     gradle.startParameter.excludedTaskNames += "licenseTest"
 
-    sourceCompatibility = "1.8"
+    sourceCompatibility = "$projectSourceCompatibility"
 
     javadoc {
         if(JavaVersion.current().isJava9Compatible()) {
