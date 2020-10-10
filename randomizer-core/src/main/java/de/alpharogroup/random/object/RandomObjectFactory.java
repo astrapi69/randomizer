@@ -39,8 +39,7 @@ import java.util.Objects;
 import de.alpharogroup.random.RandomExtensions;
 import de.alpharogroup.random.date.RandomDateExtensions;
 import de.alpharogroup.random.enums.RandomAlgorithm;
-import de.alpharogroup.random.number.RandomNumberExtensions;
-import de.alpharogroup.random.number.RandomPrimitivesExtensions;
+import de.alpharogroup.random.number.*;
 import de.alpharogroup.reflection.ReflectionExtensions;
 
 /**
@@ -55,7 +54,7 @@ public final class RandomObjectFactory
 	 */
 	public static RandomAlgorithm newRandomAlgorithm()
 	{
-		return RandomExtensions.getRandomEnumFromEnumValues(RandomAlgorithm.values());
+		return RandomExtensions.randomEnumFromEnumValues(RandomAlgorithm.values());
 	}
 
 	/**
@@ -68,7 +67,7 @@ public final class RandomObjectFactory
 	public static Byte[] newRandomByteObjects(final int length)
 	{
 		final Byte[] randomByteObjects = new Byte[length];
-		byte[] randomBytes = RandomPrimitivesExtensions.randomByteArray(length);
+		byte[] randomBytes = RandomByteFactory.randomByteArray(length);
 		for (int i = 0; i < length; i++)
 		{
 			randomByteObjects[i] = randomBytes[i];
@@ -87,7 +86,7 @@ public final class RandomObjectFactory
 	 */
 	public static Float newRandomFloat(final int afterComma, final int beforeComma)
 	{
-		return RandomPrimitivesExtensions.randomFloat(afterComma, beforeComma);
+		return RandomFloatFactory.randomFloat(afterComma, beforeComma);
 	}
 
 	/**
@@ -139,7 +138,7 @@ public final class RandomObjectFactory
 		if (type.isEnum())
 		{
 			Enum<?> randomEnum = RandomExtensions
-				.getRandomEnumFromClassname(type.getCanonicalName());
+				.randomEnumFromClassname(type.getCanonicalName());
 			return randomEnum;
 		}
 		else if (type.equals(Void.TYPE) || type.equals(Void.class))
@@ -148,35 +147,35 @@ public final class RandomObjectFactory
 		}
 		else if (type.equals(Byte.TYPE) || type.equals(Byte.class))
 		{
-			return Byte.valueOf(RandomPrimitivesExtensions.randomByte());
+			return Byte.valueOf(RandomByteFactory.randomByte());
 		}
 		else if (type.equals(Character.TYPE) || type.equals(Character.class))
 		{
-			return Character.valueOf(RandomPrimitivesExtensions.randomChar());
+			return Character.valueOf(RandomCharFactory.randomChar());
 		}
 		else if (type.equals(Short.TYPE) || type.equals(Short.class))
 		{
-			return Short.valueOf(RandomPrimitivesExtensions.randomShort());
+			return Short.valueOf(RandomShortFactory.randomShort());
 		}
 		else if (type.equals(Boolean.TYPE) || type.equals(Boolean.class))
 		{
-			return Boolean.valueOf(RandomPrimitivesExtensions.randomBoolean());
+			return Boolean.valueOf(RandomBooleanFactory.randomBoolean());
 		}
 		else if (type.equals(Integer.TYPE) || type.equals(Integer.class))
 		{
-			return Integer.valueOf(RandomPrimitivesExtensions.randomInt());
+			return Integer.valueOf(RandomIntFactory.randomInt());
 		}
 		else if (type.equals(Long.TYPE) || type.equals(Long.class))
 		{
-			return Long.valueOf(RandomPrimitivesExtensions.randomLong());
+			return Long.valueOf(RandomLongFactory.randomLong());
 		}
 		else if (type.equals(Double.TYPE) || type.equals(Double.class))
 		{
-			return Double.valueOf(RandomPrimitivesExtensions.randomDouble());
+			return Double.valueOf(RandomDoubleFactory.randomDouble());
 		}
 		else if (type.equals(Float.TYPE) || type.equals(Float.class))
 		{
-			return Float.valueOf(RandomPrimitivesExtensions.randomFloat());
+			return Float.valueOf(RandomFloatFactory.randomFloat());
 		}
 		else if (type.equals(String.class))
 		{
@@ -184,11 +183,11 @@ public final class RandomObjectFactory
 		}
 		else if (type.equals(BigInteger.class))
 		{
-			return RandomNumberExtensions.randomBigInteger();
+			return RandomBigIntegerFactory.randomBigInteger();
 		}
 		else if (type.equals(BigDecimal.class))
 		{
-			return RandomNumberExtensions.randomBigDecimal();
+			return RandomBigDecimalFactory.randomBigDecimal();
 		}
 		else if (type.equals(Date.class))
 		{

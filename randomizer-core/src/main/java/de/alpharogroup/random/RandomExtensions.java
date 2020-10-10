@@ -33,7 +33,8 @@ import java.util.Set;
 import java.util.UUID;
 
 import de.alpharogroup.lang.ClassExtensions;
-import de.alpharogroup.random.number.RandomPrimitivesExtensions;
+import de.alpharogroup.random.number.RandomByteFactory;
+import de.alpharogroup.random.number.RandomIntFactory;
 import de.alpharogroup.random.object.RandomStringFactory;
 
 /**
@@ -57,9 +58,9 @@ public final class RandomExtensions
 	 *            The List.
 	 * @return Return's a random entry from the List.
 	 */
-	public static <T> T getRandomEntry(final List<T> list)
+	public static <T> T randomListEntry(final List<T> list)
 	{
-		return list.get(getRandomIndex(list));
+		return list.get(randomIndex(list));
 	}
 
 	/**
@@ -73,10 +74,10 @@ public final class RandomExtensions
 	 *            The map.
 	 * @return Return's a random entry from the map.
 	 */
-	public static <K, V> Object getRandomEntry(final Map<K, V> map)
+	public static <K, V> Object randomMapEntry(final Map<K, V> map)
 	{
 		final Object[] entries = map.values().toArray();
-		return entries[RandomPrimitivesExtensions.randomInt(entries.length)];
+		return entries[RandomIntFactory.randomInt(entries.length)];
 	}
 
 	/**
@@ -88,9 +89,9 @@ public final class RandomExtensions
 	 *            the clazz
 	 * @return the random enum
 	 */
-	public static <T extends Enum<?>> T getRandomEnumFromClass(final Class<T> clazz)
+	public static <T extends Enum<?>> T randomEnumFromClass(final Class<T> clazz)
 	{
-		return getRandomEnumFromEnumValues(clazz.getEnumConstants());
+		return randomEnumFromEnumValues(clazz.getEnumConstants());
 	}
 
 	/**
@@ -103,7 +104,7 @@ public final class RandomExtensions
 	 * @return the random enum
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Enum<?>> T getRandomEnumFromClassname(final String classname)
+	public static <T extends Enum<?>> T randomEnumFromClassname(final String classname)
 	{
 		if (classname != null && !classname.isEmpty())
 		{
@@ -111,7 +112,7 @@ public final class RandomExtensions
 			try
 			{
 				enumClass = (Class<T>)ClassExtensions.forName(classname);
-				return getRandomEnumFromClass(enumClass);
+				return randomEnumFromClass(enumClass);
 			}
 			catch (final ClassNotFoundException e)
 			{
@@ -130,9 +131,9 @@ public final class RandomExtensions
 	 *            the values
 	 * @return the random enum
 	 */
-	public static <T extends Enum<?>> T getRandomEnumFromEnumValues(final T[] values)
+	public static <T extends Enum<?>> T randomEnumFromEnumValues(final T[] values)
 	{
-		return values[RandomPrimitivesExtensions.randomInt(values.length)];
+		return values[RandomIntFactory.randomInt(values.length)];
 	}
 
 	/**
@@ -145,12 +146,12 @@ public final class RandomExtensions
 	 * @return the random enum
 	 */
 	@SuppressWarnings("unchecked")
-	public static <T extends Enum<?>> T getRandomEnumFromObject(final T obj)
+	public static <T extends Enum<?>> T randomEnumFromObject(final T obj)
 	{
 		if (obj != null)
 		{
 			final Class<T> clazz = (Class<T>)obj.getClass();
-			return getRandomEnumFromClass(clazz);
+			return randomEnumFromClass(clazz);
 		}
 		return null;
 	}
@@ -162,12 +163,12 @@ public final class RandomExtensions
 	 *            the number of characters
 	 * @return the generated random hexadecimal {@link String}
 	 */
-	public static String getRandomHexString(int numberOfCharacters)
+	public static String randomHexString(int numberOfCharacters)
 	{
 		StringBuilder sb = new StringBuilder();
 		while (sb.length() < numberOfCharacters)
 		{
-			sb.append(Integer.toHexString(RandomPrimitivesExtensions.randomInt()));
+			sb.append(Integer.toHexString(RandomIntFactory.randomInt()));
 		}
 		return sb.toString().substring(0, numberOfCharacters);
 	}
@@ -181,9 +182,9 @@ public final class RandomExtensions
 	 *            The List.
 	 * @return Return's a random index from the List.
 	 */
-	public static <T> int getRandomIndex(final Collection<T> list)
+	public static <T> int randomIndex(final Collection<T> list)
 	{
-		return RandomPrimitivesExtensions.randomInt(list.size());
+		return RandomIntFactory.randomInt(list.size());
 	}
 
 	/**
@@ -197,11 +198,11 @@ public final class RandomExtensions
 	 *            The map.
 	 * @return Return's a random key from the map.
 	 */
-	public static <K, V> Object getRandomKey(final Map<K, V> map)
+	public static <K, V> Object randomKey(final Map<K, V> map)
 	{
 		final Set<K> keySet = map.keySet();
 		final Object[] keys = keySet.toArray();
-		return keys[RandomPrimitivesExtensions.randomInt(keys.length)];
+		return keys[RandomIntFactory.randomInt(keys.length)];
 	}
 
 	/**
@@ -213,7 +214,7 @@ public final class RandomExtensions
 	 *            the charset
 	 * @return the random salt
 	 */
-	public static byte[] getRandomSalt(final int length, final Charset charset)
+	public static byte[] randomSalt(final int length, final Charset charset)
 	{
 		return RandomStringFactory
 			.newRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
@@ -226,11 +227,11 @@ public final class RandomExtensions
 	 *
 	 * @return a random int for use with pixel.
 	 */
-	public static int newRandomPixel()
+	public static int randomPixel()
 	{
-		return newRandomPixel(RandomPrimitivesExtensions.randomInt(256),
-			RandomPrimitivesExtensions.randomInt(256), RandomPrimitivesExtensions.randomInt(256),
-			RandomPrimitivesExtensions.randomInt(256));
+		return randomPixel(RandomIntFactory.randomInt(256),
+				RandomIntFactory.randomInt(256), RandomIntFactory.randomInt(256),
+				RandomIntFactory.randomInt(256));
 	}
 
 	/**
@@ -246,8 +247,8 @@ public final class RandomExtensions
 	 *            The alpha value.
 	 * @return a random int for use with pixel.
 	 */
-	public static int newRandomPixel(final int red, final int green, final int blue,
-		final int alpha)
+	public static int randomPixel(final int red, final int green, final int blue,
+								  final int alpha)
 	{
 		final int pixel = (alpha << 24) | (red << 16) | (green << 8) | blue;
 		return pixel;
@@ -260,23 +261,7 @@ public final class RandomExtensions
 	 */
 	public static byte[] newSalt()
 	{
-		return RandomPrimitivesExtensions.randomByteArray(16);
-	}
-
-	/**
-	 * Returns a random serial number that can be used for a serial number.
-	 *
-	 * @return a random serial number as a {@link BigInteger} object.
-	 */
-	public static BigInteger randomSerialNumber()
-	{
-		long next = DefaultSecureRandom.get().nextLong();
-		if (next < 0)
-		{
-			next = next * (-1);
-		}
-		final BigInteger serialNumber = BigInteger.valueOf(next);
-		return serialNumber;
+		return RandomByteFactory.randomByteArray(16);
 	}
 
 	/**

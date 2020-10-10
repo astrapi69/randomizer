@@ -43,27 +43,7 @@ public final class RandomNumberExtensions
 {
 
 	/**
-	 * The Method getRandomBigDecimal(int,int) gets an random BigDecimal.
-	 *
-	 * @param afterComma
-	 *            How many decimal places after the comma.
-	 * @param beforeComma
-	 *            How many decimal places before the comma.
-	 * @return The produced BigDecimal.
-	 */
-	public static BigDecimal getRandomBigDecimal(final int afterComma, final int beforeComma)
-	{
-		String randomFloatString;
-		do
-		{
-			randomFloatString = getRandomFloatString(afterComma, beforeComma);
-		}
-		while (randomFloatString.equals("."));
-		return new BigDecimal(randomFloatString);
-	}
-
-	/**
-	 * Gets the random float string.
+	 * Gets the random number string
 	 *
 	 * @param afterComma
 	 *            How many decimal places after the comma.
@@ -71,12 +51,12 @@ public final class RandomNumberExtensions
 	 *            How many decimal places before the comma.
 	 * @return the random float string
 	 */
-	public static String getRandomFloatString(final int afterComma, final int beforeComma)
+	public static String getRandomNumberString(final int afterComma, final int beforeComma)
 	{
 		final String decimals = getRandomNumericString(afterComma);
 		final String preDecimals = getRandomNumericString(beforeComma);
-		final String randomFloatString = decimals + "." + preDecimals;
-		return randomFloatString;
+		final String randomNumberString = decimals + "." + preDecimals;
+		return randomNumberString;
 	}
 
 	/**
@@ -86,11 +66,11 @@ public final class RandomNumberExtensions
 	 */
 	public static String getRandomNumericString()
 	{
-		final int maxLength = Math.min(RandomPrimitivesExtensions.randomInt(1000), 1024);
+		final int maxLength = Math.min(RandomIntFactory.randomInt(1000), 1024);
 		final StringBuilder sb = new StringBuilder(maxLength);
 		for (int i = 0; i < maxLength; i++)
 		{
-			int randomInt = RandomPrimitivesExtensions.randomInt();
+			int randomInt = RandomIntFactory.randomInt();
 			if (MathExtensions.isNegative(randomInt))
 			{
 				sb.append(randomInt * (-1));
@@ -115,28 +95,6 @@ public final class RandomNumberExtensions
 		final String randomNumber = RandomStringFactory
 			.newRandomString(RandomCharacters.numbers.getCharacters(), length);
 		return randomNumber;
-	}
-
-	/**
-	 * Generates a random {@link BigDecimal}
-	 *
-	 * @return the random {@link BigDecimal}
-	 */
-	public static BigDecimal randomBigDecimal()
-	{
-		BigDecimal bigDecimal = new BigDecimal(RandomPrimitivesExtensions.randomDouble());
-		bigDecimal.setScale(RandomPrimitivesExtensions.randomInt(2), RoundingMode.HALF_DOWN);
-		return bigDecimal;
-	}
-
-	/**
-	 * Generates a random {@link BigInteger}
-	 *
-	 * @return the random {@link BigInteger}
-	 */
-	public static BigInteger randomBigInteger()
-	{
-		return new BigInteger(RandomPrimitivesExtensions.randomInt(180), DefaultSecureRandom.get());
 	}
 
 	private RandomNumberExtensions()

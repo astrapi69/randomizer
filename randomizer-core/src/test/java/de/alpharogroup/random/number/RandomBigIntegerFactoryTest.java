@@ -24,87 +24,78 @@
  */
 package de.alpharogroup.random.number;
 
-import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.assertTrue;
-
-import java.math.BigDecimal;
-
+import de.alpharogroup.random.DefaultSecureRandom;
 import org.meanbean.test.BeanTester;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import de.alpharogroup.BaseTestCase;
-import de.alpharogroup.string.StringExtensions;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+import static org.testng.AssertJUnit.assertNotNull;
 
 /**
- * The unit test class for the class {@link RandomNumberExtensions}
+ * The unit test class for the class {@link RandomBigIntegerFactory}
  *
  * @version 1.0
  * @author Asterios Raptis
  */
-public class RandomNumberExtensionsTest extends BaseTestCase
+public class RandomBigIntegerFactoryTest
 {
 
-	boolean expected;
-
 	/**
-	 * {@inheritDoc}
+	 * Test method for {@link RandomBigIntegerFactory#randomBigInteger()}
 	 */
-	@Override
-	@BeforeMethod
-	protected void setUp() throws Exception
+	@Test
+	public void testRandomBigInteger()
 	{
-		super.setUp();
+		BigInteger randomBigInteger = RandomBigIntegerFactory.randomBigInteger();
+		assertNotNull(randomBigInteger);
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * Test method for {@link RandomBigIntegerFactory#randomBigInteger(SecureRandom)}
 	 */
-	@Override
-	@AfterMethod
-	protected void tearDown() throws Exception
+	@Test
+	public void testRandomBigIntegerSecureRandom()
 	{
-		super.tearDown();
+		BigInteger randomBigInteger = RandomBigIntegerFactory.randomBigInteger(DefaultSecureRandom.get());
+		assertNotNull(randomBigInteger);
 	}
 
 	/**
-	 * Test method for {@link RandomNumberExtensions#getRandomNumberString(int, int)}
+	 * Test method for {@link RandomBigIntegerFactory#randomSerialNumber(SecureRandom)} 
 	 */
 	@Test(enabled = true)
-	public void testGetRandomFloatString()
+	public void testRandomSerialNumberSecureRandom()
 	{
-		int beforeComma;
-		int afterComma;
-		beforeComma = 3;
-		afterComma = 2;
-		String randomFloatString = RandomNumberExtensions.getRandomNumberString(afterComma,
-			beforeComma);
-		assertNotNull(randomFloatString);
-		Float floatObj = Float.valueOf(randomFloatString);
-		assertNotNull(floatObj);
+		for (int i = 0; i < 10; i++)
+		{
+			BigInteger randomSerialNumber = RandomBigIntegerFactory.randomSerialNumber(DefaultSecureRandom.get());
+			assertNotNull(randomSerialNumber);
+		}
 	}
 
 	/**
-	 * Test method for {@link RandomNumberExtensions#getRandomNumericString()}
+	 * Test method for {@link RandomBigIntegerFactory#randomSerialNumber()} 
 	 */
 	@Test(enabled = true)
-	public void testGetRandomNumericString()
+	public void testRandomSerialNumber()
 	{
-		String randomNumericString = RandomNumberExtensions.getRandomNumericString();
-		assertNotNull(randomNumericString);
-		assertTrue(StringExtensions.isNumber(randomNumericString));
+		for (int i = 0; i < 10; i++)
+		{
+			BigInteger randomSerialNumber = RandomBigIntegerFactory.randomSerialNumber();
+			assertNotNull(randomSerialNumber);
+		}
 	}
-
-
 	/**
-	 * Test method for {@link RandomNumberExtensions} with {@link BeanTester}
+	 * Test method for {@link RandomBigIntegerFactory} with {@link BeanTester}
 	 */
 	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(RandomNumberExtensions.class);
+		beanTester.testBean(RandomBigIntegerFactory.class);
 	}
 
 }

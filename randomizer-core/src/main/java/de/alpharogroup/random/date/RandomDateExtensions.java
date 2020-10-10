@@ -36,7 +36,9 @@ import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.date.CalculateDateExtensions;
 import de.alpharogroup.date.CreateDateExtensions;
 import de.alpharogroup.random.SecureRandomFactory;
-import de.alpharogroup.random.number.RandomPrimitivesExtensions;
+import de.alpharogroup.random.number.RandomBooleanFactory;
+import de.alpharogroup.random.number.RandomIntFactory;
+import de.alpharogroup.random.number.RandomLongFactory;
 
 /**
  * The class {@link RandomDateExtensions} is a utility class for creating random random dates.
@@ -57,7 +59,7 @@ public final class RandomDateExtensions
 	 */
 	public static Date dateAfter(final Date date)
 	{
-		return dateAfter(date, RandomPrimitivesExtensions.randomInt(10000));
+		return dateAfter(date, RandomIntFactory.randomInt(10000));
 	}
 
 	/**
@@ -72,7 +74,7 @@ public final class RandomDateExtensions
 	 */
 	public static Date dateAfter(final Date date, final int range)
 	{
-		return CalculateDateExtensions.addDays(date, RandomPrimitivesExtensions.randomInt(range));
+		return CalculateDateExtensions.addDays(date, RandomIntFactory.randomInt(range));
 	}
 
 	/**
@@ -230,7 +232,7 @@ public final class RandomDateExtensions
 	 */
 	public static Date randomDateBetween(final Date from, final int startDays, final int endDays)
 	{
-		return dateAfter(from, RandomPrimitivesExtensions.randomIntBetween(startDays, endDays));
+		return dateAfter(from, RandomIntFactory.randomIntBetween(startDays, endDays));
 	}
 
 	/**
@@ -242,15 +244,15 @@ public final class RandomDateExtensions
 	{
 		LocalDate randomLocalDate;
 		LocalDate now = LocalDate.now();
-		if (RandomPrimitivesExtensions.randomBoolean())
+		if (RandomBooleanFactory.randomBoolean())
 		{
 			randomLocalDate = now
-				.plusDays(RandomPrimitivesExtensions.randomLongBetween(-999999999L, 999999999L));
+				.plusDays(RandomLongFactory.randomLongBetween(-999999999L, 999999999L));
 		}
 		else
 		{
 			randomLocalDate = now
-				.minusDays(RandomPrimitivesExtensions.randomLongBetween(-999999999L, 999999999L));
+				.minusDays(RandomLongFactory.randomLongBetween(-999999999L, 999999999L));
 		}
 		return randomLocalDate;
 	}
@@ -274,17 +276,17 @@ public final class RandomDateExtensions
 	{
 		LocalTime randomLocalTime;
 		LocalTime now = LocalTime.now();
-		if (RandomPrimitivesExtensions.randomBoolean())
+		if (RandomBooleanFactory.randomBoolean())
 		{
-			randomLocalTime = now.plusHours(RandomPrimitivesExtensions.randomLong(23))
-				.plusMinutes(RandomPrimitivesExtensions.randomLong(59))
-				.plusSeconds(RandomPrimitivesExtensions.randomLong(59));
+			randomLocalTime = now.plusHours(RandomLongFactory.randomLong(23))
+				.plusMinutes(RandomLongFactory.randomLong(59))
+				.plusSeconds(RandomLongFactory.randomLong(59));
 		}
 		else
 		{
-			randomLocalTime = now.minusHours(RandomPrimitivesExtensions.randomLong(23))
-				.minusMinutes(RandomPrimitivesExtensions.randomLong(59))
-				.minusSeconds(RandomPrimitivesExtensions.randomLong(59));
+			randomLocalTime = now.minusHours(RandomLongFactory.randomLong(23))
+				.minusMinutes(RandomLongFactory.randomLong(59))
+				.minusSeconds(RandomLongFactory.randomLong(59));
 		}
 		return randomLocalTime;
 	}
@@ -298,7 +300,7 @@ public final class RandomDateExtensions
 	{
 		List<String> availableZoneIds = ListFactory.newArrayList(ZoneId.getAvailableZoneIds());
 		return ZoneId.of(
-			availableZoneIds.get(RandomPrimitivesExtensions.randomInt(availableZoneIds.size())));
+			availableZoneIds.get(RandomIntFactory.randomInt(availableZoneIds.size())));
 	}
 
 	private RandomDateExtensions()

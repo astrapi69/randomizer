@@ -81,10 +81,10 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEntry(java.util.List)} .
+	 * Test method for {@link RandomExtensions#randomListEntry(java.util.List)} .
 	 */
 	@Test
-	public void testGetRandomEntryList()
+	public void testRandomListEntry()
 	{
 		final List<String> list = new ArrayList<>();
 		list.add("Anton");
@@ -97,7 +97,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		expected = true;
 		for (int i = 0; i < 10; i++)
 		{
-			final String randomEntry = RandomExtensions.getRandomEntry(list);
+			final String randomEntry = RandomExtensions.randomListEntry(list);
 
 			actual = list.contains(randomEntry);
 			assertEquals(actual.booleanValue(), expected);
@@ -105,10 +105,10 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEntry(java.util.Map)} .
+	 * Test method for {@link RandomExtensions#randomMapEntry(java.util.Map)} .
 	 */
 	@Test
-	public void testGetRandomEntryMap()
+	public void testRandomMapEntry()
 	{
 		final Map<String, String> map = new HashMap<>();
 		map.put("1", "novalue");
@@ -121,7 +121,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		expected = true;
 		for (int i = 0; i < 10; i++)
 		{
-			final String randomValue = (String)RandomExtensions.getRandomEntry(map);
+			final String randomValue = (String)RandomExtensions.randomMapEntry(map);
 
 			actual = values.contains(randomValue);
 			assertEquals(actual.booleanValue(), expected);
@@ -129,13 +129,13 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnumFromObject(Enum)} .
+	 * Test method for {@link RandomExtensions#randomEnumFromObject(Enum)} .
 	 */
 	@Test
-	public void testGetRandomEnum()
+	public void testRandomEnum()
 	{
 		final Gender enumEntry = Gender.FEMALE;
-		final Gender randomEnumEntry = RandomExtensions.getRandomEnumFromObject(enumEntry);
+		final Gender randomEnumEntry = RandomExtensions.randomEnumFromObject(enumEntry);
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
@@ -143,24 +143,24 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnumFromEnumValues(Enum[])} .
+	 * Test method for {@link RandomExtensions#randomEnumFromEnumValues(Enum[])} .
 	 */
 	@Test
-	public void testGetRandomEnumArray()
+	public void testRandomEnumArray()
 	{
 		final Gender[] genders = Gender.values();
-		final Gender randomEnumEntry = RandomExtensions.getRandomEnumFromEnumValues(genders);
+		final Gender randomEnumEntry = RandomExtensions.randomEnumFromEnumValues(genders);
 		assertTrue("Enum value should contain the random value.",
 			ArrayUtils.contains(genders, randomEnumEntry));
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnumFromObject(Enum)} .
+	 * Test method for {@link RandomExtensions#randomEnumFromObject(Enum)} .
 	 */
 	@Test
-	public void testGetRandomEnumClass()
+	public void testRandomEnumClass()
 	{
-		final Gender randomEnumEntry = RandomExtensions.getRandomEnumFromClass(Gender.class);
+		final Gender randomEnumEntry = RandomExtensions.randomEnumFromClass(Gender.class);
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
@@ -168,52 +168,52 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnumFromClassname(String)}
+	 * Test method for {@link RandomExtensions#randomEnumFromClassname(String)}
 	 */
 	@Test
-	public void testGetRandomEnumNull()
+	public void testRandomEnumNull()
 	{
-		Gender randomEnum = RandomExtensions.getRandomEnumFromObject((Gender)null);
+		Gender randomEnum = RandomExtensions.randomEnumFromObject((Gender)null);
 		assertNull(randomEnum);
 
-		randomEnum = RandomExtensions.getRandomEnumFromClassname((String)null);
+		randomEnum = RandomExtensions.randomEnumFromClassname((String)null);
 		assertNull(randomEnum);
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomEnumFromClassname(String)} .
+	 * Test method for {@link RandomExtensions#randomEnumFromClassname(String)} .
 	 */
 	@Test
-	public void testGetRandomEnumString()
+	public void testRandomEnumString()
 	{
 		String enumClassName = "de.alpharogroup.test.objects.enums.Gender";
-		Gender randomEnumEntry = RandomExtensions.getRandomEnumFromClassname(enumClassName);
+		Gender randomEnumEntry = RandomExtensions.randomEnumFromClassname(enumClassName);
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
 			ArrayUtils.contains(genders, randomEnumEntry));
 
 		enumClassName = "Gender";
-		randomEnumEntry = RandomExtensions.getRandomEnumFromClassname(enumClassName);
+		randomEnumEntry = RandomExtensions.randomEnumFromClassname(enumClassName);
 		assertNull(randomEnumEntry);
 
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomHexString(int)}
+	 * Test method for {@link RandomExtensions#randomHexString(int)}
 	 */
 	@Test(enabled = true)
-	public void testgetRandomHexString()
+	public void testRandomHexString()
 	{
-		String randomHexString = RandomExtensions.getRandomHexString(16);
+		String randomHexString = RandomExtensions.randomHexString(16);
 		assertTrue(randomHexString.length() == 16);
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#getRandomKey(java.util.Map)} .
+	 * Test method for {@link RandomExtensions#randomKey(java.util.Map)} .
 	 */
 	@Test
-	public void testGetRandomKey()
+	public void testRandomKey()
 	{
 		final Map<String, String> map = new HashMap<>();
 		map.put("1", "novalue");
@@ -225,7 +225,7 @@ public class RandomExtensionsTest extends BaseTestCase
 		expected = true;
 		for (int i = 0; i < 10; i++)
 		{
-			final String randomKey = (String)RandomExtensions.getRandomKey(map);
+			final String randomKey = (String)RandomExtensions.randomKey(map);
 
 			actual = keys.contains(randomKey);
 			assertEquals(actual.booleanValue(), expected);
@@ -233,12 +233,12 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#newRandomPixel()}
+	 * Test method for {@link RandomExtensions#randomPixel()}
 	 */
 	@Test(enabled = true)
-	public void testNewRandomPixel()
+	public void testRandomPixel()
 	{
-		int random = RandomExtensions.newRandomPixel();
+		int random = RandomExtensions.randomPixel();
 		assertTrue(MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, random));
 	}
 
@@ -253,26 +253,13 @@ public class RandomExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomExtensions#randomToken()} .
+	 * Test method for {@link RandomExtensions#randomSalt(int, Charset)}
 	 */
 	@Test
 	public void testRandomSalt()
 	{
-		final byte[] randomSalt = RandomExtensions.getRandomSalt(8, Charset.forName("UTF-8"));
+		final byte[] randomSalt = RandomExtensions.randomSalt(8, Charset.forName("UTF-8"));
 		System.out.println(new String(randomSalt));
-	}
-
-	/**
-	 * Test method for {@link RandomExtensions#randomSerialNumber()}
-	 */
-	@Test(enabled = true)
-	public void testRandomSerialNumber()
-	{
-		for (int i = 0; i < 10; i++)
-		{
-			BigInteger randomSerialNumber = RandomExtensions.randomSerialNumber();
-			assertNotNull(randomSerialNumber);
-		}
 	}
 
 	/**
