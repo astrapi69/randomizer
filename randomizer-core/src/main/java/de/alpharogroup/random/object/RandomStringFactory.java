@@ -28,38 +28,9 @@ import de.alpharogroup.random.RandomCharacters;
 import de.alpharogroup.random.number.RandomCharFactory;
 import de.alpharogroup.random.number.RandomIntFactory;
 
-public final class RandomStringFactory
-{
-	/**
-	 * Generates a random string with a length between 3 and 25
-	 *
-	 * @return The produced random String.
-	 */
-	public static String newRandomString()
-	{
-		return newRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
-			RandomPrimitivesExtensions.randomIntBetween(3, 25));
-	}
+public final class RandomStringFactory {
+    private RandomStringFactory(){}
 
-<<<<<<< HEAD
-	/**
-	 * Generates a random string.
-	 *
-	 * @param length
-	 *            the specified length.
-	 * @return the generated random string.
-	 */
-	public static String newRandomString(final int length)
-	{
-		final int maxLength = Math.min(length, 1024);
-		final StringBuilder sb = new StringBuilder(maxLength);
-		for (int i = 0; i < maxLength; i++)
-		{
-			sb.append(RandomPrimitivesExtensions.randomChar());
-		}
-		return sb.toString();
-	}
-=======
     /**
      * Generates a random string with a length between 3 and 25
      *
@@ -70,23 +41,7 @@ public final class RandomStringFactory
         return newRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
                 RandomIntFactory.randomIntBetween(3, 25));
     }
->>>>>>> branch 'develop' of https://github.com/astrapi69/randomizer.git
 
-<<<<<<< HEAD
-	/**
-	 * Generates a random string with a length between the given start and end
-	 *
-	 * @param start
-	 *            the start
-	 * @param end
-	 *            the end
-	 * @return the generated random string
-	 */
-	public static String newRandomString(final int start, int end)
-	{
-		return newRandomString(RandomPrimitivesExtensions.randomIntBetween(start, end));
-	}
-=======
     /**
      * Generates a random string.
      *
@@ -104,29 +59,7 @@ public final class RandomStringFactory
         }
         return sb.toString();
     }
->>>>>>> branch 'develop' of https://github.com/astrapi69/randomizer.git
 
-<<<<<<< HEAD
-	/**
-	 * The Method randomString(String, int) makes an random String from the given String and to the
-	 * spezified length. This can be used to produce passwords.
-	 *
-	 * @param chars
-	 *            The String to get the random chars.
-	 * @param length
-	 *            The length from the random String.
-	 * @return The produced random String.
-	 */
-	public static String newRandomString(final String chars, final int length)
-	{
-		final StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < length; i++)
-		{
-			sb.append(RandomPrimitivesExtensions.randomChar(chars));
-		}
-		return sb.toString();
-	}
-=======
     /**
      * Generates a random string with a length between the given start and end
      *
@@ -140,24 +73,7 @@ public final class RandomStringFactory
     {
         return newRandomString(RandomIntFactory.randomIntBetween(start, end));
     }
->>>>>>> branch 'develop' of https://github.com/astrapi69/randomizer.git
 
-<<<<<<< HEAD
-	/**
-	 * The Method randomString(String []) a random String from the Array For example: The
-	 * Stringarray test as argument. Possible values: "blab", "flih", "klap", "teta", "brut",
-	 * "gzft", "ccp". Possible selection can be one value from the Stringarray like "blab" or
-	 * "klap".
-	 *
-	 * @param array
-	 *            The array with the String to be selected.
-	 * @return The selected String from the array.
-	 */
-	public static String newRandomString(final String[] array)
-	{
-		return array[RandomPrimitivesExtensions.randomInt(array.length)];
-	}
-=======
     /**
      * The Method randomString(String, int) makes an random String from the given String and to the
      * spezified length. This can be used to produce passwords.
@@ -177,13 +93,7 @@ public final class RandomStringFactory
         }
         return sb.toString();
     }
->>>>>>> branch 'develop' of https://github.com/astrapi69/randomizer.git
 
-<<<<<<< HEAD
-	private RandomStringFactory()
-	{
-	}
-=======
     /**
      * The Method randomString(String []) a random String from the Array For example: The
      * Stringarray test as argument. Possible values: "blab", "flih", "klap", "teta", "brut",
@@ -198,5 +108,4 @@ public final class RandomStringFactory
     {
         return array[RandomIntFactory.randomInt(array.length)];
     }
->>>>>>> branch 'develop' of https://github.com/astrapi69/randomizer.git
 }
