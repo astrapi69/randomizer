@@ -32,7 +32,9 @@ import java.util.Objects;
 import de.alpharogroup.date.CalculateDateExtensions;
 import de.alpharogroup.date.CreateDateExtensions;
 import de.alpharogroup.random.enums.RandomAlgorithm;
-import de.alpharogroup.random.number.RandomPrimitivesFactory;
+import de.alpharogroup.random.number.RandomBooleanFactory;
+import de.alpharogroup.random.number.RandomIntFactory;
+import de.alpharogroup.random.number.RandomLongFactory;
 
 /**
  * The factory class {@link RandomDateFactory} for creating random Date objects
@@ -54,7 +56,7 @@ public final class RandomDateFactory
 	public static Date dateAfter(final Date date, final int range, SecureRandom secureRandom)
 	{
 		return CalculateDateExtensions.addDays(date,
-			RandomPrimitivesFactory.randomInt(range, RandomAlgorithm.SECURE_RANDOM, secureRandom));
+				RandomIntFactory.randomInt(range, RandomAlgorithm.SECURE_RANDOM, secureRandom));
 	}
 
 
@@ -73,7 +75,7 @@ public final class RandomDateFactory
 	public static Date dateBefore(final Date date, final int range, SecureRandom secureRandom)
 	{
 		return CalculateDateExtensions.substractDaysFromDate(date,
-			RandomPrimitivesFactory.randomInt(range, RandomAlgorithm.SECURE_RANDOM, secureRandom));
+				RandomIntFactory.randomInt(range, RandomAlgorithm.SECURE_RANDOM, secureRandom));
 	}
 
 	/**
@@ -105,7 +107,7 @@ public final class RandomDateFactory
 	public static Date randomDate(SecureRandom secureRandom)
 	{
 		final Date now = CreateDateExtensions.now();
-		if (RandomPrimitivesFactory.randomBoolean(secureRandom))
+		if (RandomBooleanFactory.randomBoolean(secureRandom))
 		{
 			return dateAfter(now, 10000, secureRandom);
 		}
@@ -151,7 +153,7 @@ public final class RandomDateFactory
 	{
 		Objects.requireNonNull(secureRandom);
 		final SimpleDateFormat sdf = new SimpleDateFormat(format);
-		long randomLongBetween = RandomPrimitivesFactory.randomLongBetween(startDate, endDate,
+		long randomLongBetween = RandomLongFactory.randomLongBetween(startDate, endDate,
 			secureRandom);
 		Date between = new Date(randomLongBetween);
 		return sdf.format(between);

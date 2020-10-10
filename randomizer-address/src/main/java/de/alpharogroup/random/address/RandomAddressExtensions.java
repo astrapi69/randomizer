@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.Set;
 
-import de.alpharogroup.random.number.RandomPrimitivesExtensions;
+import de.alpharogroup.random.number.RandomIntFactory;
 import de.alpharogroup.random.util.PropertiesLoader;
 
 /**
@@ -63,7 +63,7 @@ public final class RandomAddressExtensions
 			: PropertiesLoader.loadProperties(PROP_FILE_STREETS);
 		final int size = p.size();
 		final Object[] keys = p.keySet().toArray();
-		final String street = (String)p.get(keys[RandomPrimitivesExtensions.randomInt(size)]);
+		final String street = (String)p.get(keys[RandomIntFactory.randomInt(size)]);
 		return street;
 	}
 
@@ -80,7 +80,7 @@ public final class RandomAddressExtensions
 	public static String getRandomStreetWithNumber(final Properties properties) throws IOException
 	{
 		final String street = getRandomStreet(properties);
-		final String streetWithNumber = street + " " + RandomPrimitivesExtensions.randomInt(200);
+		final String streetWithNumber = street + " " + RandomIntFactory.randomInt(200);
 		return streetWithNumber;
 	}
 
@@ -95,7 +95,7 @@ public final class RandomAddressExtensions
 	{
 		final Set<Object> keyset = properties.keySet();
 		final Object[] keys = keyset.toArray();
-		final int randomIndex = RandomPrimitivesExtensions.randomInt(keys.length);
+		final int randomIndex = RandomIntFactory.randomInt(keys.length);
 		final String zip = (String)keys[randomIndex];
 		return zip;
 	}

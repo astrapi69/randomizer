@@ -29,8 +29,8 @@ import java.util.List;
 import java.util.Optional;
 
 import de.alpharogroup.random.RandomCharacters;
+import de.alpharogroup.random.number.RandomIntFactory;
 import de.alpharogroup.random.number.RandomNumberExtensions;
-import de.alpharogroup.random.number.RandomPrimitivesExtensions;
 
 /**
  * The class {@link RandomObjectsExtensions} is a utility class to create random objects.
@@ -82,9 +82,9 @@ public final class RandomObjectsExtensions
 		final StringBuilder email = new StringBuilder();
 		final String emailprefix = RandomStringFactory.newRandomString(
 			RandomCharacters.lowcaseWithNumbers.getCharacters(),
-			RandomPrimitivesExtensions.randomInt(20) + 1);
+				RandomIntFactory.randomInt(20) + 1);
 		final String domain = RandomStringFactory.newRandomString(
-			RandomCharacters.lowcase.getCharacters(), RandomPrimitivesExtensions.randomInt(12) + 1);
+			RandomCharacters.lowcase.getCharacters(), RandomIntFactory.randomInt(12) + 1);
 		final String topDomain = RandomStringFactory
 			.newRandomString(RandomCharacters.lowcase.getCharacters(), 2);
 		email.append(emailprefix);
@@ -188,7 +188,7 @@ public final class RandomObjectsExtensions
 		final StringBuilder website = new StringBuilder();
 		final String websitePrefix = "http://www";
 		final String domain = RandomStringFactory.newRandomString(
-			RandomCharacters.lowcase.getCharacters(), RandomPrimitivesExtensions.randomInt(12) + 1);
+			RandomCharacters.lowcase.getCharacters(), RandomIntFactory.randomInt(12) + 1);
 		final String topDomain = RandomStringFactory
 			.newRandomString(RandomCharacters.lowcase.getCharacters(), 2);
 		website.append(websitePrefix);
@@ -241,7 +241,7 @@ public final class RandomObjectsExtensions
 		boolean fullList = true;
 		while (fullList)
 		{
-			final int randomIndex = RandomPrimitivesExtensions.randomInt(dc.size());
+			final int randomIndex = RandomIntFactory.randomInt(dc.size());
 			final Character c = dc.get(randomIndex);
 			sb.append(c);
 			dc.remove(randomIndex);

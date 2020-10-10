@@ -1,26 +1,41 @@
 ## Change log
 ----------------------
 
-Version 6.9-SNAPSHOT
+Version 8-SNAPSHOT
+-------------
+
+ADDED:
+ 
+- new factory classes for every primitive type created
+
+CHANGED:
+
+- update of silly-collections version to 8.3
+- deleted RandomPrimitivesFactory and RandomPrimitivesExtensions
+
+Version 6.9
 -------------
 
 CHANGED:
 
-- update of gradle version to 6.5
+- update of gradle version to 6.6.1
 - update of silly-collections version to 8.2
-- update of silly-math version to 1.2
-- update of test dependency equalsverifier version to 3.4.1
+- update of silly-math version to 1.3
+- update of dependency jobj-core version to 3.6
+- update of test dependency testng to new version 7.3.0
+- update of test dependency equalsverifier version to 3.4.3
 - extracted project properties to gradle.properties
 - removed deprecated methods for Timestamp in class RandomDateExtensions
 - removed deprecated methods for create random double and float between the range from start to end  in class RandomPrimitivesExtensions
 - removed deprecated methods for create random String object in class RandomExtensions
+
 
 Version 6.8
 -------------
 
 ADDED:
  
-- new seed field for init with a long from a Date object, for instance of a draw date of lottery
+- new seed field in the SecureRandomBuilder class for init with a long from a Date object, for instance for a draw date of a lottery game 
 - new class RandomPrimitivesFactory that generates random primitives with SecureRandom argument
 - new class RandomDateFactory that generates random date objects with SecureRandom argument
 - new class RandomStringFactory that generates random String objects
