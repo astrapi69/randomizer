@@ -1,7 +1,7 @@
 ## Change log
 ----------------------
 
-Version 8-SNAPSHOT
+Version 8
 -------------
 
 ADDED:
@@ -12,6 +12,7 @@ CHANGED:
 
 - update of silly-collections version to 8.3
 - deleted RandomPrimitivesFactory and RandomPrimitivesExtensions
+- moved all factory methods from extension classes to factory classes and deleted extension classes
 
 Version 6.9
 -------------
