@@ -33,9 +33,9 @@ import de.alpharogroup.random.number.RandomIntFactory;
 import de.alpharogroup.random.number.RandomNumberExtensions;
 
 /**
- * The class {@link RandomObjectsExtensions} is a utility class to create random objects.
+ * The class {@link RandomWebObjectFactory} is a utility class to create random web objects
  */
-public final class RandomObjectsExtensions
+public final class RandomWebObjectFactory
 {
 	/**
 	 * Gets an infomail address from the given url.
@@ -73,11 +73,11 @@ public final class RandomObjectsExtensions
 	}
 
 	/**
-	 * The Method getRandomEmail() gets a random email-address.
+	 * Generates a random email-address
 	 *
 	 * @return The random email-address.
 	 */
-	public static String getRandomEmail()
+	public static String randomEmail()
 	{
 		final StringBuilder email = new StringBuilder();
 		final String emailprefix = RandomStringFactory.newRandomString(
@@ -96,13 +96,13 @@ public final class RandomObjectsExtensions
 	}
 
 	/**
-	 * Gets a random faxnumber from a phone.
+	 * Generates a random faxnumber from a phone.
 	 *
 	 * @param phonenumber
 	 *            The phonenumber.
 	 * @return Return's a random faxnumber from a phone.
 	 */
-	public static String getRandomFaxnumber(final String phonenumber)
+	public static String randomFaxnumber(final String phonenumber)
 	{
 		final StringBuilder sb = new StringBuilder();
 		int length = phonenumber.length();
@@ -116,11 +116,11 @@ public final class RandomObjectsExtensions
 	}
 
 	/**
-	 * Gets a random mobil number from a mobilphone.
+	 * Generates a random mobil number from a mobilphone.
 	 *
 	 * @return Return's a random mobil number from a mobilphone.
 	 */
-	public static String getRandomMobilnumber()
+	public static String randomMobilnumber()
 	{
 		final StringBuilder randomPhonenumber = new StringBuilder();
 		randomPhonenumber.append("0");
@@ -131,13 +131,13 @@ public final class RandomObjectsExtensions
 	}
 
 	/**
-	 * The Method getRandomPassword(int) produces a random password.
+	 * Generates a random password.
 	 *
 	 * @param length
 	 *            The length from the password.
 	 * @return The password.
 	 */
-	public static String getRandomPassword(final int length)
+	public static String randomPassword(final int length)
 	{
 		final String password = RandomStringFactory.newRandomString(
 			RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(), length);
@@ -145,13 +145,13 @@ public final class RandomObjectsExtensions
 	}
 
 	/**
-	 * The Method getRandomPassword(int) produces a random password.
+	 * Generates a random password.
 	 *
 	 * @param length
 	 *            The length from the password as Optional.
 	 * @return The password.
 	 */
-	public static String getRandomPassword(final Optional<Integer> length)
+	public static String randomPassword(final Optional<Integer> length)
 	{
 		if (length.isPresent())
 		{
@@ -164,11 +164,11 @@ public final class RandomObjectsExtensions
 	}
 
 	/**
-	 * Gets a random phonenumber.
+	 * Generates a random phonenumber.
 	 *
 	 * @return Return's a random phonenumber.
 	 */
-	public static String getRandomPhonenumber()
+	public static String randomPhonenumber()
 	{
 		final StringBuilder randomPhonenumber = new StringBuilder();
 		randomPhonenumber.append("0");
@@ -179,11 +179,11 @@ public final class RandomObjectsExtensions
 	}
 
 	/**
-	 * Gets a random name for a website.
+	 * Generates a random name for a website.
 	 *
 	 * @return Returns a random name for a website.
 	 */
-	public static String getRandomWebsite()
+	public static String randomWebsite()
 	{
 		final StringBuilder website = new StringBuilder();
 		final String websitePrefix = "http://www";
@@ -204,7 +204,7 @@ public final class RandomObjectsExtensions
 	 *
 	 * @return the created random id.
 	 */
-	public static String newRandomId()
+	public static String randomId()
 	{
 		final StringBuilder sb = new StringBuilder();
 		sb.append(RandomStringFactory
@@ -230,7 +230,7 @@ public final class RandomObjectsExtensions
 	 *            The Characters for the name
 	 * @return A random Name.
 	 */
-	public static String newRandomName(final char[] donatedChars)
+	public static String randomName(final char[] donatedChars)
 	{
 		final StringBuilder sb = new StringBuilder(donatedChars.length);
 		final List<Character> dc = new ArrayList<>(donatedChars.length);
@@ -253,7 +253,7 @@ public final class RandomObjectsExtensions
 		return sb.toString();
 	}
 
-	private RandomObjectsExtensions()
+	private RandomWebObjectFactory()
 	{
 	}
 

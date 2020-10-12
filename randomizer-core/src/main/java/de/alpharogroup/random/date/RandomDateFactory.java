@@ -26,11 +26,19 @@ package de.alpharogroup.random.date;
 
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
+import de.alpharogroup.collections.list.ListFactory;
 import de.alpharogroup.date.CalculateDateExtensions;
 import de.alpharogroup.date.CreateDateExtensions;
+import de.alpharogroup.random.DefaultSecureRandom;
+import de.alpharogroup.random.SecureRandomFactory;
 import de.alpharogroup.random.enums.RandomAlgorithm;
 import de.alpharogroup.random.number.RandomBooleanFactory;
 import de.alpharogroup.random.number.RandomIntFactory;
@@ -41,6 +49,64 @@ import de.alpharogroup.random.number.RandomLongFactory;
  */
 public final class RandomDateFactory
 {
+
+	/**
+	 * Creates a random birthday-date between 9 and 55 years.
+	 *
+	 * @return 's the random date.
+	 */
+	public static Date randomBirthday()
+	{
+		final Date now = CreateDateExtensions.now();
+		// About 55 years.
+		final Date past = randomDateBefore(now, 20000);
+		// About 9 years.
+		final Date recentlyPast = randomDateBefore(now, 3000);
+		return randomBirthday(recentlyPast, past);
+	}
+
+	/**
+	 * Creates a random birthday-date between the two given date-objects.
+	 *
+	 * @param from
+	 *            The date from where to start.
+	 * @param till
+	 *            The date from where to end.
+	 * @return 's the random date.
+	 */
+	public static Date randomBirthday(final Date from, final Date till)
+	{
+		return randomDatebetween(from, till);
+	}
+
+	/**
+	 * Creates a random Date that is after from the given Date.
+	 *
+	 * @param date
+	 *            The Date from where to compute the future date.
+	 *
+	 * @return The random Date in the future.
+	 */
+	public static Date randomDateAfter(final Date date)
+	{
+		return randomDateAfter(date, RandomIntFactory.randomInt(10000));
+	}
+
+	/**
+	 * Creates a random Date that is after from the given Date.
+	 *
+	 * @param date
+	 *            The Date from where to compute the future date.
+	 * @param range
+	 *            The range.
+	 *
+	 * @return The random Date in the future.
+	 */
+	public static Date randomDateAfter(final Date date, final int range)
+	{
+		return randomDateAfter(date, range, DefaultSecureRandom.get());
+	}
+
 	/**
 	 * Creates a random Date that is after from the given Date.
 	 *
@@ -53,12 +119,39 @@ public final class RandomDateFactory
 	 *
 	 * @return The random Date in the future.
 	 */
-	public static Date dateAfter(final Date date, final int range, SecureRandom secureRandom)
+	public static Date randomDateAfter(final Date date, final int range, SecureRandom secureRandom)
 	{
 		return CalculateDateExtensions.addDays(date,
 				RandomIntFactory.randomInt(range, RandomAlgorithm.SECURE_RANDOM, secureRandom));
 	}
 
+	/**
+	 * Creates a random date that is before from the given date.
+	 *
+	 * @param date
+	 *            The date from where to compute the Past date.
+	 *
+	 * @return The random Date in the past.
+	 */
+	public static Date randomDateBefore(final Date date)
+	{
+		return randomDateBefore(date, 10000);
+	}
+
+	/**
+	 * Creates a random date that is before from the given date.
+	 *
+	 * @param date
+	 *            The date from where to compute the past date.
+	 * @param range
+	 *            The range.
+	 *
+	 * @return The random Date in the past.
+	 */
+	public static Date randomDateBefore(final Date date, final int range)
+	{
+		return RandomDateFactory.randomDateBefore(date, range, SecureRandomFactory.newSecureRandom());
+	}
 
 	/**
 	 * Creates a random date that is before from the given date.
@@ -72,10 +165,32 @@ public final class RandomDateFactory
 	 *
 	 * @return The random Date in the past.
 	 */
-	public static Date dateBefore(final Date date, final int range, SecureRandom secureRandom)
+	public static Date randomDateBefore(final Date date, final int range, SecureRandom secureRandom)
 	{
 		return CalculateDateExtensions.substractDaysFromDate(date,
 				RandomIntFactory.randomInt(range, RandomAlgorithm.SECURE_RANDOM, secureRandom));
+	}
+
+	/**
+	 * Creates a random {@link Date}
+	 *
+	 * @return The random {@link Date}
+	 */
+	public static Date randomDate()
+	{
+		return RandomDateFactory.randomDate(SecureRandomFactory.newSecureRandom());
+	}
+
+	/**
+	 * Creates a random date.
+	 *
+	 * @param from
+	 *            The date from where to begin.
+	 * @return The random date.
+	 */
+	public static Date randomDate(final Date from)
+	{
+		return RandomDateFactory.randomDate(from, SecureRandomFactory.newSecureRandom());
 	}
 
 	/**
@@ -109,9 +224,9 @@ public final class RandomDateFactory
 		final Date now = CreateDateExtensions.now();
 		if (RandomBooleanFactory.randomBoolean(secureRandom))
 		{
-			return dateAfter(now, 10000, secureRandom);
+			return randomDateAfter(now, 10000, secureRandom);
 		}
-		return dateBefore(now, 10000, secureRandom);
+		return randomDateBefore(now, 10000, secureRandom);
 	}
 
 	/**
@@ -157,6 +272,139 @@ public final class RandomDateFactory
 			secureRandom);
 		Date between = new Date(randomLongBetween);
 		return sdf.format(between);
+	}
+
+	/**
+	 * Creates a random Date between the range from start and end.
+	 *
+	 * @param start
+	 *            The Date from where the range starts.
+	 * @param end
+	 *            The Date from where the range ends.
+	 * @return A random Date between the range from start and end.
+	 */
+	public static Date randomDatebetween(final Date start, final Date end)
+	{
+		return RandomDateFactory.randomDateBetween(start, end,
+				SecureRandomFactory.newSecureRandom());
+	}
+
+	/**
+	 * Creates a random Date between the range from startDays and endDays from the given Date and
+	 * gives it back as a string to the default "dd.MM.yyyy HH:mm:ss" format.
+	 *
+	 * @param startDate
+	 *            The date from where to start as a long.
+	 * @param endDate
+	 *            The date from where to end as a long.
+	 * @return The random date as a String.
+	 */
+	public static String randomDatebetween(final long startDate, final long endDate)
+	{
+		return randomDatebetween(startDate, endDate, "dd.MM.yyyy HH:mm:ss");
+	}
+
+	/**
+	 * Creates a random Date between the range from startDays and endDays from the given Date and
+	 * gives it back as a string to the given format.
+	 *
+	 * @param startDate
+	 *            The date from where to start as a long.
+	 * @param endDate
+	 *            The date from where to end as a long.
+	 * @param format
+	 *            The format for the date.
+	 * @return The random date as a String.
+	 */
+	public static String randomDatebetween(final long startDate, final long endDate,
+										   final String format)
+	{
+		return RandomDateFactory.randomDateBetween(startDate, endDate, format,
+				SecureRandomFactory.newSecureRandom());
+	}
+
+	/**
+	 * Creates a random Date between the range from startDays and endDays from the given Date.
+	 *
+	 * @param from
+	 *            The Date from where to the random Date to start.
+	 * @param startDays
+	 *            The int that represents the days from where the range starts.
+	 * @param endDays
+	 *            The int that represents the days from where the range ends.
+	 * @return A random Date between the range from startDays and endDays from the given Date.
+	 */
+	public static Date randomDateBetween(final Date from, final int startDays, final int endDays)
+	{
+		return RandomDateFactory.randomDateAfter(from, RandomIntFactory.randomIntBetween(startDays, endDays));
+	}
+
+	/**
+	 * Creates a random {@link LocalDate} object
+	 *
+	 * @return the random {@link LocalDate} object
+	 */
+	public static LocalDate randomLocalDate()
+	{
+		LocalDate randomLocalDate;
+		LocalDate now = LocalDate.now();
+		if (RandomBooleanFactory.randomBoolean())
+		{
+			randomLocalDate = now
+					.plusDays(RandomLongFactory.randomLongBetween(-999999999L, 999999999L));
+		}
+		else
+		{
+			randomLocalDate = now
+					.minusDays(RandomLongFactory.randomLongBetween(-999999999L, 999999999L));
+		}
+		return randomLocalDate;
+	}
+
+	/**
+	 * Creates a random {@link LocalDateTime} object
+	 *
+	 * @return the random {@link LocalDateTime} object
+	 */
+	public static LocalDateTime randomLocalDateTime()
+	{
+		return LocalDateTime.of(randomLocalDate(), randomLocalTime());
+	}
+
+	/**
+	 * Creates a random {@link LocalTime} object
+	 *
+	 * @return the random {@link LocalTime} object
+	 */
+	public static LocalTime randomLocalTime()
+	{
+		LocalTime randomLocalTime;
+		LocalTime now = LocalTime.now();
+		if (RandomBooleanFactory.randomBoolean())
+		{
+			randomLocalTime = now.plusHours(RandomLongFactory.randomLong(23))
+					.plusMinutes(RandomLongFactory.randomLong(59))
+					.plusSeconds(RandomLongFactory.randomLong(59));
+		}
+		else
+		{
+			randomLocalTime = now.minusHours(RandomLongFactory.randomLong(23))
+					.minusMinutes(RandomLongFactory.randomLong(59))
+					.minusSeconds(RandomLongFactory.randomLong(59));
+		}
+		return randomLocalTime;
+	}
+
+	/**
+	 * Creates a random {@link LocalDateTime} object
+	 *
+	 * @return the zone id
+	 */
+	public static ZoneId randomZoneId()
+	{
+		List<String> availableZoneIds = ListFactory.newArrayList(ZoneId.getAvailableZoneIds());
+		return ZoneId.of(
+				availableZoneIds.get(RandomIntFactory.randomInt(availableZoneIds.size())));
 	}
 
 	private RandomDateFactory()

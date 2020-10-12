@@ -108,4 +108,22 @@ public final class RandomStringFactory {
     {
         return array[RandomIntFactory.randomInt(array.length)];
     }
+
+
+    /**
+     * Generates a random hexadecimal {@link String}
+     *
+     * @param numberOfCharacters
+     *            the number of characters
+     * @return the generated random hexadecimal {@link String}
+     */
+    public static String randomHexString(int numberOfCharacters)
+    {
+        StringBuilder sb = new StringBuilder();
+        while (sb.length() < numberOfCharacters)
+        {
+            sb.append(Integer.toHexString(RandomIntFactory.randomInt()));
+        }
+        return sb.toString().substring(0, numberOfCharacters);
+    }
 }
