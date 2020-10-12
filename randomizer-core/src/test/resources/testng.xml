@@ -3,8 +3,8 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-      <class name="de.alpharogroup.random.address.RandomAddressExtensionsTest"/>
-      <class name="de.alpharogroup.random.date.RandomDateExtensionsTest"/>
+      <class name="de.alpharogroup.random.date.RandomDateFactoryTest"/>
+      <class name="de.alpharogroup.random.object.RandomObjectFactoryTest"/>
       <class name="de.alpharogroup.random.NullSecureRandomExtensionsTest"/>
       <class name="de.alpharogroup.random.RandomExtensionsTest"/>
       <class name="de.alpharogroup.random.RandomObjectsExtensionsTest"/>

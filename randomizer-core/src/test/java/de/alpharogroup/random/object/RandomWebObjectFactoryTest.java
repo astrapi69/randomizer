@@ -39,12 +39,12 @@ import de.alpharogroup.BaseTestCase;
 import de.alpharogroup.random.RandomCharacters;
 
 /**
- * The unit test class for the class {@link RandomObjectsExtensions}.
+ * The unit test class for the class {@link RandomWebObjectFactory}.
  *
  * @version 1.0
  * @author Asterios Raptis
  */
-public class RandomObjectsExtensionsTest extends BaseTestCase
+public class RandomWebObjectFactoryTest extends BaseTestCase
 {
 
 	boolean expected;
@@ -68,7 +68,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsExtensions#getInfomailFromWebsite(java.lang.String)} .
+	 * Test method for {@link RandomWebObjectFactory#getInfomailFromWebsite(java.lang.String)} .
 	 */
 	@Test
 	public void testGetInfomailFromWebsite()
@@ -76,13 +76,13 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		final CharBuffer charBuffer = CharBuffer
 			.allocate(RandomCharacters.lowcaseWithNumbers.getCharacters().length());
 		charBuffer.put(RandomCharacters.lowcaseWithNumbers.getCharacters());
-		final String url = RandomObjectsExtensions.getRandomWebsite();
+		final String url = RandomWebObjectFactory.randomWebsite();
 		final String emailprefix = "info@";
 
 		expected = true;
 		for (int i = 0; i < 10; i++)
 		{
-			final String randomInfomail = RandomObjectsExtensions.getInfomailFromWebsite(url);
+			final String randomInfomail = RandomWebObjectFactory.getInfomailFromWebsite(url);
 			actual = randomInfomail.startsWith(emailprefix);
 
 			assertEquals(expected, actual.booleanValue());
@@ -95,7 +95,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		for (int i = 0; i < 10; i++)
 		{
 
-			final String randomInfomail = RandomObjectsExtensions.getInfomailFromWebsite(shortUrl);
+			final String randomInfomail = RandomWebObjectFactory.getInfomailFromWebsite(shortUrl);
 			actual = randomInfomail.startsWith(emailprefix);
 
 			assertEquals(expected, actual.booleanValue());
@@ -107,16 +107,16 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsExtensions#getInfomailFromWebsite(java.lang.String)} .
+	 * Test method for {@link RandomWebObjectFactory#getInfomailFromWebsite(java.lang.String)} .
 	 */
 	@Test(expectedExceptions = IllegalArgumentException.class)
 	public void testGetInfomailFromWebsiteExEx()
 	{
-		RandomObjectsExtensions.getInfomailFromWebsite("htp://ww.g.rw");
+		RandomWebObjectFactory.getInfomailFromWebsite("htp://ww.g.rw");
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsExtensions#getRandomEmail()}.
+	 * Test method for {@link RandomWebObjectFactory#randomEmail()}.
 	 */
 	@Test
 	public void testGetRandomEmail()
@@ -128,7 +128,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
-			final String randomEmail = RandomObjectsExtensions.getRandomEmail();
+			final String randomEmail = RandomWebObjectFactory.randomEmail();
 			actual = randomEmail.contains(charBuffer);
 
 			assertEquals(expected, actual.booleanValue());
@@ -136,7 +136,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsExtensions#getRandomFaxnumber(java.lang.String)}.
+	 * Test method for {@link RandomWebObjectFactory#randomFaxnumber(java.lang.String)}.
 	 */
 	@Test
 	public void testGetRandomFaxnumber()
@@ -148,9 +148,9 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
-			final String randomPhonenumber = RandomObjectsExtensions.getRandomPhonenumber();
-			final String randomFaxnumber = RandomObjectsExtensions
-				.getRandomFaxnumber(randomPhonenumber);
+			final String randomPhonenumber = RandomWebObjectFactory.randomPhonenumber();
+			final String randomFaxnumber = RandomWebObjectFactory
+				.randomFaxnumber(randomPhonenumber);
 			actual = randomFaxnumber.contains(charBuffer);
 
 			assertEquals(expected, actual.booleanValue());
@@ -158,7 +158,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsExtensions#getRandomMobilnumber()}.
+	 * Test method for {@link RandomWebObjectFactory#randomMobilnumber()}.
 	 */
 	@Test
 	public void testGetRandomMobilnumber()
@@ -170,7 +170,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
-			final String randomMobilnumber = RandomObjectsExtensions.getRandomMobilnumber();
+			final String randomMobilnumber = RandomWebObjectFactory.randomMobilnumber();
 			actual = randomMobilnumber.contains(charBuffer);
 
 			assertEquals(expected, actual.booleanValue());
@@ -178,7 +178,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsExtensions#getRandomPassword(int)}.
+	 * Test method for {@link RandomWebObjectFactory#randomPassword(int)}.
 	 */
 	@Test
 	public void testGetRandomPasswordInt()
@@ -191,7 +191,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
-			final String randomPassword = RandomObjectsExtensions.getRandomPassword(length);
+			final String randomPassword = RandomWebObjectFactory.randomPassword(length);
 			actual = randomPassword.contains(charBuffer);
 
 			assertEquals(expected, actual.booleanValue());
@@ -199,7 +199,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsExtensions#getRandomPassword(Optional)}.
+	 * Test method for {@link RandomWebObjectFactory#randomPassword(Optional)}.
 	 */
 	@Test
 	public void testGetRandomPasswordOptionalInt()
@@ -213,7 +213,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		expected = true;
 		for (int i = 0; i < 10; i++)
 		{
-			final String randomPassword = RandomObjectsExtensions.getRandomPassword(optLength);
+			final String randomPassword = RandomWebObjectFactory.randomPassword(optLength);
 			actual = randomPassword.contains(charBuffer);
 
 			assertEquals(expected, actual.booleanValue());
@@ -223,7 +223,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		expected = true;
 		for (int i = 0; i < 10; i++)
 		{
-			final String randomPassword = RandomObjectsExtensions.getRandomPassword(optLength);
+			final String randomPassword = RandomWebObjectFactory.randomPassword(optLength);
 			actual = randomPassword.contains(charBuffer);
 
 			assertEquals(expected, actual.booleanValue());
@@ -231,7 +231,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsExtensions#getRandomPhonenumber()}.
+	 * Test method for {@link RandomWebObjectFactory#randomPhonenumber()}.
 	 */
 	@Test
 	public void testGetRandomPhonenumber()
@@ -243,7 +243,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
-			final String randomPhonenumber = RandomObjectsExtensions.getRandomPhonenumber();
+			final String randomPhonenumber = RandomWebObjectFactory.randomPhonenumber();
 			actual = randomPhonenumber.contains(charBuffer);
 
 			assertEquals(expected, actual.booleanValue());
@@ -251,7 +251,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsExtensions#getRandomWebsite()}.
+	 * Test method for {@link RandomWebObjectFactory#randomWebsite()}.
 	 */
 	@Test
 	public void testGetRandomWebsite()
@@ -263,7 +263,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
-			final String randomWebsite = RandomObjectsExtensions.getRandomWebsite();
+			final String randomWebsite = RandomWebObjectFactory.randomWebsite();
 			actual = randomWebsite.contains(charBuffer);
 
 			assertEquals(expected, actual.booleanValue());
@@ -271,20 +271,20 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsExtensions#newRandomId()}.
+	 * Test method for {@link RandomWebObjectFactory#randomId()}.
 	 */
 	@Test
 	public void testNewRandomId()
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			String newRandomId = RandomObjectsExtensions.newRandomId();
+			String newRandomId = RandomWebObjectFactory.randomId();
 			assertNotNull(newRandomId);
 		}
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsExtensions#newRandomName(char[])}
+	 * Test method for {@link RandomWebObjectFactory#randomName(char[])}
 	 */
 	@Test
 	public void testNewRandomName()
@@ -298,7 +298,7 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 		expected = true;
 		for (int i = 0; i < 100; i++)
 		{
-			final String randomName = RandomObjectsExtensions.newRandomName(donatedChars);
+			final String randomName = RandomWebObjectFactory.randomName(donatedChars);
 			actual = randomName.contains(charBuffer);
 
 			assertEquals(expected, actual.booleanValue());
@@ -306,13 +306,13 @@ public class RandomObjectsExtensionsTest extends BaseTestCase
 	}
 
 	/**
-	 * Test method for {@link RandomObjectsExtensions} with {@link BeanTester}
+	 * Test method for {@link RandomWebObjectFactory} with {@link BeanTester}
 	 */
 	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();
-		beanTester.testBean(RandomObjectsExtensions.class);
+		beanTester.testBean(RandomWebObjectFactory.class);
 	}
 
 }

@@ -28,19 +28,18 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
-import de.alpharogroup.random.RandomExtensions;
-import de.alpharogroup.random.date.RandomDateExtensions;
+import de.alpharogroup.lang.ClassExtensions;
+import de.alpharogroup.random.DefaultSecureRandom;
+import de.alpharogroup.random.RandomCharacters;
+import de.alpharogroup.random.date.RandomDateFactory;
 import de.alpharogroup.random.enums.RandomAlgorithm;
-import de.alpharogroup.random.number.RandomNumberExtensions;
-import de.alpharogroup.random.number.RandomPrimitivesExtensions;
+import de.alpharogroup.random.number.*;
 import de.alpharogroup.reflection.ReflectionExtensions;
 
 /**
@@ -55,7 +54,7 @@ public final class RandomObjectFactory
 	 */
 	public static RandomAlgorithm newRandomAlgorithm()
 	{
-		return RandomExtensions.getRandomEnumFromEnumValues(RandomAlgorithm.values());
+		return randomEnumFromEnumValues(RandomAlgorithm.values());
 	}
 
 	/**
@@ -68,7 +67,7 @@ public final class RandomObjectFactory
 	public static Byte[] newRandomByteObjects(final int length)
 	{
 		final Byte[] randomByteObjects = new Byte[length];
-		byte[] randomBytes = RandomPrimitivesExtensions.randomByteArray(length);
+		byte[] randomBytes = RandomByteFactory.randomByteArray(length);
 		for (int i = 0; i < length; i++)
 		{
 			randomByteObjects[i] = randomBytes[i];
@@ -87,7 +86,7 @@ public final class RandomObjectFactory
 	 */
 	public static Float newRandomFloat(final int afterComma, final int beforeComma)
 	{
-		return RandomPrimitivesExtensions.randomFloat(afterComma, beforeComma);
+		return RandomFloatFactory.randomFloat(afterComma, beforeComma);
 	}
 
 	/**
@@ -138,8 +137,7 @@ public final class RandomObjectFactory
 		Class<?> type = field.getType();
 		if (type.isEnum())
 		{
-			Enum<?> randomEnum = RandomExtensions
-				.getRandomEnumFromClassname(type.getCanonicalName());
+			Enum<?> randomEnum = randomEnumFromClassname(type.getCanonicalName());
 			return randomEnum;
 		}
 		else if (type.equals(Void.TYPE) || type.equals(Void.class))
@@ -148,35 +146,35 @@ public final class RandomObjectFactory
 		}
 		else if (type.equals(Byte.TYPE) || type.equals(Byte.class))
 		{
-			return Byte.valueOf(RandomPrimitivesExtensions.randomByte());
+			return Byte.valueOf(RandomByteFactory.randomByte());
 		}
 		else if (type.equals(Character.TYPE) || type.equals(Character.class))
 		{
-			return Character.valueOf(RandomPrimitivesExtensions.randomChar());
+			return Character.valueOf(RandomCharFactory.randomChar());
 		}
 		else if (type.equals(Short.TYPE) || type.equals(Short.class))
 		{
-			return Short.valueOf(RandomPrimitivesExtensions.randomShort());
+			return Short.valueOf(RandomShortFactory.randomShort());
 		}
 		else if (type.equals(Boolean.TYPE) || type.equals(Boolean.class))
 		{
-			return Boolean.valueOf(RandomPrimitivesExtensions.randomBoolean());
+			return Boolean.valueOf(RandomBooleanFactory.randomBoolean());
 		}
 		else if (type.equals(Integer.TYPE) || type.equals(Integer.class))
 		{
-			return Integer.valueOf(RandomPrimitivesExtensions.randomInt());
+			return Integer.valueOf(RandomIntFactory.randomInt());
 		}
 		else if (type.equals(Long.TYPE) || type.equals(Long.class))
 		{
-			return Long.valueOf(RandomPrimitivesExtensions.randomLong());
+			return Long.valueOf(RandomLongFactory.randomLong());
 		}
 		else if (type.equals(Double.TYPE) || type.equals(Double.class))
 		{
-			return Double.valueOf(RandomPrimitivesExtensions.randomDouble());
+			return Double.valueOf(RandomDoubleFactory.randomDouble());
 		}
 		else if (type.equals(Float.TYPE) || type.equals(Float.class))
 		{
-			return Float.valueOf(RandomPrimitivesExtensions.randomFloat());
+			return Float.valueOf(RandomFloatFactory.randomFloat());
 		}
 		else if (type.equals(String.class))
 		{
@@ -184,27 +182,27 @@ public final class RandomObjectFactory
 		}
 		else if (type.equals(BigInteger.class))
 		{
-			return RandomNumberExtensions.randomBigInteger();
+			return RandomBigIntegerFactory.randomBigInteger();
 		}
 		else if (type.equals(BigDecimal.class))
 		{
-			return RandomNumberExtensions.randomBigDecimal();
+			return RandomBigDecimalFactory.randomBigDecimal();
 		}
 		else if (type.equals(Date.class))
 		{
-			return RandomDateExtensions.randomDate();
+			return RandomDateFactory.randomDate();
 		}
 		else if (type.equals(LocalDateTime.class))
 		{
-			return RandomDateExtensions.randomLocalDateTime();
+			return RandomDateFactory.randomLocalDateTime();
 		}
 		else if (type.equals(LocalDate.class))
 		{
-			return RandomDateExtensions.randomLocalDate();
+			return RandomDateFactory.randomLocalDate();
 		}
 		else if (type.equals(LocalTime.class))
 		{
-			return RandomDateExtensions.randomLocalTime();
+			return RandomDateFactory.randomLocalTime();
 		}
 		return newRandomObject(type);
 	}
@@ -248,6 +246,226 @@ public final class RandomObjectFactory
 			ReflectionExtensions.setFieldValue(instance, field, value);
 		}
 		return instance;
+	}
+
+	/**
+	 * Returns a random entry from the given List.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param list
+	 *            The List.
+	 * @return Return's a random entry from the List.
+	 */
+	public static <T> T randomListEntry(final List<T> list)
+	{
+		return list.get(randomIndex(list));
+	}
+
+	/**
+	 * Returns a random entry from the given map.
+	 *
+	 * @param <K>
+	 *            the key type
+	 * @param <V>
+	 *            the value type
+	 * @param map
+	 *            The map.
+	 * @return Return's a random entry from the map.
+	 */
+	public static <K, V> Object randomMapEntry(final Map<K, V> map)
+	{
+		final Object[] entries = map.values().toArray();
+		return entries[RandomIntFactory.randomInt(entries.length)];
+	}
+
+	/**
+	 * Gets the random enum.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param clazz
+	 *            the clazz
+	 * @return the random enum
+	 */
+	public static <T extends Enum<?>> T randomEnumFromClass(final Class<T> clazz)
+	{
+		return randomEnumFromEnumValues(clazz.getEnumConstants());
+	}
+
+	/**
+	 * Gets the random enum.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param classname
+	 *            the classname
+	 * @return the random enum
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends Enum<?>> T randomEnumFromClassname(final String classname)
+	{
+		if (classname != null && !classname.isEmpty())
+		{
+			Class<T> enumClass = null;
+			try
+			{
+				enumClass = (Class<T>) ClassExtensions.forName(classname);
+				return randomEnumFromClass(enumClass);
+			}
+			catch (final ClassNotFoundException e)
+			{
+				return null;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Gets the random enum.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param values
+	 *            the values
+	 * @return the random enum
+	 */
+	public static <T extends Enum<?>> T randomEnumFromEnumValues(final T[] values)
+	{
+		return values[RandomIntFactory.randomInt(values.length)];
+	}
+
+	/**
+	 * Gets the random enum.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param obj
+	 *            the obj
+	 * @return the random enum
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends Enum<?>> T randomEnumFromObject(final T obj)
+	{
+		if (obj != null)
+		{
+			final Class<T> clazz = (Class<T>)obj.getClass();
+			return randomEnumFromClass(clazz);
+		}
+		return null;
+	}
+
+	/**
+	 * Returns a random index from the given List.
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param list
+	 *            The List.
+	 * @return Return's a random index from the List.
+	 */
+	public static <T> int randomIndex(final Collection<T> list)
+	{
+		return RandomIntFactory.randomInt(list.size());
+	}
+
+	/**
+	 * Returns a random key from the given map.
+	 *
+	 * @param <K>
+	 *            the key type
+	 * @param <V>
+	 *            the value type
+	 * @param map
+	 *            The map.
+	 * @return Return's a random key from the map.
+	 */
+	public static <K, V> Object randomKey(final Map<K, V> map)
+	{
+		final Set<K> keySet = map.keySet();
+		final Object[] keys = keySet.toArray();
+		return keys[RandomIntFactory.randomInt(keys.length)];
+	}
+
+	/**
+	 * Gets the random salt.
+	 *
+	 * @param length
+	 *            the length
+	 * @param charset
+	 *            the charset
+	 * @return the random salt
+	 */
+	public static byte[] randomSalt(final int length, final Charset charset)
+	{
+		return RandomStringFactory
+				.newRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
+						length)
+				.getBytes(charset);
+	}
+
+	/**
+	 * Generates a random int for use with pixel.
+	 *
+	 * @return a random int for use with pixel.
+	 */
+	public static int randomPixel()
+	{
+		return randomPixel(RandomIntFactory.randomInt(256),
+				RandomIntFactory.randomInt(256), RandomIntFactory.randomInt(256),
+				RandomIntFactory.randomInt(256));
+	}
+
+	/**
+	 * Generates a random int for use with pixel.
+	 *
+	 * @param red
+	 *            The red value.
+	 * @param green
+	 *            The green value.
+	 * @param blue
+	 *            The blue value.
+	 * @param alpha
+	 *            The alpha value.
+	 * @return a random int for use with pixel.
+	 */
+	public static int randomPixel(final int red, final int green, final int blue,
+								  final int alpha)
+	{
+		final int pixel = (alpha << 24) | (red << 16) | (green << 8) | blue;
+		return pixel;
+	}
+
+	/**
+	 * Factory method for create a new random salt.
+	 *
+	 * @return the byte[] with the new random salt.
+	 */
+	public static byte[] newSalt()
+	{
+		return RandomByteFactory.randomByteArray(16);
+	}
+
+	/**
+	 * Returns a random token for use in web services.
+	 *
+	 * @return A random token.
+	 */
+	public static String randomToken()
+	{
+		final BigInteger token = new BigInteger(130, DefaultSecureRandom.get());
+		final String randomToken = token.toString(32);
+		return randomToken;
+	}
+
+	/**
+	 * Factory method for create a new random {@link UUID}
+	 *
+	 * @return the new random {@link UUID}
+	 */
+	public static UUID randomUUID()
+	{
+		return UUID.randomUUID();
 	}
 
 	private RandomObjectFactory()

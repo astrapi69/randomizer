@@ -22,47 +22,45 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.random.api;
+package de.alpharogroup.random.number;
+
+import de.alpharogroup.random.DefaultSecureRandom;
+import de.alpharogroup.random.enums.RandomAlgorithm;
+
+import java.security.SecureRandom;
+import java.util.Objects;
 
 /**
- * The interface {@link ApplicationGenerator} for generate random application names, versions, group
- * ids or artefact ids.
+ * Utility class for producing random primitive boolean types
+ *
+ * @version 1.1
+ * @author Asterios Raptis
  */
-public interface ApplicationGenerator
-{
+public final class RandomBooleanFactory {
 
 	/**
-	 * New application artefact id.
+	 * Returns a random boolean.
 	 *
-	 * @return the string
+	 * @return The random boolean.
 	 */
-	String newApplicationArtefactId();
+	public static boolean randomBoolean() {
+		return randomBoolean(DefaultSecureRandom.get());
+	}
 
 	/**
-	 * New application group id.
+	 * Returns a random boolean.
 	 *
-	 * @return the string
+	 * @param secureRandom
+	 *            the secure random for boolean generation
+	 *
+	 * @return The random boolean.
 	 */
-	String newApplicationGroupId();
+	public static boolean randomBoolean(SecureRandom secureRandom) {
+		return RandomIntFactory.randomInt(2, RandomAlgorithm.SECURE_RANDOM,
+				Objects.requireNonNull(secureRandom)) == 0;
+	}
 
-	/**
-	 * New application name.
-	 *
-	 * @return the string
-	 */
-	String newApplicationName();
+	private RandomBooleanFactory() {
+	}
 
-	/**
-	 * New application version.
-	 *
-	 * @return the string
-	 */
-	String newApplicationVersion();
-
-	/**
-	 * New filename.
-	 *
-	 * @return the string
-	 */
-	String newFilename();
 }

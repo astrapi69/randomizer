@@ -22,74 +22,55 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package de.alpharogroup.random.api;
+package de.alpharogroup.random.number;
+
+import de.alpharogroup.random.DefaultSecureRandom;
+
+import java.security.SecureRandom;
+import java.util.Objects;
 
 /**
- * The interface {@link LocationGenerator} for generate location data.
+ * Utility class for producing random primitive short types
+ *
+ * @version 1.1
+ * @author Asterios Raptis
  */
-public interface LocationGenerator
+public final class RandomShortFactory
 {
 
 	/**
-	 * New address comment.
+	 * Returns a random short
 	 *
-	 * @return the string
+	 * @param secureRandom
+	 *            the secure random for short generation
+	 *
+	 * @return The generated random short
 	 */
-	String newAddressComment();
+	public static short randomShort(SecureRandom secureRandom)
+	{
+		Objects.requireNonNull(secureRandom);
+		if (secureRandom.nextBoolean())
+		{
+			return (short)(secureRandom.nextInt(65536) - 32768);
+		}
+		else
+		{
+			return (short)secureRandom.nextInt(Short.MAX_VALUE + 1);
+		}
+	}
 
 	/**
-	 * New city.
+	 * Returns a random short
 	 *
-	 * @return the string
+	 * @return The generated random short
 	 */
-	String newCity();
+	public static short randomShort()
+	{
+		return randomShort(DefaultSecureRandom.get());
+	}
 
-	/**
-	 * New country.
-	 *
-	 * @return the string
-	 */
-	String newCountry();
+	private RandomShortFactory()
+	{
+	}
 
-	/**
-	 * New latitude.
-	 *
-	 * @return the string
-	 */
-	String newLatitude();
-
-	/**
-	 * New longitude.
-	 *
-	 * @return the string
-	 */
-	String newLongitude();
-
-	/**
-	 * New state.
-	 *
-	 * @return the string
-	 */
-	String newState();
-
-	/**
-	 * New street name.
-	 *
-	 * @return the string
-	 */
-	String newStreetName();
-
-	/**
-	 * New street number.
-	 *
-	 * @return the string
-	 */
-	String newStreetNumber();
-
-	/**
-	 * New zip code.
-	 *
-	 * @return the string
-	 */
-	String newZipCode();
 }

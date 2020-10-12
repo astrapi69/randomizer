@@ -25,7 +25,8 @@
 package de.alpharogroup.random.object;
 
 import de.alpharogroup.random.RandomCharacters;
-import de.alpharogroup.random.number.RandomPrimitivesExtensions;
+import de.alpharogroup.random.number.RandomCharFactory;
+import de.alpharogroup.random.number.RandomIntFactory;
 
 public final class RandomStringFactory {
     private RandomStringFactory(){}
@@ -38,7 +39,7 @@ public final class RandomStringFactory {
     public static String newRandomString()
     {
         return newRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
-                RandomPrimitivesExtensions.randomIntBetween(3, 25));
+                RandomIntFactory.randomIntBetween(3, 25));
     }
 
     /**
@@ -54,7 +55,7 @@ public final class RandomStringFactory {
         final StringBuilder sb = new StringBuilder(maxLength);
         for (int i = 0; i < maxLength; i++)
         {
-            sb.append(RandomPrimitivesExtensions.randomChar());
+            sb.append(RandomCharFactory.randomChar());
         }
         return sb.toString();
     }
@@ -70,7 +71,7 @@ public final class RandomStringFactory {
      */
     public static String newRandomString(final int start, int end)
     {
-        return newRandomString(RandomPrimitivesExtensions.randomIntBetween(start, end));
+        return newRandomString(RandomIntFactory.randomIntBetween(start, end));
     }
 
     /**
@@ -88,7 +89,7 @@ public final class RandomStringFactory {
         final StringBuilder sb = new StringBuilder();
         for (int i = 0; i < length; i++)
         {
-            sb.append(RandomPrimitivesExtensions.randomChar(chars));
+            sb.append(RandomCharFactory.randomChar(chars));
         }
         return sb.toString();
     }
@@ -105,6 +106,24 @@ public final class RandomStringFactory {
      */
     public static String newRandomString(final String[] array)
     {
-        return array[RandomPrimitivesExtensions.randomInt(array.length)];
+        return array[RandomIntFactory.randomInt(array.length)];
+    }
+
+
+    /**
+     * Generates a random hexadecimal {@link String}
+     *
+     * @param numberOfCharacters
+     *            the number of characters
+     * @return the generated random hexadecimal {@link String}
+     */
+    public static String randomHexString(int numberOfCharacters)
+    {
+        StringBuilder sb = new StringBuilder();
+        while (sb.length() < numberOfCharacters)
+        {
+            sb.append(Integer.toHexString(RandomIntFactory.randomInt()));
+        }
+        return sb.toString().substring(0, numberOfCharacters);
     }
 }

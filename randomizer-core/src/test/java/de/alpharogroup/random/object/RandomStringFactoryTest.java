@@ -42,6 +42,16 @@ public class RandomStringFactoryTest
 {
 
 	/**
+	 * Test method for {@link RandomStringFactory#randomHexString(int)}
+	 */
+	@Test(enabled = true)
+	public void testRandomHexString()
+	{
+		String randomHexString = RandomStringFactory.randomHexString(16);
+		assertTrue(randomHexString.length() == 16);
+	}
+
+	/**
 	 * Test method for {@link RandomStringFactory#newRandomString()}
 	 */
 	@Test

@@ -24,15 +24,22 @@
  */
 package de.alpharogroup.random.object;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotEquals;
-import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.*;
+import static org.testng.Assert.assertNull;
+import static org.testng.AssertJUnit.assertNotNull;
+import static org.testng.AssertJUnit.assertTrue;
 
+import de.alpharogroup.math.MathExtensions;
+import de.alpharogroup.test.objects.enums.Gender;
+import org.apache.commons.lang3.ArrayUtils;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.random.enums.RandomAlgorithm;
 import de.alpharogroup.test.objects.Person;
+
+import java.nio.charset.Charset;
+import java.util.*;
 
 /**
  * The unit test class for the class {@link RandomObjectFactory}
@@ -42,6 +49,201 @@ import de.alpharogroup.test.objects.Person;
  */
 public class RandomObjectFactoryTest
 {
+
+	boolean actual;
+	boolean expected;
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomListEntry(java.util.List)} .
+	 */
+	@Test
+	public void testRandomListEntry()
+	{
+		final List<String> list = new ArrayList<>();
+		list.add("Anton");
+		list.add("Kosta");
+		list.add("Caesar");
+		list.add("Asterios");
+		list.add("Anastasia");
+		list.add("Katerina");
+
+		expected = true;
+		for (int i = 0; i < 10; i++)
+		{
+			final String randomEntry = RandomObjectFactory.randomListEntry(list);
+
+			actual = list.contains(randomEntry);
+			assertEquals(actual, expected);
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomMapEntry(java.util.Map)} .
+	 */
+	@Test
+	public void testRandomMapEntry()
+	{
+		final Map<String, String> map = new HashMap<>();
+		map.put("1", "novalue");
+		map.put("2", "somevalue");
+		map.put("3", "othervalue");
+		map.put("4", "value");
+		map.put("5", "value");
+		final Collection<String> values = map.values();
+
+		expected = true;
+		for (int i = 0; i < 10; i++)
+		{
+			final String randomValue = (String)RandomObjectFactory.randomMapEntry(map);
+
+			actual = values.contains(randomValue);
+			assertEquals(actual, expected);
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomEnumFromObject(Enum)} .
+	 */
+	@Test
+	public void testRandomEnum()
+	{
+		final Gender enumEntry = Gender.FEMALE;
+		final Gender randomEnumEntry = RandomObjectFactory.randomEnumFromObject(enumEntry);
+
+		final Gender[] genders = Gender.values();
+		assertTrue("Enum value should contain the random value.",
+				ArrayUtils.contains(genders, randomEnumEntry));
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomEnumFromEnumValues(Enum[])} .
+	 */
+	@Test
+	public void testRandomEnumArray()
+	{
+		final Gender[] genders = Gender.values();
+		final Gender randomEnumEntry = RandomObjectFactory.randomEnumFromEnumValues(genders);
+		assertTrue("Enum value should contain the random value.",
+				ArrayUtils.contains(genders, randomEnumEntry));
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomEnumFromObject(Enum)} .
+	 */
+	@Test
+	public void testRandomEnumClass()
+	{
+		final Gender randomEnumEntry = RandomObjectFactory.randomEnumFromClass(Gender.class);
+
+		final Gender[] genders = Gender.values();
+		assertTrue("Enum value should contain the random value.",
+				ArrayUtils.contains(genders, randomEnumEntry));
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomEnumFromClassname(String)}
+	 */
+	@Test
+	public void testRandomEnumNull()
+	{
+		Gender randomEnum = RandomObjectFactory.randomEnumFromObject((Gender)null);
+		assertNull(randomEnum);
+
+		randomEnum = RandomObjectFactory.randomEnumFromClassname((String)null);
+		assertNull(randomEnum);
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomEnumFromClassname(String)} .
+	 */
+	@Test
+	public void testRandomEnumString()
+	{
+		String enumClassName = "de.alpharogroup.test.objects.enums.Gender";
+		Gender randomEnumEntry = RandomObjectFactory.randomEnumFromClassname(enumClassName);
+
+		final Gender[] genders = Gender.values();
+		assertTrue("Enum value should contain the random value.",
+				ArrayUtils.contains(genders, randomEnumEntry));
+
+		enumClassName = "Gender";
+		randomEnumEntry = RandomObjectFactory.randomEnumFromClassname(enumClassName);
+		assertNull(randomEnumEntry);
+
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomKey(java.util.Map)} .
+	 */
+	@Test
+	public void testRandomKey()
+	{
+		final Map<String, String> map = new HashMap<>();
+		map.put("1", "novalue");
+		map.put("2", "somevalue");
+		map.put("3", "othervalue");
+		map.put("4", "value");
+		map.put("5", "value");
+		final Set<String> keys = map.keySet();
+		expected = true;
+		for (int i = 0; i < 10; i++)
+		{
+			final String randomKey = (String)RandomObjectFactory.randomKey(map);
+
+			actual = keys.contains(randomKey);
+			assertEquals(actual, expected);
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomPixel()}
+	 */
+	@Test(enabled = true)
+	public void testRandomPixel()
+	{
+		int random = RandomObjectFactory.randomPixel();
+		assertTrue(MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, random));
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#newSalt()}
+	 */
+	@Test(enabled = true)
+	public void testNewSalt()
+	{
+		byte[] newSalt = RandomObjectFactory.newSalt();
+		assertNotNull(newSalt);
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomSalt(int, Charset)}
+	 */
+	@Test
+	public void testRandomSalt()
+	{
+		final byte[] randomSalt = RandomObjectFactory.randomSalt(8, Charset.forName("UTF-8"));
+		System.out.println(new String(randomSalt));
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomToken()}
+	 */
+	@Test
+	public void testRandomToken()
+	{
+		final String randomToken = RandomObjectFactory.randomToken();
+		assertNotNull(randomToken);
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomUUID()}
+	 */
+	@Test
+	public void testRandomUUID()
+	{
+		UUID randomUUID = RandomObjectFactory.randomUUID();
+		assertNotNull(randomUUID);
+	}
 
 	/**
 	 * Test method for {@link RandomObjectFactory#newRandomFloat(int, int)}
