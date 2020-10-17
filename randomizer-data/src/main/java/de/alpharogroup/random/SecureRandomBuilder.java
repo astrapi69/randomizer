@@ -27,8 +27,7 @@ package de.alpharogroup.random;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
-
-import javax.annotation.Nonnull;
+import java.util.Objects;
 
 /**
  * The class {@link SecureRandomBuilder} builds a {@link SecureRandom} from the given algorithm and
@@ -127,8 +126,9 @@ public final class SecureRandomBuilder
 	 *            the algorithm
 	 * @return this {@link SecureRandomBuilder} object. For chaining.
 	 */
-	public SecureRandomBuilder algorithm(@Nonnull final String algorithm)
+	public SecureRandomBuilder algorithm(final String algorithm)
 	{
+		Objects.requireNonNull(algorithm);
 		this.algorithm = algorithm;
 		return this;
 	}
@@ -184,8 +184,9 @@ public final class SecureRandomBuilder
 	 *            the provider
 	 * @return this {@link SecureRandomBuilder} object. For chaining.
 	 */
-	public SecureRandomBuilder provider(@Nonnull final String provider)
+	public SecureRandomBuilder provider(final String provider)
 	{
+		Objects.requireNonNull(provider);
 		this.provider = provider;
 		return this;
 	}
