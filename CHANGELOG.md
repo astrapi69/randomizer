@@ -4,6 +4,12 @@
 Version 8.1-SNAPSHOT
 -------------
 
+CHANGED:
+
+- update of gradle version to 6.8
+- update of silly-collections version to 8.4
+- update of test dependency equalsverifier version to 3.5.1
+
 Version 8
 -------------
 

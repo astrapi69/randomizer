@@ -128,7 +128,16 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 			
 ## gradle dependency
 
-You can first define the version in the ext section and add than the following gradle dependency to your project `build.gradle` if you want to import the core functionality of randomizer:
+You can first define the version in the ext section and add than the following gradle dependency to 
+your project `build.gradle` if you want to import the core functionality of randomizer:
+
+```
+define version in file gradle.properties
+
+randomizerVersion=8
+```
+
+or in build.gradle ext area
 
 ```
 ext {
@@ -136,16 +145,20 @@ ext {
     randomizerVersion = "8"
 			...
 }
+```
+
+and than add the dependency to the dependencies area
+
+```
 dependencies {
 			...
-compile "de.alpharogroup:randomizer-api:${randomizerVersion}"
-compile "de.alpharogroup:randomizer-address:${randomizerVersion}"
-compile "de.alpharogroup:randomizer-core:${randomizerVersion}"
-compile "de.alpharogroup:randomizer-data:${randomizerVersion}"
+    implementation("de.alpharogroup:randomizer-api:$randomizerVersion")
+    implementation("de.alpharogroup:randomizer-address:$randomizerVersion")
+    implementation("de.alpharogroup:randomizer-core:$randomizerVersion")
+    implementation("de.alpharogroup:randomizer-data:$randomizerVersion")
 			...
 }
 ```
-		
 
 ## Semantic Versioning
 
