@@ -3,11 +3,11 @@
 <suite name="Suite">
   <test name="Test">
     <classes>
-      <class name="de.alpharogroup.random.date.RandomDateFactoryTest"/>
-      <class name="de.alpharogroup.random.object.RandomObjectFactoryTest"/>
-      <class name="de.alpharogroup.random.NullSecureRandomExtensionsTest"/>
-      <class name="de.alpharogroup.random.RandomExtensionsTest"/>
-      <class name="de.alpharogroup.random.RandomObjectsExtensionsTest"/>
+      <class name="io.github.astrapi69.random.date.RandomDateFactoryTest"/>
+      <class name="io.github.astrapi69.random.object.RandomObjectFactoryTest"/>
+      <class name="io.github.astrapi69.random.NullSecureRandomExtensionsTest"/>
+      <class name="io.github.astrapi69.random.RandomExtensionsTest"/>
+      <class name="io.github.astrapi69.random.RandomObjectsExtensionsTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
