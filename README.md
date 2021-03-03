@@ -5,8 +5,8 @@
 [![Build Status](https://travis-ci.org/astrapi69/randomizer.svg?branch=develop)](https://travis-ci.org/astrapi69/randomizer) 
 [![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/randomizer?branch=develop) 
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/randomizer.svg?style=flat)](https://github.com/astrapi69/randomizer/issues) 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/randomizer/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.alpharogroup/randomizer-core)
-[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/randomizer.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-core)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer-core)
+[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-core)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 
@@ -45,16 +45,16 @@ The source code comes under the liberal MIT License, making randomizer great for
 
 ## Javadoc
 
-[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/randomizer.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-core) randomizer-core
+[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-core) randomizer-core
 
-[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/randomizer.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-api) randomizer-api
+[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-api) randomizer-api
 
-[![Javadocs](http://www.javadoc.io/badge/de.alpharogroup/randomizer.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-data) randomizer-data
+[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-data) randomizer-data
 
 ## Maven dependency
 
 Maven dependency is now on sonatype.
-Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~randomizer~~~) for latest snapshots and releases.
+Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer~~~) for latest snapshots and releases.
 
 Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of randomizer:
 
@@ -80,7 +80,7 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 			...
 			<!-- RANDOMIZER DEPENDENCY -->
 			<dependency>
-				<groupId>de.alpharogroup</groupId>
+				<groupId>io.github.astrapi69</groupId>
 				<artifactId>randomizer-api</artifactId>
 				<version>${randomizer-api.version}</version>
 			</dependency>
@@ -93,7 +93,7 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 			...
 			<!-- RANDOMIZER DEPENDENCY -->
 			<dependency>
-				<groupId>de.alpharogroup</groupId>
+				<groupId>io.github.astrapi69</groupId>
 				<artifactId>randomizer-address</artifactId>
 				<version>${randomizer-address.version}</version>
 			</dependency>
@@ -106,7 +106,7 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 			...
 			<!-- RANDOMIZER DEPENDENCY -->
 			<dependency>
-				<groupId>de.alpharogroup</groupId>
+				<groupId>io.github.astrapi69</groupId>
 				<artifactId>randomizer-core</artifactId>
 				<version>${randomizer-core.version}</version>
 			</dependency>
@@ -119,7 +119,7 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 			...
 			<!-- RANDOMIZER DEPENDENCY -->
 			<dependency>
-				<groupId>de.alpharogroup</groupId>
+				<groupId>io.github.astrapi69</groupId>
 				<artifactId>randomizer-data</artifactId>
 				<version>${randomizer-data.version}</version>
 			</dependency>
@@ -152,10 +152,10 @@ and than add the dependency to the dependencies area
 ```
 dependencies {
 			...
-    implementation("de.alpharogroup:randomizer-api:$randomizerVersion")
-    implementation("de.alpharogroup:randomizer-address:$randomizerVersion")
-    implementation("de.alpharogroup:randomizer-core:$randomizerVersion")
-    implementation("de.alpharogroup:randomizer-data:$randomizerVersion")
+    implementation("io.github.astrapi69:randomizer-api:$randomizerVersion")
+    implementation("io.github.astrapi69:randomizer-address:$randomizerVersion")
+    implementation("io.github.astrapi69:randomizer-core:$randomizerVersion")
+    implementation("io.github.astrapi69:randomizer-data:$randomizerVersion")
 			...
 }
 ```
@@ -204,9 +204,9 @@ Here is a list of awesome projects:
 
 |**Nexus Sonatype repositories**|
 |     :---:      |
-|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/de.alpharogroup/randomizer-api.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~randomizer-api~~~) randomizer-api|
-|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/de.alpharogroup/randomizer-core.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~randomizer-core~~~) randomizer-core|
-|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/de.alpharogroup/randomizer-data.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~de.alpharogroup~randomizer-data~~~) randomizer-data|
+|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/randomizer-api.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer-api~~~) randomizer-api|
+|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/randomizer-core.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer-core~~~) randomizer-core|
+|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/randomizer-data.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer-data~~~) randomizer-data|
 |Special thanks to [sonatype repository](https://www.sonatype.com) for providing a free maven repository service for open source projects|
 |     <img width=1000/>     |
 
@@ -218,8 +218,8 @@ Here is a list of awesome projects:
 
 |**javadoc.io**|
 |     :---:      |
-|[![Javadoc](http://www.javadoc.io/badge/de.alpharogroup/randomizer-api.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-api) randomizer-api|
-|[![Javadoc](http://www.javadoc.io/badge/de.alpharogroup/randomizer-core.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-core) randomizer-core|
-|[![Javadoc](http://www.javadoc.io/badge/de.alpharogroup/randomizer-data.svg)](http://www.javadoc.io/doc/de.alpharogroup/randomizer-data) randomizer-data|
+|[![Javadoc](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-api.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-api) randomizer-api|
+|[![Javadoc](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-core.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-core) randomizer-core|
+|[![Javadoc](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-data.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-data) randomizer-data|
 |Special thanks to [javadoc.io](http://www.javadoc.io) for providing a free javadoc documentation for open source projects|
 |     <img width=1000/>     |
