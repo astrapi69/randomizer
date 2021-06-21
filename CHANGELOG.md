@@ -4,6 +4,11 @@
 Version 8.1-SNAPSHOT
 -------------
 
+ADDED:
+
+- new factory classes for generate long random string object
+- new random characters values in enum class RandomCharacters
+
 Version 8
 -------------
 

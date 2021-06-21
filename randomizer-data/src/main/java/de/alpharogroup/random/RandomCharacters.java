@@ -1,8 +1,8 @@
 /**
  * The MIT License
- *
+ * <p>
  * Copyright (C) 2015 Asterios Raptis
- *
+ * <p>
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
  * "Software"), to deal in the Software without restriction, including
@@ -10,10 +10,10 @@
  * distribute, sublicense, and/or sell copies of the Software, and to
  * permit persons to whom the Software is furnished to do so, subject to
  * the following conditions:
- *
+ * <p>
  * The above copyright notice and this permission notice shall be
  * included in all copies or substantial portions of the Software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
  * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
  * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -41,13 +41,13 @@ public enum RandomCharacters
 		RandomCharacters.LOWCASECHARS + RandomCharacters.NUMBERS + RandomCharacters.SPECIALCHARS),
 
 	/** The lowcase with uppercase and numbers. */
-	lowcaseWithUppercaseAndNumbers(RandomCharacters.LOWCASECHARS
-		+ RandomCharacters.LOWCASECHARS.toUpperCase() + RandomCharacters.NUMBERS),
+	lowcaseWithUppercaseAndNumbers(RandomCharacters.LOWCASECHARS + RandomCharacters.LOWCASECHARS
+		.toUpperCase() + RandomCharacters.NUMBERS),
 
 	/** The lowcase with uppercase and numbers and special. */
 	lowcaseWithUppercaseAndNumbersAndSpecial(
-		RandomCharacters.LOWCASECHARS + RandomCharacters.LOWCASECHARS.toUpperCase()
-			+ RandomCharacters.NUMBERS + RandomCharacters.SPECIALCHARS),
+		RandomCharacters.LOWCASECHARS + RandomCharacters.LOWCASECHARS
+			.toUpperCase() + RandomCharacters.NUMBERS + RandomCharacters.SPECIALCHARS),
 
 	/** The numbers. */
 	numbers(RandomCharacters.NUMBERS),
@@ -61,18 +61,33 @@ public enum RandomCharacters
 	/** The uppercase with numbers. */
 	uppercaseWithNumbers(RandomCharacters.LOWCASECHARS.toUpperCase() + RandomCharacters.NUMBERS),
 
-	/** The uppercase with numbers and special. */
-	uppercaseWithNumbersAndSpecial(RandomCharacters.LOWCASECHARS.toUpperCase()
-		+ RandomCharacters.NUMBERS + RandomCharacters.SPECIALCHARS);
+	/** The uppercase. */
+	escapeSequences(RandomCharacters.ESCAPE_SEQUENCES),
 
-	/** The alphabet-chars in lower case. */
-	private static final String LOWCASECHARS = "abcdefghijklmnopqrstuvwxyz";
+	/** The escape sequences and white space. */
+	escapeSequencesWithWhitespace(RandomCharacters.ESCAPE_SEQUENCES_CHARS),
+
+	/** The uppercase with numbers and special. */
+	uppercaseWithNumbersAndSpecial(RandomCharacters.LOWCASECHARS
+		.toUpperCase() + RandomCharacters.NUMBERS + RandomCharacters.SPECIALCHARS);
+
+	/** The alphabet-characters in lower case. */
+	public static final String LOWCASECHARS = "abcdefghijklmnopqrstuvwxyz";
 
 	/** All digits. */
-	private static final String NUMBERS = "0123456789";
+	public static final String NUMBERS = "0123456789";
 
-	/** All special Chars */
-	private static final String SPECIALCHARS = "#@$%^&*?!";
+	/** All special characters */
+	public static final String SPECIALCHARS = "#@$%^&*?!";
+
+	/** The white space char */
+	public static final String WHITE_SPACE_CHAR = " ";
+
+	/** All escape sequences characters */
+	public static final String ESCAPE_SEQUENCES = "\t\b\n\r\f\'\"\\";
+
+	/** All escape sequences and white space characters */
+	public static final String ESCAPE_SEQUENCES_CHARS = ESCAPE_SEQUENCES + WHITE_SPACE_CHAR;
 
 	/** The allowed characters. */
 	private final String characters;
