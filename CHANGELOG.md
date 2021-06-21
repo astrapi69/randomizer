@@ -1,13 +1,27 @@
 ## Change log
 ----------------------
 
-Version 8.1-SNAPSHOT
+Version 8.2-SNAPSHOT
 -------------
 
 ADDED:
 
 - new factory classes for generate long random string object
 - new random characters values in enum class RandomCharacters
+
+Version 8.1
+-------------
+
+ADDED:
+
+- new method in the SecureRandomBuilder with the seed argument as Date object
+
+CHANGED:
+
+- update of gradle version to 6.8.3
+- update of silly-collections version to 8.4
+- update of test dependency equalsverifier version to 3.5.5
+- to new package io.github.astrapi69
 
 Version 8
 -------------
