@@ -34,13 +34,13 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
-import de.alpharogroup.lang.ClassExtensions;
+import io.github.astrapi69.lang.ClassExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 import io.github.astrapi69.random.RandomCharacters;
 import io.github.astrapi69.random.date.RandomDateFactory;
 import io.github.astrapi69.random.enums.RandomAlgorithm;
 import io.github.astrapi69.random.number.*;
-import de.alpharogroup.reflection.ReflectionExtensions;
+import io.github.astrapi69.reflection.ReflectionExtensions;
 
 /**
  * A factory for creating random objects

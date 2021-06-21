@@ -31,7 +31,7 @@ import java.util.Properties;
 
 import org.testng.annotations.Test;
 
-import de.alpharogroup.lang.PackageExtensions;
+import io.github.astrapi69.lang.PackageExtensions;
 
 /**
  * The unit test class for the class {@link PropertiesLoader}
