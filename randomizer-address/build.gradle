@@ -1,7 +1,7 @@
 
 dependencies {
     implementation project(":randomizer-core")
-    testImplementation("de.alpharogroup:test-objects:$testObjectsVersion")
+    testImplementation("io.github.astrapi69:test-objects:$testObjectsVersion")
     testImplementation("de.alpharogroup:silly-strings:$sillyStringsVersion")
 }
 

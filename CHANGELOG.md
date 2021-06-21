@@ -13,6 +13,7 @@ CHANGED:
 
 - update of gradle version to 6.9
 - update of silly-collections version to 8.6
+- update of test dependency test-objects version to 5.4
 - update of test dependency equalsverifier version to 3.6.1
 - update of com.github.ben-manes.versions.gradle.plugin to new version 0.39.0
 

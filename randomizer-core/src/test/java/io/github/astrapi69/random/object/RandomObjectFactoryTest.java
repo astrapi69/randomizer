@@ -30,13 +30,13 @@ import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
 import de.alpharogroup.math.MathExtensions;
-import de.alpharogroup.test.objects.enums.Gender;
+import io.github.astrapi69.test.objects.enums.Gender;
 import org.apache.commons.lang3.ArrayUtils;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import io.github.astrapi69.random.enums.RandomAlgorithm;
-import de.alpharogroup.test.objects.Person;
+import io.github.astrapi69.test.objects.Person;
 
 import java.nio.charset.Charset;
 import java.util.*;
@@ -159,7 +159,7 @@ public class RandomObjectFactoryTest
 	@Test
 	public void testRandomEnumString()
 	{
-		String enumClassName = "de.alpharogroup.test.objects.enums.Gender";
+		String enumClassName = "io.github.astrapi69.test.objects.enums.Gender";
 		Gender randomEnumEntry = RandomObjectFactory.randomEnumFromClassname(enumClassName);
 
 		final Gender[] genders = Gender.values();

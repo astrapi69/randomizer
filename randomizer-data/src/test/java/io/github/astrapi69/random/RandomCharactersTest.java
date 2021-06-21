@@ -28,7 +28,7 @@ import static org.testng.AssertJUnit.assertEquals;
 
 import org.testng.annotations.Test;
 
-import de.alpharogroup.AbstractTestCase;
+import io.github.astrapi69.AbstractTestCase;
 
 /**
  * The unit test class for the class {@link RandomCharacters}
