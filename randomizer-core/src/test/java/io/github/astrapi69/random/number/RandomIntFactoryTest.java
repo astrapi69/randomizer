@@ -24,7 +24,7 @@
  */
 package io.github.astrapi69.random.number;
 
-import de.alpharogroup.collections.map.MapFactory;
+import io.github.astrapi69.collections.map.MapFactory;
 import de.alpharogroup.math.MathExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 import io.github.astrapi69.random.enums.RandomAlgorithm;

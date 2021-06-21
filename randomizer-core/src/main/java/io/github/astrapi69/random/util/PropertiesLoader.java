@@ -29,7 +29,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
 
-import de.alpharogroup.lang.ClassExtensions;
+import io.github.astrapi69.lang.ClassExtensions;
 
 public final class PropertiesLoader
 {

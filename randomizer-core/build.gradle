@@ -3,11 +3,11 @@ dependencies {
     implementation("de.alpharogroup:vintage-time:$vintageTimeVersion")
     implementation project(":randomizer-api")
     implementation project(":randomizer-data")
-    implementation("de.alpharogroup:jobj-core:$jobjCoreVersion")
-    implementation("de.alpharogroup:silly-collections:$sillyCollectionsVersion")
+    implementation("io.github.astrapi69:jobj-core:$jobjCoreVersion")
+    implementation("io.github.astrapi69:silly-collections:$sillyCollectionsVersion")
     implementation("de.alpharogroup:silly-math:$sillyMathVersion")
     testCompile("de.alpharogroup:silly-beans:$sillyBeansVersion")
-    testCompile("de.alpharogroup:test-objects:$testObjectsVersion")
+    testCompile("io.github.astrapi69:test-objects:$testObjectsVersion")
     testCompile("de.alpharogroup:silly-strings:$sillyStringsVersion")
 }
 

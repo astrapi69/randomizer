@@ -14,6 +14,9 @@
 .idea/codeStyles
 .idea/*.*
 /out/
+/randomizer-address/out
+/randomizer-core/out
+/randomizer-data/out
 /.idea/$PRODUCT_WORKSPACE_FILE$
 
 #################

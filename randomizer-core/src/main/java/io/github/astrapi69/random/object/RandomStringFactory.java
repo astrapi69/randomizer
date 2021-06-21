@@ -28,102 +28,127 @@ import io.github.astrapi69.random.RandomCharacters;
 import io.github.astrapi69.random.number.RandomCharFactory;
 import io.github.astrapi69.random.number.RandomIntFactory;
 
-public final class RandomStringFactory {
-    private RandomStringFactory(){}
+/**
+ * A factory for creating random {@link String} objects
+ */
+public final class RandomStringFactory
+{
+	private RandomStringFactory()
+	{
+	}
 
-    /**
-     * Generates a random string with a length between 3 and 25
-     *
-     * @return The produced random String.
-     */
-    public static String newRandomString()
-    {
-        return newRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
-                RandomIntFactory.randomIntBetween(3, 25));
-    }
+	/**
+	 * Generates a random string with a length between 3 and 25
+	 *
+	 * @return The produced random String.
+	 */
+	public static String newRandomString()
+	{
+		return newRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
+			RandomIntFactory.randomIntBetween(3, 25));
+	}
 
-    /**
-     * Generates a random string.
-     *
-     * @param length
-     *            the specified length.
-     * @return the generated random string.
-     */
-    public static String newRandomString(final int length)
-    {
-        final int maxLength = Math.min(length, 1024);
-        final StringBuilder sb = new StringBuilder(maxLength);
-        for (int i = 0; i < maxLength; i++)
-        {
-            sb.append(RandomCharFactory.randomChar());
-        }
-        return sb.toString();
-    }
+	/**
+	 * Generates a random string.
+	 *
+	 * @param length the specified length.
+	 * @return the generated random string.
+	 */
+	public static String newRandomString(final int length)
+	{
+		final int maxLength = Math.min(length, 1024);
+		final StringBuilder sb = new StringBuilder(maxLength);
+		for (int i = 0; i < maxLength; i++)
+		{
+			sb.append(RandomCharFactory.randomChar());
+		}
+		return sb.toString();
+	}
 
-    /**
-     * Generates a random string with a length between the given start and end
-     *
-     * @param start
-     *            the start
-     * @param end
-     *            the end
-     * @return the generated random string
-     */
-    public static String newRandomString(final int start, int end)
-    {
-        return newRandomString(RandomIntFactory.randomIntBetween(start, end));
-    }
+	/**
+	 * Generates a random string.
+	 *
+	 * @param length the specified length.
+	 * @return the generated random string.
+	 */
+	public static String newRandomLongString(final long length)
+	{
+		String allRandomCharacters = RandomCharacters.lowcaseWithUppercaseAndNumbersAndSpecial
+			.getCharacters() + RandomCharacters.escapeSequencesWithWhitespace.getCharacters();
+		return newRandomLongString(allRandomCharacters, length);
+	}
 
-    /**
-     * The Method randomString(String, int) makes an random String from the given String and to the
-     * spezified length. This can be used to produce passwords.
-     *
-     * @param chars
-     *            The String to get the random chars.
-     * @param length
-     *            The length from the random String.
-     * @return The produced random String.
-     */
-    public static String newRandomString(final String chars, final int length)
-    {
-        final StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < length; i++)
-        {
-            sb.append(RandomCharFactory.randomChar(chars));
-        }
-        return sb.toString();
-    }
+	/**
+	 * Generates a random string with a length between the given start and end
+	 *
+	 * @param start the start
+	 * @param end   the end
+	 * @return the generated random string
+	 */
+	public static String newRandomString(final int start, int end)
+	{
+		return newRandomString(RandomIntFactory.randomIntBetween(start, end));
+	}
 
-    /**
-     * The Method randomString(String []) a random String from the Array For example: The
-     * Stringarray test as argument. Possible values: "blab", "flih", "klap", "teta", "brut",
-     * "gzft", "ccp". Possible selection can be one value from the Stringarray like "blab" or
-     * "klap".
-     *
-     * @param array
-     *            The array with the String to be selected.
-     * @return The selected String from the array.
-     */
-    public static String newRandomString(final String[] array)
-    {
-        return array[RandomIntFactory.randomInt(array.length)];
-    }
+	/**
+	 * The Method randomString(String, int) makes an random String from the given String and to the
+	 * specified length. This can be used to produce passwords.
+	 *
+	 * @param chars  The String to get the random chars.
+	 * @param length The length from the random String.
+	 * @return The produced random String.
+	 */
+	public static String newRandomString(final String chars, final int length)
+	{
+		return newRandomLongString(chars, length);
+	}
+
+	/**
+	 * The Method randomString(String, long) makes an random String from the given String and to the
+	 * specified length. This can be used to produce passwords.
+	 *
+	 * @param chars  The String to get the random chars.
+	 * @param length The length from the random String.
+	 * @return The produced random String.
+	 */
+	public static String newRandomLongString(final String chars, final long length)
+	{
+		final StringBuilder sb = new StringBuilder();
+		for (long i = 0; i < length; i++)
+		{
+			sb.append(RandomCharFactory.randomChar(chars));
+		}
+		return sb.toString();
+	}
+
+	/**
+	 * The Method randomString(String []) a random String from the Array For example: The
+	 * Stringarray test as argument. Possible values: "blab", "flih", "klap", "teta", "brut",
+	 * "gzft", "ccp". Possible selection can be one value from the Stringarray like "blab" or
+	 * "klap".
+	 *
+	 * @param array The array with the String to be selected.
+	 * @return The selected String from the array.
+	 */
+	public static String newRandomString(final String[] array)
+	{
+		return array[RandomIntFactory.randomInt(array.length)];
+	}
 
 
-    /**
-     * Generates a random hexadecimal {@link String}
-     *
-     * @param numberOfCharacters
-     *            the number of characters
-     * @return the generated random hexadecimal {@link String}
-     */
-    public static String randomHexString(int numberOfCharacters)
-    {
-        StringBuilder sb = new StringBuilder();
-        while (sb.length() < numberOfCharacters)
-        {
-            sb.append(Integer.toHexString(RandomIntFactory.randomInt()));
-        }
-        return sb.toString().substring(0, numberOfCharacters);
-    }
+	/**
+	 * Generates a random hexadecimal {@link String}
+	 *
+	 * @param numberOfCharacters the number of characters
+	 * @return the generated random hexadecimal {@link String}
+	 */
+	public static String randomHexString(int numberOfCharacters)
+	{
+		StringBuilder sb = new StringBuilder();
+		while (sb.length() < numberOfCharacters)
+		{
+			sb.append(Integer.toHexString(RandomIntFactory.randomInt()));
+		}
+		return sb.substring(0, numberOfCharacters);
+	}
 }

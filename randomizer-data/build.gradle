@@ -1,6 +1,6 @@
 
 dependencies {
-    testImplementation("de.alpharogroup:test-objects:$testObjectsVersion")
+    testImplementation("io.github.astrapi69:test-objects:$testObjectsVersion")
     testImplementation("nl.jqno.equalsverifier:equalsverifier:$equalsverifierVersion")
 }
 

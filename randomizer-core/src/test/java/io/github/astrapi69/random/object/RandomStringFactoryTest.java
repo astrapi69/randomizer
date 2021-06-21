@@ -73,6 +73,29 @@ public class RandomStringFactoryTest
 	}
 
 	/**
+	 * Test method for {@link RandomStringFactory#newRandomLongString(long)}
+	 */
+	@Test
+	public void testNewRandomLongString()
+	{
+		String randomString = RandomStringFactory.newRandomLongString(10000L);
+		assertNotNull(randomString);
+		assertTrue(randomString.length() == 10000);
+	}
+
+	/**
+	 * Test method for {@link RandomStringFactory#newRandomLongString(String, long)}
+	 */
+	@Test
+	public void testNewRandomLongStringLong()
+	{
+		String randomString = RandomStringFactory.newRandomLongString(10000L);
+		assertNotNull(randomString);
+		System.out.println(randomString);
+		assertTrue(randomString.length() == 10000);
+	}
+
+	/**
 	 * Test method for {@link RandomStringFactory#newRandomString(int, int)}
 	 */
 	@Test
