@@ -9,6 +9,11 @@ ADDED:
 - new factory classes for generate long random string object
 - new random characters values in enum class RandomCharacters
 
+CHANGED:
+
+- update of gradle version to 6.9
+- update of test dependency equalsverifier version to 3.6.1
+
 Version 8.1
 -------------
 
