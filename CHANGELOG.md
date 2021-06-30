@@ -33,7 +33,7 @@ CHANGED:
 - update of gradle version to 6.8.3
 - update of silly-collections version to 8.4
 - update of test dependency equalsverifier version to 3.5.5
-- to new package io.github.astrapi69
+- moved to new package io.github.astrapi69
 
 Version 8
 -------------
