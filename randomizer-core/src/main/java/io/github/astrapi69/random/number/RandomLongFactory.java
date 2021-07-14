@@ -24,14 +24,14 @@
  */
 package io.github.astrapi69.random.number;
 
+import java.security.SecureRandom;
+import java.util.Objects;
+import java.util.Random;
+
 import de.alpharogroup.math.MathExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 import io.github.astrapi69.random.SecureRandomFactory;
 import io.github.astrapi69.random.enums.RandomAlgorithm;
-
-import java.security.SecureRandom;
-import java.util.Objects;
-import java.util.Random;
 
 /**
  * Utility class for producing random primitive long types
@@ -41,6 +41,10 @@ import java.util.Random;
  */
 public final class RandomLongFactory
 {
+
+	private RandomLongFactory()
+	{
+	}
 
 	/**
 	 * Gets a random long
@@ -78,8 +82,7 @@ public final class RandomLongFactory
 	 */
 	public static long randomLong(final long range, final RandomAlgorithm algorithm)
 	{
-		return randomLong(range, Objects.requireNonNull(algorithm),
-				DefaultSecureRandom.get());
+		return randomLong(range, Objects.requireNonNull(algorithm), DefaultSecureRandom.get());
 	}
 
 	/**
@@ -93,8 +96,7 @@ public final class RandomLongFactory
 	 */
 	public static long randomLongBetween(final long start, final long end)
 	{
-		return randomLongBetween(start, end,
-				SecureRandomFactory.newSecureRandom());
+		return randomLongBetween(start, end, SecureRandomFactory.newSecureRandom());
 	}
 
 	/**
@@ -111,7 +113,7 @@ public final class RandomLongFactory
 	 * @return an random long not greater then the range
 	 */
 	public static long randomLong(final long range, final RandomAlgorithm algorithm,
-								  SecureRandom secureRandom)
+		SecureRandom secureRandom)
 	{
 		Objects.requireNonNull(algorithm);
 		Objects.requireNonNull(secureRandom);
@@ -171,14 +173,10 @@ public final class RandomLongFactory
 	 * @return A random long between the range from start and end.
 	 */
 	public static long randomLongBetween(final long start, final long end,
-										 SecureRandom secureRandom)
+		SecureRandom secureRandom)
 	{
 		return start + randomLong(end - start, RandomAlgorithm.SECURE_RANDOM,
-				Objects.requireNonNull(secureRandom));
-	}
-
-	private RandomLongFactory()
-	{
+			Objects.requireNonNull(secureRandom));
 	}
 
 }

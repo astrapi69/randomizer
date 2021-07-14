@@ -24,14 +24,14 @@
  */
 package io.github.astrapi69.random.number;
 
+import java.security.SecureRandom;
+import java.util.Objects;
+import java.util.Random;
+
 import de.alpharogroup.math.MathExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 import io.github.astrapi69.random.SecureRandomFactory;
 import io.github.astrapi69.random.enums.RandomAlgorithm;
-
-import java.security.SecureRandom;
-import java.util.Objects;
-import java.util.Random;
 
 /**
  * Utility class for producing random primitive float types
@@ -41,6 +41,10 @@ import java.util.Random;
  */
 public final class RandomFloatFactory
 {
+
+	private RandomFloatFactory()
+	{
+	}
 
 	/**
 	 * Gets an random float to the given range with the given random algorithm <br>
@@ -56,7 +60,7 @@ public final class RandomFloatFactory
 	 * @return an random float not greater then the range
 	 */
 	public static float randomFloat(final float range, final RandomAlgorithm algorithm,
-									SecureRandom secureRandom)
+		SecureRandom secureRandom)
 	{
 		Objects.requireNonNull(algorithm);
 		Objects.requireNonNull(secureRandom);
@@ -140,8 +144,7 @@ public final class RandomFloatFactory
 	 */
 	public static float randomFloat(final float range, final RandomAlgorithm algorithm)
 	{
-		return randomFloat(range, Objects.requireNonNull(algorithm),
-				DefaultSecureRandom.get());
+		return randomFloat(range, Objects.requireNonNull(algorithm), DefaultSecureRandom.get());
 	}
 
 	/**
@@ -155,7 +158,8 @@ public final class RandomFloatFactory
 	 */
 	public static float randomFloat(final int afterComma, final int beforeComma)
 	{
-		return Float.parseFloat(RandomNumberExtensions.getRandomNumberString(afterComma, beforeComma));
+		return Float
+			.parseFloat(RandomNumberExtensions.getRandomNumberString(afterComma, beforeComma));
 	}
 
 	/**
@@ -169,8 +173,7 @@ public final class RandomFloatFactory
 	 */
 	public static float randomFloatBetween(final float start, final float end)
 	{
-		return randomFloatBetween(start, end,
-				SecureRandomFactory.newSecureRandom());
+		return randomFloatBetween(start, end, SecureRandomFactory.newSecureRandom());
 	}
 
 	/**
@@ -185,14 +188,10 @@ public final class RandomFloatFactory
 	 * @return the random float between
 	 */
 	public static float randomFloatBetween(final float start, final float end,
-										   SecureRandom secureRandom)
+		SecureRandom secureRandom)
 	{
 		return start + randomFloat(end - start, RandomAlgorithm.SECURE_RANDOM,
-				Objects.requireNonNull(secureRandom));
-	}
-
-	private RandomFloatFactory()
-	{
+			Objects.requireNonNull(secureRandom));
 	}
 
 }

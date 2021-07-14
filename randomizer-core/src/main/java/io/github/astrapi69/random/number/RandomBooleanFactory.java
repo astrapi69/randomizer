@@ -24,11 +24,11 @@
  */
 package io.github.astrapi69.random.number;
 
-import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
-
 import java.security.SecureRandom;
 import java.util.Objects;
+
+import io.github.astrapi69.random.DefaultSecureRandom;
+import io.github.astrapi69.random.enums.RandomAlgorithm;
 
 /**
  * Utility class for producing random primitive boolean types
@@ -36,14 +36,20 @@ import java.util.Objects;
  * @version 1.1
  * @author Asterios Raptis
  */
-public final class RandomBooleanFactory {
+public final class RandomBooleanFactory
+{
+
+	private RandomBooleanFactory()
+	{
+	}
 
 	/**
 	 * Returns a random boolean.
 	 *
 	 * @return The random boolean.
 	 */
-	public static boolean randomBoolean() {
+	public static boolean randomBoolean()
+	{
 		return randomBoolean(DefaultSecureRandom.get());
 	}
 
@@ -55,12 +61,10 @@ public final class RandomBooleanFactory {
 	 *
 	 * @return The random boolean.
 	 */
-	public static boolean randomBoolean(SecureRandom secureRandom) {
+	public static boolean randomBoolean(SecureRandom secureRandom)
+	{
 		return RandomIntFactory.randomInt(2, RandomAlgorithm.SECURE_RANDOM,
-				Objects.requireNonNull(secureRandom)) == 0;
-	}
-
-	private RandomBooleanFactory() {
+			Objects.requireNonNull(secureRandom)) == 0;
 	}
 
 }

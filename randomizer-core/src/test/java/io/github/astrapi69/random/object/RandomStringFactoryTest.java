@@ -32,11 +32,11 @@ import java.nio.CharBuffer;
 import java.util.Arrays;
 import java.util.List;
 
-import io.github.astrapi69.random.RandomCharacters;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import de.alpharogroup.math.MathExtensions;
+import io.github.astrapi69.random.RandomCharacters;
 
 public class RandomStringFactoryTest
 {

@@ -26,10 +26,10 @@ package io.github.astrapi69.random;
 
 import static org.testng.Assert.assertNotNull;
 
+import nl.jqno.equalsverifier.EqualsVerifier;
+
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
-
-import nl.jqno.equalsverifier.EqualsVerifier;
 
 /**
  * The unit test class for the class {@link SecureRandomBean}

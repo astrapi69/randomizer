@@ -40,6 +40,19 @@ public final class SecureRandomBuilder
 
 	/** The Constant DEFAULT_ALGORITHM */
 	public static final String DEFAULT_ALGORITHM = "SHA1PRNG";
+	/** The algorithm. */
+	private String algorithm;
+	/** The provider. */
+	private String provider;
+	/** The seed. Default seed is the current time milliseconds */
+	private long seed = System.currentTimeMillis();
+
+	/**
+	 * Instantiates a new {@link SecureRandomBuilder}
+	 */
+	private SecureRandomBuilder()
+	{
+	}
 
 	/**
 	 * Gets an instance of {@link SecureRandomBuilder} with the default algorithm and provider
@@ -106,9 +119,10 @@ public final class SecureRandomBuilder
 	 * @return the new {@link SecureRandomBuilder} object
 	 */
 	public static SecureRandomBuilder getInstance(final String algorithm, final String provider,
-												  final Date seed)
+		final Date seed)
 	{
-		return SecureRandomBuilder.newInstance().algorithm(algorithm).provider(provider).seed(seed.getTime());
+		return SecureRandomBuilder.newInstance().algorithm(algorithm).provider(provider)
+			.seed(seed.getTime());
 	}
 
 	/**
@@ -119,22 +133,6 @@ public final class SecureRandomBuilder
 	private static SecureRandomBuilder newInstance()
 	{
 		return new SecureRandomBuilder();
-	}
-
-	/** The algorithm. */
-	private String algorithm;
-
-	/** The provider. */
-	private String provider;
-
-	/** The seed. Default seed is the current time milliseconds */
-	private long seed = System.currentTimeMillis();
-
-	/**
-	 * Instantiates a new {@link SecureRandomBuilder}
-	 */
-	private SecureRandomBuilder()
-	{
 	}
 
 	/**

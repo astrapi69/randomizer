@@ -24,13 +24,13 @@
  */
 package io.github.astrapi69.random.number;
 
-import de.alpharogroup.math.MathExtensions;
-import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
-
 import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.Random;
+
+import de.alpharogroup.math.MathExtensions;
+import io.github.astrapi69.random.DefaultSecureRandom;
+import io.github.astrapi69.random.enums.RandomAlgorithm;
 
 /**
  * Utility class for producing random primitive double types
@@ -40,6 +40,10 @@ import java.util.Random;
  */
 public final class RandomDoubleFactory
 {
+
+	private RandomDoubleFactory()
+	{
+	}
 
 	/**
 	 * Gets an random double to the given range with the given random algorithm <br>
@@ -54,8 +58,7 @@ public final class RandomDoubleFactory
 	 */
 	public static double randomDouble(final double range, final RandomAlgorithm algorithm)
 	{
-		return randomDouble(range, Objects.requireNonNull(algorithm),
-				DefaultSecureRandom.get());
+		return randomDouble(range, Objects.requireNonNull(algorithm), DefaultSecureRandom.get());
 	}
 
 	/**
@@ -72,7 +75,7 @@ public final class RandomDoubleFactory
 	 * @return an random double not greater then the range
 	 */
 	public static double randomDouble(final double range, final RandomAlgorithm algorithm,
-									  SecureRandom secureRandom)
+		SecureRandom secureRandom)
 	{
 		Objects.requireNonNull(algorithm);
 		Objects.requireNonNull(secureRandom);
@@ -156,10 +159,10 @@ public final class RandomDoubleFactory
 	 * @return the random double between
 	 */
 	public static double randomDoubleBetween(final double start, final double end,
-											 SecureRandom secureRandom)
+		SecureRandom secureRandom)
 	{
 		return start + randomDouble(end - start, RandomAlgorithm.SECURE_RANDOM,
-				Objects.requireNonNull(secureRandom));
+			Objects.requireNonNull(secureRandom));
 	}
 
 	/**
@@ -173,12 +176,7 @@ public final class RandomDoubleFactory
 	 */
 	public static double randomDoubleBetween(final double start, final double end)
 	{
-		return randomDoubleBetween(start, end,
-				DefaultSecureRandom.get());
-	}
-
-	private RandomDoubleFactory()
-	{
+		return randomDoubleBetween(start, end, DefaultSecureRandom.get());
 	}
 
 }

@@ -24,14 +24,15 @@
  */
 package io.github.astrapi69.random.number;
 
-import de.alpharogroup.math.MathExtensions;
-import io.github.astrapi69.random.DefaultSecureRandom;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.security.SecureRandom;
 
-import static org.testng.AssertJUnit.assertTrue;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
+import de.alpharogroup.math.MathExtensions;
+import io.github.astrapi69.random.DefaultSecureRandom;
 
 /**
  * The unit test class for the class {@link RandomShortFactory}

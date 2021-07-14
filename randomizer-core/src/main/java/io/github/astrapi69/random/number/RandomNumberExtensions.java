@@ -37,6 +37,10 @@ import io.github.astrapi69.random.object.RandomStringFactory;
 public final class RandomNumberExtensions
 {
 
+	private RandomNumberExtensions()
+	{
+	}
+
 	/**
 	 * Gets the random number string
 	 *
@@ -90,10 +94,6 @@ public final class RandomNumberExtensions
 		final String randomNumber = RandomStringFactory
 			.newRandomString(RandomCharacters.numbers.getCharacters(), length);
 		return randomNumber;
-	}
-
-	private RandomNumberExtensions()
-	{
 	}
 
 }

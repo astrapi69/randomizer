@@ -50,6 +50,10 @@ import io.github.astrapi69.random.number.RandomLongFactory;
 public final class RandomDateFactory
 {
 
+	private RandomDateFactory()
+	{
+	}
+
 	/**
 	 * Creates a random birthday-date between 9 and 55 years.
 	 *
@@ -122,7 +126,7 @@ public final class RandomDateFactory
 	public static Date randomDateAfter(final Date date, final int range, SecureRandom secureRandom)
 	{
 		return CalculateDateExtensions.addDays(date,
-				RandomIntFactory.randomInt(range, RandomAlgorithm.SECURE_RANDOM, secureRandom));
+			RandomIntFactory.randomInt(range, RandomAlgorithm.SECURE_RANDOM, secureRandom));
 	}
 
 	/**
@@ -150,7 +154,8 @@ public final class RandomDateFactory
 	 */
 	public static Date randomDateBefore(final Date date, final int range)
 	{
-		return RandomDateFactory.randomDateBefore(date, range, SecureRandomFactory.newSecureRandom());
+		return RandomDateFactory.randomDateBefore(date, range,
+			SecureRandomFactory.newSecureRandom());
 	}
 
 	/**
@@ -168,7 +173,7 @@ public final class RandomDateFactory
 	public static Date randomDateBefore(final Date date, final int range, SecureRandom secureRandom)
 	{
 		return CalculateDateExtensions.substractDaysFromDate(date,
-				RandomIntFactory.randomInt(range, RandomAlgorithm.SECURE_RANDOM, secureRandom));
+			RandomIntFactory.randomInt(range, RandomAlgorithm.SECURE_RANDOM, secureRandom));
 	}
 
 	/**
@@ -213,7 +218,7 @@ public final class RandomDateFactory
 
 	/**
 	 * Creates a random {@link Date}
-	 * 
+	 *
 	 * @param secureRandom
 	 *            the secure random for {@link Date} generation
 	 *
@@ -286,7 +291,7 @@ public final class RandomDateFactory
 	public static Date randomDatebetween(final Date start, final Date end)
 	{
 		return RandomDateFactory.randomDateBetween(start, end,
-				SecureRandomFactory.newSecureRandom());
+			SecureRandomFactory.newSecureRandom());
 	}
 
 	/**
@@ -317,10 +322,10 @@ public final class RandomDateFactory
 	 * @return The random date as a String.
 	 */
 	public static String randomDatebetween(final long startDate, final long endDate,
-										   final String format)
+		final String format)
 	{
 		return RandomDateFactory.randomDateBetween(startDate, endDate, format,
-				SecureRandomFactory.newSecureRandom());
+			SecureRandomFactory.newSecureRandom());
 	}
 
 	/**
@@ -336,7 +341,8 @@ public final class RandomDateFactory
 	 */
 	public static Date randomDateBetween(final Date from, final int startDays, final int endDays)
 	{
-		return RandomDateFactory.randomDateAfter(from, RandomIntFactory.randomIntBetween(startDays, endDays));
+		return RandomDateFactory.randomDateAfter(from,
+			RandomIntFactory.randomIntBetween(startDays, endDays));
 	}
 
 	/**
@@ -351,12 +357,12 @@ public final class RandomDateFactory
 		if (RandomBooleanFactory.randomBoolean())
 		{
 			randomLocalDate = now
-					.plusDays(RandomLongFactory.randomLongBetween(-999999999L, 999999999L));
+				.plusDays(RandomLongFactory.randomLongBetween(-999999999L, 999999999L));
 		}
 		else
 		{
 			randomLocalDate = now
-					.minusDays(RandomLongFactory.randomLongBetween(-999999999L, 999999999L));
+				.minusDays(RandomLongFactory.randomLongBetween(-999999999L, 999999999L));
 		}
 		return randomLocalDate;
 	}
@@ -383,14 +389,14 @@ public final class RandomDateFactory
 		if (RandomBooleanFactory.randomBoolean())
 		{
 			randomLocalTime = now.plusHours(RandomLongFactory.randomLong(23))
-					.plusMinutes(RandomLongFactory.randomLong(59))
-					.plusSeconds(RandomLongFactory.randomLong(59));
+				.plusMinutes(RandomLongFactory.randomLong(59))
+				.plusSeconds(RandomLongFactory.randomLong(59));
 		}
 		else
 		{
 			randomLocalTime = now.minusHours(RandomLongFactory.randomLong(23))
-					.minusMinutes(RandomLongFactory.randomLong(59))
-					.minusSeconds(RandomLongFactory.randomLong(59));
+				.minusMinutes(RandomLongFactory.randomLong(59))
+				.minusSeconds(RandomLongFactory.randomLong(59));
 		}
 		return randomLocalTime;
 	}
@@ -403,11 +409,6 @@ public final class RandomDateFactory
 	public static ZoneId randomZoneId()
 	{
 		List<String> availableZoneIds = new ArrayList(ZoneId.getAvailableZoneIds());
-		return ZoneId.of(
-				availableZoneIds.get(RandomIntFactory.randomInt(availableZoneIds.size())));
-	}
-
-	private RandomDateFactory()
-	{
+		return ZoneId.of(availableZoneIds.get(RandomIntFactory.randomInt(availableZoneIds.size())));
 	}
 }

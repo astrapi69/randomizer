@@ -51,7 +51,8 @@ public final class RandomStringFactory
 	/**
 	 * Generates a random string.
 	 *
-	 * @param length the specified length.
+	 * @param length
+	 *            the specified length.
 	 * @return the generated random string.
 	 */
 	public static String newRandomString(final int length)
@@ -68,7 +69,8 @@ public final class RandomStringFactory
 	/**
 	 * Generates a random string.
 	 *
-	 * @param length the specified length.
+	 * @param length
+	 *            the specified length.
 	 * @return the generated random string.
 	 */
 	public static String newRandomLongString(final long length)
@@ -81,8 +83,10 @@ public final class RandomStringFactory
 	/**
 	 * Generates a random string with a length between the given start and end
 	 *
-	 * @param start the start
-	 * @param end   the end
+	 * @param start
+	 *            the start
+	 * @param end
+	 *            the end
 	 * @return the generated random string
 	 */
 	public static String newRandomString(final int start, int end)
@@ -94,8 +98,10 @@ public final class RandomStringFactory
 	 * The Method randomString(String, int) makes an random String from the given String and to the
 	 * specified length. This can be used to produce passwords.
 	 *
-	 * @param chars  The String to get the random chars.
-	 * @param length The length from the random String.
+	 * @param chars
+	 *            The String to get the random chars.
+	 * @param length
+	 *            The length from the random String.
 	 * @return The produced random String.
 	 */
 	public static String newRandomString(final String chars, final int length)
@@ -107,8 +113,10 @@ public final class RandomStringFactory
 	 * The Method randomString(String, long) makes an random String from the given String and to the
 	 * specified length. This can be used to produce passwords.
 	 *
-	 * @param chars  The String to get the random chars.
-	 * @param length The length from the random String.
+	 * @param chars
+	 *            The String to get the random chars.
+	 * @param length
+	 *            The length from the random String.
 	 * @return The produced random String.
 	 */
 	public static String newRandomLongString(final String chars, final long length)
@@ -127,7 +135,8 @@ public final class RandomStringFactory
 	 * "gzft", "ccp". Possible selection can be one value from the Stringarray like "blab" or
 	 * "klap".
 	 *
-	 * @param array The array with the String to be selected.
+	 * @param array
+	 *            The array with the String to be selected.
 	 * @return The selected String from the array.
 	 */
 	public static String newRandomString(final String[] array)
@@ -139,7 +148,8 @@ public final class RandomStringFactory
 	/**
 	 * Generates a random hexadecimal {@link String}
 	 *
-	 * @param numberOfCharacters the number of characters
+	 * @param numberOfCharacters
+	 *            the number of characters
 	 * @return the generated random hexadecimal {@link String}
 	 */
 	public static String randomHexString(int numberOfCharacters)

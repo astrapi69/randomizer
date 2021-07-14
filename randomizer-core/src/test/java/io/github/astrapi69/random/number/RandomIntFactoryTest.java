@@ -24,17 +24,18 @@
  */
 package io.github.astrapi69.random.number;
 
-import io.github.astrapi69.collections.map.MapFactory;
-import de.alpharogroup.math.MathExtensions;
-import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.security.SecureRandom;
 import java.util.Map;
 
-import static org.testng.AssertJUnit.assertTrue;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
+import de.alpharogroup.math.MathExtensions;
+import io.github.astrapi69.collections.map.MapFactory;
+import io.github.astrapi69.random.DefaultSecureRandom;
+import io.github.astrapi69.random.enums.RandomAlgorithm;
 
 /**
  * The unit test class for the class {@link RandomIntFactory}
@@ -54,7 +55,7 @@ public class RandomIntFactoryTest
 		for (int i = 0; i < 100; i++)
 		{
 			final int randomIntBetween = RandomIntFactory.randomIntBetween(0, 10,
-					DefaultSecureRandom.get());
+				DefaultSecureRandom.get());
 			boolean isBetween = MathExtensions.isBetween(0, 10, randomIntBetween, true, true);
 			assertTrue(isBetween);
 		}
@@ -89,7 +90,7 @@ public class RandomIntFactoryTest
 		{
 			random = RandomIntFactory.randomInt(5, algorithm, DefaultSecureRandom.get());
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1, 5, random));
+				MathExtensions.isBetween(-1, 5, random));
 		}
 		// scenario with RandomAlgorithm.MATH_RANDOM
 		algorithm = RandomAlgorithm.MATH_RANDOM;
@@ -97,7 +98,7 @@ public class RandomIntFactoryTest
 		{
 			random = RandomIntFactory.randomInt(5, algorithm, DefaultSecureRandom.get());
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1, 5, random));
+				MathExtensions.isBetween(-1, 5, random));
 		}
 		// scenario with RandomAlgorithm.RANDOM
 		algorithm = RandomAlgorithm.RANDOM;
@@ -105,7 +106,7 @@ public class RandomIntFactoryTest
 		{
 			random = RandomIntFactory.randomInt(5, algorithm, DefaultSecureRandom.get());
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1, 5, random));
+				MathExtensions.isBetween(-1, 5, random));
 		}
 	}
 
@@ -120,7 +121,7 @@ public class RandomIntFactoryTest
 		{
 			random = RandomIntFactory.randomInt(5, DefaultSecureRandom.get());
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1, 5, random));
+				MathExtensions.isBetween(-1, 5, random));
 		}
 	}
 
@@ -145,8 +146,7 @@ public class RandomIntFactoryTest
 	}
 
 	/**
-	 * Test method for
-	 * {@link RandomIntFactory#randomIntBetween(int, int, boolean, boolean)}
+	 * Test method for {@link RandomIntFactory#randomIntBetween(int, int, boolean, boolean)}
 	 */
 	@Test
 	public void testRandomIntBetweenBooleanBoolean()
@@ -168,14 +168,14 @@ public class RandomIntFactoryTest
 		includeMin = false;
 		includeMax = false;
 		testScenarioRandomIntBetween(start, end, minVolume, maxVolume, includeMin, includeMax,
-				iterations);
+			iterations);
 		// new scenario
 		minVolume = start + 1;
 		maxVolume = end;
 		includeMin = false;
 		includeMax = true;
 		testScenarioRandomIntBetween(start, end, minVolume, maxVolume, includeMin, includeMax,
-				iterations);
+			iterations);
 
 		// new scenario
 		minVolume = start;
@@ -183,7 +183,7 @@ public class RandomIntFactoryTest
 		includeMin = true;
 		includeMax = false;
 		testScenarioRandomIntBetween(start, end, minVolume, maxVolume, includeMin, includeMax,
-				iterations);
+			iterations);
 
 		// new scenario
 		minVolume = start;
@@ -191,7 +191,7 @@ public class RandomIntFactoryTest
 		includeMin = true;
 		includeMax = true;
 		testScenarioRandomIntBetween(start, end, minVolume, maxVolume, includeMin, includeMax,
-				iterations);
+			iterations);
 	}
 
 	/**
@@ -204,13 +204,12 @@ public class RandomIntFactoryTest
 		{
 			final int randomInt = RandomIntFactory.randomInt(5);
 			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
-					MathExtensions.isBetween(-1, 5, randomInt));
+				MathExtensions.isBetween(-1, 5, randomInt));
 		}
 	}
 
 	/**
-	 * Test method for
-	 * {@link RandomIntFactory#randomInt(int, RandomAlgorithm)}
+	 * Test method for {@link RandomIntFactory#randomInt(int, RandomAlgorithm)}
 	 */
 	@Test
 	public void testRandomIntRandomAlgorithm()
@@ -222,7 +221,7 @@ public class RandomIntFactoryTest
 		{
 			final int randomInt = RandomIntFactory.randomInt(5, algorithm);
 			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
-					MathExtensions.isBetween(-1, 5, randomInt));
+				MathExtensions.isBetween(-1, 5, randomInt));
 		}
 		// scenario with RandomAlgorithm.MATH_RANDOM
 		algorithm = RandomAlgorithm.MATH_RANDOM;
@@ -230,7 +229,7 @@ public class RandomIntFactoryTest
 		{
 			final int randomInt = RandomIntFactory.randomInt(5, algorithm);
 			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
-					MathExtensions.isBetween(-1, 5, randomInt));
+				MathExtensions.isBetween(-1, 5, randomInt));
 		}
 		// scenario with RandomAlgorithm.RANDOM
 		algorithm = RandomAlgorithm.RANDOM;
@@ -238,11 +237,12 @@ public class RandomIntFactoryTest
 		{
 			final int randomInt = RandomIntFactory.randomInt(5, algorithm);
 			assertTrue(
-					"randomInt result is " + randomInt
-							+ " but should be between Integer.MIN_VALUE-Integer.MAX_VALUE.",
-					MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, randomInt));
+				"randomInt result is " + randomInt
+					+ " but should be between Integer.MIN_VALUE-Integer.MAX_VALUE.",
+				MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, randomInt));
 		}
 	}
+
 	/**
 	 * Test method for {@link RandomIntFactory} with {@link BeanTester}
 	 */
@@ -254,16 +254,16 @@ public class RandomIntFactoryTest
 	}
 
 	private void testScenarioRandomIntBetween(int start, int end, int minVolume, int maxVolume,
-											  boolean includeMin, boolean includeMax, int iterations)
+		boolean includeMin, boolean includeMax, int iterations)
 	{
 		Map<Integer, Integer> testMap = MapFactory.newNumberCounterMap(minVolume, maxVolume);
 		System.out.println("start:" + start + "\n" + "end:" + end + "\n" + "minVolume:" + minVolume
-				+ "\n" + "maxVolume:" + maxVolume + "\n" + "includeMin:" + includeMin + "\n"
-				+ "includeMax:" + includeMax + "\n");
+			+ "\n" + "maxVolume:" + maxVolume + "\n" + "includeMin:" + includeMin + "\n"
+			+ "includeMax:" + includeMax + "\n");
 		for (int i = 0; i < iterations; i++)
 		{
-			final int randomIntBetween = RandomIntFactory.randomIntBetween(start, end,
-					includeMin, includeMax);
+			final int randomIntBetween = RandomIntFactory.randomIntBetween(start, end, includeMin,
+				includeMax);
 			System.out.println(randomIntBetween);
 			testMap.merge(randomIntBetween, 1, Integer::sum);
 		}

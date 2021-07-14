@@ -24,10 +24,10 @@
  */
 package io.github.astrapi69.random.number;
 
-import io.github.astrapi69.random.DefaultSecureRandom;
-
 import java.security.SecureRandom;
 import java.util.Objects;
+
+import io.github.astrapi69.random.DefaultSecureRandom;
 
 /**
  * Utility class for producing random primitive short types
@@ -37,6 +37,10 @@ import java.util.Objects;
  */
 public final class RandomShortFactory
 {
+
+	private RandomShortFactory()
+	{
+	}
 
 	/**
 	 * Returns a random short
@@ -67,10 +71,6 @@ public final class RandomShortFactory
 	public static short randomShort()
 	{
 		return randomShort(DefaultSecureRandom.get());
-	}
-
-	private RandomShortFactory()
-	{
 	}
 
 }

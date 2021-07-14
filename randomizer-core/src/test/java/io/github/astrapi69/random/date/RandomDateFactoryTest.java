@@ -24,6 +24,10 @@
  */
 package io.github.astrapi69.random.date;
 
+import static org.testng.AssertJUnit.assertEquals;
+import static org.testng.AssertJUnit.assertNotNull;
+import static org.testng.AssertJUnit.assertTrue;
+
 import java.security.SecureRandom;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -32,7 +36,6 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 
-import io.github.astrapi69.random.DefaultSecureRandom;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -40,8 +43,7 @@ import org.testng.annotations.Test;
 import de.alpharogroup.date.CalculateDateExtensions;
 import de.alpharogroup.date.DatePatterns;
 import de.alpharogroup.date.ParseDateExtensions;
-
-import static org.testng.AssertJUnit.*;
+import io.github.astrapi69.random.DefaultSecureRandom;
 
 
 /**
@@ -114,8 +116,7 @@ public class RandomDateFactoryTest
 	}
 
 	/**
-	 * Test method for
-	 * {@link RandomDateFactory#randomDatebetween(java.util.Date, java.util.Date)} .
+	 * Test method for {@link RandomDateFactory#randomDatebetween(java.util.Date, java.util.Date)} .
 	 */
 	@Test
 	public void testCreateRandomDatebetweenDateDate()
@@ -141,14 +142,13 @@ public class RandomDateFactoryTest
 		final long startDate = this.now.getTime();
 		final String randomDate = RandomDateFactory.randomDatebetween(startDate, endDate);
 		final Date compare = ParseDateExtensions.parseToDate(randomDate,
-				DatePatterns.DOT_DD_MM_YYYY_HH_MM_SS);
+			DatePatterns.DOT_DD_MM_YYYY_HH_MM_SS);
 		actual = CalculateDateExtensions.isBetween(this.now, till, compare);
 		assertTrue("", actual);
 	}
 
 	/**
-	 * Test method for {@link RandomDateFactory#randomDatebetween(long, long, java.lang.String)}
-	 * .
+	 * Test method for {@link RandomDateFactory#randomDatebetween(long, long, java.lang.String)} .
 	 *
 	 * @throws ParseException
 	 *             occurs when their are problems with parsing the String to Date.
@@ -161,8 +161,7 @@ public class RandomDateFactoryTest
 		final long endDate = till.getTime();
 		final long startDate = from.getTime();
 		final String format = DatePatterns.DOT_DD_MM_YYYY_HH_MM_SS;
-		final String randomDate = RandomDateFactory.randomDatebetween(startDate, endDate,
-				format);
+		final String randomDate = RandomDateFactory.randomDatebetween(startDate, endDate, format);
 		final Date compare = ParseDateExtensions.parseToDate(randomDate, format);
 		actual = CalculateDateExtensions.isBetween(from, till, compare);
 		assertTrue("", actual);

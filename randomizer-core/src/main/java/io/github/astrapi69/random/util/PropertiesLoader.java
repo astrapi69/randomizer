@@ -33,6 +33,10 @@ import io.github.astrapi69.lang.ClassExtensions;
 
 public final class PropertiesLoader
 {
+	private PropertiesLoader()
+	{
+	}
+
 	/**
 	 * Gives a Properties-object from the given packagepath.
 	 *
@@ -61,10 +65,6 @@ public final class PropertiesLoader
 			}
 		}
 		return properties;
-	}
-
-	private PropertiesLoader()
-	{
 	}
 
 }

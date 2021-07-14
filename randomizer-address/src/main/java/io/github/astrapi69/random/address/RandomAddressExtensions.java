@@ -46,6 +46,10 @@ public final class RandomAddressExtensions
 	/** Resource for get german zipcodes and the cities from it. */
 	public static final String PROP_FILE_ZIP_CITIES = "/resources/de_zip_city.properties";
 
+	private RandomAddressExtensions()
+	{
+	}
+
 	/**
 	 * Returns a random german street.
 	 *
@@ -98,10 +102,6 @@ public final class RandomAddressExtensions
 		final int randomIndex = RandomIntFactory.randomInt(keys.length);
 		final String zip = (String)keys[randomIndex];
 		return zip;
-	}
-
-	private RandomAddressExtensions()
-	{
 	}
 
 }

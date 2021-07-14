@@ -24,10 +24,10 @@
  */
 package io.github.astrapi69.random.number;
 
-import io.github.astrapi69.random.DefaultSecureRandom;
-
 import java.security.SecureRandom;
 import java.util.Objects;
+
+import io.github.astrapi69.random.DefaultSecureRandom;
 
 /**
  * Utility class for producing random primitive char types
@@ -37,6 +37,10 @@ import java.util.Objects;
  */
 public final class RandomCharFactory
 {
+
+	private RandomCharFactory()
+	{
+	}
 
 	/**
 	 * Returns a random char.
@@ -82,10 +86,6 @@ public final class RandomCharFactory
 	{
 		Objects.requireNonNull(string);
 		return string.charAt(RandomIntFactory.randomInt(string.length()));
-	}
-
-	private RandomCharFactory()
-	{
 	}
 
 }
