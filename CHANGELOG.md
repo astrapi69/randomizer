@@ -4,6 +4,15 @@
 Version 8.3-SNAPSHOT
 -------------
 
+ADDED:
+
+- new characters to the enum RandomCharacters class
+
+CHANGED:
+
+- update of gradle version to 7.1
+- update all dependencies to new package io.github.astrapi69
+
 Version 8.2
 -------------
 

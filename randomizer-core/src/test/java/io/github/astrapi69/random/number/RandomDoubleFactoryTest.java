@@ -31,7 +31,7 @@ import java.security.SecureRandom;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-import de.alpharogroup.math.MathExtensions;
+import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 import io.github.astrapi69.random.enums.RandomAlgorithm;
 

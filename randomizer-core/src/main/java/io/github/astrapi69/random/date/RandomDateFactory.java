@@ -35,8 +35,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-import de.alpharogroup.date.CalculateDateExtensions;
-import de.alpharogroup.date.CreateDateExtensions;
+import io.github.astrapi69.date.CalculateDateExtensions;
+import io.github.astrapi69.date.CreateDateExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 import io.github.astrapi69.random.SecureRandomFactory;
 import io.github.astrapi69.random.enums.RandomAlgorithm;

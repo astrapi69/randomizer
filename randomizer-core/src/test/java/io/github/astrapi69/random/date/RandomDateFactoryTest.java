@@ -40,9 +40,9 @@ import org.meanbean.test.BeanTester;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import de.alpharogroup.date.CalculateDateExtensions;
-import de.alpharogroup.date.DatePatterns;
-import de.alpharogroup.date.ParseDateExtensions;
+import io.github.astrapi69.date.CalculateDateExtensions;
+import io.github.astrapi69.date.DatePatterns;
+import io.github.astrapi69.date.ParseDateExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 
 

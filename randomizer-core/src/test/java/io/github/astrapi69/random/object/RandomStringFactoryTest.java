@@ -35,7 +35,7 @@ import java.util.List;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-import de.alpharogroup.math.MathExtensions;
+import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.RandomCharacters;
 
 public class RandomStringFactoryTest

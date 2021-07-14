@@ -24,7 +24,7 @@
  */
 package io.github.astrapi69.random.number;
 
-import de.alpharogroup.math.MathExtensions;
+import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.RandomCharacters;
 import io.github.astrapi69.random.object.RandomStringFactory;
 

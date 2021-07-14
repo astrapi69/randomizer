@@ -28,7 +28,7 @@ import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.Random;
 
-import de.alpharogroup.math.MathExtensions;
+import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 import io.github.astrapi69.random.enums.RandomAlgorithm;
 
