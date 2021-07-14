@@ -2,8 +2,8 @@
 
 <div style="text-align: center">
 
-[![Build Status](https://api.travis-ci.com/astrapi69/randomizer.svg?branch=develop)](https://travis-ci.com/github/astrapi69/randomizer) 
-[![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/randomizer?branch=develop) 
+[![Build Status](https://api.travis-ci.com/astrapi69/randomizer.svg?branch=master)](https://travis-ci.com/github/astrapi69/randomizer) 
+[![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=master)](https://coveralls.io/github/astrapi69/randomizer?branch=master) 
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/randomizer.svg?style=flat)](https://github.com/astrapi69/randomizer/issues) 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer-core)
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-core.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-core)
@@ -240,7 +240,7 @@ Here is a list of awesome projects:
 |**Travis CI**|
 |     :---:      |
 |[![Travis CI](https://travis-ci.com/images/logos/TravisCI-Full-Color.png)]|
-|[![Build Status](https://travis-ci.com/astrapi69/randomizer.svg?branch=develop)](https://travis-ci.com/astrapi69/randomizer)|
+|[![Build Status](https://travis-ci.com/astrapi69/randomizer.svg?branch=master)](https://travis-ci.com/astrapi69/randomizer)|
 |Special thanks to [Travis CI](https://travis-ci.com) for providing a free continuous integration service for open source projects|
 |     <img width=1000/>     |
 
@@ -255,7 +255,7 @@ Here is a list of awesome projects:
 
 |**coveralls.io**|
 |     :---:      |
-|[![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/randomizer?branch=develop)|
+|[![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=master)](https://coveralls.io/github/astrapi69/randomizer?branch=master)|
 |Special thanks to [coveralls.io](https://coveralls.io) for providing a free code coverage for open source projects|
 |     <img width=1000/>     |
 
