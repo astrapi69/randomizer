@@ -85,13 +85,13 @@ The source code comes under the liberal MIT License, making randomizer great for
 
 ## Javadoc
 
-[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-address) randomizer-address
+[![javadoc](https://javadoc.io/badge2/io.github.astrapi69/randomizer-address/javadoc.svg)](https://javadoc.io/doc/io.github.astrapi69/randomizer-address) randomizer-address
 
-[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-api) randomizer-api
+[![javadoc](https://javadoc.io/badge2/io.github.astrapi69/randomizer-api/javadoc.svg)](https://javadoc.io/doc/io.github.astrapi69/randomizer-api) randomizer-api
 
-[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-core) randomizer-core
+[![javadoc](https://javadoc.io/badge2/io.github.astrapi69/randomizer-core/javadoc.svg)](https://javadoc.io/doc/io.github.astrapi69/randomizer-core) randomizer-core
 
-[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-data) randomizer-data
+[![javadoc](https://javadoc.io/badge2/io.github.astrapi69/randomizer-data/javadoc.svg)](https://javadoc.io/doc/io.github.astrapi69/randomizer-data) randomizer-data
 
 ## Maven dependency
 
