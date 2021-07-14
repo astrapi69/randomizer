@@ -96,7 +96,7 @@ public enum RandomCharacters
 	public static final String MATH_OPERATOR_CHAR = "+-";
 
 	/** All other special characters */
-	public static final String OTHER_SPECIALCHARS = "°§=~.:,;µ|€²³^°";
+	public static final String OTHER_SPECIALCHARS = "°§=~.:,;µ|€²³^";
 
 	/** The quotation marks characters */
 	public static final String ESCAPE_QUOTATION_MARK_CHARACTERS = "\'\"";
