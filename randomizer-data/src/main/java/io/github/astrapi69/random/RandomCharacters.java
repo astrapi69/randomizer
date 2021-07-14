@@ -41,13 +41,13 @@ public enum RandomCharacters
 		RandomCharacters.LOWCASECHARS + RandomCharacters.NUMBERS + RandomCharacters.SPECIALCHARS),
 
 	/** The lowcase with uppercase and numbers. */
-	lowcaseWithUppercaseAndNumbers(RandomCharacters.LOWCASECHARS + RandomCharacters.LOWCASECHARS
-		.toUpperCase() + RandomCharacters.NUMBERS),
+	lowcaseWithUppercaseAndNumbers(RandomCharacters.LOWCASECHARS
+		+ RandomCharacters.LOWCASECHARS.toUpperCase() + RandomCharacters.NUMBERS),
 
 	/** The lowcase with uppercase and numbers and special. */
 	lowcaseWithUppercaseAndNumbersAndSpecial(
-		RandomCharacters.LOWCASECHARS + RandomCharacters.LOWCASECHARS
-			.toUpperCase() + RandomCharacters.NUMBERS + RandomCharacters.SPECIALCHARS),
+		RandomCharacters.LOWCASECHARS + RandomCharacters.LOWCASECHARS.toUpperCase()
+			+ RandomCharacters.NUMBERS + RandomCharacters.SPECIALCHARS),
 
 	/** The numbers. */
 	numbers(RandomCharacters.NUMBERS),
@@ -68,8 +68,8 @@ public enum RandomCharacters
 	escapeSequencesWithWhitespace(RandomCharacters.ESCAPE_SEQUENCES_CHARS),
 
 	/** The uppercase with numbers and special. */
-	uppercaseWithNumbersAndSpecial(RandomCharacters.LOWCASECHARS
-		.toUpperCase() + RandomCharacters.NUMBERS + RandomCharacters.SPECIALCHARS);
+	uppercaseWithNumbersAndSpecial(RandomCharacters.LOWCASECHARS.toUpperCase()
+		+ RandomCharacters.NUMBERS + RandomCharacters.SPECIALCHARS);
 
 	/** The alphabet-characters in lower case. */
 	public static final String LOWCASECHARS = "abcdefghijklmnopqrstuvwxyz";
@@ -80,11 +80,32 @@ public enum RandomCharacters
 	/** All special characters */
 	public static final String SPECIALCHARS = "#@$%^&*?!";
 
-	/** The white space char */
+	/** The white space character */
 	public static final String WHITE_SPACE_CHAR = " ";
 
+	/** The bracket characters */
+	public static final String BRACKETS_CHAR = "(){}[]<>";
+
+	/** The underscore character */
+	public static final String UNDERSCORE_CHAR = "_";
+
+	/** The slash character */
+	public static final String SLASH_CHAR = "/";
+
+	/** The plus and minus characters */
+	public static final String MATH_OPERATOR_CHAR = "+-";
+
+	/** All other special characters */
+	public static final String OTHER_SPECIALCHARS = "°§=~.:,;µ|€²³^°";
+
+	/** The quotation marks characters */
+	public static final String ESCAPE_QUOTATION_MARK_CHARACTERS = "\'\"";
+
+	/** The quotation marks characters */
+	public static final String QUOTATION_MARK_CHARACTERS = "´`" + ESCAPE_QUOTATION_MARK_CHARACTERS;
+
 	/** All escape sequences characters */
-	public static final String ESCAPE_SEQUENCES = "\t\b\n\r\f\'\"\\";
+	public static final String ESCAPE_SEQUENCES = "\t\b\n\r\f\\" + ESCAPE_QUOTATION_MARK_CHARACTERS;
 
 	/** All escape sequences and white space characters */
 	public static final String ESCAPE_SEQUENCES_CHARS = ESCAPE_SEQUENCES + WHITE_SPACE_CHAR;
@@ -98,7 +119,7 @@ public enum RandomCharacters
 	 * @param characters
 	 *            the allowed characters
 	 */
-	private RandomCharacters(String characters)
+	RandomCharacters(String characters)
 	{
 		this.characters = characters;
 	}
