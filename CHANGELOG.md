@@ -1,7 +1,7 @@
 ## Change log
 ----------------------
 
-Version 8.3-SNAPSHOT
+Version 8.3
 -------------
 
 ADDED:
@@ -11,7 +11,8 @@ ADDED:
 CHANGED:
 
 - update of gradle version to 7.1
-- update all dependencies to new package io.github.astrapi69
+- changed all dependencies from groupid de.alpharogroup to new groupid io.github.astrapi69
+- update gradle-plugin dependency of gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin to new version 0.16.1
 
 Version 8.2
 -------------

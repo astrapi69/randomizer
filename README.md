@@ -1,8 +1,8 @@
 # randomizer
 
-<div align="center">
+<div style="text-align: center">
 
-[![Build Status](https://travis-ci.org/astrapi69/randomizer.svg?branch=develop)](https://travis-ci.org/astrapi69/randomizer) 
+[![Build Status](https://api.travis-ci.com/astrapi69/randomizer.svg?branch=develop)](https://travis-ci.com/github/astrapi69/randomizer) 
 [![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/randomizer?branch=develop) 
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/randomizer.svg?style=flat)](https://github.com/astrapi69/randomizer/issues) 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer-core)
@@ -85,9 +85,11 @@ The source code comes under the liberal MIT License, making randomizer great for
 
 ## Javadoc
 
-[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-core) randomizer-core
+[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-address) randomizer-address
 
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-api) randomizer-api
+
+[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-core) randomizer-core
 
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-data) randomizer-data
 
@@ -104,7 +106,7 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>8.2</randomizer.version>
+		<randomizer.version>8.3</randomizer.version>
 		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
 		<randomizer-address.version>${randomizer.version}</randomizer-address.version>
 		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
@@ -174,7 +176,7 @@ your project `build.gradle` if you want to import the core functionality of rand
 ```
 define version in file gradle.properties
 
-randomizerVersion=8.2
+randomizerVersion=8.3
 ```
 
 or in build.gradle ext area
@@ -182,12 +184,12 @@ or in build.gradle ext area
 ```
 ext {
 			...
-    randomizerVersion = "8.2"
+    randomizerVersion = "8.3"
 			...
 }
 ```
 
-and then add the dependency to the dependencies area
+then add the dependency to the dependencies area
 
 ```
 dependencies {
@@ -238,12 +240,13 @@ Here is a list of awesome projects:
 |**Travis CI**|
 |     :---:      |
 |[![Travis CI](https://travis-ci.com/images/logos/TravisCI-Full-Color.png)]|
-|[![Build Status](https://travis-ci.org/astrapi69/randomizer.svg?branch=develop)](https://travis-ci.org/astrapi69/randomizer)|
-|Special thanks to [Travis CI](https://travis-ci.org) for providing a free continuous integration service for open source projects|
+|[![Build Status](https://travis-ci.com/astrapi69/randomizer.svg?branch=develop)](https://travis-ci.com/astrapi69/randomizer)|
+|Special thanks to [Travis CI](https://travis-ci.com) for providing a free continuous integration service for open source projects|
 |     <img width=1000/>     |
 
 |**Nexus Sonatype repositories**|
 |     :---:      |
+|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/randomizer-address.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer-address~~~) randomizer-address|
 |[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/randomizer-api.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer-api~~~) randomizer-api|
 |[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/randomizer-core.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer-core~~~) randomizer-core|
 |[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/randomizer-data.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer-data~~~) randomizer-data|
@@ -258,6 +261,7 @@ Here is a list of awesome projects:
 
 |**javadoc.io**|
 |     :---:      |
+|[![Javadoc](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-address.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-address) randomizer-address|
 |[![Javadoc](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-api.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-api) randomizer-api|
 |[![Javadoc](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-core.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-core) randomizer-core|
 |[![Javadoc](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-data.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-data) randomizer-data|
