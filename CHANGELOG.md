@@ -1,6 +1,19 @@
 ## Change log
 ----------------------
 
+Version 8.3
+-------------
+
+ADDED:
+
+- new characters to the enum RandomCharacters class
+
+CHANGED:
+
+- update of gradle version to 7.1
+- changed all dependencies from groupid de.alpharogroup to new groupid io.github.astrapi69
+- update gradle-plugin dependency of gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin to new version 0.16.1
+
 Version 8.2
 -------------
 
@@ -30,7 +43,7 @@ CHANGED:
 - update of gradle version to 6.8.3
 - update of silly-collections version to 8.4
 - update of test dependency equalsverifier version to 3.5.5
-- to new package io.github.astrapi69
+- moved to new package io.github.astrapi69
 
 Version 8
 -------------

@@ -24,11 +24,11 @@
  */
 package io.github.astrapi69.random.number;
 
-import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
-
 import java.security.SecureRandom;
 import java.util.Objects;
+
+import io.github.astrapi69.random.DefaultSecureRandom;
+import io.github.astrapi69.random.enums.RandomAlgorithm;
 
 /**
  * Utility class for producing random primitive byte types
@@ -38,6 +38,10 @@ import java.util.Objects;
  */
 public final class RandomByteFactory
 {
+
+	private RandomByteFactory()
+	{
+	}
 
 	/**
 	 * The Method randomByte() selects a random byte.
@@ -60,7 +64,7 @@ public final class RandomByteFactory
 	public static byte randomByte(SecureRandom secureRandom)
 	{
 		return (byte)RandomIntFactory.randomInt(255, RandomAlgorithm.SECURE_RANDOM,
-				Objects.requireNonNull(secureRandom));
+			Objects.requireNonNull(secureRandom));
 	}
 
 	/**
@@ -102,10 +106,6 @@ public final class RandomByteFactory
 			}
 		}
 		return randomByteArray;
-	}
-
-	private RandomByteFactory()
-	{
 	}
 
 }

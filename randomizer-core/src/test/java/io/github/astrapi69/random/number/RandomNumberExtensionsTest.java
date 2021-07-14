@@ -33,7 +33,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.astrapi69.BaseTestCase;
-import de.alpharogroup.string.StringExtensions;
+import io.github.astrapi69.string.StringExtensions;
 
 /**
  * The unit test class for the class {@link RandomNumberExtensions}

@@ -24,22 +24,29 @@
  */
 package io.github.astrapi69.random.object;
 
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
 import static org.testng.Assert.assertNull;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
-import de.alpharogroup.math.MathExtensions;
-import io.github.astrapi69.test.objects.enums.Gender;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.enums.RandomAlgorithm;
 import io.github.astrapi69.test.objects.Person;
-
-import java.nio.charset.Charset;
-import java.util.*;
+import io.github.astrapi69.test.objects.enums.Gender;
 
 /**
  * The unit test class for the class {@link RandomObjectFactory}
@@ -112,7 +119,7 @@ public class RandomObjectFactoryTest
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
-				ArrayUtils.contains(genders, randomEnumEntry));
+			ArrayUtils.contains(genders, randomEnumEntry));
 	}
 
 	/**
@@ -124,7 +131,7 @@ public class RandomObjectFactoryTest
 		final Gender[] genders = Gender.values();
 		final Gender randomEnumEntry = RandomObjectFactory.randomEnumFromEnumValues(genders);
 		assertTrue("Enum value should contain the random value.",
-				ArrayUtils.contains(genders, randomEnumEntry));
+			ArrayUtils.contains(genders, randomEnumEntry));
 	}
 
 	/**
@@ -137,7 +144,7 @@ public class RandomObjectFactoryTest
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
-				ArrayUtils.contains(genders, randomEnumEntry));
+			ArrayUtils.contains(genders, randomEnumEntry));
 	}
 
 	/**
@@ -164,7 +171,7 @@ public class RandomObjectFactoryTest
 
 		final Gender[] genders = Gender.values();
 		assertTrue("Enum value should contain the random value.",
-				ArrayUtils.contains(genders, randomEnumEntry));
+			ArrayUtils.contains(genders, randomEnumEntry));
 
 		enumClassName = "Gender";
 		randomEnumEntry = RandomObjectFactory.randomEnumFromClassname(enumClassName);

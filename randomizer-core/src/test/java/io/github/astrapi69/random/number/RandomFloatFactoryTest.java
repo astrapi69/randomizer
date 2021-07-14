@@ -24,15 +24,16 @@
  */
 package io.github.astrapi69.random.number;
 
-import de.alpharogroup.math.MathExtensions;
-import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.security.SecureRandom;
 
-import static org.testng.AssertJUnit.assertTrue;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
+import io.github.astrapi69.math.MathExtensions;
+import io.github.astrapi69.random.DefaultSecureRandom;
+import io.github.astrapi69.random.enums.RandomAlgorithm;
 
 /**
  * The unit test class for the class {@link RandomFloatFactory}
@@ -74,7 +75,7 @@ public class RandomFloatFactoryTest
 		{
 			random = RandomFloatFactory.randomFloat(5f);
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1f, 5f, random));
+				MathExtensions.isBetween(-1f, 5f, random));
 		}
 	}
 
@@ -92,7 +93,7 @@ public class RandomFloatFactoryTest
 		{
 			random = RandomFloatFactory.randomFloat(5f, algorithm);
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1f, 5f, random));
+				MathExtensions.isBetween(-1f, 5f, random));
 		}
 		// scenario with RandomAlgorithm.MATH_RANDOM
 		algorithm = RandomAlgorithm.MATH_RANDOM;
@@ -100,7 +101,7 @@ public class RandomFloatFactoryTest
 		{
 			random = RandomFloatFactory.randomFloat(5f, algorithm);
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1f, 5f, random));
+				MathExtensions.isBetween(-1f, 5f, random));
 		}
 		// scenario with RandomAlgorithm.RANDOM
 		algorithm = RandomAlgorithm.RANDOM;
@@ -108,13 +109,12 @@ public class RandomFloatFactoryTest
 		{
 			random = RandomFloatFactory.randomFloat(5f, algorithm);
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1f, 5f, random));
+				MathExtensions.isBetween(-1f, 5f, random));
 		}
 	}
 
 	/**
-	 * Test method for
-	 * {@link RandomFloatFactory#randomFloatBetween(float, float, SecureRandom)}
+	 * Test method for {@link RandomFloatFactory#randomFloatBetween(float, float, SecureRandom)}
 	 */
 	@Test
 	public void testRandomFloatBetween()
@@ -122,16 +122,15 @@ public class RandomFloatFactoryTest
 		for (int i = 0; i < 100; i++)
 		{
 			final float randomFloatBetween = RandomFloatFactory.randomFloatBetween(0.0F, 10.0F,
-					DefaultSecureRandom.get());
+				DefaultSecureRandom.get());
 			boolean isBetween = MathExtensions.isBetween(0.0F, 10.0F, randomFloatBetween, true,
-					true);
+				true);
 			assertTrue(isBetween);
 		}
 	}
 
 	/**
-	 * Test method for
-	 * {@link RandomFloatFactory#randomFloat(float, RandomAlgorithm, SecureRandom)}
+	 * Test method for {@link RandomFloatFactory#randomFloat(float, RandomAlgorithm, SecureRandom)}
 	 */
 	@Test
 	public void testRandomFloatFloatRandomAlgorithmSecureRandom()
@@ -144,7 +143,7 @@ public class RandomFloatFactoryTest
 		{
 			random = RandomFloatFactory.randomFloat(5F, algorithm, DefaultSecureRandom.get());
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1F, 5F, random));
+				MathExtensions.isBetween(-1F, 5F, random));
 		}
 		// scenario with RandomAlgorithm.MATH_RANDOM
 		algorithm = RandomAlgorithm.MATH_RANDOM;
@@ -152,7 +151,7 @@ public class RandomFloatFactoryTest
 		{
 			random = RandomFloatFactory.randomFloat(5F, algorithm, DefaultSecureRandom.get());
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1F, 5F, random));
+				MathExtensions.isBetween(-1F, 5F, random));
 		}
 		// scenario with RandomAlgorithm.RANDOM
 		algorithm = RandomAlgorithm.RANDOM;
@@ -160,7 +159,7 @@ public class RandomFloatFactoryTest
 		{
 			random = RandomFloatFactory.randomFloat(5F, algorithm, DefaultSecureRandom.get());
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1F, 5F, random));
+				MathExtensions.isBetween(-1F, 5F, random));
 		}
 	}
 
@@ -175,7 +174,7 @@ public class RandomFloatFactoryTest
 		{
 			random = RandomFloatFactory.randomFloat(5f, DefaultSecureRandom.get());
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1f, 5f, random));
+				MathExtensions.isBetween(-1f, 5f, random));
 		}
 	}
 

@@ -24,16 +24,17 @@
  */
 package io.github.astrapi69.random.number;
 
-import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.RandomCharacters;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
+import static org.testng.AssertJUnit.assertNotNull;
 
 import java.nio.CharBuffer;
 import java.security.SecureRandom;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.AssertJUnit.assertNotNull;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
+import io.github.astrapi69.random.DefaultSecureRandom;
+import io.github.astrapi69.random.RandomCharacters;
 
 /**
  * The unit test class for the class {@link RandomCharFactory}

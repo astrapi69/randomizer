@@ -1,14 +1,14 @@
 
 dependencies {
-    implementation("de.alpharogroup:vintage-time:$vintageTimeVersion")
     implementation project(":randomizer-api")
     implementation project(":randomizer-data")
+    implementation("io.github.astrapi69:vintage-time:$vintageTimeVersion")
     implementation("io.github.astrapi69:jobj-core:$jobjCoreVersion")
     implementation("io.github.astrapi69:silly-collections:$sillyCollectionsVersion")
-    implementation("de.alpharogroup:silly-math:$sillyMathVersion")
-    testCompile("de.alpharogroup:silly-beans:$sillyBeansVersion")
-    testCompile("io.github.astrapi69:test-objects:$testObjectsVersion")
-    testCompile("de.alpharogroup:silly-strings:$sillyStringsVersion")
+    implementation("io.github.astrapi69:silly-math:$sillyMathVersion")
+    testImplementation("io.github.astrapi69:test-objects:$testObjectsVersion")
+    testImplementation("io.github.astrapi69:silly-strings:$sillyStringsVersion")
+    testImplementation("org.apache.commons:commons-lang3:$commonsLang3Version")
 }
 
 license {

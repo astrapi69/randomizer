@@ -37,6 +37,10 @@ import io.github.astrapi69.random.number.RandomNumberExtensions;
  */
 public final class RandomWebObjectFactory
 {
+	private RandomWebObjectFactory()
+	{
+	}
+
 	/**
 	 * Gets an infomail address from the given url.
 	 *
@@ -82,7 +86,7 @@ public final class RandomWebObjectFactory
 		final StringBuilder email = new StringBuilder();
 		final String emailprefix = RandomStringFactory.newRandomString(
 			RandomCharacters.lowcaseWithNumbers.getCharacters(),
-				RandomIntFactory.randomInt(20) + 1);
+			RandomIntFactory.randomInt(20) + 1);
 		final String domain = RandomStringFactory.newRandomString(
 			RandomCharacters.lowcase.getCharacters(), RandomIntFactory.randomInt(12) + 1);
 		final String topDomain = RandomStringFactory
@@ -251,10 +255,6 @@ public final class RandomWebObjectFactory
 			}
 		}
 		return sb.toString();
-	}
-
-	private RandomWebObjectFactory()
-	{
 	}
 
 }

@@ -24,13 +24,13 @@
  */
 package io.github.astrapi69.random.number;
 
-import de.alpharogroup.math.MathExtensions;
-import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
-
 import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.Random;
+
+import io.github.astrapi69.math.MathExtensions;
+import io.github.astrapi69.random.DefaultSecureRandom;
+import io.github.astrapi69.random.enums.RandomAlgorithm;
 
 /**
  * Utility class for producing random primitive int types
@@ -38,7 +38,12 @@ import java.util.Random;
  * @version 1.1
  * @author Asterios Raptis
  */
-public final class RandomIntFactory {
+public final class RandomIntFactory
+{
+
+	private RandomIntFactory()
+	{
+	}
 
 	/**
 	 * The Method randomInt(int) gets an int to the spezified range. For example: if you put range
@@ -50,9 +55,10 @@ public final class RandomIntFactory {
 	 *            the random algorithm
 	 * @return an int not greater then the range
 	 */
-	public static int randomInt(final int range, final RandomAlgorithm algorithm) {
+	public static int randomInt(final int range, final RandomAlgorithm algorithm)
+	{
 		return RandomIntFactory.randomInt(range, Objects.requireNonNull(algorithm),
-				DefaultSecureRandom.get());
+			DefaultSecureRandom.get());
 	}
 
 	/**
@@ -68,20 +74,22 @@ public final class RandomIntFactory {
 	 * @return an int not greater then the range
 	 */
 	public static int randomInt(final int range, final RandomAlgorithm algorithm,
-								SecureRandom secureRandom) {
+		SecureRandom secureRandom)
+	{
 		Objects.requireNonNull(algorithm);
 		Objects.requireNonNull(secureRandom);
-		switch (algorithm) {
-			case MATH_ABS:
+		switch (algorithm)
+		{
+			case MATH_ABS :
 				return Math.abs(secureRandom.nextInt()) % range;
-			case MATH_RANDOM:
-				return (int) (Math.random() * range);
-			case RANDOM:
+			case MATH_RANDOM :
+				return (int)(Math.random() * range);
+			case RANDOM :
 				int random = new Random(System.currentTimeMillis()).nextInt() % range;
 				return MathExtensions.isPositive(random) ? random : random * -1;
-			case SECURE_RANDOM:
-			default:
-				return (int) (secureRandom.nextDouble() * range);
+			case SECURE_RANDOM :
+			default :
+				return (int)(secureRandom.nextDouble() * range);
 		}
 	}
 
@@ -95,7 +103,8 @@ public final class RandomIntFactory {
 	 *            the secure random for int generation
 	 * @return an int not greater then the range.
 	 */
-	public static int randomInt(final int range, SecureRandom secureRandom) {
+	public static int randomInt(final int range, SecureRandom secureRandom)
+	{
 		return randomInt(range, RandomAlgorithm.SECURE_RANDOM, secureRandom);
 	}
 
@@ -107,7 +116,8 @@ public final class RandomIntFactory {
 	 *
 	 * @return an int between the range 0-9.
 	 */
-	public static int randomInt(SecureRandom secureRandom) {
+	public static int randomInt(SecureRandom secureRandom)
+	{
 		return Objects.requireNonNull(secureRandom).nextInt();
 	}
 
@@ -116,7 +126,8 @@ public final class RandomIntFactory {
 	 *
 	 * @return an int between the range 0-9.
 	 */
-	public static int randomInt() {
+	public static int randomInt()
+	{
 		return RandomIntFactory.randomInt(DefaultSecureRandom.get());
 	}
 
@@ -128,7 +139,8 @@ public final class RandomIntFactory {
 	 *            The Range.
 	 * @return an int not greater then the range.
 	 */
-	public static int randomInt(final int range) {
+	public static int randomInt(final int range)
+	{
 		return randomInt(range, DefaultSecureRandom.get());
 	}
 
@@ -144,9 +156,10 @@ public final class RandomIntFactory {
 	 *            the secure random for number generation
 	 * @return A random int between the range from minVolume and maxVolume
 	 */
-	public static int randomIntBetween(int minVolume, int maxVolume, SecureRandom secureRandom) {
+	public static int randomIntBetween(int minVolume, int maxVolume, SecureRandom secureRandom)
+	{
 		return minVolume + randomInt(maxVolume - minVolume, RandomAlgorithm.SECURE_RANDOM,
-				Objects.requireNonNull(secureRandom));
+			Objects.requireNonNull(secureRandom));
 	}
 
 	/**
@@ -165,16 +178,21 @@ public final class RandomIntFactory {
 	 * @return A random int between the range from start and end.
 	 */
 	public static int randomIntBetween(final int start, final int end, final boolean includeMin,
-									   final boolean includeMax, SecureRandom secureRandom) {
+		final boolean includeMax, SecureRandom secureRandom)
+	{
 		int randomIntBetween = start + RandomIntFactory.randomInt(end - (start - 1), secureRandom);
-		if (includeMin && !includeMax) {
+		if (includeMin && !includeMax)
+		{
 			randomIntBetween = start + RandomIntFactory.randomInt(end - start, secureRandom);
 		}
-		if (!includeMin && includeMax && randomIntBetween == start) {
+		if (!includeMin && includeMax && randomIntBetween == start)
+		{
 			randomIntBetween++;
 		}
-		if (!includeMin && !includeMax) {
-			randomIntBetween = (start + 1) + RandomIntFactory.randomInt(end - (start + 1), secureRandom);
+		if (!includeMin && !includeMax)
+		{
+			randomIntBetween = (start + 1)
+				+ RandomIntFactory.randomInt(end - (start + 1), secureRandom);
 		}
 		return randomIntBetween;
 	}
@@ -188,7 +206,8 @@ public final class RandomIntFactory {
 	 *            The int from where the range ends.
 	 * @return A random int between the range from start and end.
 	 */
-	public static int randomIntBetween(final int start, final int end) {
+	public static int randomIntBetween(final int start, final int end)
+	{
 		return RandomIntFactory.randomIntBetween(start, end, true, false);
 	}
 
@@ -206,11 +225,10 @@ public final class RandomIntFactory {
 	 * @return A random int between the range from start and end.
 	 */
 	public static int randomIntBetween(final int start, final int end, final boolean includeMin,
-									   final boolean includeMax) {
-		return RandomIntFactory.randomIntBetween(start, end, includeMin, includeMax, DefaultSecureRandom.get());
-	}
-
-	private RandomIntFactory() {
+		final boolean includeMax)
+	{
+		return RandomIntFactory.randomIntBetween(start, end, includeMin, includeMax,
+			DefaultSecureRandom.get());
 	}
 
 }

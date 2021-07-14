@@ -24,7 +24,7 @@
  */
 package io.github.astrapi69.random.number;
 
-import de.alpharogroup.math.MathExtensions;
+import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.RandomCharacters;
 import io.github.astrapi69.random.object.RandomStringFactory;
 
@@ -36,6 +36,10 @@ import io.github.astrapi69.random.object.RandomStringFactory;
  */
 public final class RandomNumberExtensions
 {
+
+	private RandomNumberExtensions()
+	{
+	}
 
 	/**
 	 * Gets the random number string
@@ -90,10 +94,6 @@ public final class RandomNumberExtensions
 		final String randomNumber = RandomStringFactory
 			.newRandomString(RandomCharacters.numbers.getCharacters(), length);
 		return randomNumber;
-	}
-
-	private RandomNumberExtensions()
-	{
 	}
 
 }

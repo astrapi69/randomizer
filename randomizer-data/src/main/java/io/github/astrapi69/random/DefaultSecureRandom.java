@@ -40,6 +40,10 @@ public final class DefaultSecureRandom
 		secureRandom = SecureRandomFactory.newSecureRandom();
 	}
 
+	private DefaultSecureRandom()
+	{
+	}
+
 	/**
 	 * Gets the secure random
 	 *
@@ -48,9 +52,5 @@ public final class DefaultSecureRandom
 	public static SecureRandom get()
 	{
 		return secureRandom;
-	}
-
-	private DefaultSecureRandom()
-	{
 	}
 }

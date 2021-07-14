@@ -24,15 +24,16 @@
  */
 package io.github.astrapi69.random.number;
 
-import de.alpharogroup.math.MathExtensions;
-import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.security.SecureRandom;
 
-import static org.testng.AssertJUnit.assertTrue;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
+import io.github.astrapi69.math.MathExtensions;
+import io.github.astrapi69.random.DefaultSecureRandom;
+import io.github.astrapi69.random.enums.RandomAlgorithm;
 
 /**
  * The unit test class for the class {@link RandomLongFactory}
@@ -52,15 +53,14 @@ public class RandomLongFactoryTest
 		for (int i = 0; i < 100; i++)
 		{
 			final long randomFloatBetween = RandomLongFactory.randomLongBetween(0L, 10L,
-					DefaultSecureRandom.get());
+				DefaultSecureRandom.get());
 			boolean isBetween = MathExtensions.isBetween(0L, 10L, randomFloatBetween, true, true);
 			assertTrue(isBetween);
 		}
 	}
 
 	/**
-	 * Test method for
-	 * {@link RandomLongFactory#randomLong(long, RandomAlgorithm, SecureRandom)}
+	 * Test method for {@link RandomLongFactory#randomLong(long, RandomAlgorithm, SecureRandom)}
 	 */
 	@Test
 	public void testRandomLongLongRandomAlgorithmSecureRandom()
@@ -73,7 +73,7 @@ public class RandomLongFactoryTest
 		{
 			random = RandomLongFactory.randomLong(5L, algorithm, DefaultSecureRandom.get());
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1L, 5L, random));
+				MathExtensions.isBetween(-1L, 5L, random));
 		}
 		// scenario with RandomAlgorithm.MATH_RANDOM
 		algorithm = RandomAlgorithm.MATH_RANDOM;
@@ -81,7 +81,7 @@ public class RandomLongFactoryTest
 		{
 			random = RandomLongFactory.randomLong(5L, algorithm, DefaultSecureRandom.get());
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1L, 5L, random));
+				MathExtensions.isBetween(-1L, 5L, random));
 		}
 		// scenario with RandomAlgorithm.RANDOM
 		algorithm = RandomAlgorithm.RANDOM;
@@ -89,7 +89,7 @@ public class RandomLongFactoryTest
 		{
 			random = RandomLongFactory.randomLong(5L, algorithm, DefaultSecureRandom.get());
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1L, 5L, random));
+				MathExtensions.isBetween(-1L, 5L, random));
 		}
 	}
 
@@ -104,7 +104,7 @@ public class RandomLongFactoryTest
 		{
 			random = RandomLongFactory.randomLong(5L, DefaultSecureRandom.get());
 			assertTrue("random result is " + random + " but should be between 0-4.",
-					MathExtensions.isBetween(-1L, 5L, random));
+				MathExtensions.isBetween(-1L, 5L, random));
 		}
 	}
 
@@ -117,6 +117,7 @@ public class RandomLongFactoryTest
 		long random = RandomLongFactory.randomLong(DefaultSecureRandom.get());
 		assertTrue(MathExtensions.isBetween(Long.MIN_VALUE, Long.MAX_VALUE, random));
 	}
+
 	/**
 	 * Test method for {@link RandomLongFactory#randomLong()}
 	 */
@@ -137,7 +138,7 @@ public class RandomLongFactoryTest
 		{
 			final long randomLong = RandomLongFactory.randomLong(5l);
 			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",
-					MathExtensions.isBetween(-1, 5, randomLong));
+				MathExtensions.isBetween(-1, 5, randomLong));
 		}
 	}
 
@@ -155,7 +156,7 @@ public class RandomLongFactoryTest
 		{
 			randomLong = RandomLongFactory.randomLong(5l, algorithm);
 			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",
-					MathExtensions.isBetween(-1l, 5l, randomLong));
+				MathExtensions.isBetween(-1l, 5l, randomLong));
 		}
 		// scenario with RandomAlgorithm.MATH_RANDOM
 		algorithm = RandomAlgorithm.MATH_RANDOM;
@@ -163,7 +164,7 @@ public class RandomLongFactoryTest
 		{
 			randomLong = RandomLongFactory.randomLong(5l, algorithm);
 			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",
-					MathExtensions.isBetween(-1l, 5l, randomLong));
+				MathExtensions.isBetween(-1l, 5l, randomLong));
 		}
 		// scenario with RandomAlgorithm.RANDOM
 		algorithm = RandomAlgorithm.RANDOM;
@@ -171,10 +172,10 @@ public class RandomLongFactoryTest
 		{
 			randomLong = RandomLongFactory.randomLong(5l, algorithm);
 			assertTrue("randomLong result is " + randomLong + " but should be between 0-4.",
-					MathExtensions.isBetween(-1l, 5l, randomLong));
+				MathExtensions.isBetween(-1l, 5l, randomLong));
 		}
 	}
-	
+
 	/**
 	 * Test method for {@link RandomLongFactory} with {@link BeanTester}
 	 */

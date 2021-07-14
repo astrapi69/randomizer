@@ -33,64 +33,14 @@ import java.security.SecureRandom;
 public final class SecureRandomBean
 {
 
-	public static class SecureRandomBeanBuilder
-	{
-		private String algorithm;
-		private String provider;
-		private long seed;
-
-		SecureRandomBeanBuilder()
-		{
-		}
-
-		public SecureRandomBean.SecureRandomBeanBuilder algorithm(String algorithm)
-		{
-			this.algorithm = algorithm;
-			return this;
-		}
-
-		public SecureRandomBean build()
-		{
-			return new SecureRandomBean(algorithm, provider, seed);
-		}
-
-		public SecureRandomBean.SecureRandomBeanBuilder provider(String provider)
-		{
-			this.provider = provider;
-			return this;
-		}
-
-		public SecureRandomBean.SecureRandomBeanBuilder seed(long seed)
-		{
-			this.seed = seed;
-			return this;
-		}
-
-		@Override
-		public String toString()
-		{
-			return "SecureRandomBean.SecureRandomBeanBuilder(algorithm=" + this.algorithm
-				+ ", provider=" + this.provider + ", seed=" + this.seed + ")";
-		}
-	}
-
 	/** The Constant DEFAULT_ALGORITHM. */
 	public static final String DEFAULT_ALGORITHM = "SHA1PRNG";
-
 	/** The Constant DEFAULT_ALGORITHM. */
 	public static final String DEFAULT_PROVIDER = "SUN";
-
-	public static SecureRandomBeanBuilder builder()
-	{
-		return new SecureRandomBeanBuilder();
-	}
-
 	/** The algorithm. */
 	private final String algorithm;
-
 	/** The provider. */
 	private final String provider;
-
 	/** The seed. */
 	private final long seed;
 
@@ -107,6 +57,11 @@ public final class SecureRandomBean
 		this.algorithm = algorithm;
 		this.provider = provider;
 		this.seed = seed;
+	}
+
+	public static SecureRandomBeanBuilder builder()
+	{
+		return new SecureRandomBeanBuilder();
 	}
 
 	@Override
@@ -172,5 +127,46 @@ public final class SecureRandomBean
 	{
 		return "SecureRandomBean(algorithm=" + this.getAlgorithm() + ", provider="
 			+ this.getProvider() + ", seed=" + this.getSeed() + ")";
+	}
+
+	public static class SecureRandomBeanBuilder
+	{
+		private String algorithm;
+		private String provider;
+		private long seed;
+
+		SecureRandomBeanBuilder()
+		{
+		}
+
+		public SecureRandomBean.SecureRandomBeanBuilder algorithm(String algorithm)
+		{
+			this.algorithm = algorithm;
+			return this;
+		}
+
+		public SecureRandomBean build()
+		{
+			return new SecureRandomBean(algorithm, provider, seed);
+		}
+
+		public SecureRandomBean.SecureRandomBeanBuilder provider(String provider)
+		{
+			this.provider = provider;
+			return this;
+		}
+
+		public SecureRandomBean.SecureRandomBeanBuilder seed(long seed)
+		{
+			this.seed = seed;
+			return this;
+		}
+
+		@Override
+		public String toString()
+		{
+			return "SecureRandomBean.SecureRandomBeanBuilder(algorithm=" + this.algorithm
+				+ ", provider=" + this.provider + ", seed=" + this.seed + ")";
+		}
 	}
 }

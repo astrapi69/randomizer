@@ -24,15 +24,15 @@
  */
 package io.github.astrapi69.random.number;
 
-import de.alpharogroup.math.MathExtensions;
-import io.github.astrapi69.random.DefaultSecureRandom;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
+import static org.testng.AssertJUnit.assertTrue;
 
 import java.security.SecureRandom;
 
-import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.assertTrue;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
+import io.github.astrapi69.math.MathExtensions;
+import io.github.astrapi69.random.DefaultSecureRandom;
 
 /**
  * The unit test class for the class {@link RandomByteFactory}
@@ -51,7 +51,7 @@ public class RandomByteFactoryTest
 	{
 		final byte randomByte = RandomByteFactory.randomByte();
 		assertTrue(
-				MathExtensions.isBetween(Byte.MIN_VALUE, Byte.MAX_VALUE, randomByte, true, true));
+			MathExtensions.isBetween(Byte.MIN_VALUE, Byte.MAX_VALUE, randomByte, true, true));
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class RandomByteFactoryTest
 	{
 		final byte randomByte = RandomByteFactory.randomByte(DefaultSecureRandom.get());
 		assertTrue(
-				MathExtensions.isBetween(Byte.MIN_VALUE, Byte.MAX_VALUE, randomByte, true, true));
+			MathExtensions.isBetween(Byte.MIN_VALUE, Byte.MAX_VALUE, randomByte, true, true));
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class RandomByteFactoryTest
 	public void testRandomByteArrayIntSecureRandom()
 	{
 		final byte[] randomByteArray = RandomByteFactory.randomByteArray(8,
-				DefaultSecureRandom.get());
+			DefaultSecureRandom.get());
 		assertTrue(randomByteArray.length == 8);
 	}
 

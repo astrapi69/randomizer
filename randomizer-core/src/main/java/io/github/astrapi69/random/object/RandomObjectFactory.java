@@ -32,14 +32,30 @@ import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.UUID;
 
 import io.github.astrapi69.lang.ClassExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 import io.github.astrapi69.random.RandomCharacters;
 import io.github.astrapi69.random.date.RandomDateFactory;
 import io.github.astrapi69.random.enums.RandomAlgorithm;
-import io.github.astrapi69.random.number.*;
+import io.github.astrapi69.random.number.RandomBigDecimalFactory;
+import io.github.astrapi69.random.number.RandomBigIntegerFactory;
+import io.github.astrapi69.random.number.RandomBooleanFactory;
+import io.github.astrapi69.random.number.RandomByteFactory;
+import io.github.astrapi69.random.number.RandomCharFactory;
+import io.github.astrapi69.random.number.RandomDoubleFactory;
+import io.github.astrapi69.random.number.RandomFloatFactory;
+import io.github.astrapi69.random.number.RandomIntFactory;
+import io.github.astrapi69.random.number.RandomLongFactory;
+import io.github.astrapi69.random.number.RandomShortFactory;
 import io.github.astrapi69.reflection.ReflectionExtensions;
 
 /**
@@ -47,6 +63,10 @@ import io.github.astrapi69.reflection.ReflectionExtensions;
  */
 public final class RandomObjectFactory
 {
+	private RandomObjectFactory()
+	{
+	}
+
 	/**
 	 * Factory method for create a new random {@link RandomAlgorithm} object
 	 *
@@ -310,7 +330,7 @@ public final class RandomObjectFactory
 			Class<T> enumClass = null;
 			try
 			{
-				enumClass = (Class<T>) ClassExtensions.forName(classname);
+				enumClass = (Class<T>)ClassExtensions.forName(classname);
 				return randomEnumFromClass(enumClass);
 			}
 			catch (final ClassNotFoundException e)
@@ -399,9 +419,9 @@ public final class RandomObjectFactory
 	public static byte[] randomSalt(final int length, final Charset charset)
 	{
 		return RandomStringFactory
-				.newRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
-						length)
-				.getBytes(charset);
+			.newRandomString(RandomCharacters.lowcaseWithUppercaseAndNumbers.getCharacters(),
+				length)
+			.getBytes(charset);
 	}
 
 	/**
@@ -411,9 +431,8 @@ public final class RandomObjectFactory
 	 */
 	public static int randomPixel()
 	{
-		return randomPixel(RandomIntFactory.randomInt(256),
-				RandomIntFactory.randomInt(256), RandomIntFactory.randomInt(256),
-				RandomIntFactory.randomInt(256));
+		return randomPixel(RandomIntFactory.randomInt(256), RandomIntFactory.randomInt(256),
+			RandomIntFactory.randomInt(256), RandomIntFactory.randomInt(256));
 	}
 
 	/**
@@ -429,8 +448,7 @@ public final class RandomObjectFactory
 	 *            The alpha value.
 	 * @return a random int for use with pixel.
 	 */
-	public static int randomPixel(final int red, final int green, final int blue,
-								  final int alpha)
+	public static int randomPixel(final int red, final int green, final int blue, final int alpha)
 	{
 		final int pixel = (alpha << 24) | (red << 16) | (green << 8) | blue;
 		return pixel;
@@ -466,10 +484,6 @@ public final class RandomObjectFactory
 	public static UUID randomUUID()
 	{
 		return UUID.randomUUID();
-	}
-
-	private RandomObjectFactory()
-	{
 	}
 
 }

@@ -81,6 +81,31 @@ public class RandomCharactersTest extends AbstractTestCase<String, String>
 		actual = RandomCharacters.lowcaseWithUppercaseAndNumbersAndSpecial.getCharacters();
 		expected = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@$%^&*?!";
 		assertEquals(actual, expected);
+
+		actual = RandomCharacters.BRACKETS_CHAR;
+		expected = "(){}[]<>";
+		assertEquals(actual, expected);
+
+		actual = RandomCharacters.UNDERSCORE_CHAR;
+		expected = "_";
+		assertEquals(actual, expected);
+
+		actual = RandomCharacters.SLASH_CHAR;
+		expected = "/";
+		assertEquals(actual, expected);
+
+		actual = RandomCharacters.MATH_OPERATOR_CHAR;
+		expected = "+-";
+		assertEquals(actual, expected);
+
+		actual = RandomCharacters.QUOTATION_MARK_CHARACTERS;
+		expected = "´`\'\"";
+		assertEquals(actual, expected);
+
+		actual = RandomCharacters.OTHER_SPECIALCHARS;
+		expected = "°§=~.:,;µ|€²³^°";
+		assertEquals(actual, expected);
+
 	}
 
 }

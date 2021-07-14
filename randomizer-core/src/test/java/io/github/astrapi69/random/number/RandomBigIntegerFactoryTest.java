@@ -24,14 +24,15 @@
  */
 package io.github.astrapi69.random.number;
 
-import io.github.astrapi69.random.DefaultSecureRandom;
-import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
+import static org.testng.AssertJUnit.assertNotNull;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-import static org.testng.AssertJUnit.assertNotNull;
+import org.meanbean.test.BeanTester;
+import org.testng.annotations.Test;
+
+import io.github.astrapi69.random.DefaultSecureRandom;
 
 /**
  * The unit test class for the class {@link RandomBigIntegerFactory}
@@ -58,25 +59,27 @@ public class RandomBigIntegerFactoryTest
 	@Test
 	public void testRandomBigIntegerSecureRandom()
 	{
-		BigInteger randomBigInteger = RandomBigIntegerFactory.randomBigInteger(DefaultSecureRandom.get());
+		BigInteger randomBigInteger = RandomBigIntegerFactory
+			.randomBigInteger(DefaultSecureRandom.get());
 		assertNotNull(randomBigInteger);
 	}
 
 	/**
-	 * Test method for {@link RandomBigIntegerFactory#randomSerialNumber(SecureRandom)} 
+	 * Test method for {@link RandomBigIntegerFactory#randomSerialNumber(SecureRandom)}
 	 */
 	@Test(enabled = true)
 	public void testRandomSerialNumberSecureRandom()
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			BigInteger randomSerialNumber = RandomBigIntegerFactory.randomSerialNumber(DefaultSecureRandom.get());
+			BigInteger randomSerialNumber = RandomBigIntegerFactory
+				.randomSerialNumber(DefaultSecureRandom.get());
 			assertNotNull(randomSerialNumber);
 		}
 	}
 
 	/**
-	 * Test method for {@link RandomBigIntegerFactory#randomSerialNumber()} 
+	 * Test method for {@link RandomBigIntegerFactory#randomSerialNumber()}
 	 */
 	@Test(enabled = true)
 	public void testRandomSerialNumber()
@@ -87,6 +90,7 @@ public class RandomBigIntegerFactoryTest
 			assertNotNull(randomSerialNumber);
 		}
 	}
+
 	/**
 	 * Test method for {@link RandomBigIntegerFactory} with {@link BeanTester}
 	 */

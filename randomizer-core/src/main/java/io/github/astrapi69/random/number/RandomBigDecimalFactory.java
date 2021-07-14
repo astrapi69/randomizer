@@ -24,10 +24,10 @@
  */
 package io.github.astrapi69.random.number;
 
-import io.github.astrapi69.random.DefaultSecureRandom;
-
 import java.math.BigDecimal;
 import java.security.SecureRandom;
+
+import io.github.astrapi69.random.DefaultSecureRandom;
 
 /**
  * Utility class for producing random BigDecimal types
@@ -35,7 +35,12 @@ import java.security.SecureRandom;
  * @version 1.1
  * @author Asterios Raptis
  */
-public final class RandomBigDecimalFactory {
+public final class RandomBigDecimalFactory
+{
+
+	private RandomBigDecimalFactory()
+	{
+	}
 
 	/**
 	 * Generates a random {@link BigDecimal}
@@ -74,13 +79,11 @@ public final class RandomBigDecimalFactory {
 		String randomFloatString;
 		do
 		{
-			randomFloatString = RandomNumberExtensions.getRandomNumberString(afterComma, beforeComma);
+			randomFloatString = RandomNumberExtensions.getRandomNumberString(afterComma,
+				beforeComma);
 		}
 		while (randomFloatString.equals("."));
 		return new BigDecimal(randomFloatString);
-	}
-
-	private RandomBigDecimalFactory() {
 	}
 
 }

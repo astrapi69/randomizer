@@ -31,6 +31,10 @@ import java.security.SecureRandom;
  */
 public final class SecureRandomFactory
 {
+	private SecureRandomFactory()
+	{
+	}
+
 	/**
 	 * Factory method for create a new {@link SecureRandom} object
 	 *
@@ -83,10 +87,6 @@ public final class SecureRandomFactory
 	{
 		return SecureRandomBuilder.getInstance().algorithm(algorithm).provider(provider).seed(seed)
 			.build();
-	}
-
-	private SecureRandomFactory()
-	{
 	}
 
 }

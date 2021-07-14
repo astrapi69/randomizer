@@ -2,7 +2,7 @@
 dependencies {
     implementation project(":randomizer-core")
     testImplementation("io.github.astrapi69:test-objects:$testObjectsVersion")
-    testImplementation("de.alpharogroup:silly-strings:$sillyStringsVersion")
+    testImplementation("io.github.astrapi69:silly-strings:$sillyStringsVersion")
 }
 
 license {

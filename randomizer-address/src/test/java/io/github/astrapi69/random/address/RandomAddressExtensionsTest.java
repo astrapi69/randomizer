@@ -38,7 +38,7 @@ import org.testng.annotations.Test;
 
 import io.github.astrapi69.BaseTestCase;
 import io.github.astrapi69.random.util.PropertiesLoader;
-import de.alpharogroup.string.StringExtensions;
+import io.github.astrapi69.string.StringExtensions;
 
 /**
  * The unit test class for the class {@link RandomAddressExtensions}.
