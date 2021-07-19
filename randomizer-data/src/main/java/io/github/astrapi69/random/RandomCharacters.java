@@ -92,8 +92,14 @@ public enum RandomCharacters
 	/** The slash character */
 	public static final String SLASH_CHAR = "/";
 
+	/** The plus character */
+	public static final String PLUS_CHAR = "+";
+
+	/** The minus character */
+	public static final String MINUS_CHAR = "-";
+
 	/** The plus and minus characters */
-	public static final String MATH_OPERATOR_CHAR = "+-";
+	public static final String MATH_OPERATOR_CHAR = PLUS_CHAR + MINUS_CHAR;
 
 	/** All other special characters */
 	public static final String OTHER_SPECIALCHARS = "°§=~.:,;µ|€²³^";
