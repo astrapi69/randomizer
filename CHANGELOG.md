@@ -4,6 +4,10 @@
 Version 8.4-SNAPSHOT
 -------------
 
+ADDED:
+
+- new gradle-plugin dependency of 'org.ajoberstar.grgit:grgit-gradle' in version 4.4.1 for create git release tags
+
 Version 8.3
 -------------
 
