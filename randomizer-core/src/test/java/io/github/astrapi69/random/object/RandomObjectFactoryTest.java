@@ -39,7 +39,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import io.github.astrapi69.test.objects.PrimitiveArrays;
 import org.apache.commons.lang3.ArrayUtils;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
@@ -47,6 +46,7 @@ import org.testng.annotations.Test;
 import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.enums.RandomAlgorithm;
 import io.github.astrapi69.test.objects.Person;
+import io.github.astrapi69.test.objects.PrimitiveArrays;
 import io.github.astrapi69.test.objects.enums.Gender;
 
 /**
@@ -326,9 +326,8 @@ public class RandomObjectFactoryTest
 	 *             is thrown if the class cannot be located
 	 */
 	@Test
-	public void testNewRandomObjectWithObject()
-		throws IllegalAccessException, InstantiationException, NoSuchFieldException,
-		ClassNotFoundException
+	public void testNewRandomObjectWithObject() throws IllegalAccessException,
+		InstantiationException, NoSuchFieldException, ClassNotFoundException
 	{
 		Person person = RandomObjectFactory.newRandomObject(Person.class, "$jacocoData");
 		assertNotNull(person);
