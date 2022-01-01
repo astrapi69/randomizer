@@ -137,6 +137,31 @@ public final class RandomObjectFactory
 	}
 
 	/**
+	 * Factory method for create a new random object of the given object
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param obj
+	 *            the object
+	 * @param ignoreFieldNames
+	 *            an optional array with the field names that shell be ignored
+	 * @return the new random object
+	 * @throws IllegalAccessException
+	 *             is thrown if the class or its default constructor is not accessible.
+	 * @throws InstantiationException
+	 *             is thrown if this {@code Class} represents an abstract class, an interface, an
+	 *             array class, a primitive type, or void; or if the class has no default
+	 *             constructor; or if the instantiation fails for some other reason.
+	 * @throws NoSuchFieldException
+	 *             is thrown if no such field exists
+	 */
+	public static <T> T newRandomObject(final T obj, String... ignoreFieldNames)
+		throws IllegalAccessException, InstantiationException, NoSuchFieldException
+	{
+		return newRandomObject((Class<T>)obj.getClass(), ignoreFieldNames);
+	}
+
+	/**
 	 * Factory method for create a new random value for the given {@link Field field}
 	 *
 	 * @param field
@@ -327,7 +352,7 @@ public final class RandomObjectFactory
 	{
 		if (classname != null && !classname.isEmpty())
 		{
-			Class<T> enumClass = null;
+			Class<T> enumClass;
 			try
 			{
 				enumClass = (Class<T>)ClassExtensions.forName(classname);

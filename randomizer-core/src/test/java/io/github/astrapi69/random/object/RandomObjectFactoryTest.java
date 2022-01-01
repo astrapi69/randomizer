@@ -309,6 +309,30 @@ public class RandomObjectFactoryTest
 		assertNotEquals(person, person2);
 	}
 
+
+	/**
+	 * Test method for {@link RandomObjectFactory#newRandomObject(Class, String...)}
+	 *
+	 * @throws IllegalAccessException
+	 *             is thrown if the class or its default constructor is not accessible.
+	 * @throws InstantiationException
+	 *             is thrown if this {@code Class} represents an abstract class, an interface, an
+	 *             array class, a primitive type, or void; or if the class has no default
+	 *             constructor; or if the instantiation fails for some other reason.
+	 * @throws NoSuchFieldException
+	 *             is thrown if no such field exists
+	 */
+	@Test
+	public void testNewRandomObjectWithObject()
+		throws IllegalAccessException, InstantiationException, NoSuchFieldException
+	{
+		Person person = RandomObjectFactory.newRandomObject(Person.class, "$jacocoData");
+		assertNotNull(person);
+		Person person2 = RandomObjectFactory.newRandomObject(person, "$jacocoData");
+		assertNotNull(person2);
+		assertNotEquals(person, person2);
+	}
+
 	/**
 	 * Test method for {@link RandomObjectFactory#newRandomObject(Class, String...)}
 	 *

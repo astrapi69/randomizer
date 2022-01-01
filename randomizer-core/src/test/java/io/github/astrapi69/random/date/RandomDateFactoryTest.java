@@ -41,7 +41,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.github.astrapi69.date.CalculateDateExtensions;
-import io.github.astrapi69.date.DatePatterns;
+import io.github.astrapi69.date.DatePattern;
 import io.github.astrapi69.date.ParseDateExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 
@@ -142,7 +142,7 @@ public class RandomDateFactoryTest
 		final long startDate = this.now.getTime();
 		final String randomDate = RandomDateFactory.randomDatebetween(startDate, endDate);
 		final Date compare = ParseDateExtensions.parseToDate(randomDate,
-			DatePatterns.DOT_DD_MM_YYYY_HH_MM_SS);
+			DatePattern.DOT_DD_MM_YYYY_HH_MM_SS.getValue());
 		actual = CalculateDateExtensions.isBetween(this.now, till, compare);
 		assertTrue("", actual);
 	}
@@ -160,7 +160,7 @@ public class RandomDateFactoryTest
 		final Date till = CalculateDateExtensions.addDays(this.now, 30);
 		final long endDate = till.getTime();
 		final long startDate = from.getTime();
-		final String format = DatePatterns.DOT_DD_MM_YYYY_HH_MM_SS;
+		final String format = DatePattern.DOT_DD_MM_YYYY_HH_MM_SS.getValue();
 		final String randomDate = RandomDateFactory.randomDatebetween(startDate, endDate, format);
 		final Date compare = ParseDateExtensions.parseToDate(randomDate, format);
 		actual = CalculateDateExtensions.isBetween(from, till, compare);
@@ -359,7 +359,7 @@ public class RandomDateFactoryTest
 		final Date till = CalculateDateExtensions.addDays(this.now, 30);
 		final long endDate = till.getTime();
 		final long startDate = from.getTime();
-		final String format = DatePatterns.DOT_DD_MM_YYYY_HH_MM_SS;
+		final String format = DatePattern.DOT_DD_MM_YYYY_HH_MM_SS.getValue();
 		final String randomDate = RandomDateFactory.randomDateBetween(startDate, endDate, format,
 			DefaultSecureRandom.get());
 		final Date compare = ParseDateExtensions.parseToDate(randomDate, format);
