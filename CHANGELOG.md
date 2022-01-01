@@ -1,7 +1,7 @@
 ## Change log
 ----------------------
 
-Version 8.4-SNAPSHOT
+Version 8.4
 -------------
 
 ADDED:
@@ -14,6 +14,7 @@ ADDED:
 CHANGED:
 
 - update of gradle to new version 7.3.3
+- update of com.github.ben-manes.versions.gradle.plugin to new version 0.40.0
 - update of dependency silly-collections to new version 18
 - update of dependency vintage-time to new version 5.4
 - update of dependency jobj-core to new version 5.1
