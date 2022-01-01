@@ -46,6 +46,7 @@ import org.testng.annotations.Test;
 import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.enums.RandomAlgorithm;
 import io.github.astrapi69.test.objects.Person;
+import io.github.astrapi69.test.objects.PrimitiveArrays;
 import io.github.astrapi69.test.objects.enums.Gender;
 
 /**
@@ -307,6 +308,36 @@ public class RandomObjectFactoryTest
 		Person person2 = RandomObjectFactory.newRandomObject(Person.class, "$jacocoData");
 		assertNotNull(person2);
 		assertNotEquals(person, person2);
+	}
+
+
+	/**
+	 * Test method for {@link RandomObjectFactory#newRandomObject(Class, String...)}
+	 *
+	 * @throws IllegalAccessException
+	 *             is thrown if the class or its default constructor is not accessible.
+	 * @throws InstantiationException
+	 *             is thrown if this {@code Class} represents an abstract class, an interface, an
+	 *             array class, a primitive type, or void; or if the class has no default
+	 *             constructor; or if the instantiation fails for some other reason.
+	 * @throws NoSuchFieldException
+	 *             is thrown if no such field exists
+	 * @throws ClassNotFoundException
+	 *             is thrown if the class cannot be located
+	 */
+	@Test
+	public void testNewRandomObjectWithObject() throws IllegalAccessException,
+		InstantiationException, NoSuchFieldException, ClassNotFoundException
+	{
+		Person person = RandomObjectFactory.newRandomObject(Person.class, "$jacocoData");
+		assertNotNull(person);
+		Person person2 = RandomObjectFactory.newRandomObject(person, "$jacocoData");
+		assertNotNull(person2);
+		assertNotEquals(person, person2);
+		PrimitiveArrays primitiveArrays = RandomObjectFactory.newRandomObject(PrimitiveArrays.class,
+			"$jacocoData");
+		assertNotNull(primitiveArrays);
+
 	}
 
 	/**

@@ -103,7 +103,7 @@ public class RandomCharactersTest extends AbstractTestCase<String, String>
 		assertEquals(actual, expected);
 
 		actual = RandomCharacters.OTHER_SPECIALCHARS;
-		expected = "°§=~.:,;µ|€²³^°";
+		expected = "°§=~.:,;µ|€²³^";
 		assertEquals(actual, expected);
 
 	}

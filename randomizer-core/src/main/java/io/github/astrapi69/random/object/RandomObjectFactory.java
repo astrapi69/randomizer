@@ -41,6 +41,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
+import io.github.astrapi69.copy.object.CopyObjectExtensions;
 import io.github.astrapi69.lang.ClassExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 import io.github.astrapi69.random.RandomCharacters;
@@ -137,6 +138,37 @@ public final class RandomObjectFactory
 	}
 
 	/**
+	 * Factory method for create a new random object of the given object
+	 *
+	 * @param <T>
+	 *            the generic type
+	 * @param obj
+	 *            the object
+	 * @param ignoreFieldNames
+	 *            an optional array with the field names that shell be ignored
+	 * @return the new random object
+	 * @throws IllegalAccessException
+	 *             is thrown if the class or its default constructor is not accessible.
+	 * @throws InstantiationException
+	 *             is thrown if this {@code Class} represents an abstract class, an interface, an
+	 *             array class, a primitive type, or void; or if the class has no default
+	 *             constructor; or if the instantiation fails for some other reason.
+	 * @throws NoSuchFieldException
+	 *             is thrown if no such field exists
+	 * @throws ClassNotFoundException
+	 *             is thrown if the class cannot be located
+	 */
+	public static <T> T newRandomObject(final T obj, String... ignoreFieldNames)
+		throws IllegalAccessException, InstantiationException, NoSuchFieldException,
+		ClassNotFoundException
+	{
+		Objects.requireNonNull(obj);
+		Class<T> cls = (Class<T>)obj.getClass();
+		T copy = CopyObjectExtensions.copyObject(obj, ignoreFieldNames);
+		return setRandomValues(cls, copy, ignoreFieldNames);
+	}
+
+	/**
 	 * Factory method for create a new random value for the given {@link Field field}
 	 *
 	 * @param field
@@ -154,77 +186,78 @@ public final class RandomObjectFactory
 	public static Object newRandomValue(Field field)
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
 	{
-		Class<?> type = field.getType();
-		if (type.isEnum())
+		Class<?> fieldType = field.getType();
+
+		if (fieldType.isEnum())
 		{
-			Enum<?> randomEnum = randomEnumFromClassname(type.getCanonicalName());
+			Enum<?> randomEnum = randomEnumFromClassname(fieldType.getCanonicalName());
 			return randomEnum;
 		}
-		else if (type.equals(Void.TYPE) || type.equals(Void.class))
+		else if (fieldType.equals(Void.TYPE) || fieldType.equals(Void.class))
 		{
 			return null;
 		}
-		else if (type.equals(Byte.TYPE) || type.equals(Byte.class))
+		else if (fieldType.equals(Byte.TYPE) || fieldType.equals(Byte.class))
 		{
 			return Byte.valueOf(RandomByteFactory.randomByte());
 		}
-		else if (type.equals(Character.TYPE) || type.equals(Character.class))
+		else if (fieldType.equals(Character.TYPE) || fieldType.equals(Character.class))
 		{
 			return Character.valueOf(RandomCharFactory.randomChar());
 		}
-		else if (type.equals(Short.TYPE) || type.equals(Short.class))
+		else if (fieldType.equals(Short.TYPE) || fieldType.equals(Short.class))
 		{
 			return Short.valueOf(RandomShortFactory.randomShort());
 		}
-		else if (type.equals(Boolean.TYPE) || type.equals(Boolean.class))
+		else if (fieldType.equals(Boolean.TYPE) || fieldType.equals(Boolean.class))
 		{
 			return Boolean.valueOf(RandomBooleanFactory.randomBoolean());
 		}
-		else if (type.equals(Integer.TYPE) || type.equals(Integer.class))
+		else if (fieldType.equals(Integer.TYPE) || fieldType.equals(Integer.class))
 		{
 			return Integer.valueOf(RandomIntFactory.randomInt());
 		}
-		else if (type.equals(Long.TYPE) || type.equals(Long.class))
+		else if (fieldType.equals(Long.TYPE) || fieldType.equals(Long.class))
 		{
 			return Long.valueOf(RandomLongFactory.randomLong());
 		}
-		else if (type.equals(Double.TYPE) || type.equals(Double.class))
+		else if (fieldType.equals(Double.TYPE) || fieldType.equals(Double.class))
 		{
 			return Double.valueOf(RandomDoubleFactory.randomDouble());
 		}
-		else if (type.equals(Float.TYPE) || type.equals(Float.class))
+		else if (fieldType.equals(Float.TYPE) || fieldType.equals(Float.class))
 		{
 			return Float.valueOf(RandomFloatFactory.randomFloat());
 		}
-		else if (type.equals(String.class))
+		else if (fieldType.equals(String.class))
 		{
 			return RandomStringFactory.newRandomString();
 		}
-		else if (type.equals(BigInteger.class))
+		else if (fieldType.equals(BigInteger.class))
 		{
 			return RandomBigIntegerFactory.randomBigInteger();
 		}
-		else if (type.equals(BigDecimal.class))
+		else if (fieldType.equals(BigDecimal.class))
 		{
 			return RandomBigDecimalFactory.randomBigDecimal();
 		}
-		else if (type.equals(Date.class))
+		else if (fieldType.equals(Date.class))
 		{
 			return RandomDateFactory.randomDate();
 		}
-		else if (type.equals(LocalDateTime.class))
+		else if (fieldType.equals(LocalDateTime.class))
 		{
 			return RandomDateFactory.randomLocalDateTime();
 		}
-		else if (type.equals(LocalDate.class))
+		else if (fieldType.equals(LocalDate.class))
 		{
 			return RandomDateFactory.randomLocalDate();
 		}
-		else if (type.equals(LocalTime.class))
+		else if (fieldType.equals(LocalTime.class))
 		{
 			return RandomDateFactory.randomLocalTime();
 		}
-		return newRandomObject(type);
+		return newRandomObject(fieldType);
 	}
 
 	/**
@@ -327,7 +360,7 @@ public final class RandomObjectFactory
 	{
 		if (classname != null && !classname.isEmpty())
 		{
-			Class<T> enumClass = null;
+			Class<T> enumClass;
 			try
 			{
 				enumClass = (Class<T>)ClassExtensions.forName(classname);
