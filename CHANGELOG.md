@@ -6,6 +6,7 @@ Version 8.4-SNAPSHOT
 
 ADDED:
 
+- new dependency jobj-copy in new version 3.4
 - new method for create random object from a given object in factory class RandomObjectFactory
 - new gradle-plugin dependency of 'org.ajoberstar.grgit:grgit-gradle' in version 4.4.1 for create git release tags
 
@@ -15,8 +16,8 @@ CHANGED:
 - update of gradle to new version 7.3.3
 - update of dependency silly-collections to new version 18
 - update of dependency vintage-time to new version 5.4
-- update of dependency jobj-core to new version 5
-- update of test dependency test-objects to new version 5.6
+- update of dependency jobj-core to new version 5.1
+- update of test dependency test-objects to new version 5.7
 - update of test dependency silly-strings to new version 8.1
 - update of test dependency equalsverifier to new version 3.8.1
 

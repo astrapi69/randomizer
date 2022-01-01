@@ -39,6 +39,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import io.github.astrapi69.test.objects.PrimitiveArrays;
 import org.apache.commons.lang3.ArrayUtils;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
@@ -321,16 +322,23 @@ public class RandomObjectFactoryTest
 	 *             constructor; or if the instantiation fails for some other reason.
 	 * @throws NoSuchFieldException
 	 *             is thrown if no such field exists
+	 * @throws ClassNotFoundException
+	 *             is thrown if the class cannot be located
 	 */
 	@Test
 	public void testNewRandomObjectWithObject()
-		throws IllegalAccessException, InstantiationException, NoSuchFieldException
+		throws IllegalAccessException, InstantiationException, NoSuchFieldException,
+		ClassNotFoundException
 	{
 		Person person = RandomObjectFactory.newRandomObject(Person.class, "$jacocoData");
 		assertNotNull(person);
 		Person person2 = RandomObjectFactory.newRandomObject(person, "$jacocoData");
 		assertNotNull(person2);
 		assertNotEquals(person, person2);
+		PrimitiveArrays primitiveArrays = RandomObjectFactory.newRandomObject(PrimitiveArrays.class,
+			"$jacocoData");
+		assertNotNull(primitiveArrays);
+
 	}
 
 	/**
