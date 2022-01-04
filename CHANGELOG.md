@@ -1,10 +1,14 @@
 ## Change log
 ----------------------
 
-Version 8.5-SNAPSHOT
+Version 8.5
 -------------
 
+CHANGED:
 
+- united all modules back to one module
+- update of dependency jobj-core to new version 5.2
+- update of test dependency equalsverifier to new version 3.8.2
 
 Version 8.4
 -------------
