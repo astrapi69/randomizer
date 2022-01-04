@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test name="Test">
+    <classes>
+      <class name="io.github.astrapi69.random.ConstantsTest"/>
+      <class name="io.github.astrapi69.random.RandomCharactersTest"/>
+      <class name="io.github.astrapi69.random.SecureRandomBeanTest"/>
+      <class name="io.github.astrapi69.random.SecureRandomBuilderTest"/>
+      <class name="io.github.astrapi69.random.date.RandomDateFactoryTest"/>
+      <class name="io.github.astrapi69.random.object.RandomObjectFactoryTest"/>
+      <class name="io.github.astrapi69.random.NullSecureRandomExtensionsTest"/>
+      <class name="io.github.astrapi69.random.RandomExtensionsTest"/>
+      <class name="io.github.astrapi69.random.RandomObjectsExtensionsTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

@@ -6,7 +6,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=master)](https://coveralls.io/github/astrapi69/randomizer?branch=master) 
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/randomizer.svg?style=flat)](https://github.com/astrapi69/randomizer/issues) 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer-core)
-[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-core.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-core)
+[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 
@@ -33,30 +33,19 @@ your project `build.gradle` if you want to import the core functionality of rand
 ```
 define version in file gradle.properties
 
-randomizerVersion=8.4
+randomizerVersion=8.5
 ```
 
 or in build.gradle ext area
 
 ```
-ext {
-			...
-    randomizerVersion = "8.4"
-			...
-}
+    randomizerVersion = "8.5"
 ```
 
 then add the dependency to the dependencies area
 
 ```
-dependencies {
-			...
-    implementation("io.github.astrapi69:randomizer-api:$randomizerVersion")
-    implementation("io.github.astrapi69:randomizer-address:$randomizerVersion")
-    implementation("io.github.astrapi69:randomizer-core:$randomizerVersion")
-    implementation("io.github.astrapi69:randomizer-data:$randomizerVersion")
-			...
-}
+    implementation("io.github.astrapi69:randomizer:$randomizerVersion")
 ```
 
 ## Maven dependency
@@ -72,64 +61,22 @@ Than you can add the dependency to your dependencies:
 	<properties>
 			...
 		<!-- RANDOMIZER versions -->
-		<randomizer.version>8.4</randomizer.version>
-		<randomizer-api.version>${randomizer.version}</randomizer-api.version>
-		<randomizer-address.version>${randomizer.version}</randomizer-address.version>
-		<randomizer-core.version>${randomizer.version}</randomizer-core.version>
-		<randomizer-data.version>${randomizer.version}</randomizer-data.version>
+		<randomizer.version>8.5</randomizer.version>
 			...
 	</properties>
 
 You can add the following dependencies to your project for use the functionality of randomizer.
 
-Add the following maven dependency to your project `pom.xml` if you want to import the functionality of randomizer-api:
+Add the following maven dependency to your project `pom.xml` if you want to import the 
+functionality of randomizer:
 
 		<dependencies>
 			...
 			<!-- RANDOMIZER DEPENDENCY -->
 			<dependency>
 				<groupId>io.github.astrapi69</groupId>
-				<artifactId>randomizer-api</artifactId>
-				<version>${randomizer-api.version}</version>
-			</dependency>
-			...
-		</dependencies>
-
-Add the following maven dependency to your project `pom.xml` if you want to import the functionality of randomizer-address:
-
-		<dependencies>
-			...
-			<!-- RANDOMIZER DEPENDENCY -->
-			<dependency>
-				<groupId>io.github.astrapi69</groupId>
-				<artifactId>randomizer-address</artifactId>
-				<version>${randomizer-address.version}</version>
-			</dependency>
-			...
-		</dependencies>
-
-Add the following maven dependency to your project `pom.xml` if you want to import the functionality of randomizer-core:
-
-		<dependencies>
-			...
-			<!-- RANDOMIZER DEPENDENCY -->
-			<dependency>
-				<groupId>io.github.astrapi69</groupId>
-				<artifactId>randomizer-core</artifactId>
-				<version>${randomizer-core.version}</version>
-			</dependency>
-			...
-		</dependencies>
-
-Add the following maven dependency to your project `pom.xml` if you want to import the functionality of randomizer-data:
-
-		<dependencies>
-			...
-			<!-- RANDOMIZER DEPENDENCY -->
-			<dependency>
-				<groupId>io.github.astrapi69</groupId>
-				<artifactId>randomizer-data</artifactId>
-				<version>${randomizer-data.version}</version>
+				<artifactId>randomizer</artifactId>
+				<version>${randomizer.version}</version>
 			</dependency>
 			...
 		</dependencies>
@@ -194,13 +141,7 @@ The source code comes under the liberal MIT License, making randomizer great for
 
 ## Javadoc
 
-[![javadoc](https://javadoc.io/badge2/io.github.astrapi69/randomizer-address/javadoc.svg)](https://javadoc.io/doc/io.github.astrapi69/randomizer-address) randomizer-address
-
-[![javadoc](https://javadoc.io/badge2/io.github.astrapi69/randomizer-api/javadoc.svg)](https://javadoc.io/doc/io.github.astrapi69/randomizer-api) randomizer-api
-
-[![javadoc](https://javadoc.io/badge2/io.github.astrapi69/randomizer-core/javadoc.svg)](https://javadoc.io/doc/io.github.astrapi69/randomizer-core) randomizer-core
-
-[![javadoc](https://javadoc.io/badge2/io.github.astrapi69/randomizer-data/javadoc.svg)](https://javadoc.io/doc/io.github.astrapi69/randomizer-data) randomizer-data
+[![javadoc](https://javadoc.io/badge2/io.github.astrapi69/randomizer/javadoc.svg)](https://javadoc.io/doc/io.github.astrapi69/randomizer) randomizer
 
 ## Semantic Versioning
 

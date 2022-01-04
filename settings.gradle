@@ -1,6 +1,2 @@
 
 rootProject.name = 'randomizer'
-include(':randomizer-api')
-include(':randomizer-data')
-include(':randomizer-core')
-include(':randomizer-address')
