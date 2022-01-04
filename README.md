@@ -30,9 +30,8 @@ No animals were harmed in the making of this library.
 You can first define the version in the ext section and add than the following gradle dependency to
 your project `build.gradle` if you want to import the core functionality of randomizer:
 
-```
 define version in file gradle.properties
-
+```
 randomizerVersion=8.5
 ```
 
