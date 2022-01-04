@@ -287,7 +287,7 @@ public final class RandomObjectFactory
 	{
 		Objects.requireNonNull(cls);
 		Objects.requireNonNull(instance);
-		Field[] allDeclaredFields = ReflectionExtensions.getAllDeclaredFields(cls);
+		Field[] allDeclaredFields = ReflectionExtensions.getAllDeclaredFields(cls, ignoreFieldNames);
 		List<String> toIgnoreFields = Arrays.asList(ignoreFieldNames);
 		for (Field field : allDeclaredFields)
 		{
