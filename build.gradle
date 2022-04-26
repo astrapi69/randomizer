@@ -152,6 +152,7 @@ jar {
 license {
     ext.year="$projectInceptionYear"
     ext.owner="$projectLeaderName"
+    ignoreFailures = true
     header rootProject.file("src/main/resources/LICENSE.txt")
     excludes(["**/README",
               "**/README.md",
