@@ -2,7 +2,7 @@
 
 <div style="text-align: center">
 
-[![Build Status](https://api.travis-ci.com/astrapi69/randomizer.svg?branch=develop)](https://travis-ci.com/github/astrapi69/randomizer)
+[![Java CI with Gradle](https://github.com/astrapi69/randomizer/actions/workflows/gradle.yml/badge.svg)](https://github.com/astrapi69/randomizer/actions/workflows/gradle.yml)
 [![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/randomizer?branch=develop)
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/randomizer.svg?style=flat)](https://github.com/astrapi69/randomizer/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer-core)
@@ -176,13 +176,6 @@ Here is a list of awesome projects:
  * [jfairy](https://github.com/Devskiller/jfairy) Java fake data generator
 
 ## Credits
-
-|**Travis CI**|
-|     :---:      |
-|[![Travis CI](https://travis-ci.com/images/logos/TravisCI-Full-Color.png)]|
-|[![Build Status](https://travis-ci.com/astrapi69/randomizer.svg?branch=develop)](https://travis-ci.com/astrapi69/randomizer)|
-|Special thanks to [Travis CI](https://travis-ci.com) for providing a free continuous integration service for open source projects|
-|     <img width=1000/>     |
 
 |**Nexus Sonatype repositories**|
 |     :---:      |
