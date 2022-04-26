@@ -2,9 +2,9 @@
 
 <div style="text-align: center">
 
-[![Build Status](https://api.travis-ci.com/astrapi69/randomizer.svg?branch=develop)](https://travis-ci.com/github/astrapi69/randomizer) 
-[![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/randomizer?branch=develop) 
-[![Open Issues](https://img.shields.io/github/issues/astrapi69/randomizer.svg?style=flat)](https://github.com/astrapi69/randomizer/issues) 
+[![Build Status](https://api.travis-ci.com/astrapi69/randomizer.svg?branch=develop)](https://travis-ci.com/github/astrapi69/randomizer)
+[![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/randomizer?branch=develop)
+[![Open Issues](https://img.shields.io/github/issues/astrapi69/randomizer.svg?style=flat)](https://github.com/astrapi69/randomizer/issues)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer-core)
 [![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
@@ -16,9 +16,9 @@ Generate random data
 
 > Please support this project by simply putting a Github <!-- Place this tag where you want the button to render. -->
                                                          <a class="github-button" href="https://github.com/astrapi69/randomizer" data-icon="octicon-star" aria-label="Star astrapi69/randomizer on GitHub">Star ⭐</a>
-> 
+>
 > Share this library with friends on Twitter and everywhere else you can
-> 
+>
 > If you love this project [![donation](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 
 ## Note
@@ -57,28 +57,28 @@ Add the following maven dependency to your project `pom.xml` if you want to impo
 Than you can add the dependency to your dependencies:
 
 
-	<properties>
-			...
-		<!-- RANDOMIZER versions -->
-		<randomizer.version>8.5</randomizer.version>
-			...
-	</properties>
+    <properties>
+            ...
+        <!-- RANDOMIZER versions -->
+        <randomizer.version>8.5</randomizer.version>
+            ...
+    </properties>
 
 You can add the following dependencies to your project for use the functionality of randomizer.
 
-Add the following maven dependency to your project `pom.xml` if you want to import the 
+Add the following maven dependency to your project `pom.xml` if you want to import the
 functionality of randomizer:
 
-		<dependencies>
-			...
-			<!-- RANDOMIZER DEPENDENCY -->
-			<dependency>
-				<groupId>io.github.astrapi69</groupId>
-				<artifactId>randomizer</artifactId>
-				<version>${randomizer.version}</version>
-			</dependency>
-			...
-		</dependencies>
+        <dependencies>
+            ...
+            <!-- RANDOMIZER DEPENDENCY -->
+            <dependency>
+                <groupId>io.github.astrapi69</groupId>
+                <artifactId>randomizer</artifactId>
+                <version>${randomizer.version}</version>
+            </dependency>
+            ...
+        </dependencies>
 
 # Donations
 
@@ -173,7 +173,7 @@ Here is a list of awesome projects:
 
  * [random-beans](https://github.com/benas/random-beans) Because life is too short to generate random Java beans by hand..
  * [junit-quickcheck](https://github.com/pholser/junit-quickcheck) Property-based testing, JUnit-style
- * [jfairy](https://github.com/Devskiller/jfairy) Java fake data generator 
+ * [jfairy](https://github.com/Devskiller/jfairy) Java fake data generator
 
 ## Credits
 

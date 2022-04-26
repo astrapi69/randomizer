@@ -4,6 +4,21 @@
 Version 8.6-SNAPSHOT
 -------------
 
+ADDED:
+
+- new method for generated a random Point around a given Point
+- new gradle-plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' in minor version 6.5.0
+
+CHANGED:
+
+- update of gradle to new version 7.4.2
+- update of com.github.ben-manes.versions.gradle.plugin to new version 0.42.0
+- update of dependency silly-collections to new version 18.2
+- update of test dependency equalsverifier to new version 3.10
+- update of test dependency test-ng to new version 7.5
+- update of test dependency test-objects to new major version 6
+- update of dependency jobj-copy to new version 3.7
+
 Version 8.5
 -------------
 
@@ -82,7 +97,7 @@ Version 8
 -------------
 
 ADDED:
- 
+
 - new factory classes for every primitive type created
 
 CHANGED:
@@ -112,8 +127,8 @@ Version 6.8
 -------------
 
 ADDED:
- 
-- new seed field in the SecureRandomBuilder class for init with a long from a Date object, for instance for a draw date of a lottery game 
+
+- new seed field in the SecureRandomBuilder class for init with a long from a Date object, for instance for a draw date of a lottery game
 - new class RandomPrimitivesFactory that generates random primitives with SecureRandom argument
 - new class RandomDateFactory that generates random date objects with SecureRandom argument
 - new class RandomStringFactory that generates random String objects
@@ -141,14 +156,14 @@ Version 6.6
 
 CHANGED:
 
-- build system to gradle migrated and transformed to multi-module gradle project  
+- build system to gradle migrated and transformed to multi-module gradle project
 
 Version 6.5
 -------------
 
 ADDED:
- 
-- new module project for address related classes 
+
+- new module project for address related classes
 
 CHANGED:
 
@@ -167,14 +182,14 @@ CHANGED:
 - update of silly-collections to new version 5.5.1
 - update of jobj-core to new version 3.3
 - update of equalsverifier to new version 3.1.10
-- bug in RandomPrimitivesExtensions.randomIntBetween fixed and unit tests extended 
+- bug in RandomPrimitivesExtensions.randomIntBetween fixed and unit tests extended
 
 Version 6.3
 -------------
 
 ADDED:
- 
-- new method to create random numbers over the RandomAlgorithm for the primitive types int, long, float and double 
+
+- new method to create random numbers over the RandomAlgorithm for the primitive types int, long, float and double
 - unit tests for the new methods created
 
 CHANGED:
@@ -186,7 +201,7 @@ Version 6.2
 -------------
 
 ADDED:
- 
+
 - new random method created for get a random int between the given range generated with with the Math.abs method.
 - new class RandomNumberExtensions for generate random number objects
 - new class RandomPrimitivesExtensions for generate random primitive type values
@@ -202,7 +217,7 @@ Version 6.1
 -------------
 
 ADDED:
- 
+
 - new methods created for create random object from java.time package
 - changed jdk from oraclejdk8 to openjdk8 in .travis.yml
 - code coverage increased to 100 percent
@@ -215,7 +230,7 @@ Version 6.0.1
 -------------
 
 ADDED:
- 
+
 - new method for create random Date without arguments
 - new method for set random values to an existing object
 
@@ -237,7 +252,7 @@ Version 5.8.3
 -------------
 
 ADDED:
- 
+
 - new dependency silly-strings in test scope
 
 CHANGED:
@@ -266,16 +281,16 @@ Version 5.8
 -------------
 
 ADDED:
- 
+
 - new factory class for create new random objects with optional exclude fields
 - new factory class for create new SecureRandom objects
-- new methods created for random BigInteger and BigDecimal 
+- new methods created for random BigInteger and BigDecimal
 
 Version 5.7
 -------------
 
 ADDED:
- 
+
 - new dependency silly-math in version 1 added
 - new method for create random object over reflection
 - new method for create random string with default parameter
@@ -290,7 +305,7 @@ CHANGED:
 - update of test-objects to new version 5.1
 - update of silly-collections to new version 5.2
 - replaced obsolet dependency jobject-core with new dependency jobj-core in version 3
-- replaced obsolet dependency jobject-evaluate with new dependency jobj-contract-verifier in version 3 
+- replaced obsolet dependency jobject-evaluate with new dependency jobj-contract-verifier in version 3
 
 Version 5.6
 -------------
@@ -308,7 +323,7 @@ Version 5.5
 -------------
 
 ADDED:
- 
+
 - new method created for create random hexadecimal string objects from a given length of characters
 - new enum class created that will replace the Constant class
 
@@ -328,7 +343,7 @@ CHANGED:
 - update of jcommons-lang to new version 4.34
 - update of test-objects to new version 4.28
 - update of silly-collections to new version 4.31
-- update of vintage-time to new version 4.12 
+- update of vintage-time to new version 4.12
 - update of resourcebundle-inspector to new version 2.22
 - update of jobject-extensions to new version 1.11
 
@@ -347,7 +362,7 @@ Version 5.2.0
 -------------
 
 ADDED:
- 
+
 - new method that can include and exclude the start and the end number from randomIntBetween
 
 CHANGED:
@@ -359,7 +374,7 @@ Version 5.1.0
 -------------
 
 ADDED:
- 
+
 - initial version
 - moved all random relevant projects from mystic-crypt to this project
 
