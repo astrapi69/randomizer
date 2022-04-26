@@ -509,9 +509,33 @@ public final class RandomObjectFactory
 	 */
 	public static Point randomPoint(final Point fromPoint)
 	{
-		int yMinusOne = 0 < fromPoint.y ? fromPoint.y - 1 : fromPoint.y;
+		return randomPoint(fromPoint, false);
+	}
+
+	/**
+	 * Gets a random {@link Point} object around of the given {@link Point} object
+	 *
+	 * @param fromPoint
+	 *            The {@link Point} object to start
+	 * @param withNegativeValues
+	 *            The flag if negative values are allowed for x or y
+	 * @return a random point around from the given {@link Point} object
+	 */
+	public static Point randomPoint(final Point fromPoint, boolean withNegativeValues)
+	{
+		int yMinusOne;
+		int xMinusOne;
+		if (withNegativeValues)
+		{
+			yMinusOne = fromPoint.y - 1;
+			xMinusOne = fromPoint.x - 1;
+		}
+		else
+		{
+			yMinusOne = 0 < fromPoint.y ? fromPoint.y - 1 : fromPoint.y;
+			xMinusOne = 0 < fromPoint.x ? fromPoint.x - 1 : fromPoint.x;
+		}
 		int yPlusOne = fromPoint.y + 1;
-		int xMinusOne = 0 < fromPoint.x ? fromPoint.x - 1 : fromPoint.x;
 		int xPlusOne = fromPoint.x + 1;
 		Point top = new Point(fromPoint.x, yMinusOne);
 		Point bottom = new Point(fromPoint.x, yPlusOne);

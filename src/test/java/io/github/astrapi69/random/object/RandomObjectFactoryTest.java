@@ -64,7 +64,7 @@ public class RandomObjectFactoryTest
 	boolean expected;
 
 	/**
-	 * Test method for {@link RandomObjectFactory#randomListEntry(java.util.List)} .
+	 * Test method for {@link RandomObjectFactory#randomPoint(Point)}
 	 */
 	@Test
 	public void testRandomPoint()
@@ -111,6 +111,44 @@ public class RandomObjectFactoryTest
 		for (int i = 0; i < 10; i++)
 		{
 			final Point randomEntry = RandomObjectFactory.randomPoint(fromPoint);
+			actual = pointList.contains(randomEntry);
+			assertEquals(actual, expected);
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomPoint(Point, boolean)}
+	 */
+	@Test
+	public void testRandomPointWithFlag()
+	{
+		Point fromPoint;
+		Point top;
+		Point bottom;
+		Point right;
+		Point left;
+		Point topLeft;
+		Point topRight;
+		Point bottomRight;
+		Point bottomLeft;
+		List<Point> pointList;
+
+		fromPoint = new Point(0, 0);
+
+		top = new Point(fromPoint.x, fromPoint.y - 1);
+		bottom = new Point(fromPoint.x, fromPoint.y + 1);
+		right = new Point(fromPoint.x + 1, fromPoint.y);
+		left = new Point(fromPoint.x - 1, fromPoint.y);
+		topLeft = new Point(fromPoint.x - 1, fromPoint.y - 1);
+		topRight = new Point(fromPoint.x + 1, fromPoint.y - 1);
+		bottomRight = new Point(fromPoint.x + 1, fromPoint.y + 1);
+		bottomLeft = new Point(fromPoint.x - 1, fromPoint.y + 1);
+		pointList = ListFactory.newArrayList(top, bottom, right, left, topLeft, topRight,
+			bottomRight, bottomLeft);
+		expected = true;
+		for (int i = 0; i < 10; i++)
+		{
+			final Point randomEntry = RandomObjectFactory.randomPoint(fromPoint, true);
 			actual = pointList.contains(randomEntry);
 			assertEquals(actual, expected);
 		}
