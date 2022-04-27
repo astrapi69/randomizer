@@ -6,8 +6,8 @@ Version 8.6-SNAPSHOT
 
 ADDED:
 
-- new method for generated a random Point around a given Point
-- new method for generated a random Point around a given Point that allows negative values for x or y
+- new method for generated a random neighbor Point around a given Point
+- new method for generated a random neighbor Point around a given Point that allows negative values for x or y
 - new gradle-plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' in minor version 6.5.0
 
 CHANGED:

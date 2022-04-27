@@ -501,19 +501,19 @@ public final class RandomObjectFactory
 	}
 
 	/**
-	 * Gets a random {@link Point} object around of the given {@link Point} object
+	 * Gets a random neighbor {@link Point} object around of the given {@link Point} object
 	 *
 	 * @param fromPoint
 	 *            The {@link Point} object to start
 	 * @return a random point around from the given {@link Point} object
 	 */
-	public static Point randomPoint(final Point fromPoint)
+	public static Point randomNeighborPoint(final Point fromPoint)
 	{
-		return randomPoint(fromPoint, false);
+		return randomNeighborPoint(fromPoint, false);
 	}
 
 	/**
-	 * Gets a random {@link Point} object around of the given {@link Point} object
+	 * Gets a random neighbor {@link Point} object around of the given {@link Point} object
 	 *
 	 * @param fromPoint
 	 *            The {@link Point} object to start
@@ -521,7 +521,7 @@ public final class RandomObjectFactory
 	 *            The flag if negative values are allowed for x or y
 	 * @return a random point around from the given {@link Point} object
 	 */
-	public static Point randomPoint(final Point fromPoint, boolean withNegativeValues)
+	public static Point randomNeighborPoint(final Point fromPoint, boolean withNegativeValues)
 	{
 		int yMinusOne;
 		int xMinusOne;

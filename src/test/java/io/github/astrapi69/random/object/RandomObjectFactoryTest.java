@@ -64,7 +64,7 @@ public class RandomObjectFactoryTest
 	boolean expected;
 
 	/**
-	 * Test method for {@link RandomObjectFactory#randomPoint(Point)}
+	 * Test method for {@link RandomObjectFactory#randomNeighborPoint(Point)}
 	 */
 	@Test
 	public void testRandomPoint()
@@ -95,7 +95,7 @@ public class RandomObjectFactoryTest
 		expected = true;
 		for (int i = 0; i < 10; i++)
 		{
-			final Point randomEntry = RandomObjectFactory.randomPoint(fromPoint);
+			final Point randomEntry = RandomObjectFactory.randomNeighborPoint(fromPoint);
 			actual = pointList.contains(randomEntry);
 			assertEquals(actual, expected);
 		}
@@ -110,14 +110,14 @@ public class RandomObjectFactoryTest
 		expected = true;
 		for (int i = 0; i < 10; i++)
 		{
-			final Point randomEntry = RandomObjectFactory.randomPoint(fromPoint);
+			final Point randomEntry = RandomObjectFactory.randomNeighborPoint(fromPoint);
 			actual = pointList.contains(randomEntry);
 			assertEquals(actual, expected);
 		}
 	}
 
 	/**
-	 * Test method for {@link RandomObjectFactory#randomPoint(Point, boolean)}
+	 * Test method for {@link RandomObjectFactory#randomNeighborPoint(Point, boolean)}
 	 */
 	@Test
 	public void testRandomPointWithFlag()
@@ -148,7 +148,7 @@ public class RandomObjectFactoryTest
 		expected = true;
 		for (int i = 0; i < 10; i++)
 		{
-			final Point randomEntry = RandomObjectFactory.randomPoint(fromPoint, true);
+			final Point randomEntry = RandomObjectFactory.randomNeighborPoint(fromPoint, true);
 			actual = pointList.contains(randomEntry);
 			assertEquals(actual, expected);
 		}
