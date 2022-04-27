@@ -24,6 +24,7 @@
  */
 package io.github.astrapi69.random.object;
 
+import java.awt.Point;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.math.BigDecimal;
@@ -41,6 +42,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
+import io.github.astrapi69.collections.list.ListFactory;
 import io.github.astrapi69.copy.object.CopyObjectExtensions;
 import io.github.astrapi69.lang.ClassExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
@@ -287,7 +289,8 @@ public final class RandomObjectFactory
 	{
 		Objects.requireNonNull(cls);
 		Objects.requireNonNull(instance);
-		Field[] allDeclaredFields = ReflectionExtensions.getAllDeclaredFields(cls);
+		Field[] allDeclaredFields = ReflectionExtensions.getAllDeclaredFields(cls,
+			ignoreFieldNames);
 		List<String> toIgnoreFields = Arrays.asList(ignoreFieldNames);
 		for (Field field : allDeclaredFields)
 		{
@@ -495,6 +498,56 @@ public final class RandomObjectFactory
 	public static byte[] newSalt()
 	{
 		return RandomByteFactory.randomByteArray(16);
+	}
+
+	/**
+	 * Gets a random neighbor {@link Point} object around of the given {@link Point} object
+	 *
+	 * @param fromPoint
+	 *            The {@link Point} object to start
+	 * @return a random point around from the given {@link Point} object
+	 */
+	public static Point randomNeighborPoint(final Point fromPoint)
+	{
+		return randomNeighborPoint(fromPoint, false);
+	}
+
+	/**
+	 * Gets a random neighbor {@link Point} object around of the given {@link Point} object
+	 *
+	 * @param fromPoint
+	 *            The {@link Point} object to start
+	 * @param withNegativeValues
+	 *            The flag if negative values are allowed for x or y
+	 * @return a random point around from the given {@link Point} object
+	 */
+	public static Point randomNeighborPoint(final Point fromPoint, boolean withNegativeValues)
+	{
+		int yMinusOne;
+		int xMinusOne;
+		if (withNegativeValues)
+		{
+			yMinusOne = fromPoint.y - 1;
+			xMinusOne = fromPoint.x - 1;
+		}
+		else
+		{
+			yMinusOne = 0 < fromPoint.y ? fromPoint.y - 1 : fromPoint.y;
+			xMinusOne = 0 < fromPoint.x ? fromPoint.x - 1 : fromPoint.x;
+		}
+		int yPlusOne = fromPoint.y + 1;
+		int xPlusOne = fromPoint.x + 1;
+		Point top = new Point(fromPoint.x, yMinusOne);
+		Point bottom = new Point(fromPoint.x, yPlusOne);
+		Point right = new Point(xPlusOne, fromPoint.y);
+		Point left = new Point(xMinusOne, fromPoint.y);
+		Point topLeft = new Point(xMinusOne, yMinusOne);
+		Point topRight = new Point(xPlusOne, yMinusOne);
+		Point bottomRight = new Point(xPlusOne, yPlusOne);
+		Point bottomLeft = new Point(xMinusOne, yPlusOne);
+		List<Point> pointList = ListFactory.newArrayList(top, bottom, right, left, topLeft,
+			topRight, bottomRight, bottomLeft);
+		return randomListEntry(pointList);
 	}
 
 	/**

@@ -30,6 +30,7 @@ import static org.testng.Assert.assertNull;
 import static org.testng.AssertJUnit.assertNotNull;
 import static org.testng.AssertJUnit.assertTrue;
 
+import java.awt.Point;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -43,11 +44,12 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
+import io.github.astrapi69.collections.list.ListFactory;
 import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.enums.RandomAlgorithm;
-import io.github.astrapi69.test.objects.Person;
-import io.github.astrapi69.test.objects.PrimitiveArrays;
-import io.github.astrapi69.test.objects.enums.Gender;
+import io.github.astrapi69.test.object.Person;
+import io.github.astrapi69.test.object.PrimitiveArrays;
+import io.github.astrapi69.test.object.enumtype.Gender;
 
 /**
  * The unit test class for the class {@link RandomObjectFactory}
@@ -60,6 +62,97 @@ public class RandomObjectFactoryTest
 
 	boolean actual;
 	boolean expected;
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomNeighborPoint(Point)}
+	 */
+	@Test
+	public void testRandomPoint()
+	{
+		Point fromPoint;
+		Point top;
+		Point bottom;
+		Point right;
+		Point left;
+		Point topLeft;
+		Point topRight;
+		Point bottomRight;
+		Point bottomLeft;
+		List<Point> pointList;
+
+		fromPoint = new Point(1, 1);
+
+		top = new Point(fromPoint.x, fromPoint.y - 1);
+		bottom = new Point(fromPoint.x, fromPoint.y + 1);
+		right = new Point(fromPoint.x + 1, fromPoint.y);
+		left = new Point(fromPoint.x - 1, fromPoint.y);
+		topLeft = new Point(fromPoint.x - 1, fromPoint.y - 1);
+		topRight = new Point(fromPoint.x + 1, fromPoint.y - 1);
+		bottomRight = new Point(fromPoint.x + 1, fromPoint.y + 1);
+		bottomLeft = new Point(fromPoint.x - 1, fromPoint.y + 1);
+		pointList = ListFactory.newArrayList(top, bottom, right, left, topLeft, topRight,
+			bottomRight, bottomLeft);
+		expected = true;
+		for (int i = 0; i < 10; i++)
+		{
+			final Point randomEntry = RandomObjectFactory.randomNeighborPoint(fromPoint);
+			actual = pointList.contains(randomEntry);
+			assertEquals(actual, expected);
+		}
+
+
+		fromPoint = new Point(0, 0);
+
+		bottom = new Point(fromPoint.x, fromPoint.y + 1);
+		right = new Point(fromPoint.x + 1, fromPoint.y);
+		bottomRight = new Point(fromPoint.x + 1, fromPoint.y + 1);
+		pointList = ListFactory.newArrayList(fromPoint, bottom, right, bottomRight);
+		expected = true;
+		for (int i = 0; i < 10; i++)
+		{
+			final Point randomEntry = RandomObjectFactory.randomNeighborPoint(fromPoint);
+			actual = pointList.contains(randomEntry);
+			assertEquals(actual, expected);
+		}
+	}
+
+	/**
+	 * Test method for {@link RandomObjectFactory#randomNeighborPoint(Point, boolean)}
+	 */
+	@Test
+	public void testRandomPointWithFlag()
+	{
+		Point fromPoint;
+		Point top;
+		Point bottom;
+		Point right;
+		Point left;
+		Point topLeft;
+		Point topRight;
+		Point bottomRight;
+		Point bottomLeft;
+		List<Point> pointList;
+
+		fromPoint = new Point(0, 0);
+
+		top = new Point(fromPoint.x, fromPoint.y - 1);
+		bottom = new Point(fromPoint.x, fromPoint.y + 1);
+		right = new Point(fromPoint.x + 1, fromPoint.y);
+		left = new Point(fromPoint.x - 1, fromPoint.y);
+		topLeft = new Point(fromPoint.x - 1, fromPoint.y - 1);
+		topRight = new Point(fromPoint.x + 1, fromPoint.y - 1);
+		bottomRight = new Point(fromPoint.x + 1, fromPoint.y + 1);
+		bottomLeft = new Point(fromPoint.x - 1, fromPoint.y + 1);
+		pointList = ListFactory.newArrayList(top, bottom, right, left, topLeft, topRight,
+			bottomRight, bottomLeft);
+		expected = true;
+		for (int i = 0; i < 10; i++)
+		{
+			final Point randomEntry = RandomObjectFactory.randomNeighborPoint(fromPoint, true);
+			actual = pointList.contains(randomEntry);
+			assertEquals(actual, expected);
+		}
+	}
 
 	/**
 	 * Test method for {@link RandomObjectFactory#randomListEntry(java.util.List)} .
@@ -167,7 +260,7 @@ public class RandomObjectFactoryTest
 	@Test
 	public void testRandomEnumString()
 	{
-		String enumClassName = "io.github.astrapi69.test.objects.enums.Gender";
+		String enumClassName = "io.github.astrapi69.test.object.enumtype.Gender";
 		Gender randomEnumEntry = RandomObjectFactory.randomEnumFromClassname(enumClassName);
 
 		final Gender[] genders = Gender.values();

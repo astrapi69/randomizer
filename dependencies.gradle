@@ -1,0 +1,13 @@
+dependencies {
+    implementation("io.github.astrapi69:vintage-time:$vintageTimeVersion")
+    implementation("io.github.astrapi69:jobj-core:$jobjCoreVersion")
+    implementation("io.github.astrapi69:silly-collections:$sillyCollectionsVersion")
+    implementation("io.github.astrapi69:silly-math:$sillyMathVersion")
+    implementation("io.github.astrapi69:jobj-copy:$jobjCopyVersion")
+    testImplementation("io.github.astrapi69:silly-strings:$sillyStringsVersion")
+    testImplementation("org.apache.commons:commons-lang3:$commonsLang3Version")
+    testImplementation("io.github.astrapi69:test-objects:$testObjectsVersion")
+    testImplementation("nl.jqno.equalsverifier:equalsverifier:$equalsverifierVersion")
+    testImplementation("org.meanbean:meanbean:$meanbeanVersion")
+    testImplementation("org.testng:testng:$testngVersion")
+}
