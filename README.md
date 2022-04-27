@@ -32,13 +32,13 @@ your project `build.gradle` if you want to import the core functionality of rand
 
 define version in file gradle.properties
 ```
-randomizerVersion=8.5
+randomizerVersion=8.6
 ```
 
 or in build.gradle ext area
 
 ```
-    randomizerVersion = "8.5"
+    randomizerVersion = "8.6"
 ```
 
 then add the dependency to the dependencies area
@@ -60,7 +60,7 @@ Than you can add the dependency to your dependencies:
     <properties>
             ...
         <!-- RANDOMIZER versions -->
-        <randomizer.version>8.5</randomizer.version>
+        <randomizer.version>8.6</randomizer.version>
             ...
     </properties>
 
