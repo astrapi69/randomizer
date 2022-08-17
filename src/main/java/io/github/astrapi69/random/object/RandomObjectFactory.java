@@ -42,7 +42,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-import io.github.astrapi69.collections.list.ListFactory;
+import io.github.astrapi69.collection.list.ListFactory;
 import io.github.astrapi69.copy.object.CopyObjectExtensions;
 import io.github.astrapi69.lang.ClassExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
@@ -272,7 +272,7 @@ public final class RandomObjectFactory
 	 * @param instance
 	 *            the instance to set random values
 	 * @param ignoreFieldNames
-	 *            the ignore field names
+	 *            the field names to ignore
 	 * @return the new random object
 	 * @throws IllegalAccessException
 	 *             is thrown if the class or its default constructor is not accessible.

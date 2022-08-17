@@ -40,11 +40,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
+import io.github.astrapi69.test.object.Employee;
+import io.github.astrapi69.test.object.EmployeeList;
 import org.apache.commons.lang3.ArrayUtils;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
-import io.github.astrapi69.collections.list.ListFactory;
+import io.github.astrapi69.collection.list.ListFactory;
 import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.enums.RandomAlgorithm;
 import io.github.astrapi69.test.object.Person;
@@ -396,6 +398,10 @@ public class RandomObjectFactoryTest
 	public void testNewRandomObject()
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
 	{
+		EmployeeList employeeList = RandomObjectFactory.newRandomObject(EmployeeList.class);
+		assertNotNull(employeeList);
+		Employee employee = RandomObjectFactory.newRandomObject(Employee.class);
+		assertNotNull(employee);
 		Person person = RandomObjectFactory.newRandomObject(Person.class, "$jacocoData");
 		assertNotNull(person);
 		Person person2 = RandomObjectFactory.newRandomObject(Person.class, "$jacocoData");
