@@ -8,6 +8,8 @@ Version 9-SNAPSHOT
 - update of jdk to version 11
 - update of gradle to new version 7.5.1
 - update of gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.9.1
+- update of dependency jobj-core to new version 6.1
+- update of test dependency test-object to new minor version 7.1
 
 Version 8.6
 -------------

@@ -60,32 +60,23 @@ import static org.testng.AssertJUnit.assertNotNull;
  */
 public class RandomObjectFactoryParameterizedTest
 {
-	@DataProvider(name = "testObjects")
+
+	public static final String TEST_OBJECTS = "testObjects";
+
+	@DataProvider(name = TEST_OBJECTS)
 	public static Object[][] testObjects()
 	{
-		return new Object[][] {
-			{ Person.class },
-			{ AnnotatedClass.class },
-				{ AnnotatedTestClass.class },
-			{ ClassExtendsAnnotatedInterface.class },
-				{ SubAnnotatedClass.class },
-			{ AccessRight.class },
-			{ Roles.class },
-			{ Role.class },
-			{ AlgorithmModel.class },
-			{ A.class },
-				{ ClonableObject.class },
-			{ Company.class },
-			{ Customer.class },
-				{ EmployeeList.class },
-			{ Employee.class }, { Light.class }, { Member.class },
-				{ NotSerializable.class }, { Permission.class }, { Person.class },
-				{ PremiumMember.class }, { Television.class },
-		};
+		return new Object[][] { { Person.class }, { AnnotatedClass.class },
+				{ AnnotatedTestClass.class }, { ClassExtendsAnnotatedInterface.class },
+				{ SubAnnotatedClass.class }, { AccessRight.class }, { Roles.class }, { Role.class },
+				{ AlgorithmModel.class }, { A.class }, { ClonableObject.class }, { Company.class },
+				{ Customer.class }, { EmployeeList.class }, { Employee.class }, { Light.class },
+				{ Member.class }, { NotSerializable.class }, { Permission.class }, { Person.class },
+				{ PremiumMember.class }, { Television.class }, };
 	}
 
-	@Test(dataProvider = "testObjects")
-	public void myTest (Class<?> val)
+	@Test(dataProvider = TEST_OBJECTS)
+	public void test(Class<?> val)
 		throws NoSuchFieldException, IllegalAccessException, InstantiationException
 	{
 		assertNotNull(RandomObjectFactory.newRandomObject(val));
