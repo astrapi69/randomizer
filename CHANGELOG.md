@@ -4,12 +4,22 @@
 Version 9-SNAPSHOT
 -------------
 
+ADDED:
+
+- new dependency io.github.astrapi69:jobj-reflect in first major version 1
+
+CHANGED:
 
 - update of jdk to version 11
-- update of gradle to new version 7.5.1
-- update of gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.9.1
-- update of dependency jobj-core to new version 6.1
-- update of test dependency test-object to new minor version 7.1
+- update of gradle to new version 8.1.1
+- update of gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.18.0
+- update of dependency jobj-core to new version 7.1
+- update of dependency silly-collections to new version 21
+- update of dependency silly-math to new version 2.2
+- update of test dependency equalsverifier to new version 3.14.1
+- update of test dependency test-object to new minor version 7.2
+- update of test dependency silly-strings to new version 8.2
+- update of test dependency test-ng to new version 7.7.1
 
 Version 8.6
 -------------
