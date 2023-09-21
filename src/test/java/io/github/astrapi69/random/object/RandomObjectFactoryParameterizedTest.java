@@ -24,7 +24,10 @@
  */
 package io.github.astrapi69.random.object;
 
+import static org.testng.AssertJUnit.assertNotNull;
+
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import io.github.astrapi69.test.object.A;
 import io.github.astrapi69.test.object.AlgorithmModel;
@@ -48,9 +51,6 @@ import io.github.astrapi69.test.object.auth.AccessRight;
 import io.github.astrapi69.test.object.auth.Role;
 import io.github.astrapi69.test.object.auth.Roles;
 import io.github.astrapi69.test.object.exception.ExceptionEvent;
-import org.testng.annotations.Test;
-
-import static org.testng.AssertJUnit.assertNotNull;
 
 /**
  * The unit test class for the class {@link RandomObjectFactory}
