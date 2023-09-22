@@ -33,7 +33,7 @@ import org.testng.annotations.Test;
 
 import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
+import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 
 /**
  * The unit test class for the class {@link RandomDoubleFactory}

@@ -46,7 +46,7 @@ import org.testng.annotations.Test;
 
 import io.github.astrapi69.collection.list.ListFactory;
 import io.github.astrapi69.math.MathExtensions;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
+import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 import io.github.astrapi69.test.object.Employee;
 import io.github.astrapi69.test.object.EmployeeList;
 import io.github.astrapi69.test.object.Person;

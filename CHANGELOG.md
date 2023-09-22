@@ -1,17 +1,22 @@
 ## Change log
 ----------------------
 
-Version 9.1-SNAPSHOT
+Version 10-SNAPSHOT
 -------------
+
+ADDED:
+
+- new class module-info.java that provides this library as a module
 
 CHANGED:
 
-- update of gradle to new version 8.2.1
-- update of com.github.ben-manes.versions.gradle.plugin to new version 0.47.0
-- update of gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.20.0
-- update of test dependency equalsverifier to new version 3.15
+- update of jdk to version 17
+- update of gradle to new version 8.4-rc-1
+- update of com.github.ben-manes.versions.gradle.plugin to new version 0.48.0
+- update of gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.21.0
+- update of dependency jobj-core to new version 8
+- update of test dependency equalsverifier to new version 3.15.1
 - update of test dependency test-ng to new version 7.8.0
-
 
 Version 9
 -------------

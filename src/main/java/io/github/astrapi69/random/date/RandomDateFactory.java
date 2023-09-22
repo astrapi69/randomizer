@@ -39,7 +39,7 @@ import io.github.astrapi69.date.CalculateDateExtensions;
 import io.github.astrapi69.date.CreateDateExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 import io.github.astrapi69.random.SecureRandomFactory;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
+import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 import io.github.astrapi69.random.number.RandomBooleanFactory;
 import io.github.astrapi69.random.number.RandomIntFactory;
 import io.github.astrapi69.random.number.RandomLongFactory;

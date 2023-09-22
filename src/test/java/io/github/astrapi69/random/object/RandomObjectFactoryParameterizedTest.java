@@ -50,7 +50,6 @@ import io.github.astrapi69.test.object.annotation.classtype.SubAnnotatedClass;
 import io.github.astrapi69.test.object.auth.AccessRight;
 import io.github.astrapi69.test.object.auth.Role;
 import io.github.astrapi69.test.object.auth.Roles;
-import io.github.astrapi69.test.object.exception.ExceptionEvent;
 
 /**
  * The unit test class for the class {@link RandomObjectFactory}

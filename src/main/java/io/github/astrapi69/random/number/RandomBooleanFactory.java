@@ -28,7 +28,7 @@ import java.security.SecureRandom;
 import java.util.Objects;
 
 import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
+import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 
 /**
  * Utility class for producing random primitive boolean types
