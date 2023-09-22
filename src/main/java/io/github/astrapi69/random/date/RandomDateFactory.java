@@ -408,7 +408,7 @@ public final class RandomDateFactory
 	 */
 	public static ZoneId randomZoneId()
 	{
-		List<String> availableZoneIds = new ArrayList(ZoneId.getAvailableZoneIds());
+		List<String> availableZoneIds = new ArrayList<>(ZoneId.getAvailableZoneIds());
 		return ZoneId.of(availableZoneIds.get(RandomIntFactory.randomInt(availableZoneIds.size())));
 	}
 }

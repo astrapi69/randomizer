@@ -4,7 +4,10 @@
 Version 10.1-SNAPSHOT
 -------------
 
+CHANGED:
 
+- update of dependency jobj-reflect to new major version 2
+- update of dependency jobj-copy to new minor version 4.1
 
 Version 10
 -------------
