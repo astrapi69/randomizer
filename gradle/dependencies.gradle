@@ -1,7 +1,7 @@
 dependencies {
     implementation("io.github.astrapi69:jobj-core:$jobjCoreVersion")
-    implementation("io.github.astrapi69:jobj-copy:$jobjCopyVersion")
     implementation("io.github.astrapi69:jobj-reflect:$jobjReflectVersion")
+    implementation("io.github.astrapi69:jobj-copy:$jobjCopyVersion")
     implementation("io.github.astrapi69:silly-collection:$sillyCollectionVersion")
     implementation("io.github.astrapi69:silly-math:$sillyMathVersion")
     implementation("io.github.astrapi69:vintage-time:$vintageTimeVersion")
