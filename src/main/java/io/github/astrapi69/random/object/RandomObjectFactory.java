@@ -48,7 +48,7 @@ import io.github.astrapi69.lang.ClassExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
 import io.github.astrapi69.random.RandomCharacters;
 import io.github.astrapi69.random.date.RandomDateFactory;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
+import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 import io.github.astrapi69.random.number.RandomBigDecimalFactory;
 import io.github.astrapi69.random.number.RandomBigIntegerFactory;
 import io.github.astrapi69.random.number.RandomBooleanFactory;
@@ -160,6 +160,7 @@ public final class RandomObjectFactory
 	 * @throws ClassNotFoundException
 	 *             is thrown if the class cannot be located
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> T newRandomObject(final T obj, String... ignoreFieldNames)
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException,
 		ClassNotFoundException

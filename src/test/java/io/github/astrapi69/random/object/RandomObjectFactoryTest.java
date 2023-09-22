@@ -40,15 +40,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 
-import io.github.astrapi69.test.object.Employee;
-import io.github.astrapi69.test.object.EmployeeList;
 import org.apache.commons.lang3.ArrayUtils;
 import org.meanbean.test.BeanTester;
 import org.testng.annotations.Test;
 
 import io.github.astrapi69.collection.list.ListFactory;
 import io.github.astrapi69.math.MathExtensions;
-import io.github.astrapi69.random.enums.RandomAlgorithm;
+import io.github.astrapi69.random.enumeration.RandomAlgorithm;
+import io.github.astrapi69.test.object.Employee;
+import io.github.astrapi69.test.object.EmployeeList;
 import io.github.astrapi69.test.object.Person;
 import io.github.astrapi69.test.object.PrimitiveArrays;
 import io.github.astrapi69.test.object.enumtype.Gender;
