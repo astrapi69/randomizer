@@ -51,7 +51,7 @@ import io.github.astrapi69.test.object.Employee;
 import io.github.astrapi69.test.object.EmployeeList;
 import io.github.astrapi69.test.object.Person;
 import io.github.astrapi69.test.object.PrimitiveArrays;
-import io.github.astrapi69.test.object.enumtype.Gender;
+import io.github.astrapi69.test.object.enumeration.Gender;
 
 /**
  * The unit test class for the class {@link RandomObjectFactory}
@@ -262,7 +262,7 @@ public class RandomObjectFactoryTest
 	@Test
 	public void testRandomEnumString()
 	{
-		String enumClassName = "io.github.astrapi69.test.object.enumtype.Gender";
+		String enumClassName = "io.github.astrapi69.test.object.enumeration.Gender";
 		Gender randomEnumEntry = RandomObjectFactory.randomEnumFromClassname(enumClassName);
 
 		final Gender[] genders = Gender.values();
@@ -433,6 +433,7 @@ public class RandomObjectFactoryTest
 		Person person2 = RandomObjectFactory.newRandomObject(person, "$jacocoData");
 		assertNotNull(person2);
 		assertNotEquals(person, person2);
+		// TODO after update of test-object version uncomment
 		PrimitiveArrays primitiveArrays = RandomObjectFactory.newRandomObject(PrimitiveArrays.class,
 			"$jacocoData");
 		assertNotNull(primitiveArrays);

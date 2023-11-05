@@ -59,6 +59,7 @@ import io.github.astrapi69.random.number.RandomFloatFactory;
 import io.github.astrapi69.random.number.RandomIntFactory;
 import io.github.astrapi69.random.number.RandomLongFactory;
 import io.github.astrapi69.random.number.RandomShortFactory;
+import io.github.astrapi69.reflection.InstanceFactory;
 import io.github.astrapi69.reflection.ReflectionExtensions;
 
 /**
@@ -135,7 +136,7 @@ public final class RandomObjectFactory
 		throws IllegalAccessException, InstantiationException, NoSuchFieldException
 	{
 		Objects.requireNonNull(cls);
-		T instance = ReflectionExtensions.newInstance(cls);
+		T instance = InstanceFactory.newInstance(cls);
 		return setRandomValues(cls, instance, ignoreFieldNames);
 	}
 
@@ -162,8 +163,7 @@ public final class RandomObjectFactory
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T newRandomObject(final T obj, String... ignoreFieldNames)
-		throws IllegalAccessException, InstantiationException, NoSuchFieldException,
-		ClassNotFoundException
+		throws IllegalAccessException, InstantiationException, NoSuchFieldException
 	{
 		Objects.requireNonNull(obj);
 		Class<T> cls = (Class<T>)obj.getClass();

@@ -4,7 +4,13 @@
 Version 10.2-SNAPSHOT
 -------------
 
+CHANGED:
 
+- update of com.github.ben-manes.versions.gradle.plugin to new version 0.49.0
+- update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' to new version 5.2.1
+- update of gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.22.0
+- update of dependency jobj-reflect to new major version 2.4
+- update of dependency jobj-copy to new minor version 4.2-SNAPSHOT
 
 Version 10.1
 -------------
