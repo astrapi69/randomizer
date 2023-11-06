@@ -433,7 +433,6 @@ public class RandomObjectFactoryTest
 		Person person2 = RandomObjectFactory.newRandomObject(person, "$jacocoData");
 		assertNotNull(person2);
 		assertNotEquals(person, person2);
-		// TODO after update of test-object version uncomment
 		PrimitiveArrays primitiveArrays = RandomObjectFactory.newRandomObject(PrimitiveArrays.class,
 			"$jacocoData");
 		assertNotNull(primitiveArrays);
