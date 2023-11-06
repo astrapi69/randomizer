@@ -130,6 +130,11 @@ public enum RandomCharacters
 		this.characters = characters;
 	}
 
+	/**
+	 * Gets the characters
+	 * 
+	 * @return the characters
+	 */
 	public String getCharacters()
 	{
 		return characters;

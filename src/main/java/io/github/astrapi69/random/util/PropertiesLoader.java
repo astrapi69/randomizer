@@ -31,6 +31,10 @@ import java.util.Properties;
 
 import io.github.astrapi69.lang.ClassExtensions;
 
+/**
+ * The class {@link PropertiesLoader} provide a method for load a {@link Properties} object from a
+ * given path
+ */
 public final class PropertiesLoader
 {
 	private PropertiesLoader()
