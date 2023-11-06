@@ -9,6 +9,6 @@ dependencies {
     testImplementation("nl.jqno.equalsverifier:equalsverifier:$equalsverifierVersion")
     testImplementation("io.github.astrapi69:silly-strings:$sillyStringsVersion")
     testImplementation("io.github.astrapi69:test-object:$testObjectVersion")
-    testImplementation("org.meanbean:meanbean:$meanbeanVersion")
+    testImplementation("com.github.meanbeanlib:meanbean:$meanbeanVersion")
     testImplementation("org.testng:testng:$testngVersion")
 }

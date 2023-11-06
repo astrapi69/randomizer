@@ -6,11 +6,18 @@ Version 10.2-SNAPSHOT
 
 CHANGED:
 
+- update of gradle to new version 8.4
 - update of com.github.ben-manes.versions.gradle.plugin to new version 0.49.0
 - update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' to new version 5.2.1
 - update of gradle-plugin dependency of 'com.diffplug.spotless:spotless-plugin-gradle' in version 6.22.0
+- update of dependency jobj-core to new version 8.1
 - update of dependency jobj-reflect to new major version 2.4
-- update of dependency jobj-copy to new minor version 4.2-SNAPSHOT
+- update of dependency silly-math to new version 2.3
+- update of dependency jobj-copy to new minor version 4.2
+- update of test dependency equalsverifier to new version 3.15.3
+- update of test dependency silly-strings to new version 9
+- update of test dependency test-object to new minor version 8.2
+- update of test dependency meanbean to the new milestone version 3.0.0-M9
 
 Version 10.1
 -------------

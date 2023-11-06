@@ -158,8 +158,6 @@ public final class RandomObjectFactory
 	 *             constructor; or if the instantiation fails for some other reason.
 	 * @throws NoSuchFieldException
 	 *             is thrown if no such field exists
-	 * @throws ClassNotFoundException
-	 *             is thrown if the class cannot be located
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T newRandomObject(final T obj, String... ignoreFieldNames)
