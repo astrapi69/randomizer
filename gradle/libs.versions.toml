@@ -1,0 +1,46 @@
+[versions]
+commons-lang3-version = "3.13.0"
+equalsverifier-version = "3.15.3"
+gradle-plugin-grgit-version = "5.2.2"
+gradle-plugin-license-version = "0.16.1"
+gradle-plugin-spotless-version = "7.0.0.BETA1"
+gradle-plugin-version-catalog-update-version = "0.8.4"
+gradle-plugin-versions-version = "0.51.0"
+jobj-copy-version = "4.2"
+jobj-core-version = "8.1"
+jobj-reflect-version = "2.4"
+meanbean-version = "3.0.0-M9"
+silly-collection-version = "27"
+silly-math-version = "2.3"
+silly-strings-version = "9"
+test-object-version = "8.2"
+testng-version = "7.8.0"
+vintage-time-version = "6"
+
+[libraries]
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3-version" }
+equalsverifier = { module = "nl.jqno.equalsverifier:equalsverifier", version.ref = "equalsverifier-version" }
+jobj-copy = { module = "io.github.astrapi69:jobj-copy", version.ref = "jobj-copy-version" }
+jobj-core = { module = "io.github.astrapi69:jobj-core", version.ref = "jobj-core-version" }
+jobj-reflect = { module = "io.github.astrapi69:jobj-reflect", version.ref = "jobj-reflect-version" }
+meanbean = { module = "com.github.meanbeanlib:meanbean", version.ref = "meanbean-version" }
+silly-collection = { module = "io.github.astrapi69:silly-collection", version.ref = "silly-collection-version" }
+silly-math = { module = "io.github.astrapi69:silly-math", version.ref = "silly-math-version" }
+silly-strings = { module = "io.github.astrapi69:silly-strings", version.ref = "silly-strings-version" }
+test-object = { module = "io.github.astrapi69:test-object", version.ref = "test-object-version" }
+testng = { module = "org.testng:testng", version.ref = "testng-version" }
+vintage-time = { module = "io.github.astrapi69:vintage-time", version.ref = "vintage-time-version" }
+
+[bundles]
+unit-testing = [
+    "meanbean",
+    "test-object",
+    "testng",
+]
+
+[plugins]
+gradle-versions-plugin = { id = "com.github.ben-manes.versions", version.ref = "gradle-plugin-versions-version" }
+grgit-gradle = { id = "org.ajoberstar.grgit", version.ref = "gradle-plugin-grgit-version" }
+license-gradle-plugin = { id = "com.github.hierynomus.license", version.ref = "gradle-plugin-license-version" }
+spotless-plugin-gradle = { id = "com.diffplug.spotless", version.ref = "gradle-plugin-spotless-version" }
+version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "gradle-plugin-version-catalog-update-version" }

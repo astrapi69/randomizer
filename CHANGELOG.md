@@ -4,7 +4,9 @@
 Version 10.3-SNAPSHOT
 -------------
 
+ADDED:
 
+- new libs.versions.toml file for new automatic catalog versions update
 
 Version 10.2
 -------------

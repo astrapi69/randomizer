@@ -1,14 +1,16 @@
 dependencies {
-    implementation("io.github.astrapi69:jobj-core:$jobjCoreVersion")
-    implementation("io.github.astrapi69:jobj-reflect:$jobjReflectVersion")
-    implementation("io.github.astrapi69:jobj-copy:$jobjCopyVersion")
-    implementation("io.github.astrapi69:silly-collection:$sillyCollectionVersion")
-    implementation("io.github.astrapi69:silly-math:$sillyMathVersion")
-    implementation("io.github.astrapi69:vintage-time:$vintageTimeVersion")
-    testImplementation("org.apache.commons:commons-lang3:$commonsLang3Version")
-    testImplementation("nl.jqno.equalsverifier:equalsverifier:$equalsverifierVersion")
-    testImplementation("io.github.astrapi69:silly-strings:$sillyStringsVersion")
-    testImplementation("io.github.astrapi69:test-object:$testObjectVersion")
-    testImplementation("com.github.meanbeanlib:meanbean:$meanbeanVersion")
-    testImplementation("org.testng:testng:$testngVersion")
+    implementation libs.jobj.core
+    implementation libs.jobj.reflect
+    implementation libs.jobj.copy
+    implementation libs.silly.collection
+    implementation libs.silly.math
+    implementation libs.vintage.time
+    testImplementation libs.commons.lang3
+    testImplementation libs.equalsverifier
+    testImplementation libs.silly.strings
+    testImplementation libs.test.object
+    testImplementation libs.meanbean
+    testImplementation libs.testng
+    // Note: use of bundles...
+    testImplementation libs.bundles.unit.testing
 }
