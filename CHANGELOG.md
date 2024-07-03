@@ -9,6 +9,8 @@ ADDED:
 - new libs.versions.toml file for new automatic catalog versions update
 - new test dependency org.junit.jupiter:junit-jupiter in version 5.11.0-M2
 
+CHANGED:
+
 - update gradle to new version 8.8
 - update of com.github.ben-manes.versions.gradle.plugin to new version 0.51.0
 - update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' in version 5.2.2
