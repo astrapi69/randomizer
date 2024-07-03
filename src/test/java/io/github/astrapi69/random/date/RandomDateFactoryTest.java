@@ -24,9 +24,9 @@
  */
 package io.github.astrapi69.random.date;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.security.SecureRandom;
 import java.text.ParseException;
@@ -36,9 +36,9 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.meanbean.test.BeanTester;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import io.github.astrapi69.date.CalculateDateExtensions;
 import io.github.astrapi69.date.DatePattern;
@@ -61,7 +61,7 @@ public class RandomDateFactoryTest
 	/** The date for now. */
 	private Date now;
 
-	@BeforeMethod
+	@BeforeEach
 	protected void setUp()
 	{
 		this.now = new Date(System.currentTimeMillis());
@@ -96,7 +96,7 @@ public class RandomDateFactoryTest
 		{
 			final Date randomBirthday = RandomDateFactory.randomBirthday(from, till);
 			actual = CalculateDateExtensions.isBetween(from, till, randomBirthday);
-			assertTrue("", actual);
+			assertTrue(actual);
 		}
 	}
 
@@ -112,7 +112,7 @@ public class RandomDateFactoryTest
 		final Date till = CalculateDateExtensions.addDays(this.now, 30);
 		final Date randomDate = RandomDateFactory.randomDateBetween(from, startDays, endDays);
 		actual = CalculateDateExtensions.isBetween(this.now, till, randomDate);
-		assertTrue("", actual);
+		assertTrue(actual);
 	}
 
 	/**
@@ -125,7 +125,7 @@ public class RandomDateFactoryTest
 		final Date start = this.now;
 		final Date randomDate = RandomDateFactory.randomDatebetween(start, end);
 		actual = CalculateDateExtensions.isBetween(start, end, randomDate);
-		assertTrue("", actual);
+		assertTrue(actual);
 	}
 
 	/**
@@ -144,7 +144,7 @@ public class RandomDateFactoryTest
 		final Date compare = ParseDateExtensions.parseToDate(randomDate,
 			DatePattern.DOT_DD_MM_YYYY_HH_MM_SS.getValue());
 		actual = CalculateDateExtensions.isBetween(this.now, till, compare);
-		assertTrue("", actual);
+		assertTrue(actual);
 	}
 
 	/**
@@ -164,7 +164,7 @@ public class RandomDateFactoryTest
 		final String randomDate = RandomDateFactory.randomDatebetween(startDate, endDate, format);
 		final Date compare = ParseDateExtensions.parseToDate(randomDate, format);
 		actual = CalculateDateExtensions.isBetween(from, till, compare);
-		assertTrue("", actual);
+		assertTrue(actual);
 	}
 
 	/**

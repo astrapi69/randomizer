@@ -24,10 +24,13 @@
  */
 package io.github.astrapi69.random.object;
 
-import static org.testng.AssertJUnit.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.FieldSource;
 
 import io.github.astrapi69.test.object.A;
 import io.github.astrapi69.test.object.AlgorithmModel;
@@ -62,19 +65,15 @@ public class RandomObjectFactoryParameterizedTest
 
 	public static final String TEST_OBJECTS = "testObjects";
 
-	@DataProvider(name = TEST_OBJECTS)
-	public static Object[][] testObjects()
-	{
-		return new Object[][] { { Person.class }, { AnnotatedClass.class },
-				{ AnnotatedTestClass.class }, { ClassExtendsAnnotatedInterface.class },
-				{ SubAnnotatedClass.class }, { AccessRight.class }, { Roles.class }, { Role.class },
-				{ AlgorithmModel.class }, { A.class }, { ClonableObject.class }, { Company.class },
-				{ Customer.class }, { EmployeeList.class }, { Employee.class }, { Light.class },
-				{ Member.class }, { NotSerializable.class }, { Permission.class }, { Person.class },
-				{ PremiumMember.class }, { Television.class }, };
-	}
+	static List<Class> testClasses = Arrays.asList(Person.class, AnnotatedClass.class,
+		AnnotatedTestClass.class, ClassExtendsAnnotatedInterface.class, SubAnnotatedClass.class,
+		AccessRight.class, Roles.class, Role.class, AlgorithmModel.class, A.class,
+		ClonableObject.class, Company.class, Customer.class, EmployeeList.class, Employee.class,
+		Light.class, Member.class, NotSerializable.class, Permission.class, Person.class,
+		PremiumMember.class, Television.class);
 
-	@Test(dataProvider = TEST_OBJECTS)
+	@ParameterizedTest
+	@FieldSource("testClasses")
 	public void test(Class<?> val)
 		throws NoSuchFieldException, IllegalAccessException, InstantiationException
 	{

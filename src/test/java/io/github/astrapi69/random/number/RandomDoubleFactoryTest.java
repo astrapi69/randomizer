@@ -24,12 +24,12 @@
  */
 package io.github.astrapi69.random.number;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.security.SecureRandom;
 
+import org.junit.jupiter.api.Test;
 import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
 
 import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
@@ -47,7 +47,7 @@ public class RandomDoubleFactoryTest
 	/**
 	 * Test method for {@link RandomDoubleFactory#randomDouble()}
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testRandomDouble()
 	{
 		double random = RandomDoubleFactory.randomDouble();
@@ -57,7 +57,7 @@ public class RandomDoubleFactoryTest
 	/**
 	 * Test method for {@link RandomDoubleFactory#randomDoubleBetween(double, double)}
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testRandomDoubleBetweenDoubleDouble()
 	{
 		double random = RandomDoubleFactory.randomDoubleBetween(0.0, 10.0);
@@ -67,7 +67,7 @@ public class RandomDoubleFactoryTest
 	/**
 	 * Test method for {@link RandomDoubleFactory#randomDouble(double)}
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testRandomDoubleDouble()
 	{
 		double random = RandomDoubleFactory
@@ -88,24 +88,24 @@ public class RandomDoubleFactoryTest
 		for (int i = 0; i < 10; i++)
 		{
 			random = RandomDoubleFactory.randomDouble(5d, algorithm);
-			assertTrue("random result is " + random + " but should be between 0-4.",
-				MathExtensions.isBetween(-1d, 5d, random));
+			assertTrue(MathExtensions.isBetween(-1d, 5d, random),
+				"random result is " + random + " but should be between 0-4.");
 		}
 		// scenario with RandomAlgorithm.MATH_RANDOM
 		algorithm = RandomAlgorithm.MATH_RANDOM;
 		for (int i = 0; i < 10; i++)
 		{
 			random = RandomDoubleFactory.randomDouble(5d, algorithm);
-			assertTrue("random result is " + random + " but should be between 0-4.",
-				MathExtensions.isBetween(-1d, 5d, random));
+			assertTrue(MathExtensions.isBetween(-1d, 5d, random),
+				"random result is " + random + " but should be between 0-4.");
 		}
 		// scenario with RandomAlgorithm.RANDOM
 		algorithm = RandomAlgorithm.RANDOM;
 		for (int i = 0; i < 10; i++)
 		{
 			random = RandomDoubleFactory.randomDouble(5d, algorithm);
-			assertTrue("random result is " + random + " but should be between 0-4.",
-				MathExtensions.isBetween(-1d, 5d, random));
+			assertTrue(MathExtensions.isBetween(-1d, 5d, random),
+				"random result is " + random + " but should be between 0-4.");
 		}
 	}
 
@@ -139,24 +139,24 @@ public class RandomDoubleFactoryTest
 		for (int i = 0; i < 10; i++)
 		{
 			random = RandomDoubleFactory.randomDouble(5d, algorithm, DefaultSecureRandom.get());
-			assertTrue("random result is " + random + " but should be between 0-4.",
-				MathExtensions.isBetween(-1d, 5d, random));
+			assertTrue(MathExtensions.isBetween(-1d, 5d, random),
+				"random result is " + random + " but should be between 0-4.");
 		}
 		// scenario with RandomAlgorithm.MATH_RANDOM
 		algorithm = RandomAlgorithm.MATH_RANDOM;
 		for (int i = 0; i < 10; i++)
 		{
 			random = RandomDoubleFactory.randomDouble(5d, algorithm, DefaultSecureRandom.get());
-			assertTrue("random result is " + random + " but should be between 0-4.",
-				MathExtensions.isBetween(-1d, 5d, random));
+			assertTrue(MathExtensions.isBetween(-1d, 5d, random),
+				"random result is " + random + " but should be between 0-4.");
 		}
 		// scenario with RandomAlgorithm.RANDOM
 		algorithm = RandomAlgorithm.RANDOM;
 		for (int i = 0; i < 10; i++)
 		{
 			random = RandomDoubleFactory.randomDouble(5d, algorithm, DefaultSecureRandom.get());
-			assertTrue("random result is " + random + " but should be between 0-4.",
-				MathExtensions.isBetween(-1d, 5d, random));
+			assertTrue(MathExtensions.isBetween(-1d, 5d, random),
+				"random result is " + random + " but should be between 0-4.");
 		}
 	}
 

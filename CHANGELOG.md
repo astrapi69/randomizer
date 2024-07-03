@@ -7,6 +7,7 @@ Version 10.3-SNAPSHOT
 ADDED:
 
 - new libs.versions.toml file for new automatic catalog versions update
+- new test dependency org.junit.jupiter:junit-jupiter in version 5.11.0-M2
 
 - update gradle to new version 8.8
 - update of com.github.ben-manes.versions.gradle.plugin to new version 0.51.0
@@ -16,7 +17,7 @@ ADDED:
 - update of dependency jobj-core to new version 8.2
 - update of dependency silly-collection to new version 27.1
 - update of test dependency equalsverifier to new version 3.16.1
-- update of test dependency testng to new version 7.10.2
+- remove of test dependency testng
 
 Version 10.2
 -------------

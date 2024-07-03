@@ -24,13 +24,12 @@
  */
 package io.github.astrapi69.random.number;
 
-import static org.testng.AssertJUnit.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.security.SecureRandom;
 
+import org.junit.jupiter.api.Test;
 import org.meanbean.test.BeanTester;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import io.github.astrapi69.random.DefaultSecureRandom;
 
@@ -56,11 +55,11 @@ public class RandomBooleanFactoryTest
 	/**
 	 * Test method for {@link RandomBooleanFactory#randomBoolean()}
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testRandomBoolean()
 	{
 		boolean randomBoolean = RandomBooleanFactory.randomBoolean();
-		Assert.assertNotNull(Boolean.valueOf(randomBoolean));
+		assertNotNull(Boolean.valueOf(randomBoolean));
 	}
 
 	/**

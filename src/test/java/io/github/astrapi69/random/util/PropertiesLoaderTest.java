@@ -24,12 +24,12 @@
  */
 package io.github.astrapi69.random.util;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.Properties;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import io.github.astrapi69.lang.PackageExtensions;
 
@@ -45,7 +45,7 @@ public class PropertiesLoaderTest
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testLoadPropertiesPackagePath() throws IOException
 	{
 		final String propertiesFilename = "resources.properties";
@@ -54,6 +54,6 @@ public class PropertiesLoaderTest
 
 		final Properties prop = PropertiesLoader.loadProperties(path);
 		final boolean result = null != prop;
-		assertTrue("", result);
+		assertTrue(result);
 	}
 }

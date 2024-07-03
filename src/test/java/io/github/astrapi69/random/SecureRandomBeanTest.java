@@ -24,10 +24,10 @@
  */
 package io.github.astrapi69.random;
 
-import static org.testng.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.Test;
 import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 

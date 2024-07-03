@@ -10,7 +10,7 @@ dependencies {
     testImplementation libs.silly.strings
     testImplementation libs.test.object
     testImplementation libs.meanbean
-    testImplementation libs.testng
     // Note: use of bundles...
     testImplementation libs.bundles.unit.testing
+    testRuntimeOnly libs.junit.platform.launcher
 }

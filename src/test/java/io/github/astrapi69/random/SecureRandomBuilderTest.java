@@ -24,13 +24,13 @@
  */
 package io.github.astrapi69.random;
 
-import static org.testng.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * The unit test class for the class {@link SecureRandomBuilder}.
