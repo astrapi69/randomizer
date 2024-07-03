@@ -8,8 +8,6 @@ dependencies {
     testImplementation libs.commons.lang3
     testImplementation libs.equalsverifier
     testImplementation libs.silly.strings
-    testImplementation libs.test.object
-    testImplementation libs.meanbean
     // Note: use of bundles...
     testImplementation libs.bundles.unit.testing
     testRuntimeOnly libs.junit.platform.launcher
