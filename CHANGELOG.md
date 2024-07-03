@@ -16,6 +16,7 @@ ADDED:
 - update of commons-lang3 dependency to new version 3.14.0
 - update of dependency jobj-core to new version 8.2
 - update of dependency silly-collection to new version 27.1
+- update of test dependency silly-strings to new version 9.1
 - update of test dependency equalsverifier to new version 3.16.1
 - remove of test dependency testng
 

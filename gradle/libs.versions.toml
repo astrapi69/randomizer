@@ -9,25 +9,25 @@ gradle-plugin-versions-version = "0.51.0"
 jobj-copy-version = "4.2"
 jobj-core-version = "8.2"
 jobj-reflect-version = "2.4"
-meanbean-version = "3.0.0-M9"
-silly-collection-version = "27.1"
-silly-math-version = "2.3"
-silly-strings-version = "9"
-test-object-version = "8.2"
-vintage-time-version = "6"
 junit-jupiter-params-version = "5.11.0-M2"
 junit-jupiter-version = "5.11.0-M2"
 junit-platform-launcher-version = "1.11.0-M2"
+meanbean-version = "3.0.0-M9"
+silly-collection-version = "27.1"
+silly-math-version = "2.3"
+silly-strings-version = "9.1"
+test-object-version = "8.2"
+vintage-time-version = "6"
 
 [libraries]
-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter-version" }
-junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit-jupiter-params-version" }
-junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher-version" }
 commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3-version" }
 equalsverifier = { module = "nl.jqno.equalsverifier:equalsverifier", version.ref = "equalsverifier-version" }
 jobj-copy = { module = "io.github.astrapi69:jobj-copy", version.ref = "jobj-copy-version" }
 jobj-core = { module = "io.github.astrapi69:jobj-core", version.ref = "jobj-core-version" }
 jobj-reflect = { module = "io.github.astrapi69:jobj-reflect", version.ref = "jobj-reflect-version" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter-version" }
+junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit-jupiter-params-version" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform-launcher-version" }
 meanbean = { module = "com.github.meanbeanlib:meanbean", version.ref = "meanbean-version" }
 silly-collection = { module = "io.github.astrapi69:silly-collection", version.ref = "silly-collection-version" }
 silly-math = { module = "io.github.astrapi69:silly-math", version.ref = "silly-math-version" }
@@ -37,10 +37,10 @@ vintage-time = { module = "io.github.astrapi69:vintage-time", version.ref = "vin
 
 [bundles]
 unit-testing = [
-    "meanbean",
-    "test-object",
     "junit-jupiter",
     "junit-jupiter-params",
+    "meanbean",
+    "test-object",
 ]
 
 [plugins]
