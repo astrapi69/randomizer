@@ -30,9 +30,19 @@ jobs:
         uses: gradle/actions/setup-gradle@v6
       - name: Execute Gradle build
         run: ./gradlew build
-        env:
-          ossrhUsername: ${{secrets.OSSRHUSERNAME}}
-          ossrhPassword: ${{secrets.OSSRHPASSWORD}}
       - uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+      - name: Publish to Maven Central
+        if: github.event_name == 'push'
+        run: |
+          if grep -q -- '-SNAPSHOT' gradle.properties; then
+            ./gradlew publishAggregationToCentralSnapshots
+          else
+            ./gradlew publishAggregationToCentralPortal
+          fi
+        env:
+          CENTRAL_PORTAL_TOKEN_USERNAME: ${{ secrets.CENTRAL_PORTAL_TOKEN_USERNAME }}
+          CENTRAL_PORTAL_TOKEN_PASSWORD: ${{ secrets.CENTRAL_PORTAL_TOKEN_PASSWORD }}
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
