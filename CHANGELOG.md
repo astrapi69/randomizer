@@ -1,26 +1,34 @@
 ## Change log
 ----------------------
 
-Version 10.3-SNAPSHOT
+Version 10.3
 -------------
 
 ADDED:
 
 - new libs.versions.toml file for new automatic catalog versions update
-- new test dependency org.junit.jupiter:junit-jupiter in version 5.11.0-M2
+- new test dependency org.junit.jupiter:junit-jupiter in version 6.1.3
 
 CHANGED:
 
-- update gradle to new version 8.8
-- update of com.github.ben-manes.versions.gradle.plugin to new version 0.51.0
-- update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' in version 5.2.2
-- update of gradle-plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' to new minor version 7.0.0.BETA1
-- update of commons-lang3 dependency to new version 3.14.0
-- update of dependency jobj-core to new version 8.2
-- update of dependency silly-collection to new version 27.1
-- update of test dependency silly-strings to new version 9.1
-- update of test dependency equalsverifier to new version 3.16.1
+- update gradle to new version 9.7.0
+- update of io.github.ben-manes.versions.gradle.plugin to new version 0.61.0, plugin id changed from com.github.ben-manes.versions to io.github.ben-manes.versions
+- update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' to new version 5.3.3
+- update of gradle-plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' to new version 8.10.0
+- update of gradle-plugin dependency 'nl.littlerobots.version-catalog-update' to new version 1.1.1
+- update of commons-lang3 dependency to new version 3.20.0
+- update of dependency jobj-core to new version 9.1
+- update of dependency silly-collection to new version 28.1
+- update of test dependency silly-strings to new version 9.2
+- update of test dependency equalsverifier to new version 4.5
+- update of test dependency test-object to new version 9
+- update of module-info.java module names for silly-collection and jobj-core to their new io.github.astrapisixtynine namespace
+- update of GitHub Actions actions/checkout to v7, actions/setup-java to v5, gradle/actions/setup-gradle to v6, codecov/codecov-action to v7
 - remove of test dependency testng
+
+REMOVED:
+
+- removed unmaintained gradle-plugin dependency 'com.github.hierynomus:license-gradle-plugin', license header is now applied with the licenseHeaderFile step of the spotless-plugin-gradle plugin
 
 Version 10.2
 -------------
