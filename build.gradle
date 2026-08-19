@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         maven {
-            url projectRepositoriesMavenUrl
+            url = projectRepositoriesMavenUrl
         }
     }
 }
@@ -13,7 +13,6 @@ plugins {
     id 'signing'
     id 'jacoco'
     alias(libs.plugins.gradle.versions.plugin)
-    alias(libs.plugins.license.gradle.plugin)
     alias(libs.plugins.grgit.gradle)
     alias(libs.plugins.spotless.plugin.gradle)
     alias(libs.plugins.version.catalog.update)
@@ -27,7 +26,6 @@ description = "$rootProject.name"
 apply from: "gradle/dependencies.gradle"
 apply from: "gradle/formatting.gradle"
 apply from: "gradle/grgit.gradle"
-apply from: "gradle/licensing.gradle"
 apply from: "gradle/packaging.gradle"
 apply from: "gradle/publishing.gradle"
 apply from: "gradle/repositories.gradle"
