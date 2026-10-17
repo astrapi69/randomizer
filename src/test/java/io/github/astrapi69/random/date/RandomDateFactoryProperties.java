@@ -102,4 +102,19 @@ public class RandomDateFactoryProperties
 		assertTrue(dates.stream().anyMatch(date -> 2 * start + width <= 2 * date.getTime()),
 			"no date in the second half");
 	}
+
+	/**
+	 * {@link RandomDateFactory#randomBirthday()} lies, as documented, between 9 and 55 years ago:
+	 * between 20000 days (about 55 years) and 3000 days (about 9 years) before now, the bounds the
+	 * method names
+	 */
+	@Property(seed = Seeds.SEED, tries = 200)
+	void birthdayLiesBetween9And55YearsAgo()
+	{
+		Date before = new Date();
+		Date birthday = RandomDateFactory.randomBirthday();
+		Date after = new Date();
+		assertBetween(CalculateDateExtensions.substractDaysFromDate(before, 20_000),
+			CalculateDateExtensions.substractDaysFromDate(after, 3_000), birthday);
+	}
 }

@@ -62,10 +62,10 @@ public final class RandomDateFactory
 	{
 		final Date now = CreateDateExtensions.now();
 		// About 55 years.
-		final Date past = randomDateBefore(now, 20000);
+		final Date past = CalculateDateExtensions.substractDaysFromDate(now, 20000);
 		// About 9 years.
-		final Date recentlyPast = randomDateBefore(now, 3000);
-		return randomBirthday(recentlyPast, past);
+		final Date recentlyPast = CalculateDateExtensions.substractDaysFromDate(now, 3000);
+		return randomBirthday(past, recentlyPast);
 	}
 
 	/**
