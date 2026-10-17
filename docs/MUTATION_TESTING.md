@@ -81,10 +81,12 @@ no coverage count against it. PIT's own score counts a timeout as detected.
 | After, run 1 | 367 | 345 | 17 | 2 | 3 | 94.0 % | 94.8 % |
 | After, run 2 | 367 | 345 | 17 | 2 | 3 | 94.0 % | 94.8 % |
 | After, run 3 | 367 | 345 | 17 | 2 | 3 | 94.0 % | 94.8 % |
+| After the self-seeding fix, runs 1 and 2 | 368 | 346 | 17 | 2 | 3 | 94.0 % | 94.8 % |
 
 The three runs agree mutant by mutant. Before, the same commit measured 189 to 193 killed
 between runs. The number of mutants changed with the bugs the properties found and the
-fixes that came with them.
+fixes that came with them; the self-seeding fix of `SecureRandomBuilder` (a seed only when
+the caller gives one) adds one mutant, and its two tests kill it.
 
 By class, mutants not killed (survived, no coverage, timed out) before and after:
 
@@ -101,7 +103,7 @@ By class, mutants not killed (survived, no coverage, timed out) before and after
 | RandomByteFactory | 5 of 8 | 1 of 8 |
 | RandomCharFactory | 5 of 6 | 0 of 7 |
 | RandomShortFactory | 5 of 5 | 1 of 5 |
-| SecureRandomBuilder | 5 of 15 | 0 of 15 |
+| SecureRandomBuilder | 5 of 15 | 0 of 16 |
 | RandomStringFactory | 4 of 15 | 3 of 15 |
 | SecureRandomBean.SecureRandomBeanBuilder | 4 of 5 | 0 of 5 |
 | RandomBooleanFactory | 4 of 4 | 0 of 4 |
