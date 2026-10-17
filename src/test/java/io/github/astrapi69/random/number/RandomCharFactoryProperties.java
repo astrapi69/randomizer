@@ -24,15 +24,21 @@
  */
 package io.github.astrapi69.random.number;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.security.SecureRandom;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
+import io.github.astrapi69.random.Draws;
 import io.github.astrapi69.random.Seeds;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
+import net.jqwik.api.constraints.CharRange;
+import net.jqwik.api.constraints.StringLength;
 
 /**
  * Properties of {@link RandomCharFactory}
@@ -70,5 +76,41 @@ public class RandomCharFactoryProperties
 		}
 		assertTrue(chars.stream().anyMatch(RandomCharFactoryProperties::isUppercaseLetter));
 		assertTrue(chars.stream().anyMatch(RandomCharFactoryProperties::isDigit));
+	}
+
+	/**
+	 * {@link RandomCharFactory#randomChar()} draws from the default generator uppercase letters and
+	 * digits, both among 200 draws (a correct generator misses one kind with a probability of 2 *
+	 * 2^-200)
+	 */
+	@Property(seed = Seeds.SEED, tries = 1)
+	void randomCharWithoutSecureRandomIsAnUppercaseLetterOrADigit()
+	{
+		List<Character> chars = Draws.draw(RandomCharFactory::randomChar);
+		for (char c : chars)
+		{
+			assertTrue(isUppercaseLetter(c) || isDigit(c),
+				() -> "unexpected char U+" + Integer.toHexString(c));
+		}
+		assertTrue(chars.stream().anyMatch(RandomCharFactoryProperties::isUppercaseLetter));
+		assertTrue(chars.stream().anyMatch(RandomCharFactoryProperties::isDigit));
+	}
+
+	/**
+	 * {@link RandomCharFactory#randomChar(String)} draws only chars of the given string, and on a
+	 * string of at most 4 chars every one of them (a correct generator misses one with a
+	 * probability below 4 * (3/4)^200)
+	 *
+	 * @param string
+	 *            the string to draw from
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomCharFromAStringDrawsEveryCharOfIt(
+		@ForAll @StringLength(min = 1, max = 4) @CharRange(from = 'a', to = 'z') String string)
+	{
+		Set<Character> expected = new HashSet<>();
+		string.chars().forEach(c -> expected.add((char)c));
+		assertEquals(expected,
+			new HashSet<>(Draws.draw(() -> RandomCharFactory.randomChar(string))));
 	}
 }

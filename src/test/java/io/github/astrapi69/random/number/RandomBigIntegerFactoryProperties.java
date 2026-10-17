@@ -29,8 +29,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Stream;
 
+import io.github.astrapi69.random.Draws;
 import io.github.astrapi69.random.Seeds;
 import io.github.astrapi69.random.StubSecureRandom;
 import net.jqwik.api.ForAll;
@@ -75,5 +78,48 @@ public class RandomBigIntegerFactoryProperties
 				.toList(),
 			Stream.generate(() -> RandomBigIntegerFactory.randomBigInteger(second)).limit(20)
 				.toList());
+	}
+
+	/**
+	 * {@link RandomBigIntegerFactory#randomBigInteger(SecureRandom)} and
+	 * {@link RandomBigIntegerFactory#randomBigInteger()} lie in [0, 2^179) (the bit length is drawn
+	 * below 180) and do not repeat: 200 draws hold at least 150 distinct values
+	 *
+	 * @param seed
+	 *            the seed of the generator
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomBigIntegerLiesBelowTwoToThe179(@ForAll long seed)
+	{
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		BigInteger bound = BigInteger.TWO.pow(179);
+		for (List<BigInteger> values : List.of(
+			Draws.draw(() -> RandomBigIntegerFactory.randomBigInteger(secureRandom)),
+			Draws.draw(RandomBigIntegerFactory::randomBigInteger)))
+		{
+			values.forEach(value -> assertTrue(0 <= value.signum() && value.compareTo(bound) < 0,
+				() -> value + " is not in [0, 2^179)"));
+			assertTrue(150 <= new HashSet<>(values).size());
+		}
+	}
+
+	/**
+	 * {@link RandomBigIntegerFactory#randomSerialNumber(SecureRandom)} and
+	 * {@link RandomBigIntegerFactory#randomSerialNumber()} are not negative and do not repeat
+	 *
+	 * @param seed
+	 *            the seed of the generator
+	 */
+	@Property(seed = Seeds.SEED)
+	void serialNumbersAreNotNegativeAndDoNotRepeat(@ForAll long seed)
+	{
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		for (List<BigInteger> values : List.of(
+			Draws.draw(() -> RandomBigIntegerFactory.randomSerialNumber(secureRandom)),
+			Draws.draw(RandomBigIntegerFactory::randomSerialNumber)))
+		{
+			values.forEach(value -> assertTrue(0 <= value.signum(), () -> value + " is negative"));
+			assertTrue(150 <= new HashSet<>(values).size());
+		}
 	}
 }

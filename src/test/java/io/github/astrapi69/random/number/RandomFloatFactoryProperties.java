@@ -24,19 +24,19 @@
  */
 package io.github.astrapi69.random.number;
 
+import static io.github.astrapi69.random.Draws.draw;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.security.SecureRandom;
 import java.util.HashSet;
 import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 import io.github.astrapi69.random.Seeds;
 import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
+import net.jqwik.api.Assume;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.Provide;
@@ -47,14 +47,6 @@ import net.jqwik.api.constraints.FloatRange;
  */
 public class RandomFloatFactoryProperties
 {
-
-	/** The number of values a property draws from one generator */
-	private static final int DRAWS = 200;
-
-	private static <T> List<T> draw(Supplier<T> generator)
-	{
-		return Stream.generate(generator).limit(DRAWS).toList();
-	}
 
 	/**
 	 * The algorithms that draw only from the given {@link SecureRandom}; MATH_RANDOM draws from
@@ -70,40 +62,53 @@ public class RandomFloatFactoryProperties
 	}
 
 	/**
+	 * Asserts that the values lie in [start, end]: the documentation promises a value "not greater
+	 * than the range"
+	 */
+	private static void assertInRange(List<Float> values, float start, float end)
+	{
+		values.forEach(value -> assertTrue(start <= value && value <= end,
+			() -> value + " is not in [" + start + ", " + end + "]"));
+	}
+
+	/**
+	 * Asserts that the values lie on both sides of the middle of [start, end); a correct generator
+	 * misses one side with a probability of 2 * 2^-200
+	 */
+	private static void assertSpreadsOverTheRange(List<Float> values, float start, float end)
+	{
+		float middle = start / 2 + end / 2;
+		assertTrue(values.stream().anyMatch(value -> value < middle),
+			() -> "no value below " + middle);
+		assertTrue(values.stream().anyMatch(value -> middle <= value),
+			() -> "no value from " + middle + " up");
+	}
+
+	/**
 	 * For every algorithm,
 	 * {@link RandomFloatFactory#randomFloat(float, RandomAlgorithm, SecureRandom)} lies in [0,
-	 * range]; the documentation promises a value "not greater than the range"
+	 * range]
 	 */
 	@Property(seed = Seeds.SEED)
 	void randomFloatLiesInTheRange(@ForAll RandomAlgorithm algorithm,
 		@ForAll @FloatRange(min = 1) float range, @ForAll long seed)
 	{
 		SecureRandom secureRandom = Seeds.secureRandom(seed);
-		for (float value : draw(
-			() -> RandomFloatFactory.randomFloat(range, algorithm, secureRandom)))
-		{
-			assertTrue(0 <= value && value <= range,
-				() -> value + " is not in [0, " + range + "] with " + algorithm);
-		}
+		assertInRange(draw(() -> RandomFloatFactory.randomFloat(range, algorithm, secureRandom)), 0,
+			range);
 	}
 
 	/**
 	 * For every algorithm, the values spread over the whole range: among 200 draws there is one
-	 * below the middle of the range and one above it; a correct generator misses one half with a
-	 * probability of 2^-200
+	 * below the middle of the range and one above it
 	 */
 	@Property(seed = Seeds.SEED)
 	void randomFloatSpreadsOverTheRange(@ForAll RandomAlgorithm algorithm,
 		@ForAll @FloatRange(min = 2) float range, @ForAll long seed)
 	{
 		SecureRandom secureRandom = Seeds.secureRandom(seed);
-		List<Float> values = draw(
-			() -> RandomFloatFactory.randomFloat(range, algorithm, secureRandom));
-		float middle = range / 2;
-		assertTrue(values.stream().anyMatch(value -> value < middle),
-			() -> "no value below " + middle + " with " + algorithm);
-		assertTrue(values.stream().anyMatch(value -> middle <= value),
-			() -> "no value from " + middle + " up with " + algorithm);
+		assertSpreadsOverTheRange(
+			draw(() -> RandomFloatFactory.randomFloat(range, algorithm, secureRandom)), 0, range);
 	}
 
 	/**
@@ -134,5 +139,75 @@ public class RandomFloatFactoryProperties
 		assertEquals(draw(() -> RandomFloatFactory.randomFloat(range, algorithm, first)),
 			draw(() -> RandomFloatFactory.randomFloat(range, algorithm, second)),
 			algorithm::toString);
+	}
+
+	/**
+	 * {@link RandomFloatFactory#randomFloat(SecureRandom)} lies in [0, 1) and spreads over it, the
+	 * same seed giving the same sequence
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomFloatWithoutRangeLiesInTheUnitInterval(@ForAll long seed)
+	{
+		SecureRandom first = Seeds.secureRandom(seed);
+		SecureRandom second = Seeds.secureRandom(seed);
+		List<Float> values = draw(() -> RandomFloatFactory.randomFloat(first));
+		assertEquals(values, draw(() -> RandomFloatFactory.randomFloat(second)));
+		values.forEach(
+			value -> assertTrue(0 <= value && value < 1, () -> value + " is not in [0, 1)"));
+		assertSpreadsOverTheRange(values, 0, 1);
+	}
+
+	/**
+	 * The overloads without a {@link SecureRandom}: {@link RandomFloatFactory#randomFloat(float)}
+	 * and {@link RandomFloatFactory#randomFloat(float, RandomAlgorithm)} draw from the default
+	 * generator over [0, range], {@link RandomFloatFactory#randomFloat()} over [0, 1)
+	 */
+	@Property(seed = Seeds.SEED)
+	void overloadsWithoutSecureRandomDrawOverTheRange(@ForAll RandomAlgorithm algorithm,
+		@ForAll @FloatRange(min = 2) float range)
+	{
+		List<Float> values = draw(() -> RandomFloatFactory.randomFloat(range, algorithm));
+		assertInRange(values, 0, range);
+		assertSpreadsOverTheRange(values, 0, range);
+		List<Float> secureValues = draw(() -> RandomFloatFactory.randomFloat(range));
+		assertInRange(secureValues, 0, range);
+		assertSpreadsOverTheRange(secureValues, 0, range);
+		List<Float> unitValues = draw(RandomFloatFactory::randomFloat);
+		unitValues.forEach(
+			value -> assertTrue(0 <= value && value < 1, () -> value + " is not in [0, 1)"));
+		assertSpreadsOverTheRange(unitValues, 0, 1);
+	}
+
+	/**
+	 * {@link RandomFloatFactory#randomFloatBetween(float, float, SecureRandom)} and
+	 * {@link RandomFloatFactory#randomFloatBetween(float, float)} lie in [start, end] and spread
+	 * over it, for every start below end whose distance is a finite float
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomFloatBetweenLiesInTheRange(@ForAll float start, @ForAll float end, @ForAll long seed)
+	{
+		Assume.that(start < end && Float.isFinite(end - start));
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		List<Float> values = draw(
+			() -> RandomFloatFactory.randomFloatBetween(start, end, secureRandom));
+		assertInRange(values, start, end);
+		assertSpreadsOverTheRange(values, start, end);
+		List<Float> defaultValues = draw(() -> RandomFloatFactory.randomFloatBetween(start, end));
+		assertInRange(defaultValues, start, end);
+		assertSpreadsOverTheRange(defaultValues, start, end);
+	}
+
+	/**
+	 * {@link RandomFloatFactory#randomFloat(float, SecureRandom)}, the SECURE_RANDOM algorithm,
+	 * lies in [0, range] and spreads over it
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomFloatWithSecureRandomDrawsOverTheRange(@ForAll @FloatRange(min = 2) float range,
+		@ForAll long seed)
+	{
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		List<Float> values = draw(() -> RandomFloatFactory.randomFloat(range, secureRandom));
+		assertInRange(values, 0, range);
+		assertSpreadsOverTheRange(values, 0, range);
 	}
 }

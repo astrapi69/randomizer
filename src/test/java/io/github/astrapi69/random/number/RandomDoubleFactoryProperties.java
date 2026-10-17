@@ -24,19 +24,19 @@
  */
 package io.github.astrapi69.random.number;
 
+import static io.github.astrapi69.random.Draws.draw;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.security.SecureRandom;
 import java.util.HashSet;
 import java.util.List;
-import java.util.function.Supplier;
-import java.util.stream.Stream;
 
 import io.github.astrapi69.random.Seeds;
 import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
+import net.jqwik.api.Assume;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.Provide;
@@ -47,14 +47,6 @@ import net.jqwik.api.constraints.DoubleRange;
  */
 public class RandomDoubleFactoryProperties
 {
-
-	/** The number of values a property draws from one generator */
-	private static final int DRAWS = 200;
-
-	private static <T> List<T> draw(Supplier<T> generator)
-	{
-		return Stream.generate(generator).limit(DRAWS).toList();
-	}
 
 	/**
 	 * The algorithms that draw only from the given {@link SecureRandom}; MATH_RANDOM draws from
@@ -70,40 +62,53 @@ public class RandomDoubleFactoryProperties
 	}
 
 	/**
+	 * Asserts that the values lie in [start, end]: the documentation promises a value "not greater
+	 * than the range"
+	 */
+	private static void assertInRange(List<Double> values, double start, double end)
+	{
+		values.forEach(value -> assertTrue(start <= value && value <= end,
+			() -> value + " is not in [" + start + ", " + end + "]"));
+	}
+
+	/**
+	 * Asserts that the values lie on both sides of the middle of [start, end); a correct generator
+	 * misses one side with a probability of 2 * 2^-200
+	 */
+	private static void assertSpreadsOverTheRange(List<Double> values, double start, double end)
+	{
+		double middle = start / 2 + end / 2;
+		assertTrue(values.stream().anyMatch(value -> value < middle),
+			() -> "no value below " + middle);
+		assertTrue(values.stream().anyMatch(value -> middle <= value),
+			() -> "no value from " + middle + " up");
+	}
+
+	/**
 	 * For every algorithm,
 	 * {@link RandomDoubleFactory#randomDouble(double, RandomAlgorithm, SecureRandom)} lies in [0,
-	 * range]; the documentation promises a value "not greater than the range"
+	 * range]
 	 */
 	@Property(seed = Seeds.SEED)
 	void randomDoubleLiesInTheRange(@ForAll RandomAlgorithm algorithm,
 		@ForAll @DoubleRange(min = 1) double range, @ForAll long seed)
 	{
 		SecureRandom secureRandom = Seeds.secureRandom(seed);
-		for (double value : draw(
-			() -> RandomDoubleFactory.randomDouble(range, algorithm, secureRandom)))
-		{
-			assertTrue(0 <= value && value <= range,
-				() -> value + " is not in [0, " + range + "] with " + algorithm);
-		}
+		assertInRange(draw(() -> RandomDoubleFactory.randomDouble(range, algorithm, secureRandom)),
+			0, range);
 	}
 
 	/**
 	 * For every algorithm, the values spread over the whole range: among 200 draws there is one
-	 * below the middle of the range and one above it; a correct generator misses one half with a
-	 * probability of 2^-200
+	 * below the middle of the range and one above it
 	 */
 	@Property(seed = Seeds.SEED)
 	void randomDoubleSpreadsOverTheRange(@ForAll RandomAlgorithm algorithm,
 		@ForAll @DoubleRange(min = 2) double range, @ForAll long seed)
 	{
 		SecureRandom secureRandom = Seeds.secureRandom(seed);
-		List<Double> values = draw(
-			() -> RandomDoubleFactory.randomDouble(range, algorithm, secureRandom));
-		double middle = range / 2;
-		assertTrue(values.stream().anyMatch(value -> value < middle),
-			() -> "no value below " + middle + " with " + algorithm);
-		assertTrue(values.stream().anyMatch(value -> middle <= value),
-			() -> "no value from " + middle + " up with " + algorithm);
+		assertSpreadsOverTheRange(
+			draw(() -> RandomDoubleFactory.randomDouble(range, algorithm, secureRandom)), 0, range);
 	}
 
 	/**
@@ -135,5 +140,64 @@ public class RandomDoubleFactoryProperties
 		assertEquals(draw(() -> RandomDoubleFactory.randomDouble(range, algorithm, first)),
 			draw(() -> RandomDoubleFactory.randomDouble(range, algorithm, second)),
 			algorithm::toString);
+	}
+
+	/**
+	 * {@link RandomDoubleFactory#randomDouble(SecureRandom)} lies in [0, 1) and spreads over it,
+	 * the same seed giving the same sequence
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomDoubleWithoutRangeLiesInTheUnitInterval(@ForAll long seed)
+	{
+		SecureRandom first = Seeds.secureRandom(seed);
+		SecureRandom second = Seeds.secureRandom(seed);
+		List<Double> values = draw(() -> RandomDoubleFactory.randomDouble(first));
+		assertEquals(values, draw(() -> RandomDoubleFactory.randomDouble(second)));
+		values.forEach(
+			value -> assertTrue(0 <= value && value < 1, () -> value + " is not in [0, 1)"));
+		assertSpreadsOverTheRange(values, 0, 1);
+	}
+
+	/**
+	 * The overloads without a {@link SecureRandom}:
+	 * {@link RandomDoubleFactory#randomDouble(double)} and
+	 * {@link RandomDoubleFactory#randomDouble(double, RandomAlgorithm)} draw from the default
+	 * generator over [0, range], {@link RandomDoubleFactory#randomDouble()} over [0,
+	 * Double.MAX_VALUE]
+	 */
+	@Property(seed = Seeds.SEED)
+	void overloadsWithoutSecureRandomDrawOverTheRange(@ForAll RandomAlgorithm algorithm,
+		@ForAll @DoubleRange(min = 2) double range)
+	{
+		List<Double> values = draw(() -> RandomDoubleFactory.randomDouble(range, algorithm));
+		assertInRange(values, 0, range);
+		assertSpreadsOverTheRange(values, 0, range);
+		List<Double> secureValues = draw(() -> RandomDoubleFactory.randomDouble(range));
+		assertInRange(secureValues, 0, range);
+		assertSpreadsOverTheRange(secureValues, 0, range);
+		List<Double> anyValues = draw(RandomDoubleFactory::randomDouble);
+		assertInRange(anyValues, 0, Double.MAX_VALUE);
+		assertSpreadsOverTheRange(anyValues, 0, Double.MAX_VALUE);
+	}
+
+	/**
+	 * {@link RandomDoubleFactory#randomDoubleBetween(double, double, SecureRandom)} and
+	 * {@link RandomDoubleFactory#randomDoubleBetween(double, double)} lie in [start, end] and
+	 * spread over it, for every start below end whose distance is a finite double
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomDoubleBetweenLiesInTheRange(@ForAll double start, @ForAll double end,
+		@ForAll long seed)
+	{
+		Assume.that(start < end && Double.isFinite(end - start));
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		List<Double> values = draw(
+			() -> RandomDoubleFactory.randomDoubleBetween(start, end, secureRandom));
+		assertInRange(values, start, end);
+		assertSpreadsOverTheRange(values, start, end);
+		List<Double> defaultValues = draw(
+			() -> RandomDoubleFactory.randomDoubleBetween(start, end));
+		assertInRange(defaultValues, start, end);
+		assertSpreadsOverTheRange(defaultValues, start, end);
 	}
 }

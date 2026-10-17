@@ -28,7 +28,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
+import java.security.SecureRandom;
+import java.util.HashSet;
+import java.util.List;
 
+import io.github.astrapi69.random.Draws;
 import io.github.astrapi69.random.Seeds;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
@@ -94,5 +98,71 @@ public class RandomNumberExtensionsProperties
 		float number = RandomFloatFactory.randomFloat(afterComma, beforeComma);
 		assertTrue(0 <= number && number <= Math.pow(10, beforeComma),
 			() -> number + " has more than " + beforeComma + " digits before the comma");
+	}
+
+	/**
+	 * {@link RandomNumberExtensions#getRandomNumericString(int)} has the requested number of digits
+	 *
+	 * @param length
+	 *            the number of digits
+	 */
+	@Property(seed = Seeds.SEED)
+	void numericStringHasTheLength(@ForAll @IntRange(max = 100) int length)
+	{
+		String digits = RandomNumberExtensions.getRandomNumericString(length);
+		assertTrue(digits.matches("\\d{" + length + "}"), () -> digits + " for " + length);
+	}
+
+	/**
+	 * {@link RandomNumberExtensions#getRandomNumericString()} consists of digits only
+	 */
+	@Property(seed = Seeds.SEED, tries = 10)
+	void numericStringWithoutLengthHasDigitsOnly()
+	{
+		String digits = RandomNumberExtensions.getRandomNumericString();
+		assertTrue(digits.matches("\\d*"), digits);
+	}
+
+	/**
+	 * {@link RandomBigDecimalFactory#randomBigDecimal(SecureRandom)} and
+	 * {@link RandomBigDecimalFactory#randomBigDecimal()} lie in [0, 1) and spread over it; a
+	 * correct generator misses one half with a probability of 2 * 2^-200
+	 *
+	 * @param seed
+	 *            the seed of the generator
+	 */
+	@Property(seed = Seeds.SEED)
+	void bigDecimalWithoutDigitsLiesInTheUnitInterval(@ForAll long seed)
+	{
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		BigDecimal half = new BigDecimal("0.5");
+		for (List<BigDecimal> values : List.of(
+			Draws.draw(() -> RandomBigDecimalFactory.randomBigDecimal(secureRandom)),
+			Draws.draw(RandomBigDecimalFactory::randomBigDecimal)))
+		{
+			values.forEach(
+				value -> assertTrue(0 <= value.signum() && value.compareTo(BigDecimal.ONE) < 0,
+					() -> value + " is not in [0, 1)"));
+			assertTrue(values.stream().anyMatch(value -> value.compareTo(half) < 0));
+			assertTrue(values.stream().anyMatch(value -> 0 <= value.compareTo(half)));
+		}
+	}
+
+	/**
+	 * {@link RandomFloatFactory#randomFloat(int, int)} varies: among 200 draws with at least two
+	 * digits in all there are at least two distinct values (a correct generator draws one value 200
+	 * times with a probability below 100^-199)
+	 *
+	 * @param afterComma
+	 *            the number of digits after the decimal point
+	 * @param beforeComma
+	 *            the number of digits before the decimal point
+	 */
+	@Property(seed = Seeds.SEED)
+	void floatWithDigitsVaries(@ForAll @IntRange(min = 1, max = 6) int afterComma,
+		@ForAll @IntRange(min = 1, max = 6) int beforeComma)
+	{
+		assertTrue(1 < new HashSet<>(
+			Draws.draw(() -> RandomFloatFactory.randomFloat(afterComma, beforeComma))).size());
 	}
 }
