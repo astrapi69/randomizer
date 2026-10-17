@@ -25,11 +25,20 @@
 package io.github.astrapi69.random.date;
 
 import static io.github.astrapi69.random.Draws.draw;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.security.SecureRandom;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import io.github.astrapi69.date.CalculateDateExtensions;
 import io.github.astrapi69.random.Seeds;
@@ -104,6 +113,120 @@ public class RandomDateFactoryProperties
 	}
 
 	/**
+	 * {@link RandomDateFactory#randomDateAfter(Date, int, SecureRandom)} lies 0 to range - 1 days
+	 * after the date, and on a range of at most 5 days reaches each of them
+	 *
+	 * @param range
+	 *            the range in days
+	 * @param seed
+	 *            the seed of the generator
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomDateAfterLiesInTheDaysAfter(@ForAll @IntRange(min = 1, max = 5) int range,
+		@ForAll long seed)
+	{
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		Set<Date> expected = new TreeSet<>();
+		for (int days = 0; days < range; days++)
+		{
+			expected.add(CalculateDateExtensions.addDays(FROM, days));
+		}
+		assertEquals(expected, new TreeSet<>(
+			draw(() -> RandomDateFactory.randomDateAfter(FROM, range, secureRandom))));
+	}
+
+	/**
+	 * {@link RandomDateFactory#randomDateBefore(Date, int, SecureRandom)} lies 0 to range - 1 days
+	 * before the date, and on a range of at most 5 days reaches each of them
+	 *
+	 * @param range
+	 *            the range in days
+	 * @param seed
+	 *            the seed of the generator
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomDateBeforeLiesInTheDaysBefore(@ForAll @IntRange(min = 1, max = 5) int range,
+		@ForAll long seed)
+	{
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		Set<Date> expected = new TreeSet<>();
+		for (int days = 0; days < range; days++)
+		{
+			expected.add(CalculateDateExtensions.substractDaysFromDate(FROM, days));
+		}
+		assertEquals(expected, new TreeSet<>(
+			draw(() -> RandomDateFactory.randomDateBefore(FROM, range, secureRandom))));
+	}
+
+	/**
+	 * {@link RandomDateFactory#randomDate(SecureRandom)} lies within 10000 days before or after
+	 * now, and draws dates on both sides (a correct generator misses one side with a probability of
+	 * 2 * 2^-200)
+	 *
+	 * @param seed
+	 *            the seed of the generator
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomDateLiesOnBothSidesOfNow(@ForAll long seed)
+	{
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		Date before = new Date();
+		List<Date> dates = draw(() -> RandomDateFactory.randomDate(secureRandom));
+		Date after = new Date();
+		Date lowest = CalculateDateExtensions.substractDaysFromDate(before, 10_000);
+		Date highest = CalculateDateExtensions.addDays(after, 10_000);
+		dates.forEach(date -> assertBetween(lowest, highest, date));
+		assertTrue(dates.stream().anyMatch(date -> date.before(before)), "no date before now");
+		assertTrue(dates.stream().anyMatch(date -> date.after(after)), "no date after now");
+	}
+
+	/**
+	 * {@link RandomDateFactory#randomDateBetween(long, long, String, SecureRandom)} formats a date
+	 * in [start, end] with the given pattern
+	 *
+	 * @param start
+	 *            the start in milliseconds since 1970
+	 * @param width
+	 *            the length of the range in milliseconds
+	 * @param seed
+	 *            the seed of the generator
+	 * @throws ParseException
+	 *             if the formatted date does not parse with the pattern
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomDateBetweenAsStringLiesInTheRange(
+		@ForAll @LongRange(min = 0, max = 4_000_000_000_000L) long start,
+		@ForAll @LongRange(min = 1, max = 4_000_000_000_000L) long width, @ForAll long seed)
+		throws ParseException
+	{
+		String pattern = "yyyy-MM-dd HH:mm:ss.SSS";
+		String formatted = RandomDateFactory.randomDateBetween(start, start + width, pattern,
+			Seeds.secureRandom(seed));
+		Date date = new SimpleDateFormat(pattern).parse(formatted);
+		assertBetween(new Date(start), new Date(start + width), date);
+	}
+
+	/**
+	 * {@link RandomDateFactory#randomBirthday(Date, Date)} and
+	 * {@link RandomDateFactory#randomDatebetween(Date, Date)} lie between the two dates
+	 *
+	 * @param start
+	 *            the start in milliseconds since 1970
+	 * @param width
+	 *            the length of the range in milliseconds
+	 */
+	@Property(seed = Seeds.SEED)
+	void birthdayLiesBetweenTheDates(
+		@ForAll @LongRange(min = -4_000_000_000_000L, max = 4_000_000_000_000L) long start,
+		@ForAll @LongRange(min = 1, max = 4_000_000_000_000L) long width)
+	{
+		Date from = new Date(start);
+		Date till = new Date(start + width);
+		assertBetween(from, till, RandomDateFactory.randomBirthday(from, till));
+		assertBetween(from, till, RandomDateFactory.randomDatebetween(from, till));
+	}
+
+	/**
 	 * {@link RandomDateFactory#randomBirthday()} lies, as documented, between 9 and 55 years ago:
 	 * between 20000 days (about 55 years) and 3000 days (about 9 years) before now, the bounds the
 	 * method names
@@ -116,5 +239,23 @@ public class RandomDateFactoryProperties
 		Date after = new Date();
 		assertBetween(CalculateDateExtensions.substractDaysFromDate(before, 20_000),
 			CalculateDateExtensions.substractDaysFromDate(after, 3_000), birthday);
+	}
+
+	/**
+	 * {@link RandomDateFactory#randomZoneId()} is an available zone id and varies;
+	 * {@link RandomDateFactory#randomLocalDate()}, {@link RandomDateFactory#randomLocalTime()} and
+	 * {@link RandomDateFactory#randomLocalDateTime()} create a value
+	 */
+	@Property(seed = Seeds.SEED, tries = 1)
+	void zoneIdsAndLocalDatesExist()
+	{
+		List<ZoneId> zoneIds = draw(RandomDateFactory::randomZoneId);
+		Set<String> available = ZoneId.getAvailableZoneIds();
+		zoneIds.forEach(zoneId -> assertTrue(available.contains(zoneId.getId()), zoneId::getId));
+		assertTrue(100 <= new HashSet<>(zoneIds).size(),
+			() -> zoneIds.stream().map(ZoneId::getId).collect(Collectors.joining(", ")));
+		assertNotNull(RandomDateFactory.randomLocalDate());
+		assertNotNull(RandomDateFactory.randomLocalTime());
+		assertNotNull(RandomDateFactory.randomLocalDateTime());
 	}
 }
