@@ -45,7 +45,10 @@ public final class SecureRandomBean
 	private final long seed;
 
 	/**
-	 * Instantiates a new {@link SecureRandomBean} object with the default values
+	 * Instantiates a new {@link SecureRandomBean} object with the default values; the seed is the
+	 * current time in milliseconds. A generator seeded with it is reproducible by anyone who knows
+	 * roughly when the bean was made: for a generator that has to stay unpredictable, build it
+	 * without a seed, e.g. {@code SecureRandomFactory.newSecureRandom(algorithm, provider)}
 	 */
 	public SecureRandomBean()
 	{

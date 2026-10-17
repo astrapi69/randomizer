@@ -25,6 +25,7 @@
 package io.github.astrapi69.random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.security.Provider;
@@ -126,6 +127,39 @@ public class SecureRandomBuilderTest
 		{
 			Security.removeProvider(TestProvider.NAME);
 		}
+	}
+
+	/**
+	 * Test method for {@link SecureRandomBuilder#build()}: without a seed the generator seeds
+	 * itself from the operating system. Until 2026-10-17 the builder seeded SHA1PRNG with
+	 * {@link System#currentTimeMillis()}, so whoever knew the millisecond a generator was built
+	 * could replay every value it gave, the generator of {@link DefaultSecureRandom} behind
+	 * randomToken() and newSalt() included. No clock seed from a second before to a second after
+	 * the build may reproduce the first value
+	 */
+	@Test
+	public void testBuildWithoutSeedIsNotReproducibleFromTheClock()
+	{
+		long before = System.currentTimeMillis();
+		long first = SecureRandomBuilder.getInstance().build().nextLong();
+		long after = System.currentTimeMillis();
+		for (long millis = before - 1000; millis <= after + 1000; millis++)
+		{
+			long clockSeeded = SecureRandomBuilder.getInstance().seed(millis).build().nextLong();
+			assertNotEquals(clockSeeded, first, "replayed with the clock seed " + millis);
+		}
+	}
+
+	/**
+	 * Test method for {@link SecureRandomFactory#newSecureRandom()}: two generators built one after
+	 * the other, in the same millisecond more often than not, draw different values
+	 */
+	@Test
+	public void testTwoGeneratorsWithoutSeedDrawDifferentValues()
+	{
+		SecureRandom first = SecureRandomFactory.newSecureRandom();
+		SecureRandom second = SecureRandomFactory.newSecureRandom();
+		assertNotEquals(first.nextLong(), second.nextLong());
 	}
 
 	/**

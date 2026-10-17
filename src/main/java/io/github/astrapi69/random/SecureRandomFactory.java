@@ -72,7 +72,9 @@ public final class SecureRandomFactory
 	}
 
 	/**
-	 * Factory method for create a new {@link SecureRandom} object
+	 * Factory method for create a new {@link SecureRandom} object that draws the same sequence for
+	 * the same seed: for reproducible test data, never for tokens, salts or keys. The overloads
+	 * without a seed give a generator that seeds itself
 	 *
 	 * @param algorithm
 	 *            the algorithm
