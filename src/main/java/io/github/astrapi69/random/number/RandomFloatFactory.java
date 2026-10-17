@@ -30,7 +30,6 @@ import java.util.Random;
 
 import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.SecureRandomFactory;
 import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 
 /**
@@ -173,7 +172,7 @@ public final class RandomFloatFactory
 	 */
 	public static float randomFloatBetween(final float start, final float end)
 	{
-		return randomFloatBetween(start, end, SecureRandomFactory.newSecureRandom());
+		return randomFloatBetween(start, end, DefaultSecureRandom.get());
 	}
 
 	/**

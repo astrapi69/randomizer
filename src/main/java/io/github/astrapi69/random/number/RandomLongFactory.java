@@ -31,7 +31,6 @@ import java.util.Random;
 
 import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.SecureRandomFactory;
 import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 
 /**
@@ -97,7 +96,7 @@ public final class RandomLongFactory
 	 */
 	public static long randomLongBetween(final long start, final long end)
 	{
-		return randomLongBetween(start, end, SecureRandomFactory.newSecureRandom());
+		return randomLongBetween(start, end, DefaultSecureRandom.get());
 	}
 
 	/**

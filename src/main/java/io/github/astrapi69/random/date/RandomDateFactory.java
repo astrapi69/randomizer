@@ -38,7 +38,6 @@ import java.util.Objects;
 import io.github.astrapi69.date.CalculateDateExtensions;
 import io.github.astrapi69.date.CreateDateExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.SecureRandomFactory;
 import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 import io.github.astrapi69.random.number.RandomBooleanFactory;
 import io.github.astrapi69.random.number.RandomIntFactory;
@@ -154,8 +153,7 @@ public final class RandomDateFactory
 	 */
 	public static Date randomDateBefore(final Date date, final int range)
 	{
-		return RandomDateFactory.randomDateBefore(date, range,
-			SecureRandomFactory.newSecureRandom());
+		return RandomDateFactory.randomDateBefore(date, range, DefaultSecureRandom.get());
 	}
 
 	/**
@@ -183,7 +181,7 @@ public final class RandomDateFactory
 	 */
 	public static Date randomDate()
 	{
-		return RandomDateFactory.randomDate(SecureRandomFactory.newSecureRandom());
+		return RandomDateFactory.randomDate(DefaultSecureRandom.get());
 	}
 
 	/**
@@ -195,7 +193,7 @@ public final class RandomDateFactory
 	 */
 	public static Date randomDate(final Date from)
 	{
-		return RandomDateFactory.randomDate(from, SecureRandomFactory.newSecureRandom());
+		return RandomDateFactory.randomDate(from, DefaultSecureRandom.get());
 	}
 
 	/**
@@ -290,8 +288,7 @@ public final class RandomDateFactory
 	 */
 	public static Date randomDatebetween(final Date start, final Date end)
 	{
-		return RandomDateFactory.randomDateBetween(start, end,
-			SecureRandomFactory.newSecureRandom());
+		return RandomDateFactory.randomDateBetween(start, end, DefaultSecureRandom.get());
 	}
 
 	/**
@@ -325,7 +322,7 @@ public final class RandomDateFactory
 		final String format)
 	{
 		return RandomDateFactory.randomDateBetween(startDate, endDate, format,
-			SecureRandomFactory.newSecureRandom());
+			DefaultSecureRandom.get());
 	}
 
 	/**
