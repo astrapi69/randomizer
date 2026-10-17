@@ -24,6 +24,8 @@
  */
 package io.github.astrapi69.random;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
@@ -189,7 +191,11 @@ public final class SecureRandomBuilder
 			{
 				throw new RuntimeException(e);
 			}
-		secureRandom.setSeed(seed);
+		// SecureRandom.setSeed(long) ignores the seed 0. The byte form takes every seed; its
+		// bytes are the little-endian order setSeed(long) uses, so every other seed gives the
+		// same sequence as through setSeed(long)
+		secureRandom.setSeed(
+			ByteBuffer.allocate(Long.BYTES).order(ByteOrder.LITTLE_ENDIAN).putLong(seed).array());
 		return secureRandom;
 	}
 
