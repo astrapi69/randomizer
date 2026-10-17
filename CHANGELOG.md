@@ -1,8 +1,37 @@
 ## Change log
 ----------------------
 
-Version 10.4-SNAPSHOT
+Version 10.5
 -------------
+
+ADDED:
+
+- new property-based tests with jqwik (new test dependency net.jqwik:jqwik in version 1.10.2) for the generators of numbers, characters, strings, dates, web objects and objects, with fixed seeds
+- new mutation testing with PIT 1.30.0 in the CI build: the build fails below a mutation score of 70 %, measured 94.0 %; docs/MUTATION_TESTING.md lists the mutants left and why
+- new pre-commit hook in .githooks that refuses a commit whose files Spotless would format
+
+CHANGED:
+
+- security: SecureRandomBuilder seeds the generator only when a seed is given, otherwise the SecureRandom seeds itself from the operating system. Until this version every generator built without a seed was seeded with the current time in milliseconds, so its output could be replayed by anyone who knew roughly when it was built: DefaultSecureRandom behind randomToken(), newSalt() and every overload without a SecureRandom, SecureRandomFactory.newSecureRandom() without a seed argument and SecureRandomBuilder without seed(...). Code that needs a reproducible sequence passes a seed explicitly
+- fix: overloads without a SecureRandom no longer create a new clock-seeded generator per call, so they no longer repeat values within a millisecond
+- fix: RandomCharFactory.randomChar draws the digits 0 to 9, not the control characters U+0000 to U+0009
+- fix: SecureRandomBuilder seeds the generator with the seed 0 too, and takes the generator from the given provider instead of the preferred one
+- fix: the algorithms MATH_ABS and RANDOM draw over the whole range from the given SecureRandom, and MIN_VALUE no longer turns MATH_ABS and randomSerialNumber negative
+- fix: randomLong(SecureRandom) and randomBigInteger(SecureRandom) draw from the given SecureRandom alone
+- fix: randomIntBetween and randomLongBetween no longer overflow on ranges wider than MAX_VALUE
+- fix: getRandomNumberString puts the beforeComma digits before the comma; randomFloat(int, int), randomBigDecimal(int, int) and newRandomFloat follow
+- fix: getInfomailFromWebsite drops all of "www." when the url starts with it
+- fix: randomDateBetween(Date, int, int) lies startDays to endDays - 1 days after the date, and randomDateBetween(Date, Date, SecureRandom) keeps [start, end) before 1970 too
+- fix: randomBirthday() lies between 9 and 55 years ago, as documented
+- fix: the bundled street list no longer holds an empty street
+
+Version 10.4
+-------------
+
+CHANGED:
+
+- new GitHub Actions workflow publish.yml that publishes to Maven Central when a RELEASE-* tag is pushed
+- removed gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle', release tags are created with the tagRelease task of gradle/tagging.gradle
 
 Version 10.3
 -------------
