@@ -247,8 +247,10 @@ public final class RandomDateFactory
 		SecureRandom secureRandom)
 	{
 		Objects.requireNonNull(secureRandom);
-		final long randomLong = (long)(start.getTime()
-			+ (secureRandom.nextDouble() * (end.getTime() - start.getTime())));
+		// the offset is cast, not the sum: a cast rounds towards 0, which for a negative sum
+		// (a date before 1970) would round up
+		final long randomLong = start.getTime()
+			+ (long)(secureRandom.nextDouble() * (end.getTime() - start.getTime()));
 		return new Date(randomLong);
 	}
 

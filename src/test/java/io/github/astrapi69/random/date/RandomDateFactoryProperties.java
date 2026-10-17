@@ -24,15 +24,19 @@
  */
 package io.github.astrapi69.random.date;
 
+import static io.github.astrapi69.random.Draws.draw;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.security.SecureRandom;
 import java.util.Date;
+import java.util.List;
 
 import io.github.astrapi69.date.CalculateDateExtensions;
 import io.github.astrapi69.random.Seeds;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.constraints.IntRange;
+import net.jqwik.api.constraints.LongRange;
 
 /**
  * Properties of {@link RandomDateFactory}. Days are counted with {@link CalculateDateExtensions},
@@ -67,5 +71,35 @@ public class RandomDateFactoryProperties
 		Date date = RandomDateFactory.randomDateBetween(FROM, startDays, startDays + width);
 		assertBetween(CalculateDateExtensions.addDays(FROM, startDays),
 			CalculateDateExtensions.addDays(FROM, startDays + width - 1), date);
+	}
+
+	/**
+	 * {@link RandomDateFactory#randomDateBetween(Date, Date, SecureRandom)} lies in [start, end)
+	 * and spreads over it, a date in each half, before 1970 as after
+	 *
+	 * @param start
+	 *            the start in milliseconds since 1970
+	 * @param width
+	 *            the length of the range in milliseconds
+	 * @param seed
+	 *            the seed of the generator
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomDateBetweenLiesInTheRange(
+		@ForAll @LongRange(min = -4_000_000_000_000L, max = 4_000_000_000_000L) long start,
+		@ForAll @LongRange(min = 2, max = 4_000_000_000_000L) long width, @ForAll long seed)
+	{
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		Date from = new Date(start);
+		Date till = new Date(start + width);
+		List<Date> dates = draw(
+			() -> RandomDateFactory.randomDateBetween(from, till, secureRandom));
+		dates.forEach(date -> assertTrue(start <= date.getTime() && date.getTime() < start + width,
+			() -> date.getTime() + " is not in [" + start + ", " + (start + width) + ")"));
+		// 2 * time < 2 * start + width: below the middle, which may lie between two milliseconds
+		assertTrue(dates.stream().anyMatch(date -> 2 * date.getTime() < 2 * start + width),
+			"no date in the first half");
+		assertTrue(dates.stream().anyMatch(date -> 2 * start + width <= 2 * date.getTime()),
+			"no date in the second half");
 	}
 }
