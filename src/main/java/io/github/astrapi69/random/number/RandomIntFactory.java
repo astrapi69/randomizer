@@ -81,7 +81,7 @@ public final class RandomIntFactory
 		switch (algorithm)
 		{
 			case MATH_ABS :
-				return Math.abs(secureRandom.nextInt()) % range;
+				return Math.abs(secureRandom.nextInt() % range);
 			case MATH_RANDOM :
 				return (int)(Math.random() * range);
 			case RANDOM :

@@ -83,13 +83,8 @@ public final class RandomBigIntegerFactory
 	 */
 	public static BigInteger randomSerialNumber(SecureRandom secureRandom)
 	{
-		long next = secureRandom.nextLong();
-		if (next < 0)
-		{
-			next = next * (-1);
-		}
-		final BigInteger serialNumber = BigInteger.valueOf(next);
-		return serialNumber;
+		// the absolute value as a BigInteger: Long.MIN_VALUE has no positive long counterpart
+		return BigInteger.valueOf(secureRandom.nextLong()).abs();
 	}
 
 }

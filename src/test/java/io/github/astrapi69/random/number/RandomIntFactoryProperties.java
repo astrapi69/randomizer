@@ -34,6 +34,7 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import io.github.astrapi69.random.Seeds;
+import io.github.astrapi69.random.StubSecureRandom;
 import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
@@ -131,5 +132,19 @@ public class RandomIntFactoryProperties
 		SecureRandom second = Seeds.secureRandom(seed);
 		assertEquals(draw(() -> RandomIntFactory.randomInt(range, algorithm, first)),
 			draw(() -> RandomIntFactory.randomInt(range, algorithm, second)), algorithm::toString);
+	}
+
+	/**
+	 * MATH_ABS lies in [0, range) for every int the {@link SecureRandom} draws, Integer.MIN_VALUE
+	 * included, whose absolute value is negative
+	 */
+	@Property(seed = Seeds.SEED)
+	void mathAbsLiesInTheRangeForEveryDrawnInt(@ForAll int drawn,
+		@ForAll @IntRange(min = 1) int range)
+	{
+		int value = RandomIntFactory.randomInt(range, RandomAlgorithm.MATH_ABS,
+			StubSecureRandom.nextIntReturning(drawn));
+		assertTrue(0 <= value && value < range,
+			() -> value + " is not in [0, " + range + ") for the drawn int " + drawn);
 	}
 }
