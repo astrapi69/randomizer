@@ -334,11 +334,12 @@ public final class RandomDateFactory
 	 *            The int that represents the days from where the range starts.
 	 * @param endDays
 	 *            The int that represents the days from where the range ends.
-	 * @return A random Date between the range from startDays and endDays from the given Date.
+	 * @return A random Date between the range from startDays and endDays from the given Date:
+	 *         startDays to endDays - 1 days after it
 	 */
 	public static Date randomDateBetween(final Date from, final int startDays, final int endDays)
 	{
-		return RandomDateFactory.randomDateAfter(from,
+		return CalculateDateExtensions.addDays(from,
 			RandomIntFactory.randomIntBetween(startDays, endDays));
 	}
 
