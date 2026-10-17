@@ -120,11 +120,11 @@ public final class RandomLongFactory
 		switch (algorithm)
 		{
 			case MATH_ABS :
-				return (long)(Math.abs(secureRandom.nextDouble()) % range);
+				return Math.abs(secureRandom.nextLong() % range);
 			case MATH_RANDOM :
 				return (long)(Math.random() * range);
 			case RANDOM :
-				long random = (long)new Random(System.currentTimeMillis()).nextDouble() % range;
+				long random = new Random(secureRandom.nextLong()).nextLong() % range;
 				return MathExtensions.isPositive(random) ? random : random * -1;
 			case SECURE_RANDOM :
 			default :

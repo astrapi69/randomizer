@@ -85,7 +85,7 @@ public final class RandomIntFactory
 			case MATH_RANDOM :
 				return (int)(Math.random() * range);
 			case RANDOM :
-				int random = new Random(System.currentTimeMillis()).nextInt() % range;
+				int random = new Random(secureRandom.nextLong()).nextInt() % range;
 				return MathExtensions.isPositive(random) ? random : random * -1;
 			case SECURE_RANDOM :
 			default :
