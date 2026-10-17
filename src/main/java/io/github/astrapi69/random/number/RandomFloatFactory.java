@@ -30,7 +30,6 @@ import java.util.Random;
 
 import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.SecureRandomFactory;
 import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 
 /**
@@ -67,11 +66,11 @@ public final class RandomFloatFactory
 		switch (algorithm)
 		{
 			case MATH_ABS :
-				return (float)(Math.abs(secureRandom.nextDouble()) % range);
+				return (float)Math.abs(secureRandom.nextDouble() * range);
 			case MATH_RANDOM :
 				return (float)(Math.random() * range);
 			case RANDOM :
-				float random = (float)new Random(System.currentTimeMillis()).nextDouble() % range;
+				float random = (float)(new Random(secureRandom.nextLong()).nextDouble() * range);
 				return MathExtensions.isPositive(random) ? random : random * -1;
 			case SECURE_RANDOM :
 			default :
@@ -173,7 +172,7 @@ public final class RandomFloatFactory
 	 */
 	public static float randomFloatBetween(final float start, final float end)
 	{
-		return randomFloatBetween(start, end, SecureRandomFactory.newSecureRandom());
+		return randomFloatBetween(start, end, DefaultSecureRandom.get());
 	}
 
 	/**

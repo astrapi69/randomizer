@@ -43,7 +43,7 @@ public final class RandomCharFactory
 	}
 
 	/**
-	 * Returns a random char.
+	 * Returns a random char: an uppercase letter from A to Z or a digit from 0 to 9
 	 *
 	 * @return The generated random char.
 	 */
@@ -53,7 +53,8 @@ public final class RandomCharFactory
 	}
 
 	/**
-	 * Returns a random char.
+	 * Returns a random char: an uppercase letter from A to Z or a digit from 0 to 9, each kind with
+	 * a probability of one half
 	 *
 	 * @param secureRandom
 	 *            the secure random for char generation
@@ -66,12 +67,12 @@ public final class RandomCharFactory
 		if (secureRandom.nextBoolean())
 		{
 			// random character
-			return (char)(secureRandom.nextInt(26) + 65);
+			return (char)('A' + secureRandom.nextInt(26));
 		}
 		else
 		{
 			// random digit
-			return (char)secureRandom.nextInt(10);
+			return (char)('0' + secureRandom.nextInt(10));
 		}
 	}
 

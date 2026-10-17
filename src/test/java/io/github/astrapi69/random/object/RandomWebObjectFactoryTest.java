@@ -34,6 +34,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.meanbean.test.BeanTester;
 
 import io.github.astrapi69.random.RandomCharacters;
@@ -319,4 +321,20 @@ public class RandomWebObjectFactoryTest extends BaseTestCase
 		beanTester.testBean(RandomWebObjectFactory.class);
 	}
 
+	/**
+	 * Test method for {@link RandomWebObjectFactory#randomFaxnumber(String)}: the phone number with
+	 * its last two digits counted up by one
+	 *
+	 * @param phonenumber
+	 *            the phone number
+	 * @param faxnumber
+	 *            the expected fax number
+	 */
+	@ParameterizedTest(name = "{0} -> {1}")
+	@CsvSource({ "0123/4567812, 0123/4567813", "0123/4567809, 0123/4567810",
+			"0049/1234542, 0049/1234543" })
+	public void testRandomFaxnumberCountsTheLastTwoDigitsUp(String phonenumber, String faxnumber)
+	{
+		assertEquals(faxnumber, RandomWebObjectFactory.randomFaxnumber(phonenumber));
+	}
 }

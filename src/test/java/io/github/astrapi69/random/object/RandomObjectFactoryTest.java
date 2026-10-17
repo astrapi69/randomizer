@@ -28,9 +28,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.Point;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -469,4 +472,33 @@ public class RandomObjectFactoryTest
 		beanTester.testBean(RandomObjectFactory.class);
 	}
 
+	/**
+	 * Test method for {@link RandomObjectFactory#setRandomValues(Class, Object, String...)}: every
+	 * field gets a value, except the ignored ones, the final one and the {@link Void} one (whose
+	 * only value is null)
+	 *
+	 * @throws Exception
+	 *             is thrown if a field cannot be read or set
+	 */
+	@Test
+	public void testSetRandomValuesFillsEveryFieldButTheIgnoredAndFinalOnes() throws Exception
+	{
+		AllFieldTypes instance = RandomObjectFactory.setRandomValues(AllFieldTypes.class,
+			new AllFieldTypes(), "string", "person", "$jacocoData");
+		for (Field field : AllFieldTypes.class.getDeclaredFields())
+		{
+			if (Modifier.isStatic(field.getModifiers()) || field.isSynthetic())
+			{
+				continue;
+			}
+			field.setAccessible(true);
+			Object value = field.get(instance);
+			switch (field.getName())
+			{
+				case "string", "person", "nothing" -> assertNull(value, field.getName());
+				case "unchanged" -> assertSame(AllFieldTypes.UNCHANGED, value);
+				default -> assertNotNull(value, field.getName());
+			}
+		}
+	}
 }

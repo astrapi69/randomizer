@@ -24,13 +24,13 @@
  */
 package io.github.astrapi69.random.number;
 
+import java.math.BigDecimal;
 import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.Random;
 
 import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.SecureRandomFactory;
 import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 
 /**
@@ -96,7 +96,7 @@ public final class RandomLongFactory
 	 */
 	public static long randomLongBetween(final long start, final long end)
 	{
-		return randomLongBetween(start, end, SecureRandomFactory.newSecureRandom());
+		return randomLongBetween(start, end, DefaultSecureRandom.get());
 	}
 
 	/**
@@ -120,11 +120,11 @@ public final class RandomLongFactory
 		switch (algorithm)
 		{
 			case MATH_ABS :
-				return (long)(Math.abs(secureRandom.nextDouble()) % range);
+				return Math.abs(secureRandom.nextLong() % range);
 			case MATH_RANDOM :
 				return (long)(Math.random() * range);
 			case RANDOM :
-				long random = (long)new Random(System.currentTimeMillis()).nextDouble() % range;
+				long random = new Random(secureRandom.nextLong()).nextLong() % range;
 				return MathExtensions.isPositive(random) ? random : random * -1;
 			case SECURE_RANDOM :
 			default :
@@ -158,7 +158,7 @@ public final class RandomLongFactory
 	 */
 	public static long randomLong(SecureRandom secureRandom)
 	{
-		return randomLong(Objects.requireNonNull(secureRandom).nextLong());
+		return Objects.requireNonNull(secureRandom).nextLong();
 	}
 
 	/**
@@ -175,8 +175,19 @@ public final class RandomLongFactory
 	public static long randomLongBetween(final long start, final long end,
 		SecureRandom secureRandom)
 	{
-		return start + randomLong(end - start, RandomAlgorithm.SECURE_RANDOM,
-			Objects.requireNonNull(secureRandom));
+		Objects.requireNonNull(secureRandom);
+		final long width = end - start;
+		if (start < end && width < 0)
+		{
+			// the width exceeds Long.MAX_VALUE: scale it as a BigDecimal. The offset can exceed
+			// Long.MAX_VALUE too; its low 64 bits, which longValue() keeps, added to start give the
+			// value in the range
+			final BigDecimal wideWidth = BigDecimal.valueOf(end)
+				.subtract(BigDecimal.valueOf(start));
+			return start
+				+ wideWidth.multiply(BigDecimal.valueOf(secureRandom.nextDouble())).longValue();
+		}
+		return start + randomLong(width, RandomAlgorithm.SECURE_RANDOM, secureRandom);
 	}
 
 }

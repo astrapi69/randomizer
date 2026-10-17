@@ -24,11 +24,16 @@
  */
 package io.github.astrapi69.random;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.security.Provider;
 import java.security.SecureRandom;
+import java.security.SecureRandomSpi;
+import java.security.Security;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
@@ -99,6 +104,71 @@ public class SecureRandomBuilderTest
 		assertNotNull(instance);
 		SecureRandom secureRandom = instance.build();
 		assertNotNull(secureRandom);
+	}
+
+	/**
+	 * Test method for {@link SecureRandomBuilder#build()}: with an algorithm and a provider the
+	 * generator comes from that provider, also when another provider offers the algorithm and is
+	 * preferred
+	 */
+	@Test
+	public void testBuildTakesTheGeneratorFromTheGivenProvider()
+	{
+		Provider testProvider = new TestProvider();
+		Security.addProvider(testProvider);
+		try
+		{
+			SecureRandom secureRandom = SecureRandomBuilder
+				.getInstance(SecureRandomBuilder.DEFAULT_ALGORITHM, TestProvider.NAME).build();
+			assertEquals(TestProvider.NAME, secureRandom.getProvider().getName());
+		}
+		finally
+		{
+			Security.removeProvider(TestProvider.NAME);
+		}
+	}
+
+	/**
+	 * A provider that offers SHA1PRNG, the algorithm the default provider SUN offers too.
+	 * {@link Security#addProvider(Provider)} appends it, so SUN stays the preferred one.
+	 */
+	static final class TestProvider extends Provider
+	{
+		static final String NAME = "RandomizerTestProvider";
+
+		private static final long serialVersionUID = 1L;
+
+		TestProvider()
+		{
+			super(NAME, "1.0", "SHA1PRNG for the tests of SecureRandomBuilder");
+			put("SecureRandom." + SecureRandomBuilder.DEFAULT_ALGORITHM,
+				ConstantSecureRandomSpi.class.getName());
+		}
+	}
+
+	/**
+	 * The generator of {@link TestProvider}: every byte is 7
+	 */
+	public static final class ConstantSecureRandomSpi extends SecureRandomSpi
+	{
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		protected void engineSetSeed(byte[] seed)
+		{
+		}
+
+		@Override
+		protected void engineNextBytes(byte[] bytes)
+		{
+			Arrays.fill(bytes, (byte)7);
+		}
+
+		@Override
+		protected byte[] engineGenerateSeed(int numBytes)
+		{
+			return new byte[numBytes];
+		}
 	}
 
 }

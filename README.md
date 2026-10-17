@@ -162,6 +162,11 @@ To share your changes, [submit a pull request](https://github.com/astrapi69/rand
 
 Don't forget to add new units tests on your changes.
 
+The tests state properties of the generators where they can ([jqwik](https://jqwik.net), the
+`*Properties` classes), and [PIT](https://pitest.org) measures them: the build fails below a
+mutation score of 70 %; on 2026-10-17 it measured 94 % (345 of 367 mutants killed). How to run
+it, the numbers by class and the mutants left: [docs/MUTATION_TESTING.md](docs/MUTATION_TESTING.md).
+
 ## Contacting the Developer
 
 Do not hesitate to contact the randomizer developers with your questions, concerns, comments, bug reports, or feature requests.
