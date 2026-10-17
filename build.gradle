@@ -15,6 +15,7 @@ plugins {
     alias(libs.plugins.gradle.versions.plugin)
     alias(libs.plugins.spotless.plugin.gradle)
     alias(libs.plugins.version.catalog.update)
+    alias(libs.plugins.pitest.gradle.plugin)
 }
 
 group = "$groupPackage" as Object
@@ -28,7 +29,16 @@ apply from: "gradle/packaging.gradle"
 apply from: "gradle/publishing.gradle"
 apply from: "gradle/repositories.gradle"
 apply from: "gradle/tagging.gradle"
+apply from: "gradle/mutation-testing.gradle"
 apply from: "gradle/testing.gradle"
+
+// Mutation-score floor the CI build fails below: .github/workflows/gradle.yml
+// runs `./gradlew pitest` after the build. Measured 53 % (193 of 362 mutants killed) on 2026-10-17: the floor stops a regression; the tier above needs the survivors tested, see the pull request that added this.
+// Kept here, not in gradle/mutation-testing.gradle, so that the floor sits in
+// the file a reader (and awesome-well-tested's check) looks at.
+pitest {
+    mutationThreshold = 50
+}
 apply from: "gradle/version-catalog-update.gradle"
 
 java {
