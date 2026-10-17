@@ -70,6 +70,13 @@
 /gradle
 /pom.xml.bak
 
+###############################################################
+# jqwik test run database (switched off in                    #
+# src/test/resources/junit-platform.properties; kept out here #
+# in case a local run switches it on)                         #
+###############################################################
+/.jqwik-database
+
 ################
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 ################
