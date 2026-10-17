@@ -33,10 +33,10 @@ import java.util.stream.Stream;
  * <p>
  * A property over a generator states what holds for every value it draws (it lies in the range),
  * and what holds for the values together (they spread over the range, they do not repeat). For the
- * second kind the properties draw {@link #COUNT} values; each such property names the probability
- * that a correct generator fails it, below 2^-100 throughout. With a seeded generator the draws are
- * the same on every run anyway; the bound matters for the overloads that draw from the library's
- * DefaultSecureRandom or Math.random(), which no seed reaches.
+ * second kind the properties draw {@link #COUNT} values, or more where a property needs them; each
+ * such property names the probability that a correct generator fails it. With a seeded generator
+ * the draws are the same on every run anyway; for the overloads that draw from the library's
+ * DefaultSecureRandom or Math.random(), which no seed reaches, the probability stays below 10^-18.
  */
 public final class Draws
 {
@@ -59,6 +59,22 @@ public final class Draws
 	 */
 	public static <T> List<T> draw(Supplier<T> generator)
 	{
-		return Stream.generate(generator).limit(COUNT).toList();
+		return draw(generator, COUNT);
+	}
+
+	/**
+	 * Draws the given number of values from the given generator
+	 *
+	 * @param <T>
+	 *            the type of the values
+	 * @param generator
+	 *            the generator
+	 * @param count
+	 *            the number of values
+	 * @return the values in the order drawn
+	 */
+	public static <T> List<T> draw(Supplier<T> generator, int count)
+	{
+		return Stream.generate(generator).limit(count).toList();
 	}
 }
