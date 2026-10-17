@@ -24,10 +24,15 @@
  */
 package io.github.astrapi69.random.address;
 
+import static io.github.astrapi69.random.Draws.draw;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Properties;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -69,5 +74,67 @@ public class AddressListsTest
 			.loadProperties(RandomAddressExtensions.PROP_FILE_ZIP_CITIES);
 		cities.forEach((zip, city) -> assertFalse(((String)city).isBlank(),
 			() -> "the city of " + zip + " is blank"));
+	}
+
+	private static Properties streetsAndZips()
+	{
+		Properties properties = new Properties();
+		properties.setProperty("10115", "Invalidenstr.");
+		properties.setProperty("80331", "Marienplatz");
+		properties.setProperty("20095", "Jungfernstieg");
+		return properties;
+	}
+
+	/**
+	 * {@link RandomAddressExtensions#getRandomStreet(Properties)} draws every street of the given
+	 * properties and nothing else (a correct generator misses one of three with a probability below
+	 * 3 * (2/3)^200), and without properties a street of the bundled list
+	 *
+	 * @throws IOException
+	 *             if the bundled list cannot be read
+	 */
+	@Test
+	public void randomStreetComesFromTheGivenStreets() throws IOException
+	{
+		Properties streets = streetsAndZips();
+		Set<Object> expected = new HashSet<>(streets.values());
+		assertEquals(expected, new HashSet<>(draw(() -> {
+			try
+			{
+				return RandomAddressExtensions.getRandomStreet(streets);
+			}
+			catch (IOException e)
+			{
+				throw new IllegalStateException(e);
+			}
+		})));
+		Properties bundled = PropertiesLoader
+			.loadProperties(RandomAddressExtensions.PROP_FILE_STREETS);
+		assertTrue(bundled.containsValue(RandomAddressExtensions.getRandomStreet(null)));
+	}
+
+	/**
+	 * {@link RandomAddressExtensions#getRandomStreetWithNumber(Properties)} is a street of the
+	 * given properties, a blank and a number below 200;
+	 * {@link RandomAddressExtensions#getRandomZip(Properties)} draws every key
+	 *
+	 * @throws IOException
+	 *             never, the properties are given
+	 */
+	@Test
+	public void randomStreetWithNumberAndZipComeFromTheGivenProperties() throws IOException
+	{
+		Properties properties = streetsAndZips();
+		for (int i = 0; i < 50; i++)
+		{
+			String streetWithNumber = RandomAddressExtensions.getRandomStreetWithNumber(properties);
+			int blank = streetWithNumber.lastIndexOf(' ');
+			assertTrue(properties.containsValue(streetWithNumber.substring(0, blank)),
+				streetWithNumber);
+			int number = Integer.parseInt(streetWithNumber.substring(blank + 1));
+			assertTrue(0 <= number && number < 200, streetWithNumber);
+		}
+		assertEquals(properties.stringPropertyNames(),
+			new HashSet<>(draw(() -> RandomAddressExtensions.getRandomZip(properties))));
 	}
 }
