@@ -26,7 +26,15 @@ package io.github.astrapi69.random.object;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
+
+import io.github.astrapi69.random.Draws;
 import io.github.astrapi69.random.Seeds;
 import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
@@ -34,6 +42,8 @@ import net.jqwik.api.Combinators;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.Provide;
+import net.jqwik.api.constraints.IntRange;
+import net.jqwik.api.constraints.Size;
 
 /**
  * Properties of {@link RandomWebObjectFactory}
@@ -97,5 +107,76 @@ public class RandomWebObjectFactoryProperties
 	{
 		assertThrows(IllegalArgumentException.class,
 			() -> RandomWebObjectFactory.getInfomailFromWebsite(prefix + host));
+	}
+
+	/**
+	 * Asserts that every value the generator draws matches the pattern
+	 */
+	private static void assertEveryValueMatches(Supplier<String> generator, int draws,
+		String pattern)
+	{
+		for (String value : Draws.draw(generator, draws))
+		{
+			assertTrue(value.matches(pattern), () -> value + " does not match " + pattern);
+		}
+	}
+
+	/**
+	 * Every generated address, number, website and id has its shape. The generators draw the
+	 * lengths of their parts from the default generator; with 500 draws each length from 1 to 20
+	 * occurs, so a part of length 0 would show, with a probability above 1 - (19/20)^500
+	 */
+	@Property(seed = Seeds.SEED, tries = 1)
+	void generatedWebObjectsHaveTheirShape()
+	{
+		assertEveryValueMatches(RandomWebObjectFactory::randomEmail, 500,
+			"[a-z0-9]{1,20}@[a-z]{1,12}\\.[a-z]{2}");
+		assertEveryValueMatches(RandomWebObjectFactory::randomWebsite, 500,
+			"http://www\\.[a-z]{1,12}\\.[a-z]{2}");
+		assertEveryValueMatches(RandomWebObjectFactory::randomMobilnumber, 200, "0\\d{3}/\\d{7}");
+		assertEveryValueMatches(RandomWebObjectFactory::randomPhonenumber, 200, "0\\d{4}/\\d{7}");
+		assertEveryValueMatches(RandomWebObjectFactory::randomId, 200,
+			"[a-zA-Z0-9]{2}\\.[a-zA-Z0-9]{4}\\.[a-zA-Z0-9]{2}\\.\\d+\\.[a-zA-Z0-9]{2}");
+	}
+
+	/**
+	 * A password has the requested length and consists of letters and digits; without a length it
+	 * has 8 characters
+	 *
+	 * @param length
+	 *            the length
+	 */
+	@Property(seed = Seeds.SEED)
+	void passwordHasTheLength(@ForAll @IntRange(max = 64) int length)
+	{
+		String pattern = "[a-zA-Z0-9]{" + length + "}";
+		assertTrue(RandomWebObjectFactory.randomPassword(length).matches(pattern));
+		assertTrue(RandomWebObjectFactory.randomPassword(Optional.of(length)).matches(pattern));
+		assertTrue(
+			RandomWebObjectFactory.randomPassword(Optional.empty()).matches("[a-zA-Z0-9]{8}"));
+	}
+
+	/**
+	 * {@link RandomWebObjectFactory#randomName(char[])} is a permutation of the given chars: the
+	 * same chars, each as often
+	 *
+	 * @param chars
+	 *            the chars of the name
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomNameIsAPermutationOfTheChars(@ForAll @Size(min = 1, max = 30) List<Character> chars)
+	{
+		char[] donated = new char[chars.size()];
+		for (int i = 0; i < donated.length; i++)
+		{
+			donated[i] = chars.get(i);
+		}
+		String name = RandomWebObjectFactory.randomName(donated);
+		List<Character> expected = new ArrayList<>(chars);
+		List<Character> actual = new ArrayList<>();
+		name.chars().forEach(c -> actual.add((char)c));
+		Collections.sort(expected);
+		Collections.sort(actual);
+		assertEquals(expected, actual);
 	}
 }
