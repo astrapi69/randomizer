@@ -61,7 +61,7 @@ public final class RandomBigIntegerFactory
 	 */
 	public static BigInteger randomBigInteger(SecureRandom secureRandom)
 	{
-		return new BigInteger(RandomIntFactory.randomInt(180), secureRandom);
+		return new BigInteger(RandomIntFactory.randomInt(180, secureRandom), secureRandom);
 	}
 
 	/**

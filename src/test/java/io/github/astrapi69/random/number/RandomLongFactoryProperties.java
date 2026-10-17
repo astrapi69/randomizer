@@ -133,4 +133,20 @@ public class RandomLongFactoryProperties
 			draw(() -> RandomLongFactory.randomLong(range, algorithm, second)),
 			algorithm::toString);
 	}
+
+	/**
+	 * {@link RandomLongFactory#randomLong(SecureRandom)} draws from the given generator alone: the
+	 * same seed gives the same sequence
+	 *
+	 * @param seed
+	 *            the seed of the generator
+	 */
+	@Property(seed = Seeds.SEED)
+	void sameSeedGivesTheSameRandomLongs(@ForAll long seed)
+	{
+		SecureRandom first = Seeds.secureRandom(seed);
+		SecureRandom second = Seeds.secureRandom(seed);
+		assertEquals(draw(() -> RandomLongFactory.randomLong(first)),
+			draw(() -> RandomLongFactory.randomLong(second)));
+	}
 }

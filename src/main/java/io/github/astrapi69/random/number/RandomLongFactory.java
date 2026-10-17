@@ -158,7 +158,7 @@ public final class RandomLongFactory
 	 */
 	public static long randomLong(SecureRandom secureRandom)
 	{
-		return randomLong(Objects.requireNonNull(secureRandom).nextLong());
+		return Objects.requireNonNull(secureRandom).nextLong();
 	}
 
 	/**

@@ -24,9 +24,12 @@
  */
 package io.github.astrapi69.random.number;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.stream.Stream;
 
 import io.github.astrapi69.random.Seeds;
 import io.github.astrapi69.random.StubSecureRandom;
@@ -40,8 +43,8 @@ public class RandomBigIntegerFactoryProperties
 {
 
 	/**
-	 * A serial number is never negative, for every long the {@link java.security.SecureRandom}
-	 * draws, Long.MIN_VALUE included, which stays negative when multiplied by -1
+	 * A serial number is never negative, for every long the {@link SecureRandom} draws,
+	 * Long.MIN_VALUE included, which stays negative when multiplied by -1
 	 *
 	 * @param drawn
 	 *            the long the generator draws
@@ -53,5 +56,24 @@ public class RandomBigIntegerFactoryProperties
 			.randomSerialNumber(StubSecureRandom.nextLongReturning(drawn));
 		assertTrue(0 <= serialNumber.signum(),
 			() -> serialNumber + " is negative for the drawn long " + drawn);
+	}
+
+	/**
+	 * {@link RandomBigIntegerFactory#randomBigInteger(SecureRandom)} draws from the given generator
+	 * alone, its bit length included: the same seed gives the same sequence
+	 *
+	 * @param seed
+	 *            the seed of the generator
+	 */
+	@Property(seed = Seeds.SEED)
+	void sameSeedGivesTheSameBigIntegers(@ForAll long seed)
+	{
+		SecureRandom first = Seeds.secureRandom(seed);
+		SecureRandom second = Seeds.secureRandom(seed);
+		assertEquals(
+			Stream.generate(() -> RandomBigIntegerFactory.randomBigInteger(first)).limit(20)
+				.toList(),
+			Stream.generate(() -> RandomBigIntegerFactory.randomBigInteger(second)).limit(20)
+				.toList());
 	}
 }
