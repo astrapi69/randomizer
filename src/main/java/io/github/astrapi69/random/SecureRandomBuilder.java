@@ -171,7 +171,7 @@ public final class SecureRandomBuilder
 				throw new RuntimeException(e);
 			}
 		}
-		if (algorithm != null)
+		else if (algorithm != null)
 		{
 			try
 			{
