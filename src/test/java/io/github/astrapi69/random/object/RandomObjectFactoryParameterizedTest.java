@@ -29,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.params.provider.Arguments.argumentSet;
 
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
@@ -36,7 +37,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -45,6 +48,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.FieldSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import io.github.astrapi69.random.Draws;
 import io.github.astrapi69.test.object.A;
 import io.github.astrapi69.test.object.AlgorithmModel;
 import io.github.astrapi69.test.object.ClonableObject;
@@ -143,6 +147,31 @@ public class RandomObjectFactoryParameterizedTest
 			.newRandomValue(AllFieldTypes.class.getDeclaredField(fieldName));
 		assertTrue(expectedType.isInstance(value),
 			() -> value + " is not a " + expectedType.getSimpleName());
+	}
+
+	/**
+	 * {@link RandomObjectFactory#newRandomValue(java.lang.reflect.Field)} creates random values:
+	 * 200 values for one field are not all the same, which the default value of the type (0, false,
+	 * the empty string) would be. A correct generator draws one value 200 times with a probability
+	 * of at most 2^-199, for boolean
+	 */
+	@ParameterizedTest
+	@MethodSource("fieldTypes")
+	public void newRandomValueVaries(String fieldName, Class<?> expectedType)
+		throws NoSuchFieldException
+	{
+		Field field = AllFieldTypes.class.getDeclaredField(fieldName);
+		Set<Object> values = new HashSet<>(Draws.draw(() -> {
+			try
+			{
+				return RandomObjectFactory.newRandomValue(field);
+			}
+			catch (ReflectiveOperationException e)
+			{
+				throw new IllegalStateException(e);
+			}
+		}));
+		assertTrue(1 < values.size(), () -> "always " + values);
 	}
 
 	/**
