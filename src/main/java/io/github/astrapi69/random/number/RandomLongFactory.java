@@ -24,6 +24,7 @@
  */
 package io.github.astrapi69.random.number;
 
+import java.math.BigDecimal;
 import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.Random;
@@ -175,8 +176,19 @@ public final class RandomLongFactory
 	public static long randomLongBetween(final long start, final long end,
 		SecureRandom secureRandom)
 	{
-		return start + randomLong(end - start, RandomAlgorithm.SECURE_RANDOM,
-			Objects.requireNonNull(secureRandom));
+		Objects.requireNonNull(secureRandom);
+		final long width = end - start;
+		if (start < end && width < 0)
+		{
+			// the width exceeds Long.MAX_VALUE: scale it as a BigDecimal. The offset can exceed
+			// Long.MAX_VALUE too; its low 64 bits, which longValue() keeps, added to start give the
+			// value in the range
+			final BigDecimal wideWidth = BigDecimal.valueOf(end)
+				.subtract(BigDecimal.valueOf(start));
+			return start
+				+ wideWidth.multiply(BigDecimal.valueOf(secureRandom.nextDouble())).longValue();
+		}
+		return start + randomLong(width, RandomAlgorithm.SECURE_RANDOM, secureRandom);
 	}
 
 }

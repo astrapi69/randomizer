@@ -38,6 +38,7 @@ import io.github.astrapi69.random.StubSecureRandom;
 import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
+import net.jqwik.api.Assume;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.Provide;
@@ -146,5 +147,43 @@ public class RandomIntFactoryProperties
 			StubSecureRandom.nextIntReturning(drawn));
 		assertTrue(0 <= value && value < range,
 			() -> value + " is not in [0, " + range + ") for the drawn int " + drawn);
+	}
+
+	/**
+	 * {@link RandomIntFactory#randomIntBetween(int, int, SecureRandom)} lies in [start, end) for
+	 * every start below end, the ranges wider than Integer.MAX_VALUE included
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomIntBetweenLiesInTheRangeForEveryStartAndEnd(@ForAll int start, @ForAll int end,
+		@ForAll long seed)
+	{
+		Assume.that(start < end);
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		for (int value : draw(() -> RandomIntFactory.randomIntBetween(start, end, secureRandom)))
+		{
+			assertTrue(start <= value && value < end,
+				() -> value + " is not in [" + start + ", " + end + ")");
+		}
+	}
+
+	/**
+	 * {@link RandomIntFactory#randomIntBetween(int, int, boolean, boolean, SecureRandom)} keeps the
+	 * bounds it is asked for: start only with includeMin, end only with includeMax, for every start
+	 * and end at least 2 apart, the ranges wider than Integer.MAX_VALUE included
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomIntBetweenKeepsTheBoundsForEveryStartAndEnd(@ForAll int start, @ForAll int end,
+		@ForAll boolean includeMin, @ForAll boolean includeMax, @ForAll long seed)
+	{
+		Assume.that(2 <= (long)end - start);
+		long lowest = includeMin ? start : start + 1L;
+		long highest = includeMax ? end : end - 1L;
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		for (int value : draw(() -> RandomIntFactory.randomIntBetween(start, end, includeMin,
+			includeMax, secureRandom)))
+		{
+			assertTrue(lowest <= value && value <= highest, () -> value + " is not in [" + lowest
+				+ ", " + highest + "] for start " + start + " and end " + end);
+		}
 	}
 }

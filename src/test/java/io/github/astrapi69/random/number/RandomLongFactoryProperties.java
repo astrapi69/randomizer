@@ -37,6 +37,7 @@ import io.github.astrapi69.random.Seeds;
 import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 import net.jqwik.api.Arbitraries;
 import net.jqwik.api.Arbitrary;
+import net.jqwik.api.Assume;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.Provide;
@@ -148,5 +149,22 @@ public class RandomLongFactoryProperties
 		SecureRandom second = Seeds.secureRandom(seed);
 		assertEquals(draw(() -> RandomLongFactory.randomLong(first)),
 			draw(() -> RandomLongFactory.randomLong(second)));
+	}
+
+	/**
+	 * {@link RandomLongFactory#randomLongBetween(long, long, SecureRandom)} lies in [start, end)
+	 * for every start below end, the ranges wider than Long.MAX_VALUE included
+	 */
+	@Property(seed = Seeds.SEED)
+	void randomLongBetweenLiesInTheRangeForEveryStartAndEnd(@ForAll long start, @ForAll long end,
+		@ForAll long seed)
+	{
+		Assume.that(start < end);
+		SecureRandom secureRandom = Seeds.secureRandom(seed);
+		for (long value : draw(() -> RandomLongFactory.randomLongBetween(start, end, secureRandom)))
+		{
+			assertTrue(start <= value && value < end,
+				() -> value + " is not in [" + start + ", " + end + ")");
+		}
 	}
 }
