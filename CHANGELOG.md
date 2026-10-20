@@ -1,7 +1,7 @@
 ## Change log
 ----------------------
 
-Version 10.6-SNAPSHOT
+Version 10.6
 -------------
 
 CHANGED:
