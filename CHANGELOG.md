@@ -9,6 +9,7 @@ CHANGED:
 - signing follows the key, not the version: a snapshot is signed when a key is there, so the snapshot publish on every push rehearses the release signature, and a release without a key is refused before the upload
 - new optional repository secret GPG_KEY_ID, the last 8 hex digits of a signing subkey: with it the build signs with that subkey, whose primary key can stay offline; gradle.yml and publish.yml pass it
 - a release waits in the Central Portal until the maintainer publishes it there (publishingType USER_MANAGED instead of AUTOMATIC), as in the rest of the family
+- update of dependency jobj-copy to new version 4.3 (#12): 4.2 declared the release candidate jackson-databind 2.16.0-rc1, which reached every consumer of randomizer; 4.3 declares 2.22.4
 
 Version 10.5
 -------------
