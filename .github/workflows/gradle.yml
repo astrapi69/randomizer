@@ -61,13 +61,16 @@ jobs:
       - uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
-      - name: Publish to Maven Central
-        if: github.event_name == 'push'
+      # Snapshots only, from develop (#15). A release goes up from its RELEASE-* tag through
+      # publish.yml; uploading it here as well would add a deployment when the release commit
+      # reaches develop, and another when master follows the tag.
+      - name: Publish the snapshot to Maven Central
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         run: |
           if grep -q -- '-SNAPSHOT' gradle.properties; then
             ./gradlew publishAggregationToCentralSnapshots
           else
-            ./gradlew publishAggregationToCentralPortal
+            echo "a release version: it goes up from its RELEASE-* tag through publish.yml"
           fi
         env:
           CENTRAL_PORTAL_TOKEN_USERNAME: ${{ secrets.CENTRAL_PORTAL_TOKEN_USERNAME }}
