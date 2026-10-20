@@ -4,6 +4,12 @@
 Version 10.6-SNAPSHOT
 -------------
 
+CHANGED:
+
+- signing follows the key, not the version: a snapshot is signed when a key is there, so the snapshot publish on every push rehearses the release signature, and a release without a key is refused before the upload
+- new optional repository secret GPG_KEY_ID, the last 8 hex digits of a signing subkey: with it the build signs with that subkey, whose primary key can stay offline; gradle.yml and publish.yml pass it
+- a release waits in the Central Portal until the maintainer publishes it there (publishingType USER_MANAGED instead of AUTOMATIC), as in the rest of the family
+
 Version 10.5
 -------------
 
