@@ -1,6 +1,78 @@
 ## Change log
 ----------------------
 
+Version 10.6
+-------------
+
+CHANGED:
+
+- signing follows the key, not the version: a snapshot is signed when a key is there, so the snapshot publish on every push rehearses the release signature, and a release without a key is refused before the upload
+- new optional repository secret GPG_KEY_ID, the last 8 hex digits of a signing subkey: with it the build signs with that subkey, whose primary key can stay offline; gradle.yml and publish.yml pass it
+- a release waits in the Central Portal until the maintainer publishes it there (publishingType USER_MANAGED instead of AUTOMATIC), as in the rest of the family
+- update of dependency jobj-copy to new version 4.3 (#12): 4.2 declared the release candidate jackson-databind 2.16.0-rc1, which reached every consumer of randomizer; 4.3 declares 2.22.4
+- gradle.yml publishes snapshots, from develop only; a release goes up from its RELEASE-* tag through publish.yml alone, so neither the release commit reaching develop nor master following the tag uploads it again (#15)
+
+Version 10.5
+-------------
+
+ADDED:
+
+- new property-based tests with jqwik (new test dependency net.jqwik:jqwik in version 1.10.2) for the generators of numbers, characters, strings, dates, web objects and objects, with fixed seeds
+- new mutation testing with PIT 1.30.0 in the CI build: the build fails below a mutation score of 70 %, measured 94.0 %; docs/MUTATION_TESTING.md lists the mutants left and why
+- new pre-commit hook in .githooks that refuses a commit whose files Spotless would format
+
+CHANGED:
+
+- security: SecureRandomBuilder seeds the generator only when a seed is given, otherwise the SecureRandom seeds itself from the operating system. Until this version every generator built without a seed was seeded with the current time in milliseconds, so its output could be replayed by anyone who knew roughly when it was built: DefaultSecureRandom behind randomToken(), newSalt() and every overload without a SecureRandom, SecureRandomFactory.newSecureRandom() without a seed argument and SecureRandomBuilder without seed(...). Code that needs a reproducible sequence passes a seed explicitly
+- fix: overloads without a SecureRandom no longer create a new clock-seeded generator per call, so they no longer repeat values within a millisecond
+- fix: RandomCharFactory.randomChar draws the digits 0 to 9, not the control characters U+0000 to U+0009
+- fix: SecureRandomBuilder seeds the generator with the seed 0 too, and takes the generator from the given provider instead of the preferred one
+- fix: the algorithms MATH_ABS and RANDOM draw over the whole range from the given SecureRandom, and MIN_VALUE no longer turns MATH_ABS and randomSerialNumber negative
+- fix: randomLong(SecureRandom) and randomBigInteger(SecureRandom) draw from the given SecureRandom alone
+- fix: randomIntBetween and randomLongBetween no longer overflow on ranges wider than MAX_VALUE
+- fix: getRandomNumberString puts the beforeComma digits before the comma; randomFloat(int, int), randomBigDecimal(int, int) and newRandomFloat follow
+- fix: getInfomailFromWebsite drops all of "www." when the url starts with it
+- fix: randomDateBetween(Date, int, int) lies startDays to endDays - 1 days after the date, and randomDateBetween(Date, Date, SecureRandom) keeps [start, end) before 1970 too
+- fix: randomBirthday() lies between 9 and 55 years ago, as documented
+- fix: the bundled street list no longer holds an empty street
+
+Version 10.4
+-------------
+
+CHANGED:
+
+- new GitHub Actions workflow publish.yml that publishes to Maven Central when a RELEASE-* tag is pushed
+- removed gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle', release tags are created with the tagRelease task of gradle/tagging.gradle
+
+Version 10.3
+-------------
+
+ADDED:
+
+- new libs.versions.toml file for new automatic catalog versions update
+- new test dependency org.junit.jupiter:junit-jupiter in version 6.1.3
+
+CHANGED:
+
+- update gradle to new version 9.7.0
+- update of io.github.ben-manes.versions.gradle.plugin to new version 0.61.0, plugin id changed from com.github.ben-manes.versions to io.github.ben-manes.versions
+- update of gradle-plugin dependency 'org.ajoberstar.grgit:grgit-gradle' to new version 5.3.3
+- update of gradle-plugin dependency 'com.diffplug.spotless:spotless-plugin-gradle' to new version 8.10.0
+- update of gradle-plugin dependency 'nl.littlerobots.version-catalog-update' to new version 1.1.1
+- update of commons-lang3 dependency to new version 3.20.0
+- update of dependency jobj-core to new version 9.1
+- update of dependency silly-collection to new version 28.1
+- update of test dependency silly-strings to new version 9.2
+- update of test dependency equalsverifier to new version 4.5
+- update of test dependency test-object to new version 9
+- update of module-info.java module names for silly-collection and jobj-core to their new io.github.astrapisixtynine namespace
+- update of GitHub Actions actions/checkout to v7, actions/setup-java to v5, gradle/actions/setup-gradle to v6, codecov/codecov-action to v7
+- remove of test dependency testng
+
+REMOVED:
+
+- removed unmaintained gradle-plugin dependency 'com.github.hierynomus:license-gradle-plugin', license header is now applied with the licenseHeaderFile step of the spotless-plugin-gradle plugin
+
 Version 10.2
 -------------
 

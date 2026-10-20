@@ -24,16 +24,19 @@
  */
 package io.github.astrapi69.random.object;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.nio.CharBuffer;
 import java.util.Optional;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.meanbean.test.BeanTester;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import io.github.astrapi69.random.RandomCharacters;
 import io.github.astrapi69.test.base.BaseTestCase;
@@ -53,7 +56,7 @@ public class RandomWebObjectFactoryTest extends BaseTestCase
 	 * {@inheritDoc}
 	 */
 	@Override
-	@BeforeMethod
+	@BeforeEach
 	public void setUp() throws Exception
 	{
 	}
@@ -62,7 +65,7 @@ public class RandomWebObjectFactoryTest extends BaseTestCase
 	 * {@inheritDoc}
 	 */
 	@Override
-	@AfterMethod
+	@AfterEach
 	public void tearDown() throws Exception
 	{
 	}
@@ -109,10 +112,13 @@ public class RandomWebObjectFactoryTest extends BaseTestCase
 	/**
 	 * Test method for {@link RandomWebObjectFactory#getInfomailFromWebsite(java.lang.String)} .
 	 */
-	@Test(expectedExceptions = IllegalArgumentException.class)
+	@Test
 	public void testGetInfomailFromWebsiteExEx()
 	{
-		RandomWebObjectFactory.getInfomailFromWebsite("htp://ww.g.rw");
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			// ...
+			RandomWebObjectFactory.getInfomailFromWebsite("htp://ww.g.rw");
+		});
 	}
 
 	/**
@@ -315,4 +321,20 @@ public class RandomWebObjectFactoryTest extends BaseTestCase
 		beanTester.testBean(RandomWebObjectFactory.class);
 	}
 
+	/**
+	 * Test method for {@link RandomWebObjectFactory#randomFaxnumber(String)}: the phone number with
+	 * its last two digits counted up by one
+	 *
+	 * @param phonenumber
+	 *            the phone number
+	 * @param faxnumber
+	 *            the expected fax number
+	 */
+	@ParameterizedTest(name = "{0} -> {1}")
+	@CsvSource({ "0123/4567812, 0123/4567813", "0123/4567809, 0123/4567810",
+			"0049/1234542, 0049/1234543" })
+	public void testRandomFaxnumberCountsTheLastTwoDigitsUp(String phonenumber, String faxnumber)
+	{
+		assertEquals(faxnumber, RandomWebObjectFactory.randomFaxnumber(phonenumber));
+	}
 }

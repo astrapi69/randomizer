@@ -21,8 +21,8 @@
 module randomizer.main
 {
 	requires java.desktop;
-	requires silly.collection;
-	requires jobj.core.main;
+	requires io.github.astrapisixtynine.silly.collection;
+	requires io.github.astrapisixtynine.jobj.core;
 	requires jobj.reflect.main;
 	requires jobj.copy.main;
 	requires silly.math;

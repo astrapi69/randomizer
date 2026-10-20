@@ -24,16 +24,16 @@
  */
 package io.github.astrapi69.random.object;
 
-import static org.testng.AssertJUnit.assertEquals;
-import static org.testng.AssertJUnit.assertNotNull;
-import static org.testng.AssertJUnit.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.CharBuffer;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
 import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
 
 import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.RandomCharacters;
@@ -44,7 +44,7 @@ public class RandomStringFactoryTest
 	/**
 	 * Test method for {@link RandomStringFactory#randomHexString(int)}
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testRandomHexString()
 	{
 		String randomHexString = RandomStringFactory.randomHexString(16);

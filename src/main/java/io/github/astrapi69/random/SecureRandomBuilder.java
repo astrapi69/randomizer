@@ -24,6 +24,8 @@
  */
 package io.github.astrapi69.random;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.security.SecureRandom;
@@ -34,6 +36,11 @@ import java.util.Objects;
  * The class {@link SecureRandomBuilder} builds a {@link SecureRandom} from the given algorithm and
  * provider. If nothing is set the default {@link SecureRandom} object with the default algorithm
  * will be build.
+ * <p>
+ * Without a {@link #seed(long) seed} the generator seeds itself from the entropy source of the
+ * operating system, the first time it is asked for a value. With a seed it draws the same sequence
+ * every time: use one to reproduce test data, never for tokens, salts, keys or anything else that
+ * has to stay unpredictable.
  */
 public final class SecureRandomBuilder
 {
@@ -44,8 +51,12 @@ public final class SecureRandomBuilder
 	private String algorithm;
 	/** The provider. */
 	private String provider;
-	/** The seed. Default seed is the current time milliseconds */
-	private long seed = System.currentTimeMillis();
+	/**
+	 * The seed, or null when the generator seeds itself. Until 2026-10-17 the default was the
+	 * current time in milliseconds, which made every generator built without a seed reproducible
+	 * for anyone who knew roughly when it was built.
+	 */
+	private Long seed;
 
 	/**
 	 * Instantiates a new {@link SecureRandomBuilder}
@@ -151,7 +162,8 @@ public final class SecureRandomBuilder
 
 	/**
 	 * Builds a {@link SecureRandom} from the given algorithm and provider. If nothing is set the
-	 * default {@link SecureRandom} object with the default algorithm will be build.
+	 * default {@link SecureRandom} object with the default algorithm will be build. The generator
+	 * is seeded only when a seed was given; otherwise it seeds itself.
 	 *
 	 * @return the new {@link SecureRandom} object
 	 */
@@ -169,7 +181,7 @@ public final class SecureRandomBuilder
 				throw new RuntimeException(e);
 			}
 		}
-		if (algorithm != null)
+		else if (algorithm != null)
 		{
 			try
 			{
@@ -189,7 +201,15 @@ public final class SecureRandomBuilder
 			{
 				throw new RuntimeException(e);
 			}
-		secureRandom.setSeed(seed);
+		if (seed != null)
+		{
+			// SecureRandom.setSeed(long) ignores the seed 0. The byte form takes every seed; its
+			// bytes are the little-endian order setSeed(long) uses, so every other seed gives the
+			// same sequence as through setSeed(long). A seed set before the first value replaces
+			// the self-seeding of SHA1PRNG: the sequence is then fully determined by the seed
+			secureRandom.setSeed(ByteBuffer.allocate(Long.BYTES).order(ByteOrder.LITTLE_ENDIAN)
+				.putLong(seed).array());
+		}
 		return secureRandom;
 	}
 
@@ -208,7 +228,8 @@ public final class SecureRandomBuilder
 	}
 
 	/**
-	 * Sets the seed.
+	 * Sets the seed. The generator then draws the same sequence on every build, which is what
+	 * reproducible test data needs and what tokens, salts and keys must never have.
 	 *
 	 * @param seed
 	 *            the seed

@@ -24,13 +24,13 @@
  */
 package io.github.astrapi69.random.number;
 
-import static org.testng.AssertJUnit.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
+import org.junit.jupiter.api.Test;
 import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
 
 import io.github.astrapi69.random.DefaultSecureRandom;
 
@@ -67,7 +67,7 @@ public class RandomBigIntegerFactoryTest
 	/**
 	 * Test method for {@link RandomBigIntegerFactory#randomSerialNumber(SecureRandom)}
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testRandomSerialNumberSecureRandom()
 	{
 		for (int i = 0; i < 10; i++)
@@ -81,7 +81,7 @@ public class RandomBigIntegerFactoryTest
 	/**
 	 * Test method for {@link RandomBigIntegerFactory#randomSerialNumber()}
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testRandomSerialNumber()
 	{
 		for (int i = 0; i < 10; i++)

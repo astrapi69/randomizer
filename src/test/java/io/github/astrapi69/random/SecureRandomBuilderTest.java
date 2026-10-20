@@ -24,13 +24,19 @@
  */
 package io.github.astrapi69.random;
 
-import static org.testng.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.security.Provider;
 import java.security.SecureRandom;
+import java.security.SecureRandomSpi;
+import java.security.Security;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
+import java.util.Arrays;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * The unit test class for the class {@link SecureRandomBuilder}.
@@ -99,6 +105,104 @@ public class SecureRandomBuilderTest
 		assertNotNull(instance);
 		SecureRandom secureRandom = instance.build();
 		assertNotNull(secureRandom);
+	}
+
+	/**
+	 * Test method for {@link SecureRandomBuilder#build()}: with an algorithm and a provider the
+	 * generator comes from that provider, also when another provider offers the algorithm and is
+	 * preferred
+	 */
+	@Test
+	public void testBuildTakesTheGeneratorFromTheGivenProvider()
+	{
+		Provider testProvider = new TestProvider();
+		Security.addProvider(testProvider);
+		try
+		{
+			SecureRandom secureRandom = SecureRandomBuilder
+				.getInstance(SecureRandomBuilder.DEFAULT_ALGORITHM, TestProvider.NAME).build();
+			assertEquals(TestProvider.NAME, secureRandom.getProvider().getName());
+		}
+		finally
+		{
+			Security.removeProvider(TestProvider.NAME);
+		}
+	}
+
+	/**
+	 * Test method for {@link SecureRandomBuilder#build()}: without a seed the generator seeds
+	 * itself from the operating system. Until 2026-10-17 the builder seeded SHA1PRNG with
+	 * {@link System#currentTimeMillis()}, so whoever knew the millisecond a generator was built
+	 * could replay every value it gave, the generator of {@link DefaultSecureRandom} behind
+	 * randomToken() and newSalt() included. No clock seed from a second before to a second after
+	 * the build may reproduce the first value
+	 */
+	@Test
+	public void testBuildWithoutSeedIsNotReproducibleFromTheClock()
+	{
+		long before = System.currentTimeMillis();
+		long first = SecureRandomBuilder.getInstance().build().nextLong();
+		long after = System.currentTimeMillis();
+		for (long millis = before - 1000; millis <= after + 1000; millis++)
+		{
+			long clockSeeded = SecureRandomBuilder.getInstance().seed(millis).build().nextLong();
+			assertNotEquals(clockSeeded, first, "replayed with the clock seed " + millis);
+		}
+	}
+
+	/**
+	 * Test method for {@link SecureRandomFactory#newSecureRandom()}: two generators built one after
+	 * the other, in the same millisecond more often than not, draw different values
+	 */
+	@Test
+	public void testTwoGeneratorsWithoutSeedDrawDifferentValues()
+	{
+		SecureRandom first = SecureRandomFactory.newSecureRandom();
+		SecureRandom second = SecureRandomFactory.newSecureRandom();
+		assertNotEquals(first.nextLong(), second.nextLong());
+	}
+
+	/**
+	 * A provider that offers SHA1PRNG, the algorithm the default provider SUN offers too.
+	 * {@link Security#addProvider(Provider)} appends it, so SUN stays the preferred one.
+	 */
+	static final class TestProvider extends Provider
+	{
+		static final String NAME = "RandomizerTestProvider";
+
+		private static final long serialVersionUID = 1L;
+
+		TestProvider()
+		{
+			super(NAME, "1.0", "SHA1PRNG for the tests of SecureRandomBuilder");
+			put("SecureRandom." + SecureRandomBuilder.DEFAULT_ALGORITHM,
+				ConstantSecureRandomSpi.class.getName());
+		}
+	}
+
+	/**
+	 * The generator of {@link TestProvider}: every byte is 7
+	 */
+	public static final class ConstantSecureRandomSpi extends SecureRandomSpi
+	{
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		protected void engineSetSeed(byte[] seed)
+		{
+		}
+
+		@Override
+		protected void engineNextBytes(byte[] bytes)
+		{
+			Arrays.fill(bytes, (byte)7);
+		}
+
+		@Override
+		protected byte[] engineGenerateSeed(int numBytes)
+		{
+			return new byte[numBytes];
+		}
 	}
 
 }

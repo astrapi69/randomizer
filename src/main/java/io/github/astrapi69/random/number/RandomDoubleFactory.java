@@ -82,11 +82,11 @@ public final class RandomDoubleFactory
 		switch (algorithm)
 		{
 			case MATH_ABS :
-				return Math.abs(secureRandom.nextDouble()) % range;
+				return Math.abs(secureRandom.nextDouble() * range);
 			case MATH_RANDOM :
 				return Math.random() * range;
 			case RANDOM :
-				double random = new Random(System.currentTimeMillis()).nextDouble() % range;
+				double random = new Random(secureRandom.nextLong()).nextDouble() * range;
 				return MathExtensions.isPositive(random) ? random : random * -1;
 			case SECURE_RANDOM :
 			default :

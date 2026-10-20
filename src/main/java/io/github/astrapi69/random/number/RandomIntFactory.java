@@ -81,11 +81,11 @@ public final class RandomIntFactory
 		switch (algorithm)
 		{
 			case MATH_ABS :
-				return Math.abs(secureRandom.nextInt()) % range;
+				return Math.abs(secureRandom.nextInt() % range);
 			case MATH_RANDOM :
 				return (int)(Math.random() * range);
 			case RANDOM :
-				int random = new Random(System.currentTimeMillis()).nextInt() % range;
+				int random = new Random(secureRandom.nextLong()).nextInt() % range;
 				return MathExtensions.isPositive(random) ? random : random * -1;
 			case SECURE_RANDOM :
 			default :
@@ -158,8 +158,25 @@ public final class RandomIntFactory
 	 */
 	public static int randomIntBetween(int minVolume, int maxVolume, SecureRandom secureRandom)
 	{
-		return minVolume + randomInt(maxVolume - minVolume, RandomAlgorithm.SECURE_RANDOM,
-			Objects.requireNonNull(secureRandom));
+		// in long arithmetic: the width of a range from a negative to a positive int can exceed
+		// Integer.MAX_VALUE
+		return (int)(minVolume
+			+ randomLongBelow((long)maxVolume - minVolume, Objects.requireNonNull(secureRandom)));
+	}
+
+	/**
+	 * Draws a long in [0, bound) the way {@link RandomAlgorithm#SECURE_RANDOM} draws an int, so a
+	 * bound that fits in an int gives the same value as {@link #randomInt(int, SecureRandom)}
+	 *
+	 * @param bound
+	 *            the exclusive upper bound
+	 * @param secureRandom
+	 *            the secure random for the generation
+	 * @return the long in [0, bound)
+	 */
+	private static long randomLongBelow(final long bound, SecureRandom secureRandom)
+	{
+		return (long)(secureRandom.nextDouble() * bound);
 	}
 
 	/**
@@ -180,21 +197,24 @@ public final class RandomIntFactory
 	public static int randomIntBetween(final int start, final int end, final boolean includeMin,
 		final boolean includeMax, SecureRandom secureRandom)
 	{
-		int randomIntBetween = start + RandomIntFactory.randomInt(end - (start - 1), secureRandom);
+		// in long arithmetic: the width of a range from a negative to a positive int can exceed
+		// Integer.MAX_VALUE
+		final long from = start;
+		final long to = end;
+		long randomIntBetween = from + randomLongBelow(to - (from - 1), secureRandom);
 		if (includeMin && !includeMax)
 		{
-			randomIntBetween = start + RandomIntFactory.randomInt(end - start, secureRandom);
+			randomIntBetween = from + randomLongBelow(to - from, secureRandom);
 		}
-		if (!includeMin && includeMax && randomIntBetween == start)
+		if (!includeMin && includeMax && randomIntBetween == from)
 		{
 			randomIntBetween++;
 		}
 		if (!includeMin && !includeMax)
 		{
-			randomIntBetween = (start + 1)
-				+ RandomIntFactory.randomInt(end - (start + 1), secureRandom);
+			randomIntBetween = (from + 1) + randomLongBelow(to - (from + 1), secureRandom);
 		}
-		return randomIntBetween;
+		return (int)randomIntBetween;
 	}
 
 	/**

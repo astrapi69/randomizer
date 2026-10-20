@@ -24,16 +24,16 @@
  */
 package io.github.astrapi69.random;
 
-import static org.testng.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
 
+import org.junit.jupiter.api.Test;
 import org.meanbean.test.BeanTestException;
 import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
 
 /**
  * The unit test class for the class {@link SecureRandomFactory}
@@ -89,8 +89,7 @@ public class SecureRandomFactoryTest
 	/**
 	 * Test method for {@link SecureRandomFactory} with {@link BeanTester}
 	 */
-	@Test(enabled = false, expectedExceptions = { BeanTestException.class,
-			InvocationTargetException.class, UnsupportedOperationException.class })
+	@Test
 	public void testWithBeanTester()
 	{
 		final BeanTester beanTester = new BeanTester();

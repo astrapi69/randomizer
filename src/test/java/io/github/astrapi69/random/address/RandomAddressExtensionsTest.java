@@ -22,19 +22,17 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-/**
- *
- */
 package io.github.astrapi69.random.address;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.util.Properties;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.meanbean.test.BeanTester;
-import org.testng.AssertJUnit;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import io.github.astrapi69.random.util.PropertiesLoader;
 import io.github.astrapi69.string.StringExtensions;
@@ -53,7 +51,7 @@ public class RandomAddressExtensionsTest extends BaseTestCase
 	 * {@inheritDoc}
 	 */
 	@Override
-	@BeforeMethod
+	@BeforeEach
 	protected void setUp() throws Exception
 	{
 		super.setUp();
@@ -63,7 +61,7 @@ public class RandomAddressExtensionsTest extends BaseTestCase
 	 * {@inheritDoc}
 	 */
 	@Override
-	@AfterMethod
+	@AfterEach
 	protected void tearDown() throws Exception
 	{
 		super.tearDown();
@@ -82,10 +80,10 @@ public class RandomAddressExtensionsTest extends BaseTestCase
 			.loadProperties(RandomAddressExtensions.PROP_FILE_STREETS);
 		final String germanStreet = RandomAddressExtensions.getRandomStreet(germanstreets);
 		actual = germanStreet != null;
-		AssertJUnit.assertTrue("", actual);
+		assertTrue(actual);
 
 		actual = germanstreets.contains(germanStreet);
-		AssertJUnit.assertTrue("", actual);
+		assertTrue(actual);
 	}
 
 	/**
@@ -103,11 +101,11 @@ public class RandomAddressExtensionsTest extends BaseTestCase
 		final String germanStreetWithNumber = RandomAddressExtensions
 			.getRandomStreetWithNumber(germanstreets);
 		actual = germanStreetWithNumber != null;
-		AssertJUnit.assertTrue("", actual);
+		assertTrue(actual);
 		final String lastChar = germanStreetWithNumber
 			.substring(germanStreetWithNumber.length() - 1, germanStreetWithNumber.length());
 		actual = StringExtensions.isNumber(lastChar);
-		AssertJUnit.assertTrue("", actual);
+		assertTrue(actual);
 	}
 
 	/**
@@ -124,10 +122,10 @@ public class RandomAddressExtensionsTest extends BaseTestCase
 
 		final String randomZip = RandomAddressExtensions.getRandomZip(germanzips);
 		actual = randomZip != null;
-		AssertJUnit.assertTrue("", actual);
+		assertTrue(actual);
 
 		actual = StringExtensions.isNumber(randomZip);
-		AssertJUnit.assertTrue("", actual);
+		assertTrue(actual);
 	}
 
 	/**

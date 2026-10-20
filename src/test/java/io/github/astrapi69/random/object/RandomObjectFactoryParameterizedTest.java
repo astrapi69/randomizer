@@ -24,11 +24,31 @@
  */
 package io.github.astrapi69.random.object;
 
-import static org.testng.AssertJUnit.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.params.provider.Arguments.argumentSet;
 
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import java.lang.reflect.Field;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.FieldSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import io.github.astrapi69.random.Draws;
 import io.github.astrapi69.test.object.A;
 import io.github.astrapi69.test.object.AlgorithmModel;
 import io.github.astrapi69.test.object.ClonableObject;
@@ -50,6 +70,7 @@ import io.github.astrapi69.test.object.annotation.classtype.SubAnnotatedClass;
 import io.github.astrapi69.test.object.auth.AccessRight;
 import io.github.astrapi69.test.object.auth.Role;
 import io.github.astrapi69.test.object.auth.Roles;
+import io.github.astrapi69.test.object.enumeration.Gender;
 
 /**
  * The unit test class for the class {@link RandomObjectFactory}
@@ -62,22 +83,106 @@ public class RandomObjectFactoryParameterizedTest
 
 	public static final String TEST_OBJECTS = "testObjects";
 
-	@DataProvider(name = TEST_OBJECTS)
-	public static Object[][] testObjects()
-	{
-		return new Object[][] { { Person.class }, { AnnotatedClass.class },
-				{ AnnotatedTestClass.class }, { ClassExtendsAnnotatedInterface.class },
-				{ SubAnnotatedClass.class }, { AccessRight.class }, { Roles.class }, { Role.class },
-				{ AlgorithmModel.class }, { A.class }, { ClonableObject.class }, { Company.class },
-				{ Customer.class }, { EmployeeList.class }, { Employee.class }, { Light.class },
-				{ Member.class }, { NotSerializable.class }, { Permission.class }, { Person.class },
-				{ PremiumMember.class }, { Television.class }, };
-	}
+	static List<Class> testClasses = Arrays.asList(Person.class, AnnotatedClass.class,
+		AnnotatedTestClass.class, ClassExtendsAnnotatedInterface.class, SubAnnotatedClass.class,
+		AccessRight.class, Roles.class, Role.class, AlgorithmModel.class, A.class,
+		ClonableObject.class, Company.class, Customer.class, EmployeeList.class, Employee.class,
+		Light.class, Member.class, NotSerializable.class, Permission.class, Person.class,
+		PremiumMember.class, Television.class);
 
-	@Test(dataProvider = TEST_OBJECTS)
+	@ParameterizedTest
+	@FieldSource("testClasses")
 	public void test(Class<?> val)
 		throws NoSuchFieldException, IllegalAccessException, InstantiationException
 	{
 		assertNotNull(RandomObjectFactory.newRandomObject(val));
+	}
+
+	/**
+	 * One row per field of {@link AllFieldTypes}: the field and the type of the value
+	 * {@link RandomObjectFactory#newRandomValue(java.lang.reflect.Field)} creates for it, the
+	 * wrapper for a primitive
+	 *
+	 * @return the rows
+	 */
+	static Stream<Arguments> fieldTypes()
+	{
+		return Stream.of(argumentSet("byte", "primitiveByte", Byte.class),
+			argumentSet("Byte", "byteObject", Byte.class),
+			argumentSet("char", "primitiveChar", Character.class),
+			argumentSet("Character", "characterObject", Character.class),
+			argumentSet("short", "primitiveShort", Short.class),
+			argumentSet("Short", "shortObject", Short.class),
+			argumentSet("boolean", "primitiveBoolean", Boolean.class),
+			argumentSet("Boolean", "booleanObject", Boolean.class),
+			argumentSet("int", "primitiveInt", Integer.class),
+			argumentSet("Integer", "integerObject", Integer.class),
+			argumentSet("long", "primitiveLong", Long.class),
+			argumentSet("Long", "longObject", Long.class),
+			argumentSet("double", "primitiveDouble", Double.class),
+			argumentSet("Double", "doubleObject", Double.class),
+			argumentSet("float", "primitiveFloat", Float.class),
+			argumentSet("Float", "floatObject", Float.class),
+			argumentSet("String", "string", String.class),
+			argumentSet("BigInteger", "bigInteger", BigInteger.class),
+			argumentSet("BigDecimal", "bigDecimal", BigDecimal.class),
+			argumentSet("Date", "date", Date.class),
+			argumentSet("LocalDateTime", "localDateTime", LocalDateTime.class),
+			argumentSet("LocalDate", "localDate", LocalDate.class),
+			argumentSet("LocalTime", "localTime", LocalTime.class),
+			argumentSet("enum", "gender", Gender.class),
+			argumentSet("any other class", "person", Person.class));
+	}
+
+	/**
+	 * {@link RandomObjectFactory#newRandomValue(java.lang.reflect.Field)} creates a value of the
+	 * type of the field
+	 */
+	@ParameterizedTest
+	@MethodSource("fieldTypes")
+	public void newRandomValueHasTheTypeOfTheField(String fieldName, Class<?> expectedType)
+		throws NoSuchFieldException, IllegalAccessException, InstantiationException
+	{
+		Object value = RandomObjectFactory
+			.newRandomValue(AllFieldTypes.class.getDeclaredField(fieldName));
+		assertTrue(expectedType.isInstance(value),
+			() -> value + " is not a " + expectedType.getSimpleName());
+	}
+
+	/**
+	 * {@link RandomObjectFactory#newRandomValue(java.lang.reflect.Field)} creates random values:
+	 * 200 values for one field are not all the same, which the default value of the type (0, false,
+	 * the empty string) would be. A correct generator draws one value 200 times with a probability
+	 * of at most 2^-199, for boolean
+	 */
+	@ParameterizedTest
+	@MethodSource("fieldTypes")
+	public void newRandomValueVaries(String fieldName, Class<?> expectedType)
+		throws NoSuchFieldException
+	{
+		Field field = AllFieldTypes.class.getDeclaredField(fieldName);
+		Set<Object> values = new HashSet<>(Draws.draw(() -> {
+			try
+			{
+				return RandomObjectFactory.newRandomValue(field);
+			}
+			catch (ReflectiveOperationException e)
+			{
+				throw new IllegalStateException(e);
+			}
+		}));
+		assertTrue(1 < values.size(), () -> "always " + values);
+	}
+
+	/**
+	 * {@link RandomObjectFactory#newRandomValue(java.lang.reflect.Field)} creates null for a field
+	 * of type {@link Void}, the only value it has
+	 */
+	@Test
+	public void newRandomValueOfVoidIsNull()
+		throws NoSuchFieldException, IllegalAccessException, InstantiationException
+	{
+		assertNull(
+			RandomObjectFactory.newRandomValue(AllFieldTypes.class.getDeclaredField("nothing")));
 	}
 }

@@ -24,13 +24,13 @@
  */
 package io.github.astrapi69.random.number;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.security.SecureRandom;
 import java.util.Map;
 
+import org.junit.jupiter.api.Test;
 import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
 
 import io.github.astrapi69.collection.map.MapFactory;
 import io.github.astrapi69.math.MathExtensions;
@@ -89,24 +89,24 @@ public class RandomIntFactoryTest
 		for (int i = 0; i < 10; i++)
 		{
 			random = RandomIntFactory.randomInt(5, algorithm, DefaultSecureRandom.get());
-			assertTrue("random result is " + random + " but should be between 0-4.",
-				MathExtensions.isBetween(-1, 5, random));
+			assertTrue(MathExtensions.isBetween(-1, 5, random),
+				"random result is " + random + " but should be between 0-4.");
 		}
 		// scenario with RandomAlgorithm.MATH_RANDOM
 		algorithm = RandomAlgorithm.MATH_RANDOM;
 		for (int i = 0; i < 10; i++)
 		{
 			random = RandomIntFactory.randomInt(5, algorithm, DefaultSecureRandom.get());
-			assertTrue("random result is " + random + " but should be between 0-4.",
-				MathExtensions.isBetween(-1, 5, random));
+			assertTrue(MathExtensions.isBetween(-1, 5, random),
+				"random result is " + random + " but should be between 0-4.");
 		}
 		// scenario with RandomAlgorithm.RANDOM
 		algorithm = RandomAlgorithm.RANDOM;
 		for (int i = 0; i < 10; i++)
 		{
 			random = RandomIntFactory.randomInt(5, algorithm, DefaultSecureRandom.get());
-			assertTrue("random result is " + random + " but should be between 0-4.",
-				MathExtensions.isBetween(-1, 5, random));
+			assertTrue(MathExtensions.isBetween(-1, 5, random),
+				"random result is " + random + " but should be between 0-4.");
 		}
 	}
 
@@ -120,8 +120,8 @@ public class RandomIntFactoryTest
 		for (int i = 0; i < 10; i++)
 		{
 			random = RandomIntFactory.randomInt(5, DefaultSecureRandom.get());
-			assertTrue("random result is " + random + " but should be between 0-4.",
-				MathExtensions.isBetween(-1, 5, random));
+			assertTrue(MathExtensions.isBetween(-1, 5, random),
+				"random result is " + random + " but should be between 0-4.");
 		}
 	}
 
@@ -138,7 +138,7 @@ public class RandomIntFactoryTest
 	/**
 	 * Test method for {@link RandomIntFactory#randomInt()}
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testRandomInt()
 	{
 		int random = RandomIntFactory.randomInt();
@@ -203,8 +203,8 @@ public class RandomIntFactoryTest
 		for (int i = 0; i < 10; i++)
 		{
 			final int randomInt = RandomIntFactory.randomInt(5);
-			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
-				MathExtensions.isBetween(-1, 5, randomInt));
+			assertTrue(MathExtensions.isBetween(-1, 5, randomInt),
+				"randomInt result is " + randomInt + " but should be between 0-4.");
 		}
 	}
 
@@ -220,26 +220,25 @@ public class RandomIntFactoryTest
 		for (int i = 0; i < 10; i++)
 		{
 			final int randomInt = RandomIntFactory.randomInt(5, algorithm);
-			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
-				MathExtensions.isBetween(-1, 5, randomInt));
+			assertTrue(MathExtensions.isBetween(-1, 5, randomInt),
+				"randomInt result is " + randomInt + " but should be between 0-4.");
 		}
 		// scenario with RandomAlgorithm.MATH_RANDOM
 		algorithm = RandomAlgorithm.MATH_RANDOM;
 		for (int i = 0; i < 10; i++)
 		{
 			final int randomInt = RandomIntFactory.randomInt(5, algorithm);
-			assertTrue("randomInt result is " + randomInt + " but should be between 0-4.",
-				MathExtensions.isBetween(-1, 5, randomInt));
+			assertTrue(MathExtensions.isBetween(-1, 5, randomInt),
+				"randomInt result is " + randomInt + " but should be between 0-4.");
 		}
 		// scenario with RandomAlgorithm.RANDOM
 		algorithm = RandomAlgorithm.RANDOM;
 		for (int i = 0; i < 10; i++)
 		{
 			final int randomInt = RandomIntFactory.randomInt(5, algorithm);
-			assertTrue(
+			assertTrue(MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, randomInt),
 				"randomInt result is " + randomInt
-					+ " but should be between Integer.MIN_VALUE-Integer.MAX_VALUE.",
-				MathExtensions.isBetween(Integer.MIN_VALUE, Integer.MAX_VALUE, randomInt));
+					+ " but should be between Integer.MIN_VALUE-Integer.MAX_VALUE.");
 		}
 	}
 

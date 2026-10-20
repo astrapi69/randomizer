@@ -54,7 +54,7 @@ public final class RandomNumberExtensions
 	{
 		final String decimals = getRandomNumericString(afterComma);
 		final String preDecimals = getRandomNumericString(beforeComma);
-		final String randomNumberString = decimals + "." + preDecimals;
+		final String randomNumberString = preDecimals + "." + decimals;
 		return randomNumberString;
 	}
 

@@ -24,12 +24,12 @@
  */
 package io.github.astrapi69.random.number;
 
-import static org.testng.AssertJUnit.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.security.SecureRandom;
 
+import org.junit.jupiter.api.Test;
 import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
 
 import io.github.astrapi69.math.MathExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
@@ -46,7 +46,7 @@ public class RandomShortFactoryTest
 	/**
 	 * Test method for {@link RandomShortFactory#randomShort()}
 	 */
-	@Test(enabled = true)
+	@Test
 	public void testRandomShort()
 	{
 		for (int i = 0; i < 10; i++)

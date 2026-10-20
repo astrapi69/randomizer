@@ -42,38 +42,24 @@ public final class RandomWebObjectFactory
 	}
 
 	/**
-	 * Gets an infomail address from the given url.
+	 * Gets an infomail address from the given url: info@ and the host that follows "www.", for
+	 * example info@example.com for http://www.example.com or www.example.com
 	 *
 	 * @param url
 	 *            The url.
 	 * @return Returns an infomail address from the given url.
+	 * @throws IllegalArgumentException
+	 *             if the url does not contain "www."
 	 */
 	public static String getInfomailFromWebsite(final String url)
 	{
-		int startIndex = url.indexOf("www.");
-		final StringBuilder email = new StringBuilder();
-		if (0 < startIndex)
+		final String www = "www.";
+		final int startIndex = url.indexOf(www);
+		if (startIndex < 0)
 		{
-			final String emailprefix = "info";
-			email.append(emailprefix);
-			email.append("@");
-			email.append(url.substring(startIndex + 4));
+			throw new IllegalArgumentException(url);
 		}
-		else
-		{
-			if (0 == startIndex)
-			{
-				final String emailprefix = "info";
-				email.append(emailprefix);
-				email.append("@");
-				email.append(url.substring(startIndex + 2));
-			}
-			else
-			{
-				throw new IllegalArgumentException(url);
-			}
-		}
-		return email.toString();
+		return "info@" + url.substring(startIndex + www.length());
 	}
 
 	/**

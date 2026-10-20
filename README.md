@@ -32,13 +32,13 @@ your project `build.gradle` if you want to import the core functionality of rand
 
 define version in file gradle.properties
 ```
-randomizerVersion=10.2
+randomizerVersion=10.5
 ```
 
 or in build.gradle ext area
 
 ```
-    randomizerVersion = "10.2"
+    randomizerVersion = "10.5"
 ```
 
 then add the dependency to the dependencies area
@@ -60,7 +60,7 @@ Than you can add the dependency to your dependencies:
     <properties>
             ...
         <!-- RANDOMIZER versions -->
-        <randomizer.version>10.2</randomizer.version>
+        <randomizer.version>10.5</randomizer.version>
             ...
     </properties>
 
@@ -162,6 +162,11 @@ To share your changes, [submit a pull request](https://github.com/astrapi69/rand
 
 Don't forget to add new units tests on your changes.
 
+The tests state properties of the generators where they can ([jqwik](https://jqwik.net), the
+`*Properties` classes), and [PIT](https://pitest.org) measures them: the build fails below a
+mutation score of 70 %; on 2026-10-17 it measured 94 % (345 of 367 mutants killed). How to run
+it, the numbers by class and the mutants left: [docs/MUTATION_TESTING.md](docs/MUTATION_TESTING.md).
+
 ## Contacting the Developer
 
 Do not hesitate to contact the randomizer developers with your questions, concerns, comments, bug reports, or feature requests.
@@ -200,3 +205,12 @@ Here is a list of awesome projects:
 |[![Javadoc](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-data.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-data) randomizer-data|
 |Special thanks to [javadoc.io](http://www.javadoc.io) for providing a free javadoc documentation for open source projects|
 |     <img width=1000/>     |
+
+## Git hooks
+
+The repository's git hooks live in `.githooks`: `commit-msg` where present, and `pre-commit`, which refuses a
+commit whose files Spotless would format. Activate them once per clone or worktree:
+
+```bash
+git config core.hooksPath .githooks
+```

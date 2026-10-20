@@ -38,7 +38,6 @@ import java.util.Objects;
 import io.github.astrapi69.date.CalculateDateExtensions;
 import io.github.astrapi69.date.CreateDateExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.SecureRandomFactory;
 import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 import io.github.astrapi69.random.number.RandomBooleanFactory;
 import io.github.astrapi69.random.number.RandomIntFactory;
@@ -63,10 +62,10 @@ public final class RandomDateFactory
 	{
 		final Date now = CreateDateExtensions.now();
 		// About 55 years.
-		final Date past = randomDateBefore(now, 20000);
+		final Date past = CalculateDateExtensions.substractDaysFromDate(now, 20000);
 		// About 9 years.
-		final Date recentlyPast = randomDateBefore(now, 3000);
-		return randomBirthday(recentlyPast, past);
+		final Date recentlyPast = CalculateDateExtensions.substractDaysFromDate(now, 3000);
+		return randomBirthday(past, recentlyPast);
 	}
 
 	/**
@@ -154,8 +153,7 @@ public final class RandomDateFactory
 	 */
 	public static Date randomDateBefore(final Date date, final int range)
 	{
-		return RandomDateFactory.randomDateBefore(date, range,
-			SecureRandomFactory.newSecureRandom());
+		return RandomDateFactory.randomDateBefore(date, range, DefaultSecureRandom.get());
 	}
 
 	/**
@@ -183,7 +181,7 @@ public final class RandomDateFactory
 	 */
 	public static Date randomDate()
 	{
-		return RandomDateFactory.randomDate(SecureRandomFactory.newSecureRandom());
+		return RandomDateFactory.randomDate(DefaultSecureRandom.get());
 	}
 
 	/**
@@ -195,7 +193,7 @@ public final class RandomDateFactory
 	 */
 	public static Date randomDate(final Date from)
 	{
-		return RandomDateFactory.randomDate(from, SecureRandomFactory.newSecureRandom());
+		return RandomDateFactory.randomDate(from, DefaultSecureRandom.get());
 	}
 
 	/**
@@ -249,8 +247,10 @@ public final class RandomDateFactory
 		SecureRandom secureRandom)
 	{
 		Objects.requireNonNull(secureRandom);
-		final long randomLong = (long)(start.getTime()
-			+ (secureRandom.nextDouble() * (end.getTime() - start.getTime())));
+		// the offset is cast, not the sum: a cast rounds towards 0, which for a negative sum
+		// (a date before 1970) would round up
+		final long randomLong = start.getTime()
+			+ (long)(secureRandom.nextDouble() * (end.getTime() - start.getTime()));
 		return new Date(randomLong);
 	}
 
@@ -290,8 +290,7 @@ public final class RandomDateFactory
 	 */
 	public static Date randomDatebetween(final Date start, final Date end)
 	{
-		return RandomDateFactory.randomDateBetween(start, end,
-			SecureRandomFactory.newSecureRandom());
+		return RandomDateFactory.randomDateBetween(start, end, DefaultSecureRandom.get());
 	}
 
 	/**
@@ -325,7 +324,7 @@ public final class RandomDateFactory
 		final String format)
 	{
 		return RandomDateFactory.randomDateBetween(startDate, endDate, format,
-			SecureRandomFactory.newSecureRandom());
+			DefaultSecureRandom.get());
 	}
 
 	/**
@@ -337,11 +336,12 @@ public final class RandomDateFactory
 	 *            The int that represents the days from where the range starts.
 	 * @param endDays
 	 *            The int that represents the days from where the range ends.
-	 * @return A random Date between the range from startDays and endDays from the given Date.
+	 * @return A random Date between the range from startDays and endDays from the given Date:
+	 *         startDays to endDays - 1 days after it
 	 */
 	public static Date randomDateBetween(final Date from, final int startDays, final int endDays)
 	{
-		return RandomDateFactory.randomDateAfter(from,
+		return CalculateDateExtensions.addDays(from,
 			RandomIntFactory.randomIntBetween(startDays, endDays));
 	}
 

@@ -24,10 +24,12 @@
  */
 package io.github.astrapi69.random;
 
-import static org.testng.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.Test;
 import org.meanbean.test.BeanTester;
-import org.testng.annotations.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 
@@ -70,4 +72,44 @@ public class SecureRandomBeanTest
 		beanTester.testBean(SecureRandomBean.class);
 	}
 
+	/**
+	 * Test method for {@link SecureRandomBean#toBuilder()}: the builder of a bean builds an equal
+	 * bean, and a builder takes every field
+	 */
+	@Test
+	public void testToBuilderBuildsAnEqualBean()
+	{
+		SecureRandomBean bean = new SecureRandomBean("DRBG", "SUN", 42L);
+		assertEquals(bean, bean.toBuilder().build());
+		SecureRandomBean built = SecureRandomBean.builder().algorithm("DRBG").provider("SUN")
+			.seed(42L).build();
+		assertEquals("DRBG", built.getAlgorithm());
+		assertEquals("SUN", built.getProvider());
+		assertEquals(42L, built.getSeed());
+	}
+
+	/**
+	 * Test method for {@link SecureRandomBean#toString()} and the toString of its builder: both
+	 * name every field and its value
+	 */
+	@Test
+	public void testToStringNamesEveryField()
+	{
+		SecureRandomBean bean = new SecureRandomBean("DRBG", "SUN", 42L);
+		assertEquals("SecureRandomBean(algorithm=DRBG, provider=SUN, seed=42)", bean.toString());
+		assertEquals(
+			"SecureRandomBean.SecureRandomBeanBuilder(algorithm=DRBG, provider=SUN, seed=42)",
+			bean.toBuilder().toString());
+	}
+
+	/**
+	 * Test method for {@link SecureRandomBean#hashCode()}: it takes the whole seed, so two seeds
+	 * that differ only in their upper 32 bits give two hash codes
+	 */
+	@Test
+	public void testHashCodeTakesTheUpperBitsOfTheSeed()
+	{
+		assertNotEquals(new SecureRandomBean("DRBG", "SUN", 0L).hashCode(),
+			new SecureRandomBean("DRBG", "SUN", 1L << 32).hashCode());
+	}
 }

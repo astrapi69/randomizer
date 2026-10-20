@@ -9,9 +9,9 @@ name: Java CI with Gradle
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ master, develop ]
   pull_request:
-    branches: [ develop ]
+    branches: [ master, develop ]
 
 jobs:
   build:
@@ -19,19 +19,64 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
+      - name: Checkout sources
+        uses: actions/checkout@v7
+      - name: Setup Java
+        uses: actions/setup-java@v5
         with:
           java-version: '17'
           distribution: 'temurin'
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@v2.8.0
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+      - name: Execute Gradle build
+        run: ./gradlew build
+      - name: Mutation testing (PIT, fails below mutationThreshold in build.gradle)
+        run: |
+          ./gradlew pitest
+      - name: Mutation context (awesome-well-tested docs/mutation-context.md)
+        # The context that makes the score comparable: tool and version, mutator set,
+        # scope, the full result breakdown, the tool's score and the strict score. The
+        # converter is pinned to a commit of the list that defines the schema. Runs on
+        # a red PIT step too, so a regression carries its numbers; without a report
+        # (the build failed earlier) there is nothing to convert.
+        if: always()
+        run: |
+          if [ ! -f build/reports/pitest/mutations.xml ]; then
+            echo "no PIT report, nothing to convert"; exit 0
+          fi
+          curl -fsSL -o /tmp/mutation_context.py \
+            https://raw.githubusercontent.com/awesome-references/awesome-well-tested/3d1258db8b54a1ad239229869eec9d57c527991c/scripts/mutation_context.py
+          python3 /tmp/mutation_context.py --pit build/reports/pitest/mutations.xml \
+            --tool-version "$(grep -oP '^pitest-version = "\K[^"]+' gradle/libs.versions.toml)" \
+            --mutators DEFAULTS --target 'io.github.astrapi69.random.*' \
+            --out build/reports/pitest/mutation-context.json
+          cat build/reports/pitest/mutation-context.json
+      - name: Keep the mutation context
+        if: always()
+        uses: actions/upload-artifact@v7
         with:
-          arguments: build
-        env:
-          ossrhUsername: ${{secrets.OSSRHUSERNAME}}
-          ossrhPassword: ${{secrets.OSSRHPASSWORD}}
-      - uses: codecov/codecov-action@v3
+          name: mutation-context
+          path: build/reports/pitest/mutation-context.json
+          if-no-files-found: ignore
+      - uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+      # Snapshots only, from develop (#15). A release goes up from its RELEASE-* tag through
+      # publish.yml; uploading it here as well would add a deployment when the release commit
+      # reaches develop, and another when master follows the tag.
+      - name: Publish the snapshot to Maven Central
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+        run: |
+          if grep -q -- '-SNAPSHOT' gradle.properties; then
+            ./gradlew publishAggregationToCentralSnapshots
+          else
+            echo "a release version: it goes up from its RELEASE-* tag through publish.yml"
+          fi
+        env:
+          CENTRAL_PORTAL_TOKEN_USERNAME: ${{ secrets.CENTRAL_PORTAL_TOKEN_USERNAME }}
+          CENTRAL_PORTAL_TOKEN_PASSWORD: ${{ secrets.CENTRAL_PORTAL_TOKEN_PASSWORD }}
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          # the signing subkey's last 8 hex digits, as in publish.yml: since #9 a snapshot is signed
+          # too, and signing a subkey-only GPG_PRIVATE_KEY without the id fails this step
+          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
