@@ -1,7 +1,7 @@
 ## Change log
 ----------------------
 
-Version 10.7-SNAPSHOT
+Version 10.7
 -------------
 
 FIXED:
@@ -16,11 +16,18 @@ FIXED:
 
 CHANGED:
 
-- the package documentation says what randomizer is for: random test data, not secrets; for those,
-  java.security.SecureRandom directly (#32)
-
+- the package documentation and the README say what randomizer is for: random test data, not
+  secrets; for those, java.security.SecureRandom directly (#32, #30)
+- SECURITY.md: the supported line, the private reporting path, and GHSA-395w-fmf5-xfj3 (a
+  SecureRandom built without a seed was seeded with the current time before 10.5) (#27)
+- an upload to the Central Portal leaves only from CI, and a release only from its RELEASE-* tag
+  (#23); an upload refuses a half-configured signing key, GPG_PRIVATE_KEY without GPG_PASSPHRASE or
+  the reverse (#25)
 - a manual run of publish.yml asks whether to publish a snapshot or a release; it used to send any
   version, a -SNAPSHOT included, to the release upload (#11)
+- the README's badges and links point at Maven Central, codecov and javadoc.io instead of
+  shut-down or wrong addresses (#30); the gradle/ directory is no longer ignored (#21); the
+  dependency graph is submitted to GitHub (#19)
 
 
 Version 10.6
