@@ -48,7 +48,7 @@ public final class RandomFloatFactory
 	/**
 	 * Gets an random float to the given range with the given random algorithm <br>
 	 * <br>
-	 * For example: if you put range to 10 the random float is between 0.0-9.9
+	 * For example: with the range 10 the random float lies in [0.0, 10.0)
 	 *
 	 * @param range
 	 *            the range
@@ -81,7 +81,7 @@ public final class RandomFloatFactory
 	/**
 	 * Gets an random float to the given range with the given random algorithm <br>
 	 * <br>
-	 * For example: if you put range to 10 the random float is between 0.0-9.9
+	 * For example: with the range 10 the random float lies in [0.0, 10.0)
 	 *
 	 * @param range
 	 *            the range
@@ -95,12 +95,13 @@ public final class RandomFloatFactory
 	}
 
 	/**
-	 * Generates a random float between the range 0.0-9.9.
+	 * Generates a random float from 0.0, included, to 1.0, excluded, as
+	 * {@link SecureRandom#nextFloat()} draws it
 	 *
 	 * @param secureRandom
 	 *            the secure random for float generation
 	 *
-	 * @return the generated random float between the range 0.0-9.9.
+	 * @return a random float in [0.0, 1.0)
 	 */
 	public static float randomFloat(SecureRandom secureRandom)
 	{
@@ -108,9 +109,10 @@ public final class RandomFloatFactory
 	}
 
 	/**
-	 * Generates a random float between the range 0.0-9.9.
+	 * Generates a random float from 0.0, included, to 1.0, excluded, as
+	 * {@link SecureRandom#nextFloat()} draws it
 	 *
-	 * @return the generated random float between the range 0.0-9.9.
+	 * @return a random float in [0.0, 1.0)
 	 */
 	public static float randomFloat()
 	{
@@ -119,7 +121,7 @@ public final class RandomFloatFactory
 
 	/**
 	 * The Method randomFloat(float) gets an float to the spezified range. For example: if you put
-	 * range to 10.0 the random int is between 0.0-9.9.
+	 * range to 10.0 the random float lies in [0.0, 10.0).
 	 *
 	 * @param range
 	 *            the range
@@ -133,7 +135,7 @@ public final class RandomFloatFactory
 	/**
 	 * Gets an random float to the given range with the given random algorithm <br>
 	 * <br>
-	 * For example: if you put range to 10 the random float is between 0.0-9.9
+	 * For example: with the range 10 the random float lies in [0.0, 10.0)
 	 *
 	 * @param range
 	 *            the range
@@ -162,7 +164,7 @@ public final class RandomFloatFactory
 	}
 
 	/**
-	 * Gets the random float between the range from start and end.
+	 * Gets a random float from start, included, to end, excluded
 	 *
 	 * @param start
 	 *            the start
@@ -176,7 +178,7 @@ public final class RandomFloatFactory
 	}
 
 	/**
-	 * Gets the random float between the range from start and end.
+	 * Gets a random float from start, included, to end, excluded
 	 *
 	 * @param start
 	 *            the start
