@@ -4,7 +4,20 @@
 Version 10.7-SNAPSHOT
 -------------
 
+FIXED:
+
+- randomByte draws all 256 byte values with the same probability; it drew 0 to 254, so 0xFF never
+  came up. randomByteArray fills its array with SecureRandom.nextBytes; half of its bytes came from
+  randomByte, so 0xFF came up half as often as any other value. A seeded generator therefore draws
+  different bytes than in 10.6 (#32)
+- the javadoc says what the methods do: randomInt() draws from the whole int range (it promised 0 to
+  9), randomFloat() from [0.0, 1.0) (it promised 0.0 to 9.9), and the two-argument *Between methods
+  include the start and exclude the end (#32)
+
 CHANGED:
+
+- the package documentation says what randomizer is for: random test data, not secrets; for those,
+  java.security.SecureRandom directly (#32)
 
 - a manual run of publish.yml asks whether to publish a snapshot or a release; it used to send any
   version, a -SNAPSHOT included, to the release upload (#11)

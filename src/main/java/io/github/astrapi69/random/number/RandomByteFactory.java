@@ -28,10 +28,12 @@ import java.security.SecureRandom;
 import java.util.Objects;
 
 import io.github.astrapi69.random.DefaultSecureRandom;
-import io.github.astrapi69.random.enumeration.RandomAlgorithm;
 
 /**
- * Utility class for producing random primitive byte types
+ * Utility class for producing random primitive byte types, for test data.
+ * <p>
+ * Not meant for secrets: for passwords, keys, salts, nonces or tokens use
+ * {@link java.security.SecureRandom} directly (see the package documentation)
  *
  * @version 1.1
  * @author Asterios Raptis
@@ -44,7 +46,7 @@ public final class RandomByteFactory
 	}
 
 	/**
-	 * The Method randomByte() selects a random byte.
+	 * Selects a random byte: each of the 256 values with the same probability
 	 *
 	 * @return The random byte.
 	 */
@@ -54,7 +56,8 @@ public final class RandomByteFactory
 	}
 
 	/**
-	 * The Method randomByte() selects a random byte.
+	 * Selects a random byte: each of the 256 values with the same probability. Up to 10.6 this drew
+	 * from 0 to 254 only, so the byte {@code 0xFF} was never selected (#32)
 	 *
 	 * @param secureRandom
 	 *            the secure random for byte generation
@@ -63,12 +66,11 @@ public final class RandomByteFactory
 	 */
 	public static byte randomByte(SecureRandom secureRandom)
 	{
-		return (byte)RandomIntFactory.randomInt(255, RandomAlgorithm.SECURE_RANDOM,
-			Objects.requireNonNull(secureRandom));
+		return (byte)Objects.requireNonNull(secureRandom).nextInt(256);
 	}
 
 	/**
-	 * The Method randomByteArray(int) generates a random byte array.
+	 * Generates an array of random bytes, each of the 256 values with the same probability
 	 *
 	 * @param length
 	 *            the length.
@@ -80,7 +82,9 @@ public final class RandomByteFactory
 	}
 
 	/**
-	 * The Method randomByteArray(int) generates a random byte array.
+	 * Generates an array of random bytes, each of the 256 values with the same probability. Up to
+	 * 10.6 half of the bytes came from {@link #randomByte(SecureRandom)}, so {@code 0xFF} was drawn
+	 * half as often as any other value (#32)
 	 *
 	 * @param length
 	 *            the length
@@ -92,19 +96,7 @@ public final class RandomByteFactory
 	{
 		Objects.requireNonNull(secureRandom);
 		final byte[] randomByteArray = new byte[length];
-		final byte[] randomByteBox = new byte[1];
-		for (int i = 0; i < length; i++)
-		{
-			if (RandomBooleanFactory.randomBoolean(secureRandom))
-			{
-				randomByteArray[i] = randomByte(secureRandom);
-			}
-			else
-			{
-				secureRandom.nextBytes(randomByteBox);
-				randomByteArray[i] = randomByteBox[0];
-			}
-		}
+		secureRandom.nextBytes(randomByteArray);
 		return randomByteArray;
 	}
 
