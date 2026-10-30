@@ -4,6 +4,11 @@
 Version 10.7-SNAPSHOT
 -------------
 
+CHANGED:
+
+- a manual run of publish.yml asks whether to publish a snapshot or a release; it used to send any
+  version, a -SNAPSHOT included, to the release upload (#11)
+
 
 Version 10.6
 -------------
