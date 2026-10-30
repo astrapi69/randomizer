@@ -1,6 +1,14 @@
 ## Change log
 ----------------------
 
+Version 11.0-SNAPSHOT
+-------------
+
+BREAKING:
+
+- Java 25 is the minimum, up from 17: the family builds, tests and releases on JDK 25
+  (astrapi69/mystic-crypt#234), so this release is 11.0 instead of 10.8 (#35)
+
 Version 10.7
 -------------
 
