@@ -48,7 +48,7 @@ public final class RandomDoubleFactory
 	/**
 	 * Gets an random double to the given range with the given random algorithm <br>
 	 * <br>
-	 * For example: if you put range to 10 the random float is between 0.0-9.9
+	 * For example: with the range 10 the random double lies in [0.0, 10.0)
 	 *
 	 * @param range
 	 *            the range
@@ -64,7 +64,7 @@ public final class RandomDoubleFactory
 	/**
 	 * Gets an random double to the given range with the given random algorithm <br>
 	 * <br>
-	 * For example: if you put range to 10 the random float is between 0.0-9.9
+	 * For example: with the range 10 the random double lies in [0.0, 10.0)
 	 *
 	 * @param range
 	 *            the range
@@ -97,7 +97,7 @@ public final class RandomDoubleFactory
 	/**
 	 * Gets an random double to the given range with the given random algorithm <br>
 	 * <br>
-	 * For example: if you put range to 10 the random float is between 0.0-9.9
+	 * For example: with the range 10 the random double lies in [0.0, 10.0)
 	 *
 	 * @param range
 	 *            the range
@@ -113,7 +113,7 @@ public final class RandomDoubleFactory
 	/**
 	 * Gets an random double to the given range with the given random algorithm <br>
 	 * <br>
-	 * For example: if you put range to 10 the random float is between 0.0-9.9
+	 * For example: with the range 10 the random double lies in [0.0, 10.0)
 	 *
 	 * @param secureRandom
 	 *            the secure random for double generation
@@ -126,7 +126,7 @@ public final class RandomDoubleFactory
 
 	/**
 	 * The Method randomDouble(double) gets an double to the spezified range. For example: if you
-	 * put range to 10.0 the random int is between 0.0-9.9.
+	 * put range to 10.0 the random double lies in [0.0, 10.0).
 	 *
 	 * @param range
 	 *            the range
@@ -148,7 +148,7 @@ public final class RandomDoubleFactory
 	}
 
 	/**
-	 * Gets the random double between the range from start and end.
+	 * Gets a random double from start, included, to end, excluded
 	 *
 	 * @param start
 	 *            the start
@@ -166,7 +166,7 @@ public final class RandomDoubleFactory
 	}
 
 	/**
-	 * Gets the random double between the range from start and end.
+	 * Gets a random double from start, included, to end, excluded
 	 *
 	 * @param start
 	 *            the start

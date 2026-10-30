@@ -86,13 +86,13 @@ public final class RandomLongFactory
 	}
 
 	/**
-	 * Returns a random long between the range from start and end.
+	 * Returns a random long from start, included, to end, excluded
 	 *
 	 * @param start
 	 *            The long from where the range starts.
 	 * @param end
 	 *            The long from where the range ends.
-	 * @return A random long between the range from start and end.
+	 * @return a random long in [start, end)
 	 */
 	public static long randomLongBetween(final long start, final long end)
 	{
@@ -162,7 +162,7 @@ public final class RandomLongFactory
 	}
 
 	/**
-	 * Returns a random long between the range from start and end.
+	 * Returns a random long from start, included, to end, excluded
 	 *
 	 * @param start
 	 *            The long from where the range starts.
@@ -170,7 +170,7 @@ public final class RandomLongFactory
 	 *            The long from where the range ends.
 	 * @param secureRandom
 	 *            the secure random for long generation
-	 * @return A random long between the range from start and end.
+	 * @return a random long in [start, end)
 	 */
 	public static long randomLongBetween(final long start, final long end,
 		SecureRandom secureRandom)

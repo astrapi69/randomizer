@@ -28,7 +28,8 @@ import java.security.SecureRandom;
 
 /**
  * The class {@link DefaultSecureRandom} holds a {@link SecureRandom} with the default algorithm and
- * provider
+ * provider, the generator behind every method of this library that takes none. It is for test data,
+ * not for secrets (see the package documentation)
  */
 public final class DefaultSecureRandom
 {

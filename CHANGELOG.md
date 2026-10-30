@@ -1,6 +1,35 @@
 ## Change log
 ----------------------
 
+Version 10.7
+-------------
+
+FIXED:
+
+- randomByte draws all 256 byte values with the same probability; it drew 0 to 254, so 0xFF never
+  came up. randomByteArray fills its array with SecureRandom.nextBytes; half of its bytes came from
+  randomByte, so 0xFF came up half as often as any other value. A seeded generator therefore draws
+  different bytes than in 10.6 (#32)
+- the javadoc says what the methods do: randomInt() draws from the whole int range (it promised 0 to
+  9), randomFloat() from [0.0, 1.0) (it promised 0.0 to 9.9), and the two-argument *Between methods
+  include the start and exclude the end (#32)
+
+CHANGED:
+
+- the package documentation and the README say what randomizer is for: random test data, not
+  secrets; for those, java.security.SecureRandom directly (#32, #30)
+- SECURITY.md: the supported line, the private reporting path, and GHSA-395w-fmf5-xfj3 (a
+  SecureRandom built without a seed was seeded with the current time before 10.5) (#27)
+- an upload to the Central Portal leaves only from CI, and a release only from its RELEASE-* tag
+  (#23); an upload refuses a half-configured signing key, GPG_PRIVATE_KEY without GPG_PASSPHRASE or
+  the reverse (#25)
+- a manual run of publish.yml asks whether to publish a snapshot or a release; it used to send any
+  version, a -SNAPSHOT included, to the release upload (#11)
+- the README's badges and links point at Maven Central, codecov and javadoc.io instead of
+  shut-down or wrong addresses (#30); the gradle/ directory is no longer ignored (#21); the
+  dependency graph is submitted to GitHub (#19)
+
+
 Version 10.6
 -------------
 

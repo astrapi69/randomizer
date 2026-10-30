@@ -109,12 +109,12 @@ public final class RandomIntFactory
 	}
 
 	/**
-	 * The Method randomInt() gets an int between the range 0-9.
+	 * Gets a random int from the whole int range, as {@link SecureRandom#nextInt()} draws it
 	 *
 	 * @param secureRandom
 	 *            the secure random for int generation
 	 *
-	 * @return an int between the range 0-9.
+	 * @return a random int, negative or positive
 	 */
 	public static int randomInt(SecureRandom secureRandom)
 	{
@@ -122,9 +122,9 @@ public final class RandomIntFactory
 	}
 
 	/**
-	 * The Method randomInt() gets an int between the range 0-9.
+	 * Gets a random int from the whole int range, as {@link SecureRandom#nextInt()} draws it
 	 *
-	 * @return an int between the range 0-9.
+	 * @return a random int, negative or positive
 	 */
 	public static int randomInt()
 	{
@@ -218,13 +218,13 @@ public final class RandomIntFactory
 	}
 
 	/**
-	 * Returns a random int between the range from start and end.
+	 * Returns a random int from start, included, to end, excluded
 	 *
 	 * @param start
 	 *            The int from where the range starts.
 	 * @param end
 	 *            The int from where the range ends.
-	 * @return A random int between the range from start and end.
+	 * @return a random int in [start, end)
 	 */
 	public static int randomIntBetween(final int start, final int end)
 	{

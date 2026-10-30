@@ -27,7 +27,8 @@ package io.github.astrapi69.random;
 import java.security.SecureRandom;
 
 /**
- * A factory for creating {@link SecureRandom} objects
+ * A factory for creating {@link SecureRandom} objects for test data, not for secrets (see the
+ * package documentation)
  */
 public final class SecureRandomFactory
 {

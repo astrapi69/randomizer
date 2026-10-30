@@ -3,16 +3,22 @@
 <div style="text-align: center">
 
 [![Java CI with Gradle](https://github.com/astrapi69/randomizer/actions/workflows/gradle.yml/badge.svg)](https://github.com/astrapi69/randomizer/actions/workflows/gradle.yml)
-[![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/randomizer?branch=develop)
+[![codecov](https://codecov.io/gh/astrapi69/randomizer/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/randomizer)
 [![Open Issues](https://img.shields.io/github/issues/astrapi69/randomizer.svg?style=flat)](https://github.com/astrapi69/randomizer/issues)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.astrapi69/randomizer-core)
-[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/randomizer)](https://central.sonatype.com/artifact/io.github.astrapi69/randomizer)
+[![Javadocs](https://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](https://www.javadoc.io/doc/io.github.astrapi69/randomizer)
 [![MIT license](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
 
 </div>
 
-Generate random data
+Generate random data: numbers, strings, dates and objects, for tests and sample data.
+
+**randomizer is not meant for secrets.** For passwords, keys, salts, nonces or tokens, use
+`java.security.SecureRandom` directly. Before 10.5, a `SecureRandom` this library built without an
+explicit seed was seeded with the current time in milliseconds
+([GHSA-395w-fmf5-xfj3](https://github.com/astrapi69/randomizer/security/advisories/GHSA-395w-fmf5-xfj3));
+see [SECURITY.md](SECURITY.md).
 
 > Please support this project by simply putting a Github <!-- Place this tag where you want the button to render. -->
                                                          <a class="github-button" href="https://github.com/astrapi69/randomizer" data-icon="octicon-star" aria-label="Star astrapi69/randomizer on GitHub">Star ⭐</a>
@@ -32,13 +38,13 @@ your project `build.gradle` if you want to import the core functionality of rand
 
 define version in file gradle.properties
 ```
-randomizerVersion=10.5
+randomizerVersion=10.6
 ```
 
 or in build.gradle ext area
 
 ```
-    randomizerVersion = "10.5"
+    randomizerVersion = "10.6"
 ```
 
 then add the dependency to the dependencies area
@@ -49,8 +55,8 @@ then add the dependency to the dependencies area
 
 ## Maven dependency
 
-Maven dependency is now on sonatype.
-Check out [sonatype repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer~~~) for latest snapshots and releases.
+Releases are on Maven Central:
+[io.github.astrapi69:randomizer](https://central.sonatype.com/artifact/io.github.astrapi69/randomizer).
 
 Add the following maven dependency to your project `pom.xml` if you want to import the core functionality of randomizer:
 
@@ -60,7 +66,7 @@ Than you can add the dependency to your dependencies:
     <properties>
             ...
         <!-- RANDOMIZER versions -->
-        <randomizer.version>10.5</randomizer.version>
+        <randomizer.version>10.6</randomizer.version>
             ...
     </properties>
 
@@ -182,28 +188,22 @@ Here is a list of awesome projects:
 
 ## Credits
 
-|**Nexus Sonatype repositories**|
+|**Maven Central**|
 |     :---:      |
-|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/randomizer-address.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer-address~~~) randomizer-address|
-|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/randomizer-api.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer-api~~~) randomizer-api|
-|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/randomizer-core.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer-core~~~) randomizer-core|
-|[![sonatype repository](https://img.shields.io/nexus/r/https/oss.sonatype.org/io.github.astrapi69/randomizer-data.svg?style=for-the-badge)](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~randomizer-data~~~) randomizer-data|
-|Special thanks to [sonatype repository](https://www.sonatype.com) for providing a free maven repository service for open source projects|
+|[![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/randomizer?style=for-the-badge)](https://central.sonatype.com/artifact/io.github.astrapi69/randomizer) randomizer|
+|Special thanks to [sonatype](https://www.sonatype.com) for providing Maven Central for open source projects|
 |     <img width=1000/>     |
 
-|**coveralls.io**|
+|**codecov.io**|
 |     :---:      |
-|[![Coverage Status](https://coveralls.io/repos/github/astrapi69/randomizer/badge.svg?branch=develop)](https://coveralls.io/github/astrapi69/randomizer?branch=develop)|
-|Special thanks to [coveralls.io](https://coveralls.io) for providing a free code coverage for open source projects|
+|[![codecov](https://codecov.io/gh/astrapi69/randomizer/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/randomizer)|
+|Special thanks to [codecov.io](https://codecov.io) for providing a free code coverage for open source projects|
 |     <img width=1000/>     |
 
 |**javadoc.io**|
 |     :---:      |
-|[![Javadoc](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-address.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-address) randomizer-address|
-|[![Javadoc](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-api.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-api) randomizer-api|
-|[![Javadoc](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-core.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-core) randomizer-core|
-|[![Javadoc](http://www.javadoc.io/badge/io.github.astrapi69/randomizer-data.svg)](http://www.javadoc.io/doc/io.github.astrapi69/randomizer-data) randomizer-data|
-|Special thanks to [javadoc.io](http://www.javadoc.io) for providing a free javadoc documentation for open source projects|
+|[![Javadoc](https://www.javadoc.io/badge/io.github.astrapi69/randomizer.svg)](https://www.javadoc.io/doc/io.github.astrapi69/randomizer) randomizer|
+|Special thanks to [javadoc.io](https://www.javadoc.io) for providing a free javadoc documentation for open source projects|
 |     <img width=1000/>     |
 
 ## Git hooks

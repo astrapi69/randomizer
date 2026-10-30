@@ -1,5 +1,7 @@
-# Publishes the artifact to Maven Central via the Central Portal (nmcp plugin).
-# Triggered by pushing a release tag (RELEASE-*) or manually via workflow_dispatch.
+# Publishes the artifact to Maven Central via the Central Portal (nmcp settings plugin).
+# Triggered by pushing a release tag (RELEASE-*), which always targets the release repository, or
+# manually via workflow_dispatch, which asks where to publish (#11): a manual run used to send a
+# -SNAPSHOT version to the release upload.
 # Required repository secrets:
 #   CENTRAL_PORTAL_TOKEN_USERNAME / CENTRAL_PORTAL_TOKEN_PASSWORD - Central Portal user token
 #   GPG_PRIVATE_KEY / GPG_PASSPHRASE    - ascii-armored signing key and its passphrase
@@ -12,11 +14,25 @@ on:
   push:
     tags: [ 'RELEASE-*' ]
   workflow_dispatch:
+    inputs:
+      target:
+        description: 'Where to publish (a tag push always publishes a release)'
+        required: true
+        default: snapshot
+        type: choice
+        options:
+          - snapshot
+          - release
 
 jobs:
   publish:
 
     runs-on: ubuntu-latest
+
+    env:
+      # a tag push publishes a release; a manual run publishes what it was asked for. This build
+      # publishes through the settings plugin, so the tasks are the aggregation's.
+      PUBLISH_TASK: ${{ (github.event_name == 'workflow_dispatch' && inputs.target == 'snapshot') && 'nmcpPublishAggregationToCentralPortalSnapshots' || 'nmcpPublishAggregationToCentralPortal' }}
 
     steps:
       - name: Checkout sources
@@ -33,7 +49,9 @@ jobs:
       # nmcp uploads and validates the bundle directly - no separate manual staging-upload step
       # needed (unlike the plain maven-publish + OSSRH-staging-api repos in this family).
       - name: Publish to the Central Portal
-        run: ./gradlew publishAggregationToCentralPortal
+        run: |
+          echo "publishing with $PUBLISH_TASK"
+          ./gradlew "$PUBLISH_TASK"
         env:
           CENTRAL_PORTAL_TOKEN_USERNAME: ${{ secrets.CENTRAL_PORTAL_TOKEN_USERNAME }}
           CENTRAL_PORTAL_TOKEN_PASSWORD: ${{ secrets.CENTRAL_PORTAL_TOKEN_PASSWORD }}
