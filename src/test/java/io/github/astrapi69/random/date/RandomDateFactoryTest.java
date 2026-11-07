@@ -383,18 +383,25 @@ public class RandomDateFactoryTest
 	}
 
 	/**
-	 * Test method for {@link RandomDateFactory#randomDate(SecureRandom)}
+	 * Test method for {@link RandomDateFactory#randomDate(SecureRandom)}: each date lies within
+	 * 10000 days before or after the time of the call, measured around the call, as
+	 * {@link RandomDateFactoryProperties} checks it; the time of the call itself is one of the
+	 * outcomes (#43)
 	 */
 	@Test
 	public void testRandomDateSecureRandom()
 	{
 		for (int i = 0; i < 7; i++)
 		{
+			final Date before = new Date();
 			Date randomDate = RandomDateFactory.randomDate(DefaultSecureRandom.get());
+			final Date after = new Date();
 			assertNotNull(randomDate);
 
-			boolean actual = !randomDate.equals(this.now);
-			assertTrue(actual);
+			final Date lowest = CalculateDateExtensions.substractDaysFromDate(before, 10_000);
+			final Date highest = CalculateDateExtensions.addDays(after, 10_000);
+			assertFalse(randomDate.before(lowest), randomDate + " is before " + lowest);
+			assertFalse(randomDate.after(highest), randomDate + " is after " + highest);
 		}
 	}
 
