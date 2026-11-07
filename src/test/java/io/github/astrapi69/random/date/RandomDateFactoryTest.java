@@ -25,6 +25,7 @@
 package io.github.astrapi69.random.date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -44,6 +45,7 @@ import io.github.astrapi69.date.CalculateDateExtensions;
 import io.github.astrapi69.date.DatePattern;
 import io.github.astrapi69.date.ParseDateExtensions;
 import io.github.astrapi69.random.DefaultSecureRandom;
+import io.github.astrapi69.random.StubSecureRandom;
 
 
 /**
@@ -381,19 +383,43 @@ public class RandomDateFactoryTest
 	}
 
 	/**
-	 * Test method for {@link RandomDateFactory#randomDate(SecureRandom)}
+	 * Test method for {@link RandomDateFactory#randomDate(SecureRandom)}: each date lies within
+	 * 10000 days before or after the time of the call, measured around the call, as
+	 * {@link RandomDateFactoryProperties} checks it; the time of the call itself is one of the
+	 * outcomes (#43)
 	 */
 	@Test
 	public void testRandomDateSecureRandom()
 	{
 		for (int i = 0; i < 7; i++)
 		{
+			final Date before = new Date();
 			Date randomDate = RandomDateFactory.randomDate(DefaultSecureRandom.get());
+			final Date after = new Date();
 			assertNotNull(randomDate);
 
-			boolean actual = !randomDate.equals(this.now);
-			assertTrue(actual);
+			final Date lowest = CalculateDateExtensions.substractDaysFromDate(before, 10_000);
+			final Date highest = CalculateDateExtensions.addDays(after, 10_000);
+			assertFalse(randomDate.before(lowest), randomDate + " is before " + lowest);
+			assertFalse(randomDate.after(highest), randomDate + " is after " + highest);
 		}
+	}
+
+	/**
+	 * Test method for {@link RandomDateFactory#randomDate(SecureRandom)} with an offset of zero
+	 * days: a draw of 0.0 picks the side after now and an offset of zero, so the date is the time
+	 * of the call itself. A real {@link SecureRandom} draws such an offset too, which an assertion
+	 * of "not now" does not allow for (#43)
+	 */
+	@Test
+	public void testRandomDateSecureRandomWithOffsetZero()
+	{
+		final Date before = new Date();
+		final Date randomDate = RandomDateFactory
+			.randomDate(StubSecureRandom.nextDoubleReturning(0.0));
+		final Date after = new Date();
+		assertFalse(randomDate.before(before), randomDate + " is before " + before);
+		assertFalse(randomDate.after(after), randomDate + " is after " + after);
 	}
 
 	/**
