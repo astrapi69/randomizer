@@ -28,9 +28,10 @@ import java.security.SecureRandom;
 
 /**
  * A test double of {@link SecureRandom} that returns one given value from {@link #nextInt()} and
- * {@link #nextLong()}, so a property can hand a generator every value a real {@link SecureRandom}
- * may draw, the extremes included. Every other method a generator could call throws, so a generator
- * that draws something else fails loudly instead of drawing from the operating system unnoticed.
+ * {@link #nextLong()}, or from {@link #nextDouble()} if it is made for that, so a property can hand
+ * a generator every value a real {@link SecureRandom} may draw, the extremes included. Every other
+ * method a generator could call throws, so a generator that draws something else fails loudly
+ * instead of drawing from the operating system unnoticed.
  */
 public final class StubSecureRandom extends SecureRandom
 {
@@ -41,10 +42,13 @@ public final class StubSecureRandom extends SecureRandom
 
 	private final long nextLong;
 
-	private StubSecureRandom(int nextInt, long nextLong)
+	private final Double nextDouble;
+
+	private StubSecureRandom(int nextInt, long nextLong, Double nextDouble)
 	{
 		this.nextInt = nextInt;
 		this.nextLong = nextLong;
+		this.nextDouble = nextDouble;
 	}
 
 	/**
@@ -56,7 +60,7 @@ public final class StubSecureRandom extends SecureRandom
 	 */
 	public static StubSecureRandom nextIntReturning(int value)
 	{
-		return new StubSecureRandom(value, 0L);
+		return new StubSecureRandom(value, 0L, null);
 	}
 
 	/**
@@ -68,7 +72,20 @@ public final class StubSecureRandom extends SecureRandom
 	 */
 	public static StubSecureRandom nextLongReturning(long value)
 	{
-		return new StubSecureRandom(0, value);
+		return new StubSecureRandom(0, value, null);
+	}
+
+	/**
+	 * Factory method for a {@link SecureRandom} whose {@link #nextDouble()} returns the given value
+	 *
+	 * @param value
+	 *            the value, from 0.0 inclusive to 1.0 exclusive as a real {@link SecureRandom}
+	 *            draws it
+	 * @return the stub
+	 */
+	public static StubSecureRandom nextDoubleReturning(double value)
+	{
+		return new StubSecureRandom(0, 0L, value);
 	}
 
 	@Override
@@ -92,7 +109,11 @@ public final class StubSecureRandom extends SecureRandom
 	@Override
 	public double nextDouble()
 	{
-		throw new UnsupportedOperationException("nextDouble()");
+		if (nextDouble == null)
+		{
+			throw new UnsupportedOperationException("nextDouble()");
+		}
+		return nextDouble;
 	}
 
 	@Override
