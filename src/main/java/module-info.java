@@ -23,7 +23,7 @@ module randomizer.main
 	requires java.desktop;
 	requires io.github.astrapisixtynine.silly.collection;
 	requires io.github.astrapisixtynine.jobj.core;
-	requires jobj.reflect.main;
+	requires io.github.astrapisixtynine.jobj.reflect;
 	requires jobj.copy.main;
 	requires silly.math;
 	requires vintage.time.main;
